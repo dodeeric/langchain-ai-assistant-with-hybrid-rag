@@ -10,7 +10,8 @@ Original file is located at
 Hybrid RAG: keyword search (bm25) and semantic search (vector db)
 """
 
-import requests, json, jq, time, bs4
+import requests, json, jq, time, bs4, os
+from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 from google.colab import userdata
 from langchain import hub
@@ -21,12 +22,12 @@ from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
-OPENAI_API_KEY = userdata.get("OPENAI_API_KEY")
-LANGCHAIN_API_KEY = userdata.get("LANGCHAIN_API_KEY")
+# Add the following credentials in a .env file:
+# OPENAI_API_KEY = "sk-xxxx"
+# LANGCHAIN_API_KEY = "ls__xxx"
 
-# %env OPENAI_API_KEY = $OPENAI_API_KEY
-# %env LANGCHAIN_API_KEY = $LANGCHAIN_API_KEY
-# %env LANGCHAIN_TRACING_V2 = "true"
+# Load environment variables from .env file
+load_dotenv()
 
 """## Scrape"""
 
