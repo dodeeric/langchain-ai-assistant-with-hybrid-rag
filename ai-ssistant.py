@@ -13,7 +13,7 @@ Hybrid RAG: keyword search (bm25) and semantic search (vector db)
 import requests, json, jq, time, bs4, os
 from dotenv import load_dotenv
 from bs4 import BeautifulSoup
-from google.colab import userdata
+#from google.colab import userdata
 from langchain import hub
 from langchain_community.document_loaders import WebBaseLoader, JSONLoader
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
