@@ -10,9 +10,6 @@ Original file is located at
 Hybrid RAG: keyword search (bm25) and semantic search (vector db)
 """
 
-# Commented out IPython magic to ensure Python compatibility.
-!pip install --upgrade --quiet jq bs4 langchain langchain-community langchain-openai langchain-chroma langchainhub rank_bm25
-
 import requests, json, jq, time, bs4
 from bs4 import BeautifulSoup
 from google.colab import userdata
