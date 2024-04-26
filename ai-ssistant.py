@@ -122,9 +122,9 @@ Open the JSON files and embed the items in a local Chroma vector DB.
 
 # Open the JSON file and load each json item one by one in the "Documents" variable
 
-file_path1 = "/content/drive/MyDrive/colab/commons-urls-ds1-swp.json"
-file_path2 = "/content/drive/MyDrive/colab/balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
-file_path3 = "/content/drive/MyDrive/colab/belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
+file_path1 = "./commons-urls-ds1-swp.json"
+file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
+file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
 file_path = [file_path1, file_path2, file_path3]
 
 documents = []
@@ -138,7 +138,7 @@ for file_p in file_path:
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
 
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="/content/drive/MyDrive/colab/chromadb6")
+vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="./chromadb")
 
 """## Retrieve and generate"""
 
@@ -183,7 +183,9 @@ question = "Pouvez-vous me montrer un tableau peint par Lieven De Winne ?"
 
 ai_assistant_chain.invoke(question)
 
+"""
 # Query the vector RAG only
 docs = vector_db.similarity_search(question, k=2) # List of Documents; page_content of a Document: string
 rag_context = format_docs_clear_text(docs) # One string composed of k json items
 print(rag_context)
+"""
