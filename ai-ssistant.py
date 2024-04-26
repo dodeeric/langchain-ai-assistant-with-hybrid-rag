@@ -89,13 +89,14 @@ def scrape_web_page(url):
 
     return page_json
 
+"""
 # Scrape the URLs and save the results in a JSON file
 
 file_path = "/content/drive/MyDrive/colab/commons-urls-ds1"
 #file_path = "/content/drive/MyDrive/colab/balat-urls-test"
 #file_path = "/content/drive/MyDrive/colab/belgica-urls-test"
 
-with open(f"{file_path}.txt", "r") as url_file:
+#with open(f"{file_path}.txt", "r") as url_file:
     data = []
     for line in url_file:
         url = line.strip()
@@ -112,6 +113,7 @@ with open(f"{file_path}-swp.json", "w") as output_file:
 # Open the JSON file to check its content (will produce an error if it's not a correctly formated JSON file)
 with open(f"{file_path}-swp.json", "r") as file:
     data_read = json.load(file)
+"""
 
 """## Index
 
