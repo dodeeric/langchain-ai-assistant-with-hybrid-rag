@@ -1,4 +1,5 @@
-import dotenv, jq, streamlit
+import dotenv, jq
+import streamlit as st
 from langchain import hub
 from langchain_community.document_loaders import JSONLoader
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
