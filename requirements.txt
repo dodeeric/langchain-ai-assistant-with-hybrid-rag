@@ -1,9 +1,9 @@
 python-dotenv
 jq
-bs4
 langchain
 langchain-community
 langchain-openai
-langchain-chroma
+langchain-chroma 
 langchainhub
 rank_bm25
+streamlit
