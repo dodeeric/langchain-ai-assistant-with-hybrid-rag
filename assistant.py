@@ -75,6 +75,8 @@ if st.button('Search'):
     else:
         st.write("Please enter a query to proceed.")
 
+st.write(" ")
+st.write(" ")
 st.write("(c) Eric Dodémont, 2024.")
 
 #streamlit run assistant.py &
