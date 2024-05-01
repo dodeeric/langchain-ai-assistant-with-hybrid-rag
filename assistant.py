@@ -60,6 +60,9 @@ st.write("Pour répondre, l'assistant questionne les bases de données graphique
 st.write("Voici quelques exemples de questions :")
 st.write("- Pouvez-vous me montrer un tableau de Jan Verhas ?")
 st.write("- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?")
+st.write("- Qui est présent sur le tableau "la revue des écoles" ?)
+st.write(" ")
+st.write("Remarque importante : pour l'instant, l'assistant ne possède pas de mémoire de la session de questions et réponses. Les questions que vous posez ne peuvent donc pas faire référence aux questions et réponses précédentes.")
 st.write(" ")
 st.write(" ")
 
@@ -71,5 +74,7 @@ if st.button('Search'):
         st.write(response)
     else:
         st.write("Please enter a query to proceed.")
+
+st.write("(c) Eric Dodémont, 2024.")
 
 #streamlit run assistant.py &
