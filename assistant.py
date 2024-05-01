@@ -55,7 +55,15 @@ ai_assistant_chain = (
 
 st.title('Belgian Monarchy Artworks Explorer - AI Assistant')
 
-user_query = st.text_area("Enter your query: ", help='Type your query here and press enter.')
+st.write("Cet assistant IA (Intelligence Artificielle) vous permet de posser toutes sortes de questions concernant l'art et la monarchie belge.")
+st.write("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale), et Wikimedia Commons.")
+st.write("Voici quelques exemples de questions :")
+st.write("- Pouvez-vous me montrer un tableau de Jan Verhas ?")
+st.write("- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?")
+st.write(" ")
+st.write(" ")
+
+user_query = st.text_area("Entrez votre question : ", help='Type your query here and press enter.')
 
 if st.button('Search'):
     if user_query:
