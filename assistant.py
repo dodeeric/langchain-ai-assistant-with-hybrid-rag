@@ -53,7 +53,7 @@ ai_assistant_chain = (
 
 # Streamlit
 
-st.title('AI Assistant')
+st.title('Belgian Monarchy Artworks Explorer - AI Assistant')
 
 user_query = st.text_area("Enter your query: ", help='Type your query here and press enter.')
 
