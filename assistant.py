@@ -77,14 +77,14 @@ st.markdown("Pour l'instant, l'assistant ne possède pas de mémoire de la sessi
 st.markdown(" ")
 st.markdown(" ")
 
-user_query = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
+question = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
 
 if st.button('Répondre'):
-    if user_query:
-        response = ai_assistant_chain.invoke(user_query)
-        st.markdown(response)
+    if question:
+        answer = ai_assistant_chain.invoke(question)
+        st.markdown(answer)
     else:
-        st.write("Please enter a query to proceed.")
+        st.write("Please enter a question to proceed.")
 
 st.markdown(" ")
 st.markdown(" ")
