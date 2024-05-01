@@ -76,6 +76,7 @@ if st.button('Répondre'):
         st.write("Please enter a query to proceed.")
 
 st.write(" ")
+st.write(" ")
 st.write("Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.")
 st.write("(c) Eric Dodémont, 2024.")
 
