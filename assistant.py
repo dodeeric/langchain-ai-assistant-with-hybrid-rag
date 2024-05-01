@@ -68,7 +68,7 @@ st.write(" ")
 
 user_query = st.text_area("Entrez votre question : ", help='Type your query here and press enter.')
 
-if st.button('Search'):
+if st.button('Répondre'):
     if user_query:
         response = ai_assistant_chain.invoke(user_query)
         st.write(response)
