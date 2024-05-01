@@ -71,6 +71,7 @@ st.markdown("- Pouvez-vous me montrer des images sur lesquelles ce trouve la rei
 st.markdown("- Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.")
 st.markdown("- Pouvez-vous me montrer plusieurs images du roi Léopold II ?")
 st.markdown("- Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?")
+st.markdown("- Avez-vous des oeuvres réalisées par Aimable Dutrieux ?")
 st.markdown("Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*")
 st.markdown("L'assistant prend environ 30 secondes pour répondre.")
 st.markdown("Pour l'instant, l'assistant ne possède pas de mémoire de la session de questions et réponses. Les questions que vous posez ne peuvent donc pas faire référence aux questions et réponses précédentes.")
