@@ -23,15 +23,9 @@ for file_path in file_paths:
     docs = loader.load()
     documents = documents + docs
 
-# STEP 1: Instanciate a Chroma DB and load the data from disk.
-collection_name = "bmae-json"
-embedding_model = OpenAIEmbeddings(model="text-embedding-3-large")
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="./chromadb")
-
-# STEP 2: ONLY TO EMBED! Instantiate a Chroma DB, embed the JSON items (documents), then save to disk.
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="/content/drive/MyDrive/colab/chromadb")
+vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="/content/drive/MyDrive/colab/chromadb")
 
 # Retrieve and generate
 
