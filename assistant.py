@@ -56,6 +56,9 @@ ai_assistant_chain = (
 
 st.title('Belgian Monarchy Artworks Explorer - AI Assistant')
 
+logo = Image.open("./crown.jpg")
+st.image(logo, use_column_width=True)
+
 st.write("Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.")
 st.write("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale), et Wikimedia Commons.")
 st.write("Voici quelques exemples de questions :")
@@ -81,9 +84,6 @@ if st.button('Répondre'):
 st.write(" ")
 st.write(" ")
 st.write("Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.")
-
-logo = Image.open("./crown.jpg")
-st.image(logo, caption='BMAE', use_column_width=True)
 
 st.write("(c) Eric Dodémont, 2024.")
 
