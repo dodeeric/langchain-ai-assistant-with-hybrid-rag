@@ -66,7 +66,7 @@ st.write("Remarque importante : pour l'instant, l'assistant ne possède pas de m
 st.write(" ")
 st.write(" ")
 
-user_query = st.text_area("Entrez votre question : ", help='Type your query here and press enter.')
+user_query = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
 
 if st.button('Répondre'):
     if user_query:
