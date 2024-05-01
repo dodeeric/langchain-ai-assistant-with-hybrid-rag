@@ -1,5 +1,6 @@
 import dotenv, jq
 import streamlit as st
+from PIL import Image
 from langchain import hub
 from langchain_community.document_loaders import JSONLoader
 from langchain_community.retrievers import BM25Retriever
@@ -80,6 +81,10 @@ if st.button('Répondre'):
 st.write(" ")
 st.write(" ")
 st.write("Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.")
+
+logo = Image.open("./crown.jpg")
+st.image(logo, caption='BMAE', use_column_width=True)
+
 st.write("(c) Eric Dodémont, 2024.")
 
 #streamlit run assistant.py &
