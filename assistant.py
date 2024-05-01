@@ -85,6 +85,6 @@ st.markdown(" ")
 st.markdown(" ")
 st.markdown("Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.")
 
-st.markdown("(c) Eric Dodémont, 2024.")
+st.markdown("*(c) Eric Dodémont, 2024.*")
 
 #streamlit run assistant.py &
