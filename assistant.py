@@ -54,13 +54,11 @@ ai_assistant_chain = (
 
 # Streamlit
 
-st.title('Belgian Monarchy Artworks Explorer - AI Assistant')
-
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
 
-st.markdown("# This is a Markdown header")
-st.markdown("Some **bold** and some _italic_ text.")
+st.markdown("## Belgian Monarchy Artworks Explorer")
+st.markdown("### AI Assistant")
 
 st.write("Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.")
 st.write("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale), et Wikimedia Commons.")
