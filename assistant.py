@@ -33,10 +33,10 @@ vector_db = Chroma(embedding_function=embedding_model, collection_name=collectio
 
 llm = ChatOpenAI(model="gpt-4-turbo-2024-04-09", temperature=0)
 
-vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
 keyword_retriever = BM25Retriever.from_documents(documents)
-keyword_retriever.k = 5
+keyword_retriever.k = 3
 
 ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
