@@ -80,7 +80,7 @@ user_query = st.text_area("Entrez votre question : ", help='Type your question h
 if st.button('Répondre'):
     if user_query:
         response = ai_assistant_chain.invoke(user_query)
-        st.write(response)
+        st.markdown(response)
     else:
         st.write("Please enter a query to proceed.")
 
