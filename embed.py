@@ -16,7 +16,9 @@ dotenv.load_dotenv()
 file_path1 = "./commons-urls-ds1-swp.json"
 file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
 file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
-file_paths = [file_path1, file_path2, file_path3]
+file_path4 = "./commons-urls-ds2-swp.json"
+file_path5 = "./balat-urls-ds2-swp.json"
+file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
 
 documents = []
 for file_path in file_paths:
