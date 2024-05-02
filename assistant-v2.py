@@ -68,10 +68,6 @@ ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_ret
 
 # With chat history:
 
-global chat_history
-
-chat_history = []
-
 contextualize_q_system_prompt = """Given a chat history and the latest user question \
 which might reference context in the chat history, formulate a standalone question \
 which can be understood without the chat history. Do NOT answer the question, \
@@ -138,15 +134,11 @@ question = st.text_area("Entrez votre question : ", help='Type your question her
 
 if st.button('Répondre'):
     if question:
-        if chat_history:
-            st.write("answer part of the chat history: ", chat_history[1])
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
-        st.markdown("sleeping 45 seconds now!")
         time.sleep(45)
-        st.markdown("extend chat history now!")
         chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history & question & output are not available outside this st run!
     else:
         st.write("Please enter a question to proceed.")
