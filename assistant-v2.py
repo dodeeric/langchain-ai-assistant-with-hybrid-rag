@@ -114,7 +114,7 @@ st.markdown("## Belgian Monarchy Artworks Explorer")
 
 st.markdown("Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.")
 st.markdown("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.")
-st.markdown("Voici quelques exemples de questions : (elles peuvent-être en français, en néérlandais ou en anglais)")
+st.markdown("Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais)")
 st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas ?")
 st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?")
 st.markdown("- Qui est présent sur le tableau 'la revue des écoles' ?")
@@ -130,16 +130,21 @@ st.markdown("Pour l'instant, l'assistant ne possède pas de mémoire de la sessi
 st.markdown(" ")
 st.markdown(" ")
 
-question = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
+question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
+
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []
 
 if st.button('Répondre'):
     if question:
+        if st.session_state.chat_history:
+            st.markdown("answer part of the chat history: ", st.session_state.chat_history[1])
         #answer = ai_assistant_chain.invoke(question) # Without chat history
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
+        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
         time.sleep(45)
-        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history is not available outside this st run!
+        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history is not available outside this st run!
     else:
         st.write("Please enter a question to proceed.")
 
