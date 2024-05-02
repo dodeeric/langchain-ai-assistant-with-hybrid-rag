@@ -116,9 +116,11 @@ st.image(logo, use_column_width=True)
 st.markdown("## Belgian Monarchy Artworks Explorer")
 
 st.markdown("""
-Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.
-Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
+Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
+questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
+
 Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais, ou même d'autres langues)
+
 - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
 - Avez-vous des images de la reine Elisabeth pendant la guerre ?
 - Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite vous pouvez poser la question : Qui a peint ce tableau ? Et encore ensuite : Quelle est la dimension du tableau ?
@@ -133,9 +135,13 @@ Voici quelques exemples de questions : (elles peuvent-être en français, en né
 - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
 - Avez-vous des oeuvres réalisées par Aimable Dutrieux ?
 - Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
-Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*
+
+Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du \
+roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*
+
 L'assistant prend environ 30 secondes pour répondre.
-L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Per exemple : Qui a peint ce tableau ?
+
+L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Par exemple : Qui a peint ce tableau ?
 """)
 
 question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
@@ -155,10 +161,7 @@ if st.button('Répondre'):
         st.write("Please enter a question to proceed.")
 
 st.markdown("""
-
-
-Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.
-*(c) Eric Dodémont, 2024.*
+Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072. *(c) Eric Dodémont, 2024.*
 """)
 
 #streamlit run assistant-v2.py &
