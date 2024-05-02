@@ -138,7 +138,7 @@ if st.button('Répondre'):
     if question:
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         st.markdown("answer part in the chat history:")
-        if chat_history[1]:
+        if chat_history:
             st.markdown(chat_history[1])
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
