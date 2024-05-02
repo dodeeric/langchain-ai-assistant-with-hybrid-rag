@@ -1,7 +1,5 @@
 # With chat history
 
-import time # debug
-
 import dotenv, jq
 import streamlit as st
 from PIL import Image
@@ -140,8 +138,7 @@ if st.button('Répondre'):
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer
-        time.sleep(50) # debug
-        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
+        #chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
 
