@@ -64,6 +64,45 @@ ai_assistant_chain = (
 )
 """
 
+chat_history = []
+
+contextualize_q_system_prompt = """Given a chat history and the latest user question \
+which might reference context in the chat history, formulate a standalone question \
+which can be understood without the chat history. Do NOT answer the question, \
+just reformulate it if needed and otherwise return it as is."""
+
+contextualize_q_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", contextualize_q_system_prompt),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ]
+)
+history_aware_retriever = create_history_aware_retriever(
+    llm, ensemble_retriever, contextualize_q_prompt
+)
+
+qa_system_prompt = """You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
+You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
+You have to answer in the same language as the question.\n
+At the end of the answer:\n
+- give a link to a web page about the artwork (see the "url" field).\n
+- display an image of the artwork (see the "og:image" field).\n
+Knowledge Base:\n
+\n
+{context}"""
+
+qa_prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", qa_system_prompt),
+        MessagesPlaceholder("chat_history"),
+        ("human", "{input}"),
+    ]
+)
+
+question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+
 # Streamlit
 
 logo = Image.open("./crown.jpg")
