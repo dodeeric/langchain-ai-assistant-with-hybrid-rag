@@ -134,28 +134,16 @@ st.markdown(" ")
 
 question = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
 
-var1 = ""
-
 if st.button('Répondre'):
     if question:
-        st.markdown("var1 = ?")
-        if var1:
-            st.markdown(var1)
-        else:
-            st.markdown("var1 is empty!")
         #answer = ai_assistant_chain.invoke(question) # Without chat history
-        st.markdown("answer part in the chat history:")
-        if chat_history:
-            st.markdown(chat_history[1])
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
         st.markdown("sleeping 45 seconds now!")
         time.sleep(45)
         st.markdown("extend chat history now!")
-        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
-        st.markdown("var1 = 'test1':")
-        var1 = "test1"
+        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history & question & output are not available outside this st run!
     else:
         st.write("Please enter a question to proceed.")
 
