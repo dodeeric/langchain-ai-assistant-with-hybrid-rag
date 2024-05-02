@@ -50,21 +50,19 @@ keyword_retriever.k = 3
 
 ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-"""
 # Without chat history:
 
-prompt = hub.pull("dodeeric/rag-prompt-bmae")
-
-def format_docs_clear_text(docs):
-    return "\n\n".join(doc.page_content.encode('utf-8').decode('unicode_escape') for doc in docs)
-
-ai_assistant_chain = (
-    {"context": ensemble_retriever | format_docs_clear_text, "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
-"""
+#prompt = hub.pull("dodeeric/rag-prompt-bmae")
+#
+#def format_docs_clear_text(docs):
+#    return "\n\n".join(doc.page_content.encode('utf-8').decode('unicode_escape') for doc in docs)
+#
+#ai_assistant_chain = (
+#    {"context": ensemble_retriever | format_docs_clear_text, "question": RunnablePassthrough()}
+#    | prompt
+#    | llm
+#    | StrOutputParser()
+#)
 
 # With chat history:
 
