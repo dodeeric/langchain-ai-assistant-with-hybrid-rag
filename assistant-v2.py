@@ -138,6 +138,8 @@ if st.button('Répondre'):
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
+        st.markdown("sleeping 45 seconds now!")
+        time.sleep(45)
         st.markdown("extend chat history now!")
         chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
