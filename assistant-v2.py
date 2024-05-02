@@ -119,7 +119,7 @@ st.markdown("""
 Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
 questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
-Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais, ou même d'autres langues)
+Les questions peuvent-être en français, en néerlandais ou en anglais, ou même en d'autres langues. En voici quelques exemples : 
 
 - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
 - Avez-vous des images de la reine Elisabeth pendant la guerre ?
