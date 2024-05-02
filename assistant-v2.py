@@ -137,8 +137,8 @@ if 'chat_history' not in st.session_state:
 
 if st.button('Répondre'):
     if question:
-        if st.session_state.chat_history:
-            st.markdown("answer part of the chat history: ", st.session_state.chat_history[1])
+        #if st.session_state.chat_history:
+        #    st.markdown("answer part of the chat history: ", st.session_state.chat_history[1])
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
