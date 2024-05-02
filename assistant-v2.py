@@ -68,9 +68,13 @@ ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_ret
 
 # With chat history:
 
-global question = None
-global output = None
-global chat_history = None
+global question
+global output
+global chat_history
+
+question = None
+output = None
+chat_history = None
 
 contextualize_q_system_prompt = """Given a chat history and the latest user question \
 which might reference context in the chat history, formulate a standalone question \
