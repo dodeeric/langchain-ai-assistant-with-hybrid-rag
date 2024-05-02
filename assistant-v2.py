@@ -134,6 +134,8 @@ st.markdown(" ")
 
 question = st.text_area("Entrez votre question : ", help='Type your question here and press Control-Enter.')
 
+var1 = ""
+
 if st.button('Répondre'):
     if question:
         st.markdown("var1 = ?")
