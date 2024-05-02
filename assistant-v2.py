@@ -1,5 +1,7 @@
 # With chat history
 
+import time
+
 import dotenv, jq
 import streamlit as st
 from PIL import Image
