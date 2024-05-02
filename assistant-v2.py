@@ -68,10 +68,10 @@ ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_ret
 
 # With chat history:
 
-contextualize_q_system_prompt = """Given a chat history and the latest user question \
-which might reference context in the chat history, formulate a standalone question \
-which can be understood without the chat history. Do NOT answer the question, \
-just reformulate it if needed and otherwise return it as is."""
+contextualize_q_system_prompt = """
+Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
+which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
+"""
 
 contextualize_q_prompt = ChatPromptTemplate.from_messages(
     [
@@ -84,16 +84,18 @@ history_aware_retriever = create_history_aware_retriever(
     llm, ensemble_retriever, contextualize_q_prompt
 )
 
-qa_system_prompt = """You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
-You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. You have to answer \
-in the same language as the question.
+qa_system_prompt = """
+You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
+You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
+You have to answer in the same language as the question.
 At the end of the answer:
 - give a link to a web page about the artwork (see the "url" field).
 - display an image of the artwork (see the "og:image" field).
 
 Knowledge Base:
 
-{context}"""
+{context}
+"""
 
 qa_prompt = ChatPromptTemplate.from_messages(
     [
@@ -113,25 +115,28 @@ st.image(logo, use_column_width=True)
 
 st.markdown("## Belgian Monarchy Artworks Explorer")
 
-st.markdown("Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.")
-st.markdown("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.")
-st.markdown("Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais)")
-st.markdown("- Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?")
-st.markdown("- Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite : Qui a peint ce tableau ?")
-st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas ?")
-st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?")
-st.markdown("- Qui est présent sur le tableau 'la revue des écoles' ?")
-st.markdown("- Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?")
-st.markdown("- Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.")
-st.markdown("- Pouvez-vous me montrer plusieurs images du roi Léopold II ?")
-st.markdown("- Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?")
-st.markdown("- Avez-vous des oeuvres réalisées par Aimable Dutrieux ?")
-st.markdown("- Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?")
-st.markdown("Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*")
-st.markdown("L'assistant prend environ 30 secondes pour répondre.")
-st.markdown("L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Per exemple : Qui a peint ce tableau ?")
-st.markdown(" ")
-st.markdown(" ")
+st.markdown("""
+Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.
+Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
+Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais, ou même d'autres langues)
+- Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
+- Avez-vous des images de la reine Elisabeth pendant la guerre ?
+- Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite vous pouvez poser la question : Qui a peint ce tableau ? Et encore ensuite : Quelle est la dimension du tableau ?
+- Qui est présent sur le tableau 'la revue des écoles' ?
+- Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
+- Quand c'est marrié le roi Léopold Ier ?
+- Pouvez-vous me montrer un tableau de Jan Verhas ?
+- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?
+- Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
+- Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
+- Pouvez-vous me montrer plusieurs images du roi Léopold II ?
+- Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
+- Avez-vous des oeuvres réalisées par Aimable Dutrieux ?
+- Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
+Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*
+L'assistant prend environ 30 secondes pour répondre.
+L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Per exemple : Qui a peint ce tableau ?
+""")
 
 question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
@@ -149,10 +154,11 @@ if st.button('Répondre'):
     else:
         st.write("Please enter a question to proceed.")
 
-st.markdown(" ")
-st.markdown(" ")
-st.markdown("Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.")
+st.markdown("""
 
-st.markdown("*(c) Eric Dodémont, 2024.*")
+
+Modèle IA : GPT4 Turbo de OpenAI. Taille des vecteurs : 3072.
+*(c) Eric Dodémont, 2024.*
+""")
 
 #streamlit run assistant-v2.py &
