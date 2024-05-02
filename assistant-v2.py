@@ -138,7 +138,6 @@ question = st.text_area("Entrez votre question : ", help='Type your question her
 
 if st.button('Répondre'):
     if question:
-        global question
         global output
         global chat_history
         if output:
