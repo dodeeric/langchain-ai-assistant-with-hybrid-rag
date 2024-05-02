@@ -137,10 +137,10 @@ question = st.text_area("Entrez votre question : ", help='Type your question her
 if st.button('Répondre'):
     if question:
         st.markdown("var1 = ?")
-            if var1:
-                st.markdown(var1)
-            else:
-                st.markdown("var1 is empty!")
+        if var1:
+            st.markdown(var1)
+        else:
+            st.markdown("var1 is empty!")
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         st.markdown("answer part in the chat history:")
         if chat_history:
