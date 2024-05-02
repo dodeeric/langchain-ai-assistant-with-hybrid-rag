@@ -139,7 +139,7 @@ if st.button('Répondre'):
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
         time.sleep(45)
-        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history & question & output are not available outside this st run!
+        chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history is not available outside this st run!
     else:
         st.write("Please enter a question to proceed.")
 
