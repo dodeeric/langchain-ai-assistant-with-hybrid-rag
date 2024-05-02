@@ -68,12 +68,8 @@ ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_ret
 
 # With chat history:
 
-global question
-global output
 global chat_history
 
-question = None
-output = None
 chat_history = []
 
 contextualize_q_system_prompt = """Given a chat history and the latest user question \
@@ -142,7 +138,7 @@ question = st.text_area("Entrez votre question : ", help='Type your question her
 
 if st.button('Répondre'):
     if question:
-        if output:
+        if chat_history:
             st.write("answer part of the chat history: ", chat_history[1])
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         output = ai_assistant_chain.invoke({"input": question, "chat_history": chat_history}) # output is a dictionary. output["answer"] is in markdown format.
