@@ -115,6 +115,8 @@ st.markdown("## Belgian Monarchy Artworks Explorer")
 st.markdown("Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge.")
 st.markdown("Pour répondre, l'assistant questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.")
 st.markdown("Voici quelques exemples de questions : (elles peuvent-être en français, en néerlandais ou en anglais)")
+st.markdown("- Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?")
+st.markdown("- Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite : Qui a peint ce tableau ?")
 st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas ?")
 st.markdown("- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?")
 st.markdown("- Qui est présent sur le tableau 'la revue des écoles' ?")
@@ -126,7 +128,7 @@ st.markdown("- Avez-vous des oeuvres réalisées par Aimable Dutrieux ?")
 st.markdown("- Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?")
 st.markdown("Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*")
 st.markdown("L'assistant prend environ 30 secondes pour répondre.")
-st.markdown("Pour l'instant, l'assistant ne possède pas de mémoire de la session de questions et réponses. Les questions que vous posez ne peuvent donc pas faire référence aux questions et réponses précédentes.")
+st.markdown("L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Per exemple : Qui a peint ce tableau ?")
 st.markdown(" ")
 st.markdown(" ")
 
@@ -137,14 +139,12 @@ if 'chat_history' not in st.session_state:
 
 if st.button('Répondre'):
     if question:
-        #if st.session_state.chat_history:
-        #    st.markdown("answer part of the chat history: ", st.session_state.chat_history[1])
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is in markdown format.
         #st.markdown(answer) # Without chat history
         st.markdown(output["answer"]) # Showing the answer in markdown format
-        time.sleep(45)
-        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history ==> chat_history is not available outside this st run!
+        #time.sleep(45)
+        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
 
