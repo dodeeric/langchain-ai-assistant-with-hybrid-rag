@@ -136,6 +136,11 @@ question = st.text_area("Entrez votre question : ", help='Type your question her
 
 if st.button('Répondre'):
     if question:
+        st.markdown("var1 = ?")
+            if var1:
+                st.markdown(var1)
+            else:
+                st.markdown("var1 is empty!")
         #answer = ai_assistant_chain.invoke(question) # Without chat history
         st.markdown("answer part in the chat history:")
         if chat_history:
@@ -147,6 +152,8 @@ if st.button('Répondre'):
         time.sleep(45)
         st.markdown("extend chat history now!")
         chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
+        st.markdown("var1 = 'test1':")
+        var1 = "test1"
     else:
         st.write("Please enter a question to proceed.")
 
