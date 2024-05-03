@@ -1,10 +1,8 @@
 # With chat history
 
-#import time
 import dotenv, jq
 import streamlit as st
 from PIL import Image
-#from langchain import hub
 from langchain_community.document_loaders import JSONLoader
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
@@ -51,22 +49,6 @@ keyword_retriever.k = 3
 
 ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-# Without chat history:
-
-#prompt = hub.pull("dodeeric/rag-prompt-bmae")
-#
-#def format_docs_clear_text(docs):
-#    return "\n\n".join(doc.page_content.encode('utf-8').decode('unicode_escape') for doc in docs)
-#
-#ai_assistant_chain = (
-#    {"context": ensemble_retriever | format_docs_clear_text, "question": RunnablePassthrough()}
-#    | prompt
-#    | llm
-#    | StrOutputParser()
-#)
-
-# With chat history:
-
 contextualize_q_system_prompt = """
 Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
 which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
@@ -79,6 +61,7 @@ contextualize_q_prompt = ChatPromptTemplate.from_messages(
         ("human", "{input}"),
     ]
 )
+
 history_aware_retriever = create_history_aware_retriever(
     llm, ensemble_retriever, contextualize_q_prompt
 )
@@ -150,11 +133,8 @@ if 'chat_history' not in st.session_state:
 
 if st.button('Répondre'):
     if question:
-        #answer = ai_assistant_chain.invoke(question) # Without chat history
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is in markdown format.
-        #st.markdown(answer) # Without chat history
-        st.markdown(output["answer"]) # Showing the answer in markdown format
-        #time.sleep(45)
+        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+        st.markdown(output["answer"])
         st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
