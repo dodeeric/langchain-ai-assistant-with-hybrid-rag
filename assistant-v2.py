@@ -1,6 +1,6 @@
 # With chat history
 
-import dotenv, jq
+import dotenv, jq, time
 import streamlit as st
 from PIL import Image
 from langchain_community.document_loaders import JSONLoader
@@ -134,6 +134,7 @@ if st.button('Répondre'):
     if question:
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(output["answer"])
+        time.sleep(15) # wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the langsmith logs 
         st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
