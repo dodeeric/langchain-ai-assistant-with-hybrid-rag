@@ -104,12 +104,13 @@ Les questions peuvent-être en français, en néerlandais ou en anglais, ou mêm
 
 - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
 - Avez-vous des images de la reine Elisabeth pendant la guerre ?
-- Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite vous pouvez poser la question : Qui a peint ce tableau ? Et encore ensuite : Quelle est la dimension du tableau ?
-- Qui est présent sur le tableau 'la revue des écoles' ?
+- Pouvez-vous me montrer le tableau 'La revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
+- Qui a peint ce tableau ? *Et encore ensuite :* 
+- Quelle est la dimension du tableau ?
+- Qui est présent sur le tableau 'la revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
+- Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
 - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
-- Quand s'est marrié le roi Léopold Ier ?
-- Pouvez-vous me montrer un tableau de Jan Verhas ?
-- Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?
+- Quand s'est marrié le roi Léopold Ier ? *L'assistant vous montrera une image du marriage.*
 - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
 - Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
 - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
