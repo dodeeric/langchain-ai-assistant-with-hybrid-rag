@@ -1,4 +1,4 @@
-# With chat history
+# v2: with chat history
 
 import dotenv, jq, time
 import streamlit as st
