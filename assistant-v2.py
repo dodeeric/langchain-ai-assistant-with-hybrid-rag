@@ -107,7 +107,7 @@ Les questions peuvent-être en français, en néerlandais ou en anglais, ou mêm
 - Pouvez-vous me montrer le tableau 'La revue des écoles' ? Et ensuite vous pouvez poser la question : Qui a peint ce tableau ? Et encore ensuite : Quelle est la dimension du tableau ?
 - Qui est présent sur le tableau 'la revue des écoles' ?
 - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
-- Quand c'est marrié le roi Léopold Ier ?
+- Quand s'est marrié le roi Léopold Ier ?
 - Pouvez-vous me montrer un tableau de Jan Verhas ?
 - Pouvez-vous me montrer un tableau de Jan Verhas provenant de la base de données BALaT, pas de la Wikimedia Commons ?
 - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
@@ -134,7 +134,7 @@ if st.button('Répondre'):
     if question:
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(output["answer"])
-        time.sleep(15) # wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the langsmith logs 
+        time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
         st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
