@@ -94,10 +94,9 @@ ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_an
 
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
-
-st.markdown("## Belgian Monarchy Artworks Explorer")
-
 st.markdown("""
+## Belgian Monarchy Artworks Explorer
+
 Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
 questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
