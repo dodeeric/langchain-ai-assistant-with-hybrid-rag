@@ -123,7 +123,7 @@ roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correct
 
 L'assistant prend environ 30 secondes pour répondre.
 
-L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc pas faire référence aux questions et réponses précédentes. Par exemple : Qui a peint ce tableau ?
+L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : Qui a peint ce tableau ?
 """)
 
 question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
