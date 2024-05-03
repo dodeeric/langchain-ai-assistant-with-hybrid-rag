@@ -140,9 +140,7 @@ if st.button('Répondre'):
         st.write("Please enter a question to proceed.")
 
 st.markdown("""
-AI Model: OpenAI GPT4 Turbo. Vector size: 3072.\n
-Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit.\n
-*(c) Eric Dodémont, 2024.*
+AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
 """)
 
 #streamlit run assistant-v2.py &
