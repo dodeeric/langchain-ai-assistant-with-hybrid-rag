@@ -1,4 +1,4 @@
-# v2: with chat history
+# v2: with chat history; without PDF indexation
 
 import dotenv, jq, time
 import streamlit as st
