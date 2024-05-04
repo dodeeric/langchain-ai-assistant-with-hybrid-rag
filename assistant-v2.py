@@ -30,14 +30,16 @@ file_path4 = "./commons-urls-ds2-swp.json"
 file_path5 = "./balat-urls-ds2-swp.json"
 file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
 
-st.markdown("documents: loading json...")
+st.markdown("v2 -- documents: loading json...")
+time.sleep(5)
 
 for file_path in file_paths:
     loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
     docs = loader.load()
     documents = documents + docs
 
-st.markdown("vector_db: loading...")
+st.markdown("v2 -- vector_db: loading...")
+time.sleep(5)
 
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
