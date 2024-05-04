@@ -149,21 +149,27 @@ L'assistant prend environ 30 secondes pour répondre.
 L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
 """)
 
-question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
-
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
+if 'question' not in st.session_state:
+    st.session_state.question
+
+if 'output' not in st.session_state:
+    st.session_state.output
+
+st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
+
 if st.button('Répondre'):
-    if question:
+    if st.session_state.question:
 
         st.markdown("v3 -- calling ai_assistant_chain...")
         time.sleep(5)
 
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
-        st.markdown(output["answer"])
+        st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+        st.markdown(st.session_state.output["answer"])
         time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
-        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
+        st.session_state.chat_history.extend([HumanMessage(content=st.session_state.question), st.session_state.output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
 
