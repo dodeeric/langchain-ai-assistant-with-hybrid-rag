@@ -157,7 +157,7 @@ if 'question' not in st.session_state:
     st.session_state.question = ""
 
 if 'output' not in st.session_state:
-    st.session_state.output
+    st.session_state.output = None
 
 st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
