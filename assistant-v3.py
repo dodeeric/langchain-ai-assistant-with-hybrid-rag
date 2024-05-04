@@ -28,9 +28,11 @@ file_path4 = "./commons-urls-ds2-swp.json"
 file_path5 = "./balat-urls-ds2-swp.json"
 file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
 
-st.markdown("documents: loading json...")
+st.markdown("v3 -- documents: loading json...")
+time.sleep(5)
 
 documents = []
+
 for file_path in file_paths:
     loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
     docs = loader.load()
@@ -40,14 +42,16 @@ file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
 file_path2 = "./MD-vol1-2-3.pdf"
 file_paths = [file_path1, file_path2]
 
-st.markdown("documents: loading pdf...")
+st.markdown("v3 -- documents: loading pdf...")
+time.sleep(5)
 
 for file_path in file_paths:
     loader = PyPDFLoader(file_path)
     pages = loader.load_and_split() # 1 pdf page per chunk
     documents = documents + pages
 
-st.markdown("vector_db: loading...")
+st.markdown("v3 -- vector_db: loading...")
+time.sleep(5)
 
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
