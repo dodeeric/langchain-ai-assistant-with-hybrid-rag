@@ -27,8 +27,8 @@ for file_path in file_paths:
     docs = loader.load()
     documents = documents + docs
 
-file_path1 = "/content/drive/MyDrive/colab/BPEB31_DOS4_42-55_FR_LR.pdf"
-file_path2 = "/content/drive/MyDrive/colab/MD-vol1-2-3.pdf"
+file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
+file_path2 = "./MD-vol1-2-3.pdf"
 file_paths = [file_path1, file_path2]
 
 for file_path in file_paths:
