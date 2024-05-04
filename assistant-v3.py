@@ -34,6 +34,15 @@ for file_path in file_paths:
     docs = loader.load()
     documents = documents + docs
 
+file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
+file_path2 = "./MD-vol1-2-3.pdf"
+file_paths = [file_path1, file_path2]
+
+for file_path in file_paths:
+    loader = PyPDFLoader(file_path)
+    pages = loader.load_and_split() # 1 pdf page per chunk
+    documents = documents + pages
+
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
 vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="./chromadb")
