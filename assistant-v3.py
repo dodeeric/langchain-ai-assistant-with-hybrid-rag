@@ -150,13 +150,13 @@ L'assistant prend environ 30 secondes pour répondre.
 L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
 """)
 
-if 'chat_history' not in st.session_state:
+if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
 
-if 'question' not in st.session_state:
+if 'question' not in st.session_state: # Not mandatory
     st.session_state.question = ""
 
-if 'output' not in st.session_state:
+if 'output' not in st.session_state: # Not mandatory
     st.session_state.output = None
 
 st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
