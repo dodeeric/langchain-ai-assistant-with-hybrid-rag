@@ -108,7 +108,7 @@ qa_prompt = ChatPromptTemplate.from_messages(
 
 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
-st.markdown("v3 -- ai_assistant_chain running...")
+st.markdown("v3 -- creating ai_assistant_chain...")
 time.sleep(5)
 
 ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
