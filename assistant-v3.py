@@ -156,6 +156,10 @@ if 'chat_history' not in st.session_state:
 
 if st.button('Répondre'):
     if question:
+
+        st.markdown("v3 -- calling ai_assistant_chain...")
+        time.sleep(5)
+
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(output["answer"])
         time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
