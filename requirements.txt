@@ -7,3 +7,4 @@ langchain-chroma
 langchainhub
 rank_bm25
 streamlit
+pypdf
