@@ -2,8 +2,7 @@
 
 import dotenv, jq
 import streamlit as st
-from langchain import hub
-from langchain_community.document_loaders import JSONLoader, PyPDFLoader
+from langchain_community.document_loaders import JSONLoader
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
