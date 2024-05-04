@@ -1,4 +1,4 @@
-# with PDF indexation
+# v3: with PDF indexation
 
 import dotenv, jq
 import streamlit as st
