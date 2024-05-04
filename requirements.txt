@@ -3,8 +3,7 @@ jq
 langchain
 langchain-community
 langchain-openai
-langchain-chroma 
-langchainhub
+langchain-chroma
 rank_bm25
 streamlit
 pypdf
