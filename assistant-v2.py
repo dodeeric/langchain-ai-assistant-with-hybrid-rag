@@ -122,7 +122,8 @@ Les questions peuvent-être en français, en néerlandais ou en anglais, ou mêm
 - Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
 - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
 - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
-- Avez-vous des oeuvres réalisées par Aimable Dutrieux ? Et ensuite vous pouvez poser la question : Qui était ce sculteur ?
+- Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
+- Qui était ce sculteur ?
 - Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
 
 Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du \
