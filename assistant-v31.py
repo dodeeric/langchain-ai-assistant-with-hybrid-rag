@@ -19,6 +19,10 @@ from langchain_core.messages import HumanMessage
 
 dotenv.load_dotenv()
 
+EMBEDDING_MODEL = "text-embedding-3-large"
+MODEL = "gpt-4-turbo-2024-04-09"
+COLLECTION_NAME = "bmae"
+
 # Index
 
 json_file_path1 = "./commons-urls-ds1-swp.json"
@@ -47,7 +51,7 @@ def load_files(json_file_paths, pdf_file_paths):
         documents = documents + docs
 
     st.markdown("v31 -- documents: loading pdf...")
-    time.sleep(5)
+    time.sleep(10)
 
     for pdf_file_path in pdf_file_paths:
         loader = PyPDFLoader(pdf_file_path)
@@ -58,16 +62,24 @@ def load_files(json_file_paths, pdf_file_paths):
 
 documents = load_files(json_file_paths, pdf_file_paths)
 
-st.markdown("v31 -- vector_db: loading...")
-time.sleep(10)
+@st.cache_data
+def instanciate_vector_db():
+    # Instantiates Vector DB and loads documents from disk
+    
+    st.markdown("v31 -- vector_db: loading...")
+    time.sleep(10)
 
-collection_name = "bmae-json"
-embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
-vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="./chromadb")
+    collection_name = COLLECTION_NAME
+    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
+    vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="./chromadb")
+        
+    return vector_db
+
+vector_db = instanciate_vector_db()
 
 # Retrieve and generate
 
-llm = ChatOpenAI(model="gpt-4-turbo-2024-04-09", temperature=0)
+llm = ChatOpenAI(model=MODEL, temperature=0)
 
 vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
