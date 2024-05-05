@@ -73,4 +73,4 @@ $ streamlit run assistant.py &
 
 Go to: http://IP:8501
 
-At the Begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs.
+At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs.
