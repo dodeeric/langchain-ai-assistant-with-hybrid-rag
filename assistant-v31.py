@@ -174,11 +174,10 @@ with st.sidebar:
     L'assistant prend environ 30 secondes pour répondre.
 
     L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
-    
-    
     """)
 
     st.markdown("""
+    _________
     AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
 
