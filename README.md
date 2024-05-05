@@ -22,8 +22,10 @@ This code can be adapted to create your own AI assistant.
 
 Installation:
 
+```
 $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.git
 $ cd langchain-ai-assistant-with-hybrid-rag
+```
 
 Add your API keys:
 
