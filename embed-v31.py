@@ -14,28 +14,40 @@ from langchain_core.runnables import RunnablePassthrough
 
 dotenv.load_dotenv()
 
-documents = []
+EMBEDDING_MODEL = "text-embedding-3-large"
+COLLECTION_NAME = "bmae"
 
-file_path1 = "./commons-urls-ds1-swp.json"
-file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
-file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
-file_path4 = "./commons-urls-ds2-swp.json"
-file_path5 = "./balat-urls-ds2-swp.json"
-file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
+def load_files(json_file_paths, pdf_file_paths):
+    # Loads and chunks files into a list of documents
 
-for file_path in file_paths:
-    loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
-    docs = loader.load()
-    documents = documents + docs
+    documents = []
 
-file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
-file_paths = [file_path1]
+    for json_file_path in json_file_paths:
+        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
+        docs = loader.load() # 1 JSON item per chunk
+        documents = documents + docs
 
-for file_path in file_paths:
-    loader = PyPDFLoader(file_path)
-    pages = loader.load_and_split() # 1 pdf page per chunk
-    documents = documents + pages
+    for pdf_file_path in pdf_file_paths:
+        loader = PyPDFLoader(pdf_file_path)
+        pages = loader.load_and_split() # 1 pdf page per chunk
+        documents = documents + pages
+    
+    return documents
 
-collection_name = "bmae"
-embedding_model = OpenAIEmbeddings(model="text-embedding-3-large")
+# Load and index
+
+json_file_path1 = "./commons-urls-ds1-swp.json"
+json_file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
+json_file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
+json_file_path4 = "./commons-urls-ds2-swp.json"
+json_file_path5 = "./balat-urls-ds2-swp.json"
+json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
+
+pdf_file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
+pdf_file_paths = [pdf_file_path1]
+
+documents = load_files(json_file_paths, pdf_file_paths)
+
+collection_name = COLLECTION_NAME
+embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="./chromadb")
