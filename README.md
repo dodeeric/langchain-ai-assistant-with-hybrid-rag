@@ -5,5 +5,6 @@ AI assistant with:
 - chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - vector DB: Chroma
 - web interface: Streamlit
+- files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
 
 Available at http://bmae.edocloud.be:8501
