@@ -6,13 +6,36 @@ AI assistant coded with the LangChain AI Python framework with:
 - vector DB: Chroma
 - web interface: Streamlit
 - files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
+- logs sent to LangSmith
+ 
+Frameworks and tools:
+
+- LangChain: https://www.langchain.com (Python framework for AI applications)
+- LangSmith: https://smith.langchain.com (logs and debug for LangChain applications)
+- Streamlit: https://streamlit.io (Python framework for data / AI applications)
+- Chroma: https://www.trychroma.com (Vector DB)
+- OpenAI: https://platform.openai.com (LLMs)
 
 Available at http://bmae.edocloud.be:8501
+
+This code can be adapted to create your own AI assistant.
 
 Installation:
 
 $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.git
 $ cd langchain-ai-assistant-with-hybrid-rag
+
+Add your API keys:
+
+```
+$ nano .env
+```
+
+```
+OPENAI_API_KEY = "sk-xxx"   ==> Go to: https://platform.openai.com/api-keys
+LANGCHAIN_API_KEY = "ls__xxx"   ==> go to: https://smith.langchain.com/
+LANGCHAIN_TRACING_V2 = "true"
+```
 
 Install required libraries:
 
