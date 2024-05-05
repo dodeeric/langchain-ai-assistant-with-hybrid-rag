@@ -143,36 +143,38 @@ st.image(logo, use_column_width=True)
 st.title("Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI LLM, LangChain and Streamlit")
 
-st.markdown("""
-Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
-questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
+with st.sidebar:
 
-Les questions peuvent-être en français, en néerlandais ou en anglais, ou même en d'autres langues. En voici quelques exemples : 
+    st.markdown("""
+    Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
+    questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
-- Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
-- Avez-vous des images de la reine Elisabeth pendant la guerre ?
-- Pouvez-vous me montrer le tableau 'La revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
-- Qui a peint ce tableau ? *Et encore ensuite :* 
-- Quelle est la dimension du tableau ?
-- Qui est présent sur le tableau 'la revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
-- Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
-- Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
-- Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
-- Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
-- Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
-- Pouvez-vous me montrer plusieurs images du roi Léopold II ?
-- Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
-- Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
-- Qui était ce sculteur ?
-- Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
+    Les questions peuvent-être en français, en néerlandais ou en anglais, ou même en d'autres langues. En voici quelques exemples : 
 
-Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du \
-roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*
+    - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
+    - Avez-vous des images de la reine Elisabeth pendant la guerre ?
+    - Pouvez-vous me montrer le tableau 'La revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
+    - Qui a peint ce tableau ? *Et encore ensuite :* 
+    - Quelle est la dimension du tableau ?
+    - Qui est présent sur le tableau 'la revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
+    - Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
+    - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
+    - Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
+    - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
+    - Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
+    - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
+    - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
+    - Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
+    - Qui était ce sculteur ?
+    - Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
 
-L'assistant prend environ 30 secondes pour répondre.
+    Si vous n'obtenez pas une réponse correcte, essayez de reformuler la question. Par exemple la question suivante ne reçois pas de réponse correcte : *Avez-vous un buste de Louis-Philipe, fils du \
+    roi Léopold Ier ?*, mais la question suivante reçoit elle une réponse correcte : *Avez-vous un buste de Louis-Philipe ?*
 
-L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
-""")
+    L'assistant prend environ 30 secondes pour répondre.
+
+    L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
+    """)
 
 if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
