@@ -12,8 +12,6 @@ from langchain_core.runnables import RunnablePassthrough
 
 dotenv.load_dotenv()
 
-# Index
-
 documents = []
 
 file_path1 = "./commons-urls-ds1-swp.json"
@@ -29,8 +27,7 @@ for file_path in file_paths:
     documents = documents + docs
 
 file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
-file_path2 = "./MD-vol1-2-3.pdf"
-file_paths = [file_path1, file_path2]
+file_paths = [file_path1]
 
 for file_path in file_paths:
     loader = PyPDFLoader(file_path)
