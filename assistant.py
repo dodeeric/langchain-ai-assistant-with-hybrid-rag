@@ -152,7 +152,8 @@ with st.sidebar:
     The questions can be in any language, but French and Dutch give the best results. Here are some examples of questions:
 
     - When did King Leopold I die? Do you have pictures of the funeral?
-    - Can you show me the canvas 'The School Review'? *And then you can ask the question:*
+    - Can you show me the canvas 'The School Parade'? *Or:*
+    - Can you show me the canvas 'La revue des écoles'? *And then you can ask the question:*
     - Who painted that canvas? *And then:*
     - What is the size of the canvas? *And then:*
     - Who is on the canvas? *And then:*
