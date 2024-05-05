@@ -1,6 +1,6 @@
 # LangChain AI Assistant with Hybrid RAG and Memory
 
-AI assistant with:
+AI assistant coded with the LangChain AI Python framework with:
 - hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever) (this improve greatly the efficiency of the RAG search)
 - chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - vector DB: Chroma
