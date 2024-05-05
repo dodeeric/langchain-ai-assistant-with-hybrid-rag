@@ -16,9 +16,9 @@ $ cd langchain-ai-assistant-with-hybrid-rag
 
 Install required libraries:
 
-"""
+```
 $ pip install -r requirements.txt
-"""
+```
 
 Embedd JSON items and PDF pages:
 
@@ -38,3 +38,5 @@ Launch the AI Assistant:
 $ streamlit run assistant.py &
 
 Go to: http://IP:8501
+
+At the Begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs.
