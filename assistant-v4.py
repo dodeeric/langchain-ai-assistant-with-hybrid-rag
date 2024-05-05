@@ -192,12 +192,11 @@ with st.sidebar:
     AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
 
-if 'chat_history' not in st.session_state: # Mandatory
+# Initialize chat history (chat_history) for LangChain
+if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 
-# -----------------------------------------------
-
-# Initialize chat history
+# Initialize chat history (messages) for Streamlit
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -206,35 +205,21 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# React to user input
-if prompt := st.chat_input("What is up?"):
+# React to user input -- prompt --> question, response --> output["answer"]
+if question := st.chat_input("Entrez votre question."):
     # Display user message in chat message container
-    st.chat_message("user").markdown(prompt)
+    st.chat_message("user").markdown(question)
     # Add user message to chat history
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append({"role": "user", "content": question})
 
-    response = f"Echo: {prompt}"
+    output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+    time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
+    st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
+
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.markdown(response)
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": response})
-
-# -----------------------------------------------
-
-question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
-
-if st.button('Répondre'):
-    if question:
-
-        #st.markdown("v31 -- calling ai_assistant_chain...")
-        #time.sleep(10)
-
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(output["answer"])
-        time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
-        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
-    else:
-        st.write("Please enter a question to proceed.")
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
 
 #streamlit run assistant-vX.py > bmae.log 2>&1 &
