@@ -75,4 +75,4 @@ At the begining of the Jupyter notebook: see code to scrap web pages content giv
 
 Available at http://bmae.edocloud.be:8501
 
-![bmae](./Screenshot2.jpg)
+![bmae](./Screenshot.jpg)
