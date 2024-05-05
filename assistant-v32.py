@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v32: with PDF indexation, with functions, with the whole chat displayed
+# v32: with PDF indexation, with functions
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
