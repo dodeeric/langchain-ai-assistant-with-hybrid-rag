@@ -16,9 +16,9 @@ $ cd langchain-ai-assistant-with-hybrid-rag
 
 Install required libraries:
 
-'''
+"""
 $ pip install -r requirements.txt
-'''
+"""
 
 Embedd JSON items and PDF pages:
 
