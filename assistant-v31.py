@@ -185,18 +185,18 @@ with st.sidebar:
 if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
 
-st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
+question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
 if st.button('Répondre'):
-    if st.session_state.question:
+    if question:
 
         #st.markdown("v31 -- calling ai_assistant_chain...")
         #time.sleep(10)
 
-        st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
-        st.markdown(st.session_state.output["answer"])
+        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+        st.markdown(output["answer"])
         time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
-        st.session_state.chat_history.extend([HumanMessage(content=st.session_state.question), st.session_state.output["answer"]]) # Adding the question and answer in the chat history
+        st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
 
