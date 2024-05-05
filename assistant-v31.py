@@ -131,7 +131,7 @@ json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_
 pdf_file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
 pdf_file_paths = [pdf_file_path1]
 
-documents = load_files(json_file_paths, pdf_file_paths)
+_documents = load_files(json_file_paths, pdf_file_paths)
 vector_db = instanciate_vector_db()
 ai_assistant_chain = instanciate_retrievers_and_chains(_documents, vector_db)
 
