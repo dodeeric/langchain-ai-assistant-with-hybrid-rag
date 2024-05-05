@@ -191,7 +191,7 @@ if st.button('Répondre'):
 
         st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(st.session_state.output["answer"])
-        #time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
+        time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
         st.session_state.chat_history.extend([HumanMessage(content=st.session_state.question), st.session_state.output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
