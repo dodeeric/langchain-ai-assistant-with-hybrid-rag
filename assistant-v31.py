@@ -23,19 +23,6 @@ EMBEDDING_MODEL = "text-embedding-3-large"
 MODEL = "gpt-4-turbo-2024-04-09"
 COLLECTION_NAME = "bmae"
 
-# Index
-
-json_file_path1 = "./commons-urls-ds1-swp.json"
-json_file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
-json_file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
-json_file_path4 = "./commons-urls-ds2-swp.json"
-json_file_path5 = "./balat-urls-ds2-swp.json"
-json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
-
-pdf_file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
-pdf_file_path2 = "./MD-vol1-2-3.pdf"
-pdf_file_paths = [pdf_file_path1, pdf_file_path2]
-
 @st.cache_data
 def load_files(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents
@@ -133,6 +120,16 @@ def instanciate_retrievers_and_chains(documents, vector_db):
     ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
     return ai_assistant_chain
+
+json_file_path1 = "./commons-urls-ds1-swp.json"
+json_file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
+json_file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
+json_file_path4 = "./commons-urls-ds2-swp.json"
+json_file_path5 = "./balat-urls-ds2-swp.json"
+json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
+
+pdf_file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
+pdf_file_paths = [pdf_file_path1]
 
 documents = load_files(json_file_paths, pdf_file_paths)
 vector_db = instanciate_vector_db()
