@@ -203,4 +203,4 @@ st.markdown("""
 AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
 """)
 
-#streamlit run assistant-v3.py > bmae.log 2>&1 &
+#streamlit run assistant-vX.py > bmae.log 2>&1 &
