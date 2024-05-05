@@ -9,4 +9,14 @@ AI assistant with:
 
 Available at http://bmae.edocloud.be:8501
 
-$ git clone 
+Installation:
+
+$ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.git
+$ cd langchain-ai-assistant-with-hybrid-rag
+
+Embedd JSON items and PDF pages:
+
+$ python embbed.py
+
+
+
