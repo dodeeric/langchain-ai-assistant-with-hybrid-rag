@@ -18,6 +18,7 @@ Frameworks and tools:
 - Streamlit: https://streamlit.io (web interface Python framework for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI: https://platform.openai.com (LLMs)
+- AI Model: OpenAI GPT4 Turbo. Vector size: 3072.
 
 Installation:
 
