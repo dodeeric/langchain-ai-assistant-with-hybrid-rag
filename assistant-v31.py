@@ -21,37 +21,45 @@ dotenv.load_dotenv()
 
 # Index
 
-file_path1 = "./commons-urls-ds1-swp.json"
-file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
-file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
-file_path4 = "./commons-urls-ds2-swp.json"
-file_path5 = "./balat-urls-ds2-swp.json"
-file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
+json_file_path1 = "./commons-urls-ds1-swp.json"
+json_file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
+json_file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
+json_file_path4 = "./commons-urls-ds2-swp.json"
+json_file_path5 = "./balat-urls-ds2-swp.json"
+json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
 
-st.markdown("v31 -- documents: loading json...")
-time.sleep(5)
+pdf_file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
+pdf_file_path2 = "./MD-vol1-2-3.pdf"
+pdf_file_paths = [pdf_file_path1, pdf_file_path2]
 
-documents = []
+@st.cache_data
+def load_files(json_file_paths, pdf_file_paths):
+    # Loads and chunks files into a list of documents
 
-for file_path in file_paths:
-    loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
-    docs = loader.load()
-    documents = documents + docs
+    documents = []
 
-file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
-file_path2 = "./MD-vol1-2-3.pdf"
-file_paths = [file_path1, file_path2]
+    st.markdown("v31 -- documents: loading json...")
+    time.sleep(10)
 
-st.markdown("v31 -- documents: loading pdf...")
-time.sleep(5)
+    for file_path in file_paths:
+        loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
+        docs = loader.load()
+        documents = documents + docs
 
-for file_path in file_paths:
-    loader = PyPDFLoader(file_path)
-    pages = loader.load_and_split() # 1 pdf page per chunk
-    documents = documents + pages
+    st.markdown("v31 -- documents: loading pdf...")
+    time.sleep(5)
+
+    for file_path in file_paths:
+        loader = PyPDFLoader(file_path)
+        pages = loader.load_and_split() # 1 pdf page per chunk
+        documents = documents + pages
+    
+    return documents
+
+load_files(json_file_paths, pdf_file_paths)
 
 st.markdown("v31 -- vector_db: loading...")
-time.sleep(5)
+time.sleep(10)
 
 collection_name = "bmae-json"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large") # 3072 dimensions vectors used to embed the JSON items and the questions
