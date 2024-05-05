@@ -133,7 +133,7 @@ pdf_file_paths = [pdf_file_path1]
 
 documents = load_files(json_file_paths, pdf_file_paths)
 vector_db = instanciate_vector_db()
-ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
+ai_assistant_chain = instanciate_retrievers_and_chains(_documents, vector_db)
 
 # Streamlit
 
