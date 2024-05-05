@@ -195,6 +195,9 @@ with st.sidebar:
 if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
 
+with st.chat_message("user"):
+    st.write("Hello 👋")
+
 question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
 if st.button('Répondre'):
