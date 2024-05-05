@@ -19,8 +19,6 @@ Frameworks and tools:
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI: https://platform.openai.com (LLMs)
 
-Available at http://bmae.edocloud.be:8501
-
 Installation:
 
 ```
@@ -74,3 +72,7 @@ $ streamlit run assistant.py &
 Go to: http://IP:8501
 
 At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs.
+
+Available at http://bmae.edocloud.be:8501
+
+
