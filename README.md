@@ -1,6 +1,9 @@
 # LangChain AI Assistant with Hybrid RAG and Memory
 
+This code can be adapted to create your own AI assistant.
+
 AI assistant coded with the LangChain framework:
+
 - hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever) (this improve greatly the efficiency of the RAG search)
 - chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - vector DB: Chroma
@@ -17,8 +20,6 @@ Frameworks and tools:
 - OpenAI: https://platform.openai.com (LLMs)
 
 Available at http://bmae.edocloud.be:8501
-
-This code can be adapted to create your own AI assistant.
 
 Installation:
 
