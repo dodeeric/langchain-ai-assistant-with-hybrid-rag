@@ -1,4 +1,12 @@
-# v32: with PDF indexation, with functions, with the whole chat displayed 
+#!/usr/bin/env python
+
+# v32: with PDF indexation, with functions, with the whole chat displayed
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
+# and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA  #
+# (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 import dotenv, jq, time
 import streamlit as st
