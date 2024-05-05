@@ -37,6 +37,6 @@ for file_path in file_paths:
     pages = loader.load_and_split() # 1 pdf page per chunk
     documents = documents + pages
 
-collection_name = "bmae-json"
+collection_name = "bmae"
 embedding_model = OpenAIEmbeddings(model="text-embedding-3-large")
 vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="./chromadb")
