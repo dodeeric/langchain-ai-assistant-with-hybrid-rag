@@ -37,8 +37,8 @@ def load_files(json_file_paths, pdf_file_paths):
         docs = loader.load()
         documents = documents + docs
 
-    st.markdown("v31 -- documents: loading pdf...")
-    time.sleep(10)
+    #st.markdown("v31 -- documents: loading pdf...")
+    #time.sleep(10)
 
     for pdf_file_path in pdf_file_paths:
         loader = PyPDFLoader(pdf_file_path)
@@ -51,8 +51,8 @@ def load_files(json_file_paths, pdf_file_paths):
 def instanciate_vector_db():
     # Instantiates Vector DB and loads documents from disk
     
-    st.markdown("v31 -- vector_db: loading...")
-    time.sleep(10)
+    #st.markdown("v31 -- vector_db: loading...")
+    #time.sleep(10)
 
     collection_name = COLLECTION_NAME
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
@@ -114,8 +114,8 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
     question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
-    st.markdown("v3 -- creating ai_assistant_chain...")
-    time.sleep(10)
+    #st.markdown("v3 -- creating ai_assistant_chain...")
+    #time.sleep(10)
 
     ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
@@ -196,8 +196,8 @@ st.session_state.question = st.text_area("Entrez votre question :", help='Type y
 if st.button('Répondre'):
     if st.session_state.question:
 
-        st.markdown("v31 -- calling ai_assistant_chain...")
-        time.sleep(5)
+        #st.markdown("v31 -- calling ai_assistant_chain...")
+        #time.sleep(5)
 
         st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(st.session_state.output["answer"])
