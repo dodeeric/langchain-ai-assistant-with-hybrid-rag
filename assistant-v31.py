@@ -1,4 +1,4 @@
-# v3: with PDF indexation
+# v31: with PDF indexation, with functions
 
 import dotenv, jq, time
 import streamlit as st
