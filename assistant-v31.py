@@ -174,6 +174,12 @@ with st.sidebar:
     L'assistant prend environ 30 secondes pour répondre.
 
     L'assistant possède une mémoire de la session de questions et réponses. Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
+    
+    
+    """)
+
+    st.markdown("""
+    AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
 
 if 'chat_history' not in st.session_state: # Mandatory
@@ -199,9 +205,5 @@ if st.button('Répondre'):
         st.session_state.chat_history.extend([HumanMessage(content=st.session_state.question), st.session_state.output["answer"]]) # Adding the question and answer in the chat history
     else:
         st.write("Please enter a question to proceed.")
-
-st.markdown("""
-AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by LangChain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
-""")
 
 #streamlit run assistant-vX.py > bmae.log 2>&1 &
