@@ -142,7 +142,7 @@ st.image(logo, use_column_width=True)
 
 #st.title("Belgian Monarchy Artworks Explorer")
 st.markdown("## Belgian Monarchy Artworks Explorer")
-st.caption("💬 A chatbot powered by OpenAI LLM, LangChain and Streamlit")
+st.caption("💬 A chatbot powered by OpenAI, LangChain and Streamlit")
 
 with st.sidebar:
 
@@ -184,12 +184,6 @@ with st.sidebar:
 
 if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
-
-#if 'question' not in st.session_state: # Not mandatory
-#    st.session_state.question = ""
-
-#if 'output' not in st.session_state: # Not mandatory
-#    st.session_state.output = None
 
 st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
