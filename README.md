@@ -12,7 +12,7 @@ Frameworks and tools:
 
 - LangChain: https://www.langchain.com (Python framework for AI applications)
 - LangSmith: https://smith.langchain.com (logs and debug for LangChain applications)
-- Streamlit: https://streamlit.io (Python framework for data / AI applications)
+- Streamlit: https://streamlit.io (web interface Python framework for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI: https://platform.openai.com (LLMs)
 
