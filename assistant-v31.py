@@ -60,8 +60,6 @@ def load_files(json_file_paths, pdf_file_paths):
     
     return documents
 
-documents = load_files(json_file_paths, pdf_file_paths)
-
 @st.cache_resource
 def instanciate_vector_db():
     # Instantiates Vector DB and loads documents from disk
@@ -75,63 +73,70 @@ def instanciate_vector_db():
         
     return vector_db
 
+@st.cache_data
+def instanciate_retrievers_and_chains(documents, vector_db):
+    # Instantiate retrievers and chains and return the main chain (AI Assistant)
+    # Retrieve and generate
+
+    llm = ChatOpenAI(model=MODEL, temperature=0)
+
+    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+
+    keyword_retriever = BM25Retriever.from_documents(documents)
+    keyword_retriever.k = 3
+
+    ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
+
+    contextualize_q_system_prompt = """
+    Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
+    which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
+    """
+
+    contextualize_q_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", contextualize_q_system_prompt),
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
+    )
+
+    history_aware_retriever = create_history_aware_retriever(
+        llm, ensemble_retriever, contextualize_q_prompt
+    )
+
+    qa_system_prompt = """
+    You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
+    You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
+    You have to answer in the same language as the question.
+    At the end of the answer:
+    - give a link to a web page about the artwork (see the "url" field).
+    - display an image of the artwork (see the "og:image" field).
+
+    Knowledge Base:
+
+    {context}
+    """
+
+    qa_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", qa_system_prompt),
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
+    )
+
+    question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+
+    st.markdown("v3 -- creating ai_assistant_chain...")
+    time.sleep(10)
+
+    ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+
+    return ai_assistant_chain
+
+documents = load_files(json_file_paths, pdf_file_paths)
 vector_db = instanciate_vector_db()
-
-# Retrieve and generate
-
-llm = ChatOpenAI(model=MODEL, temperature=0)
-
-vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
-
-keyword_retriever = BM25Retriever.from_documents(documents)
-keyword_retriever.k = 3
-
-ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
-
-contextualize_q_system_prompt = """
-Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
-which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
-"""
-
-contextualize_q_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", contextualize_q_system_prompt),
-        MessagesPlaceholder("chat_history"),
-        ("human", "{input}"),
-    ]
-)
-
-history_aware_retriever = create_history_aware_retriever(
-    llm, ensemble_retriever, contextualize_q_prompt
-)
-
-qa_system_prompt = """
-You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
-You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
-You have to answer in the same language as the question.
-At the end of the answer:
-- give a link to a web page about the artwork (see the "url" field).
-- display an image of the artwork (see the "og:image" field).
-
-Knowledge Base:
-
-{context}
-"""
-
-qa_prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", qa_system_prompt),
-        MessagesPlaceholder("chat_history"),
-        ("human", "{input}"),
-    ]
-)
-
-question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
-
-st.markdown("v3 -- creating ai_assistant_chain...")
-time.sleep(5)
-
-ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
 # Streamlit
 
