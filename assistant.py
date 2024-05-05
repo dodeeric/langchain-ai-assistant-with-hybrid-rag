@@ -149,7 +149,7 @@ with st.sidebar:
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
     queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
 
-    The questions can be in French, Dutch or English, or even in other languages. Here are some examples:
+    The questions can be in any language, but French and Dutch give the best results. Here are some examples of questions:
 
     - When did King Leopold I die? Do you have pictures of the funeral?
     - Can you show me the canvas 'The School Review'? *And then you can ask the question:*
@@ -182,7 +182,7 @@ with st.sidebar:
     Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
     questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
-    Les questions peuvent-être en français, en néerlandais ou en anglais, ou même en d'autres langues. En voici quelques exemples : 
+    Les questions peuvent-être posées en diférentes langues, mais le français et le néerlandais donnent les meilleurs résultats. Voici quelques exemples de questions: 
 
     - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
     - Avez-vous des images de la reine Elisabeth pendant la guerre ?
