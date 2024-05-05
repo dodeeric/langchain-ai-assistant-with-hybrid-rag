@@ -144,6 +144,37 @@ st.caption("💬 A chatbot powered by OpenAI, LangChain and Streamlit")
 with st.sidebar:
 
     st.markdown("""
+    This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
+    queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
+
+    The questions can be in French, Dutch or English, or even in other languages. Here are some examples:
+
+    - When did King Leopold I die? Do you have any footage of the funeral?
+    - Do you have any images of Queen Elizabeth during the war?
+    - Can you show me the table 'The School Review'? *And then you can ask the question:*
+    - Who painted this painting? *And then again:*
+    - What is the size of the table? *And then again:*
+    - Who is on the board? *And then again:*
+    - Can you show me this table with a photo from Wikimedia Commons and another photo from BALaT?
+    - When did the fire at Laeken Castle take place? Do you have several images of this event?
+    - When did King Leopold I get married? *The assistant will show you a picture of the wedding.*
+    - Can you show me images of Queen Marie-Henriette? Can you give me the authors of the images?
+    - Can you show me a portrait of King Leopol I? It has to be an engraving.
+    - Can you show me several images of King Leopold II?
+    - Can you show me images of King Leopold II during his accession in 1865?
+    - Do you have works created by Aimable Dutrieux? *And then you can ask the question:*
+    - Who was this sculptor?
+    - Can you show me two images of the patriotic celebration of Belgium's fiftieth anniversary taken by Martin Claverie? Who is in these images? What newspaper do they come from?
+
+    If you don't get a correct answer, try rephrasing the question. For example, the following question does not receive a correct answer: *Do you have a bust of Louis-Philipe, son of \
+    King Leopold I?*, but the following question receives a correct answer: *Do you have a bust of Louis-Philipe?*
+
+    The assistant takes about 30 seconds to respond.
+
+    The assistant has a memory of the question and answer session. The questions you ask may therefore refer to previous questions and answers. For example: *Who painted this painting?*
+    """)
+
+    st.markdown("""
     Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
     questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
