@@ -41,22 +41,22 @@ def load_files(json_file_paths, pdf_file_paths):
     st.markdown("v31 -- documents: loading json...")
     time.sleep(10)
 
-    for file_path in file_paths:
-        loader = JSONLoader(file_path=file_path, jq_schema=".[]", text_content=False)
+    for json_file_path in json_file_paths:
+        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()
         documents = documents + docs
 
     st.markdown("v31 -- documents: loading pdf...")
     time.sleep(5)
 
-    for file_path in file_paths:
-        loader = PyPDFLoader(file_path)
+    for pdf_file_path in pdf_file_paths:
+        loader = PyPDFLoader(pdf_file_path)
         pages = loader.load_and_split() # 1 pdf page per chunk
         documents = documents + pages
     
     return documents
 
-load_files(json_file_paths, pdf_file_paths)
+documents = load_files(json_file_paths, pdf_file_paths)
 
 st.markdown("v31 -- vector_db: loading...")
 time.sleep(10)
