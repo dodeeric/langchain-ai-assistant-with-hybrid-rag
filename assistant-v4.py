@@ -166,8 +166,8 @@ with st.sidebar:
     - Avez-vous des images de la reine Elisabeth pendant la guerre ?
     - Pouvez-vous me montrer le tableau 'La revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
     - Qui a peint ce tableau ? *Et encore ensuite :* 
-    - Quelle est la dimension du tableau ?
-    - Qui est présent sur le tableau 'la revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
+    - Quelle est la dimension du tableau ? *Et encore ensuite :*
+    - Qui est présent sur le tableau ? *Et encore ensuite :* 
     - Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
     - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
     - Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
