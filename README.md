@@ -4,12 +4,12 @@ This code can be adapted to create your own AI assistant.
 
 AI assistant coded with the LangChain framework:
 
-- hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever) (this improve greatly the efficiency of the RAG search)
-- chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
-- vector DB: Chroma
-- web interface: Streamlit
-- files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
-- logs sent to LangSmith
+- Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever) (this improve greatly the efficiency of the RAG search)
+- Chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
+- Vector DB: Chroma
+- Web interface: Streamlit
+- Files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
+- Logs sent to LangSmith
 - AI Model: OpenAI GPT4 Turbo. Vector size: 3072.
 
 At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs and the CSS class to scrap. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field).
