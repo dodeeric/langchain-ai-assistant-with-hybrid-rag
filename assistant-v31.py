@@ -62,7 +62,7 @@ def load_files(json_file_paths, pdf_file_paths):
 
 documents = load_files(json_file_paths, pdf_file_paths)
 
-@st.cache_data
+@st.cache_resource
 def instanciate_vector_db():
     # Instantiates Vector DB and loads documents from disk
     
