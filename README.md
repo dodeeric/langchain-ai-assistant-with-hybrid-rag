@@ -75,4 +75,6 @@ At the begining of the Jupyter notebook: see code to scrap web pages content giv
 
 Available at http://bmae.edocloud.be:8501
 
+This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
+
 ![bmae](./Screenshot.jpg)
