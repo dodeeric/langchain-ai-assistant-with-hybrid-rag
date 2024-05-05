@@ -140,7 +140,8 @@ ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
 
-st.title("Belgian Monarchy Artworks Explorer")
+#st.title("Belgian Monarchy Artworks Explorer")
+st.markdown("##Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI LLM, LangChain and Streamlit")
 
 with st.sidebar:
