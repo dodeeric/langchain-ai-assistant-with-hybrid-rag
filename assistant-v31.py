@@ -139,9 +139,11 @@ ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
-st.markdown("""
-## Belgian Monarchy Artworks Explorer
 
+st.title("Belgian Monarchy Artworks Explorer")
+st.caption("💬 A chatbot powered by OpenAI LLM, LangChain and Streamlit")
+
+st.markdown("""
 Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
 questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
 
@@ -175,11 +177,11 @@ L'assistant possède une mémoire de la session de questions et réponses. Les q
 if 'chat_history' not in st.session_state: # Mandatory
     st.session_state.chat_history = []
 
-if 'question' not in st.session_state: # Not mandatory
-    st.session_state.question = ""
+#if 'question' not in st.session_state: # Not mandatory
+#    st.session_state.question = ""
 
-if 'output' not in st.session_state: # Not mandatory
-    st.session_state.output = None
+#if 'output' not in st.session_state: # Not mandatory
+#    st.session_state.output = None
 
 st.session_state.question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
