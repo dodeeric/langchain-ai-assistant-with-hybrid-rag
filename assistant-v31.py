@@ -29,8 +29,8 @@ def load_files(json_file_paths, pdf_file_paths):
 
     documents = []
 
-    st.markdown("v31 -- documents: loading json...")
-    time.sleep(10)
+    #st.markdown("v31 -- documents: loading json...")
+    #time.sleep(10)
 
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
@@ -197,7 +197,7 @@ if st.button('Répondre'):
     if st.session_state.question:
 
         #st.markdown("v31 -- calling ai_assistant_chain...")
-        #time.sleep(5)
+        #time.sleep(10)
 
         st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
         st.markdown(st.session_state.output["answer"])
