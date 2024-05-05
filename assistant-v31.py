@@ -121,6 +121,8 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
     return ai_assistant_chain
 
+# Load, index, retrieve and generate
+
 json_file_path1 = "./commons-urls-ds1-swp.json"
 json_file_path2 = "./balat-ds1c-wcc-cheerio-ex_2024-04-06_09-05-15-262.json"
 json_file_path3 = "./belgica-ds1c-wcc-cheerio-ex_2024-04-06_08-30-26-786.json"
