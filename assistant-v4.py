@@ -198,6 +198,10 @@ if 'chat_history' not in st.session_state: # Mandatory
 with st.chat_message("assistant"):
     st.write("Bonjour 👋")
 
+prompt = st.chat_input("Say something")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
+
 question = st.text_area("Entrez votre question :", help='Type your question here and press Control-Enter.')
 
 if st.button('Répondre'):
