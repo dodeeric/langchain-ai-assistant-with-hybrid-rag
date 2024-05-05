@@ -8,3 +8,5 @@ AI assistant with:
 - files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
 
 Available at http://bmae.edocloud.be:8501
+
+$ git clone 
