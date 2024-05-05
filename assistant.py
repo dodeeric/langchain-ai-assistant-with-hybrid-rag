@@ -205,7 +205,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-# React to user input -- prompt --> question, response --> output["answer"]
+# React to user input
 if question := st.chat_input("Entrez votre question."):
     # Display user message in chat message container
     st.chat_message("user").markdown(question)
