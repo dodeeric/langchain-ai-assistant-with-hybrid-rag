@@ -58,9 +58,9 @@ $ cd chromadb
 $ sqlite3 chroma.sqlite3
 ```
 ```
-sqlite> .tables                                                                 ===> List of the tables
-sqlite> select * from collections;                                              ===> Name of the collection (bmae) & size of the vectors (3072)
-sqlite> select count(*) from embeddings;                                        ===> Number of records in the db
+sqlite> .tables                            ===> List of the tables
+sqlite> select * from collections;         ===> Name of the collection (bmae) & size of the vectors (3072)
+sqlite> select count(*) from embeddings;   ===> Number of records in the DB
 sqlite> select id, key, string_value from embedding_metadata LIMIT 10 OFFSET 0; ===> Display JSON items and PDF pages
 ```
 
