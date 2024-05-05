@@ -11,6 +11,8 @@ AI assistant coded with the LangChain framework:
 - files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
 - logs sent to LangSmith
 - AI Model: OpenAI GPT4 Turbo. Vector size: 3072.
+
+At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs and the CSS class to scrap. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field).
  
 Frameworks and tools:
 
@@ -71,8 +73,6 @@ $ streamlit run assistant.py &
 ```
 
 Go to: http://IP:8501
-
-At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs and the CSS class to scrap. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field).
 
 ---
 
