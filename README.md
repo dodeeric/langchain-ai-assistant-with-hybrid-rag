@@ -10,6 +10,7 @@ AI assistant coded with the LangChain framework:
 - web interface: Streamlit
 - files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
 - logs sent to LangSmith
+- AI Model: OpenAI GPT4 Turbo. Vector size: 3072.
  
 Frameworks and tools:
 
@@ -18,7 +19,6 @@ Frameworks and tools:
 - Streamlit: https://streamlit.io (web interface Python framework for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI: https://platform.openai.com (LLMs)
-- AI Model: OpenAI GPT4 Turbo. Vector size: 3072.
 
 Installation:
 
