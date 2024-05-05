@@ -37,16 +37,10 @@ def load_files(json_file_paths, pdf_file_paths):
 
     documents = []
 
-    #st.markdown("v31 -- documents: loading json...")
-    #time.sleep(10)
-
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()
         documents = documents + docs
-
-    #st.markdown("v31 -- documents: loading pdf...")
-    #time.sleep(10)
 
     for pdf_file_path in pdf_file_paths:
         loader = PyPDFLoader(pdf_file_path)
@@ -59,9 +53,6 @@ def load_files(json_file_paths, pdf_file_paths):
 def instanciate_vector_db():
     # Instantiates Vector DB and loads documents from disk
     
-    #st.markdown("v31 -- vector_db: loading...")
-    #time.sleep(10)
-
     collection_name = COLLECTION_NAME
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
     vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="./chromadb")
@@ -121,10 +112,6 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     )
 
     question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
-
-    #st.markdown("v3 -- creating ai_assistant_chain...")
-    #time.sleep(10)
-
     ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
     return ai_assistant_chain
