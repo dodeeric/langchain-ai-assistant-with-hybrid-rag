@@ -1,4 +1,4 @@
-# Langchain AI Assistant with Hybrid RAG and Memory
+# LangChain AI Assistant with Hybrid RAG and Memory
 
 AI assistant with:
 - hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever)
