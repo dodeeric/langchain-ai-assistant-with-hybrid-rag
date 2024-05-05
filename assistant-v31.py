@@ -60,7 +60,7 @@ def instanciate_vector_db():
         
     return vector_db
 
-@st.cache_data
+@st.cache_resource
 def instanciate_retrievers_and_chains(_documents, _vector_db):
     # Instantiate retrievers and chains and return the main chain (AI Assistant)
     # Retrieve and generate
