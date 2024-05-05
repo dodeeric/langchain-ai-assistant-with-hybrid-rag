@@ -28,7 +28,7 @@ file_path4 = "./commons-urls-ds2-swp.json"
 file_path5 = "./balat-urls-ds2-swp.json"
 file_paths = [file_path1, file_path2, file_path3, file_path4, file_path5]
 
-st.markdown("v3 -- documents: loading json...")
+st.markdown("v31 -- documents: loading json...")
 time.sleep(5)
 
 documents = []
@@ -42,7 +42,7 @@ file_path1 = "./BPEB31_DOS4_42-55_FR_LR.pdf"
 file_path2 = "./MD-vol1-2-3.pdf"
 file_paths = [file_path1, file_path2]
 
-st.markdown("v3 -- documents: loading pdf...")
+st.markdown("v31 -- documents: loading pdf...")
 time.sleep(5)
 
 for file_path in file_paths:
@@ -50,7 +50,7 @@ for file_path in file_paths:
     pages = loader.load_and_split() # 1 pdf page per chunk
     documents = documents + pages
 
-st.markdown("v3 -- vector_db: loading...")
+st.markdown("v31 -- vector_db: loading...")
 time.sleep(5)
 
 collection_name = "bmae-json"
@@ -164,7 +164,7 @@ st.session_state.question = st.text_area("Entrez votre question :", help='Type y
 if st.button('Répondre'):
     if st.session_state.question:
 
-        st.markdown("v3 -- calling ai_assistant_chain...")
+        st.markdown("v31 -- calling ai_assistant_chain...")
         time.sleep(5)
 
         st.session_state.output = ai_assistant_chain.invoke({"input": st.session_state.question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
