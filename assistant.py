@@ -152,7 +152,7 @@ with st.sidebar:
     The questions can be in French, Dutch or English, or even in other languages. Here are some examples:
 
     - When did King Leopold I die? Do you have pictures of the funeral?
-    - Do you have pictures of Queen Elizabeth during the war?
+    #- Do you have pictures of Queen Elizabeth during the war?
     - Can you show me the canvas 'The School Review'? *And then you can ask the question:*
     - Who painted that canvas? *And then:*
     - What is the size of the canvas? *And then:*
