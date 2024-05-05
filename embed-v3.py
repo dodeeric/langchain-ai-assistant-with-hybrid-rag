@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # v3: with PDF indexation
 
 import dotenv, jq
