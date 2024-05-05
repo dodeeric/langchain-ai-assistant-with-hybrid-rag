@@ -71,7 +71,7 @@ $ streamlit run assistant.py &
 
 Go to: http://IP:8501
 
-At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs.
+At the begining of the Jupyter notebook: see code to scrap web pages content given a list of URLs and the CSS class to scrap. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field).
 
 Available at http://bmae.edocloud.be:8501
 
