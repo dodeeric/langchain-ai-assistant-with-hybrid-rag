@@ -229,7 +229,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # React to user input
-if question := st.chat_input("Enter your question / Entrez votre question / Voer uw vraag in."):
+if question := st.chat_input("Enter your question / Entrez votre question / Voer uw vraag in"):
     # Display user message in chat message container
     st.chat_message("user").markdown(question)
     # Add user message to chat history
