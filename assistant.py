@@ -144,7 +144,7 @@ st.caption("💬 A chatbot powered by OpenAI, LangChain and Streamlit")
 with st.sidebar:
 
     st.markdown("""
-    (Version française disponible plus-bas)
+    (Version française disponible plus bas)
     
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
     queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
