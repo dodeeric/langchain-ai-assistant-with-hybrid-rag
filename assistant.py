@@ -245,4 +245,4 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
 
-#streamlit run assistant-vX.py > bmae.log 2>&1 &
+# $ sudo streamlit run assistant.py --server.port 80 > bmae.log 2>&1 &
