@@ -53,9 +53,8 @@ def load_files(json_file_paths, pdf_file_paths):
 def instanciate_vector_db():
     # Instantiates Vector DB and loads documents from disk
     
-    collection_name = COLLECTION_NAME
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
-    vector_db = Chroma(embedding_function=embedding_model, collection_name=collection_name, persist_directory="./chromadb")
+    vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
         
     return vector_db
 
