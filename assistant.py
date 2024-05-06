@@ -223,6 +223,9 @@ if 'chat_history' not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+with st.chat_message("assistant"):
+    st.write("Hello! Bonjour! Hallo! 👋")
+
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
