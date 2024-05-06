@@ -38,13 +38,13 @@ def load_files(json_file_paths, pdf_file_paths):
     documents = []
 
     for json_file_path in json_file_paths:
-        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
+        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False) # 1 JSON item per chunk
         docs = loader.load()
         documents = documents + docs
 
     for pdf_file_path in pdf_file_paths:
         loader = PyPDFLoader(pdf_file_path)
-        pages = loader.load_and_split() # 1 pdf page per chunk
+        pages = loader.load_and_split() # 1 PDF page per chunk
         documents = documents + pages
     
     return documents
