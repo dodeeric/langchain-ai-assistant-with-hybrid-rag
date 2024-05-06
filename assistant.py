@@ -146,7 +146,7 @@ with st.sidebar:
     st.markdown("""
     (Version française disponible plus bas)
 
-    ### What is this chatbot?
+    ### About this assistant
     
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
     queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
@@ -181,6 +181,8 @@ with st.sidebar:
     st.markdown("""
     
     FRANCAIS:
+
+    ### Informations concernant cet assistant
     
     Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
     questionne les bases de données graphiques BALaT de l'IRPA (Institut royal du Patrimoine artistique), Belgica de la KBR (Bibliothèque royale) et Wikimedia Commons.
