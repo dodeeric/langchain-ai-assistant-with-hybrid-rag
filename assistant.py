@@ -139,7 +139,7 @@ st.image(logo, use_column_width=True)
 
 #st.title("Belgian Monarchy Artworks Explorer")
 st.markdown("## Belgian Monarchy Artworks Explorer")
-st.caption("💬 A chatbot powered by OpenAI, LangChain and Streamlit")
+st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
 with st.sidebar:
 
