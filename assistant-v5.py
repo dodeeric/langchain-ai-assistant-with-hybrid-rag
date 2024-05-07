@@ -251,7 +251,7 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
     
     st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
     load_memory = st.session_state.chat_history2.load_memory_variables({})
-    chat_history = load_memory["history"]
+    st.session_state.chat_history = load_memory["history"]
     
     
     # Display assistant response in chat message container
