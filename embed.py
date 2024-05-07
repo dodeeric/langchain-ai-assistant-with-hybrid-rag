@@ -43,6 +43,5 @@ pdf_file_paths = [pdf_file_path1]
 
 documents = load_files(json_file_paths, pdf_file_paths)
 
-collection_name = COLLECTION_NAME
 embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=collection_name, persist_directory="./chromadb")
+vector_db = Chroma.from_documents(documents, embedding_model, collection_name=EMBEDDING_MODEL, persist_directory="./chromadb")
