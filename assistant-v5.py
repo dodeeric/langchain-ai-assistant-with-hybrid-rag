@@ -67,10 +67,10 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
     llm = ChatOpenAI(model=MODEL, temperature=0)
 
-    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     keyword_retriever = BM25Retriever.from_documents(documents)
-    keyword_retriever.k = 3
+    keyword_retriever.k = 5
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
