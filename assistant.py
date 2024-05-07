@@ -118,11 +118,11 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
 # Load, index, retrieve and generate
 
-file_path1 = "/content/drive/MyDrive/colab/commons-urls-ds1-swp.json"
-file_path2 = "/content/drive/MyDrive/colab/balat-urls-ds1-swp.json"
-file_path3 = "/content/drive/MyDrive/colab/belgica-urls-ds1-swp.json"
-file_path4 = "/content/drive/MyDrive/colab/commons-urls-ds2-swp.json"
-file_path5 = "/content/drive/MyDrive/colab/balat-urls-ds2-swp.json"
+json_file_path1 = "/content/drive/MyDrive/colab/commons-urls-ds1-swp.json"
+json_file_path2 = "/content/drive/MyDrive/colab/balat-urls-ds1-swp.json"
+json_file_path3 = "/content/drive/MyDrive/colab/belgica-urls-ds1-swp.json"
+json_file_path4 = "/content/drive/MyDrive/colab/commons-urls-ds2-swp.json"
+json_file_path5 = "/content/drive/MyDrive/colab/balat-urls-ds2-swp.json"
 json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
 
 pdf_file_path1 = "./files/BPEB31_DOS4_42-55_FR_LR.pdf"
