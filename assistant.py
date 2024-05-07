@@ -86,7 +86,7 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     )
 
     history_aware_retriever = create_history_aware_retriever(
-        llm, ensemble_retriever, contextualize_q_prompt
+        llm, ensemble_retriever, contextualize_q_prompt 
     )
 
     qa_system_prompt = """
@@ -102,6 +102,7 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     {context}
     """
 
+    # ConversationBufferWindowMemory: by default, the chat history is limited to 5 messages (k=5)
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", qa_system_prompt),
