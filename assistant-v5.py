@@ -223,7 +223,7 @@ with st.sidebar:
 # Initialize chat history (chat_history) for LangChain
 if 'chat_history' not in st.session_state:
 #    st.session_state.chat_history = []
-    st.session_state.chat_history = ConversationBufferWindowMemory(k=2)
+    st.session_state.chat_history = ConversationBufferWindowMemory(k=2, return_messages=True)
 
 # Initialize chat history (messages) for Streamlit
 if "messages" not in st.session_state:
