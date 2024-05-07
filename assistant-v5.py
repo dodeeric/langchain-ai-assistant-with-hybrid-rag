@@ -245,15 +245,12 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
     st.session_state.messages.append({"role": "user", "content": question})
 
     output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
-    time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
-    #st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history; there is no limit in the number of messages
-
+    #time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
     
     st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
     load_memory = st.session_state.chat_history2.load_memory_variables({})
     st.session_state.chat_history = load_memory["history"]
-    
-    
+        
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(output["answer"])
