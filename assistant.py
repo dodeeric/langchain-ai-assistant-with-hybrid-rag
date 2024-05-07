@@ -102,7 +102,7 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     {context}
     """
 
-    # ConversationBufferWindowMemory: by default, the chat history is limited to 5 messages (k=5)
+    # ConversationBufferWindowMemory: by default, the chat history is limited to 5 messages (k=5) ==> Seems not to work
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", qa_system_prompt),
