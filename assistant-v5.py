@@ -223,7 +223,7 @@ with st.sidebar:
 # Initialize chat history (chat_history) for LangChain
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
-    #st.session_state.chat_history = ConversationBufferWindowMemory(k=2, return_messages=True)
+    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=2, return_messages=True)
 
 # Initialize chat history (messages) for Streamlit
 if "messages" not in st.session_state:
@@ -246,9 +246,14 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
 
     output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
     time.sleep(5) # Wait for the chain/runnable to finish completely before updating the chat history, or else the chat history is not correct in the Langsmith logs 
-    st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history; there is no limit in the number of messages
-    #st.session_state.chat_history.save_context({"input": question}, {"output": output["answer"]})
+    #st.session_state.chat_history.extend([HumanMessage(content=question), output["answer"]]) # Adding the question and answer in the chat history; there is no limit in the number of messages
 
+    
+    st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
+    load_memory = st.session_state.chat_history2.load_memory_variables({})
+    chat_history = load_memory["history"]
+    
+    
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(output["answer"])
