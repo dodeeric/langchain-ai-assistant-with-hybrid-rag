@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v4: with the whole chat displayed (Streamlit)
+# v5
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
