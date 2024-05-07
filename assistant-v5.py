@@ -23,7 +23,7 @@ from langchain.chains import create_history_aware_retriever # To create the retr
 from langchain.chains import create_retrieval_chain # To create the main chain (predefined chain)
 from langchain.chains.combine_documents import create_stuff_documents_chain # To create a predefined chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, AIMessage
 
 from langchain.memory import ConversationBufferWindowMemory
 
