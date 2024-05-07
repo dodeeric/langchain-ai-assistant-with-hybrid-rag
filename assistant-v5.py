@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v5
+# v5: with a limit of messages in the chat history
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
