@@ -50,7 +50,7 @@ directory_path = './files/'
 # List all files and directories in the specified directory
 all_items = os.listdir(directory_path)
 
-print(f">>>>all items>>> {all items}")
+print(f">>>>all items>>> {all_items}")
 
 # Filter out directories, keep only files
 files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
