@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v31: with PDF indexation, with function
+# v4: embed all the files from a given directory
 
 import dotenv, jq
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
