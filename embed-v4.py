@@ -54,6 +54,6 @@ files = [item for item in all_items if os.path.isfile(os.path.join(directory_pat
 for file in files:
     path = f"./files/{file}"
     print(path)
-    #documents = load_files(path, "")
+    documents = load_files(path, "")
     ##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     ##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
