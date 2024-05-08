@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v6: stream the llm output
+# v6: embed all JSON files from a given directory
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
