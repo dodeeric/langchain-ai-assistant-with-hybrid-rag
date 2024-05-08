@@ -8,7 +8,7 @@
 # (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-import dotenv, jq, time
+import dotenv, jq, time, os
 import streamlit as st
 from PIL import Image
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
@@ -34,7 +34,7 @@ MODEL = "gpt-4-turbo-2024-04-09"
 COLLECTION_NAME = "bmae"
 
 @st.cache_data
-def load_files(json_file_paths, pdf_file_paths):
+def load_files(json_file_paths):
     # Loads and chunks files into a list of documents
 
     documents = []
@@ -44,11 +44,6 @@ def load_files(json_file_paths, pdf_file_paths):
         docs = loader.load()
         documents = documents + docs
 
-    for pdf_file_path in pdf_file_paths:
-        loader = PyPDFLoader(pdf_file_path)
-        pages = loader.load_and_split() # 1 PDF page per chunk
-        documents = documents + pages
-    
     return documents
 
 @st.cache_resource
@@ -120,17 +115,15 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
 # Load, index, retrieve and generate
 
-json_file_path1 = "./files/commons-urls-ds1-swp.json"
-json_file_path2 = "./files/balat-urls-ds1-swp.json"
-json_file_path3 = "./files/belgica-urls-ds1-swp.json"
-json_file_path4 = "./files/commons-urls-ds2-swp.json"
-json_file_path5 = "./files/balat-urls-ds2-swp.json"
-json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
+files = os.listdir("./files/")
 
-pdf_file_path1 = "./files/cdf-fxw.pdf"
-pdf_file_paths = [pdf_file_path1]
+paths = []
+for file in files:
+    path = f"./files/{file}"
+    paths.append(path)
 
-documents = load_files(json_file_paths, pdf_file_paths)
+documents = load_files(paths)
+
 vector_db = instanciate_vector_db()
 ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
