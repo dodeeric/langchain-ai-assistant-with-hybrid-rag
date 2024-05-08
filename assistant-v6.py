@@ -97,7 +97,7 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     You have to answer in the same language as the question.
     At the end of the answer:
     - display an image of the artwork (see the "og:image" field).
-    - write "\nRef.: " followed by the URL of the web page about the artwork (see the "url" field).
+    - write "<br />Ref.: " followed by the URL of the web page about the artwork (see the "url" field).
 
     Knowledge Base:
 
