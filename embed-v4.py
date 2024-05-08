@@ -3,7 +3,7 @@
 # v4: embed all JSON files from a given directory
 
 import dotenv, jq, os
-from langchain_community.document_loaders import JSONLoader, PyPDFLoader
+from langchain_community.document_loaders import JSONLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
