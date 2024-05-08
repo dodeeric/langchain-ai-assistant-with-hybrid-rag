@@ -246,7 +246,7 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": question})
 
-    output = ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+    output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
     
     st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
     load_memory = st.session_state.chat_history2.load_memory_variables({})
@@ -254,7 +254,7 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
         
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        st.write_stream(output["answer"])
+        st.markdown(output["answer"])
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
 
