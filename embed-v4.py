@@ -15,12 +15,10 @@ COLLECTION_NAME = "bmae"
 def load_files(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents
 
-    print(f">>>>1>>>> {json_file_paths}")
-
     documents = []
 
     for json_file_path in json_file_paths:
-        print(f">>>>2>>>> {json_file_path}")
+        print(f">>>>json_file_path>>>> {json_file_path}")
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load() # 1 JSON item per chunk
         documents = documents + docs
@@ -44,21 +42,16 @@ def load_files(json_file_paths, pdf_file_paths):
 #pdf_file_path1 = "./files/cdf-fxw.pdf"
 #pdf_file_paths = [pdf_file_path1]
 
-# Specify the directory you want to list
-directory_path = './files/'
+files = os.listdir("./files/")
 
-# List all files and directories in the specified directory
-all_items = os.listdir(directory_path)
-
-print(f">>>>all items>>> {all_items}")
-
-# Filter out directories, keep only files
-files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
-
-# Print the list of files
+paths = []
 for file in files:
     path = f"./files/{file}"
-    print(path)
-    documents = load_files(path, "")
+    paths = paths + path
+
+#for file in files:
+    #path = f"./files/{file}"
+    #print(path)
+    #documents = load_files(path, "")
     ##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     ##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
