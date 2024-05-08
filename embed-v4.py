@@ -52,9 +52,7 @@ files = [item for item in all_items if os.path.isfile(os.path.join(directory_pat
 
 # Print the list of files
 for file in files:
-    print(files)
-
-documents = load_files(files, "")
-
-##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+    print(file)
+    documents = load_files(file, "")
+    ##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+    ##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
