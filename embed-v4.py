@@ -7,7 +7,7 @@ from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
-#dotenv.load_dotenv()
+dotenv.load_dotenv()
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 COLLECTION_NAME = "bmae"
@@ -52,7 +52,8 @@ files = [item for item in all_items if os.path.isfile(os.path.join(directory_pat
 
 # Print the list of files
 for file in files:
-    print(file)
-    #documents = load_files(file, "")
+    path = f"./files/{file}"
+    print(path)
+    documents = load_files(path, "")
     ##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     ##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
