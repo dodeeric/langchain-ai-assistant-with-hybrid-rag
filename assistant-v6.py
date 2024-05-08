@@ -138,7 +138,7 @@ ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
 
-st.set_page_config(page_title="BMAE", page_icon="👑")
+#st.set_page_config(page_title="BMAE", page_icon="👑")
 #st.title("Belgian Monarchy Artworks Explorer")
 st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
