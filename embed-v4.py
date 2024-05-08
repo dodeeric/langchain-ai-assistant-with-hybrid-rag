@@ -15,10 +15,12 @@ COLLECTION_NAME = "bmae"
 def load_files(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents
 
+    print(f">>>>1>>>> {json_file_paths}")
+
     documents = []
 
     for json_file_path in json_file_paths:
-        print(f">>>> {json_file_path}")
+        print(f">>>>2>>>> {json_file_path}")
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load() # 1 JSON item per chunk
         documents = documents + docs
