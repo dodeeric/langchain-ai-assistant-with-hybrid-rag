@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# v6: embed all JSON files from a given directory
+# v6: load JSON items only from DB on disk
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
@@ -115,15 +115,17 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
 # Load, index, retrieve and generate
 
-files = os.listdir("./files/")
+#files = os.listdir("./files/")
+#paths = []
+#for file in files:
+#    path = f"./files/{file}"
+#    paths.append(path)
+#documents = load_files(paths)
 
-paths = []
-for file in files:
-    path = f"./files/{file}"
-    paths.append(path)
-
-documents = load_files(paths)
 vector_db = instanciate_vector_db()
+docs = vector_db.get()
+documents = docs["documents"]
+
 ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
 # Streamlit
