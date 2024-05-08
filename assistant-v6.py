@@ -123,7 +123,6 @@ for file in files:
     paths.append(path)
 
 documents = load_files(paths)
-
 vector_db = instanciate_vector_db()
 ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
