@@ -8,7 +8,7 @@
 # (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-import dotenv, jq, time, os
+import dotenv, jq, time
 import streamlit as st
 from PIL import Image
 from langchain_community.document_loaders import JSONLoader
