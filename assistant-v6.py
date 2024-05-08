@@ -98,6 +98,7 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     At the end of the answer:
     - give a link to a web page about the artwork (see the "url" field).
     - display an image of the artwork (see the "og:image" field).
+    - display the JSON code of the item you used to answer the question.
 
     Knowledge Base:
 
