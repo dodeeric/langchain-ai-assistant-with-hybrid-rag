@@ -11,7 +11,7 @@
 import dotenv, jq, time, os
 import streamlit as st
 from PIL import Image
-from langchain_community.document_loaders import JSONLoader, PyPDFLoader
+from langchain_community.document_loaders import JSONLoader
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
