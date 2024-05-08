@@ -31,18 +31,15 @@ def load_files(json_file_paths, pdf_file_paths):
 
 # Load and index
 
-json_file_path1 = "./files/commons-urls-ds1-swp.json"
-json_file_path2 = "./files/balat-urls-ds1-swp.json"
-json_file_path3 = "./files/belgica-urls-ds1-swp.json"
-json_file_path4 = "./files/commons-urls-ds2-swp.json"
-json_file_path5 = "./files/balat-urls-ds2-swp.json"
-json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
+#json_file_path1 = "./files/commons-urls-ds1-swp.json"
+#json_file_path2 = "./files/balat-urls-ds1-swp.json"
+#json_file_path3 = "./files/belgica-urls-ds1-swp.json"
+#json_file_path4 = "./files/commons-urls-ds2-swp.json"
+#json_file_path5 = "./files/balat-urls-ds2-swp.json"
+#json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
 
-pdf_file_path1 = "./files/cdf-fxw.pdf"
-pdf_file_paths = [pdf_file_path1]
-
-
-
+#pdf_file_path1 = "./files/cdf-fxw.pdf"
+#pdf_file_paths = [pdf_file_path1]
 
 # Specify the directory you want to list
 directory_path = './files/'
@@ -51,15 +48,13 @@ directory_path = './files/'
 all_items = os.listdir(directory_path)
 
 # Filter out directories, keep only files
-files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
+#files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
 
 # Print the list of files
-print(files)
+for file in files:
+    print(files)
 
-
-
-
-##documents = load_files(json_file_paths, pdf_file_paths)
+documents = load_files(files, "")
 
 ##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 ##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
