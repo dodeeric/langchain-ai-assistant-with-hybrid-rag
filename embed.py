@@ -38,7 +38,7 @@ json_file_path4 = "./files/commons-urls-ds2-swp.json"
 json_file_path5 = "./files/balat-urls-ds2-swp.json"
 json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_path4, json_file_path5]
 
-pdf_file_path1 = "./files/BPEB31_DOS4_42-55_FR_LR.pdf"
+pdf_file_path1 = "./files/cdf-fxw.pdf"
 pdf_file_paths = [pdf_file_path1]
 
 documents = load_files(json_file_paths, pdf_file_paths)
