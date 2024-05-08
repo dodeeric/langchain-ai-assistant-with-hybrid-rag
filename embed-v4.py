@@ -47,7 +47,7 @@ files = os.listdir("./files/")
 paths = []
 for file in files:
     path = f"./files/{file}"
-    paths = paths.append(path)
+    paths.append(path)
 
 #for file in files:
     #path = f"./files/{file}"
