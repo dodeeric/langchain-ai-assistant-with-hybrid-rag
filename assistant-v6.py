@@ -56,9 +56,12 @@ def instanciate_vector_db():
     return vector_db
 
 @st.cache_resource
-def instanciate_retrievers_and_chains(_documents, _vector_db):
+def instanciate_retrievers_and_chains(_vector_db):
     # Instantiate retrievers and chains and return the main chain (AI Assistant)
     # Retrieve and generate
+
+    docs = vector_db.get()
+    documents = docs["documents"]
 
     llm = ChatOpenAI(model=MODEL, temperature=0)
 
@@ -115,18 +118,9 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 
 # Load, index, retrieve and generate
 
-#files = os.listdir("./files/")
-#paths = []
-#for file in files:
-#    path = f"./files/{file}"
-#    paths.append(path)
-#documents = load_files(paths)
-
 vector_db = instanciate_vector_db()
-docs = vector_db.get()          # Can be moved inside the function below
-documents = docs["documents"]   # Idem
 
-ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
+ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
 
 # Streamlit
 
