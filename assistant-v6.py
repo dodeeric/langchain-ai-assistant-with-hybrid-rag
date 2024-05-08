@@ -123,8 +123,8 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
 #documents = load_files(paths)
 
 vector_db = instanciate_vector_db()
-docs = vector_db.get()
-documents = docs["documents"]
+docs = vector_db.get()          # Can be moved inside the function below
+documents = docs["documents"]   # Idem
 
 ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
