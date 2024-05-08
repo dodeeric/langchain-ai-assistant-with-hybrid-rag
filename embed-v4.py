@@ -2,7 +2,7 @@
 
 # v4: embed all the files from a given directory
 
-import dotenv, jq
+import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
@@ -41,7 +41,25 @@ json_file_paths = [json_file_path1, json_file_path2, json_file_path3, json_file_
 pdf_file_path1 = "./files/cdf-fxw.pdf"
 pdf_file_paths = [pdf_file_path1]
 
-documents = load_files(json_file_paths, pdf_file_paths)
 
-embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+
+
+# Specify the directory you want to list
+directory_path = './files/'
+
+# List all files and directories in the specified directory
+all_items = os.listdir(directory_path)
+
+# Filter out directories, keep only files
+files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
+
+# Print the list of files
+print(files)
+
+
+
+
+##documents = load_files(json_file_paths, pdf_file_paths)
+
+##embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+##vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
