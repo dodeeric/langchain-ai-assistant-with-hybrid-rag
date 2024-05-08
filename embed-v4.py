@@ -22,10 +22,10 @@ def load_files(json_file_paths, pdf_file_paths):
         docs = loader.load() # 1 JSON item per chunk
         documents = documents + docs
 
-    for pdf_file_path in pdf_file_paths:
-        loader = PyPDFLoader(pdf_file_path)
-        pages = loader.load_and_split() # 1 pdf page per chunk
-        documents = documents + pages
+#    for pdf_file_path in pdf_file_paths:
+#        loader = PyPDFLoader(pdf_file_path)
+#        pages = loader.load_and_split() # 1 pdf page per chunk
+#        documents = documents + pages
     
     return documents
 
