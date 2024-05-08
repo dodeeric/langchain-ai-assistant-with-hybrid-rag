@@ -48,7 +48,7 @@ directory_path = './files/'
 all_items = os.listdir(directory_path)
 
 # Filter out directories, keep only files
-#files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
+files = [item for item in all_items if os.path.isfile(os.path.join(directory_path, item))]
 
 # Print the list of files
 for file in files:
