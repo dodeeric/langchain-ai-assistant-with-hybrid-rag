@@ -96,8 +96,8 @@ def instanciate_retrievers_and_chains(_documents, _vector_db):
     You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
     You have to answer in the same language as the question.
     At the end of the answer:
-    - display an image of the artwork (see the "og:image" field).
-    - write "<br />Reference: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field).
+    - at a new line, display an image of the artwork (see the "og:image" field).
+    - at a new line, write "Reference: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field).
 
     Knowledge Base:
 
