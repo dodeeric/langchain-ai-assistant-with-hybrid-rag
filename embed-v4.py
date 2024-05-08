@@ -19,7 +19,7 @@ def load_files(json_file_paths):
 
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
-        docs = loader.load() # 1 JSON item per chunk
+        docs = loader.load()   # 1 JSON item per chunk
         documents = documents + docs
    
     return documents
