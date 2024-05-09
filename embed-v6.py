@@ -96,7 +96,7 @@ for pdf_file in pdf_files:
 xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
 xml_paths = []
 for xml_file in xml_files:
-    xml_path = f"./root/download.europeana.eu/dataset/XML/{xml_file}"
+    xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
     xml_paths.append(xml_path)
 
 documents = load_files(paths, pdf_paths, xml_paths)
