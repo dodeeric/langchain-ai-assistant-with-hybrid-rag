@@ -40,7 +40,7 @@ for file in files:
     path = f"./files/{file}"
     paths.append(path)
 
-documents = load_files(paths)
+documents = load_files(paths, "")
 
 embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
