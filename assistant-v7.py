@@ -122,22 +122,22 @@ with st.expander("Examples of questions you can ask | Exemples de questions que 
     
     ENGLISH:
     
-    - When did King Leopold I die? Do you have pictures of the funeral?
+    - When did King Leopold I die? Do you have images of the funeral?
     - Can you show me the canvas 'The School Parade'? *Or:*
     - Can you show me the canvas 'La revue des écoles'? *And then you can ask the question:*
     - Who painted that canvas? *And then:*
     - What is the size of the canvas? *And then:*
     - Who is on the canvas? *And then:*
-    - Can you show me that canvas with a picture from Wikimedia Commons and another picture from BALaT?
-    - When did the fire at Laeken Castle take place? Do you have pictures of that event?
-    - When did King Leopold I get married? *The assistant will show you a picture of the wedding.*
-    - Can you show me pictures of Queen Marie-Henriette? Can you give me the authors of the pictures?
+    - Can you show me that canvas with an image from Wikimedia Commons and another image from BALaT?
+    - When did the fire at Laeken Castle take place? Do you have images of that event?
+    - When did King Leopold I get married? *The assistant will show you an image of the wedding.*
+    - Can you show me images of Queen Marie-Henriette? Can you give me the authors of the images?
     - Can you show me a portrait of King Leopol I? It has to be an engraving.
-    - Can you show me pictures of King Leopold II?
-    - Can you show me pictures of King Leopold II during his accession to the throne in 1865?
+    - Can you show me images of King Leopold II?
+    - Can you show me images of King Leopold II during his accession to the throne in 1865?
     - Do you have artworks created by Aimable Dutrieux? *And then you can ask the question:*
     - Who was this sculptor?
-    - Can you show me two pictures of the patriotic celebration of Belgium's fiftieth anniversary made by Martin Claverie? Who is in these pictures? What newspaper do they come from?
+    - Can you show me two images of the patriotic celebration of Belgium's fiftieth anniversary made by Martin Claverie? Who is in these images? From which newspaper do they come from?
     """)
 
     st.markdown("""
