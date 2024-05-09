@@ -43,7 +43,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
     if xml_file_paths:
         for xml_file_path in xml_file_paths:
 
-            print(f">>> xml_file_path: {xml_file_path}")
+            print(f"(1)>>> xml_file_path: {xml_file_path}")
             
             g = Graph()
             g.parse(xml_file_path, format="xml")
@@ -53,6 +53,8 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
                     og_image = sub
 
+            print(f"(2)>>> og_image: {og_image}")
+            
             # Search image page url and image details 
             query = """
             SELECT ?s ?title ?creator ?date ?description
@@ -70,7 +72,8 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 description = row.description if row.description else ''
                 date = row.date if row.date else ''
                 creator = row.creator if row.creator else ''
-                print(f">>> url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
+            
+            print(f"(3)>>> url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
 
             item = {   # dict type
                 "url": url,
