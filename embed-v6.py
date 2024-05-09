@@ -84,7 +84,9 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             }
 
             doc = json.dumps(item)   # string type
-            print(f">>> doc (json string): {doc}")
+            
+            print(f"(4)>>> doc (json string): {doc}")
+            
             document = Document(page_content=doc)   # Document type
             documents.append(document)
 
