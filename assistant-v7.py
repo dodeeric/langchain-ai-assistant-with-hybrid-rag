@@ -4,7 +4,7 @@
 # v3: with PDF indexation
 # v31/v32: JSON and PDF indexation with function
 # v5: with a limit of messages in the chat history
-# v6: load JSON items only from DB on disk
+# v6: load chunks only from DB on disk
 # v7: clickable pre-defined questions
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -38,22 +38,9 @@ EMBEDDING_MODEL = "text-embedding-3-large"
 MODEL = "gpt-4-turbo-2024-04-09"
 COLLECTION_NAME = "bmae"
 
-@st.cache_data
-def load_files(json_file_paths):
-    # Loads and chunks files into a list of documents
-
-    documents = []
-
-    for json_file_path in json_file_paths:
-        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False) # 1 JSON item per chunk
-        docs = loader.load()
-        documents = documents + docs
-
-    return documents
-
 @st.cache_resource
 def instanciate_vector_db():
-    # Instantiates Vector DB and loads documents from disk
+    # Instantiates Vector DB
     
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
     vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
