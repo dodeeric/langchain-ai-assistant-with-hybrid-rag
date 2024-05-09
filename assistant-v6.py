@@ -63,6 +63,8 @@ def instanciate_retrievers_and_chains(_vector_db):
     docs = vector_db.get()
     documents = docs["documents"]
 
+    print(documents)
+
     llm = ChatOpenAI(model=MODEL, temperature=0)
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
