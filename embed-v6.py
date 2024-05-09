@@ -9,6 +9,7 @@ from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from rdflib import Graph
+from langchain.schema import Document
 
 dotenv.load_dotenv()
 
@@ -31,14 +32,10 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
 
-    if xml_file_paths:   # Valid for IRPA BALaT only
+    # Valid only for RDF/XML from IRPA BALaT
+    if xml_file_paths:
         for xml_file_path in xml_file_paths:
-            
-            #loader = PyPDFLoader(xml_file_path)
-            #docs = loader.load_and_split() # 1 pdf page per chunk
-
             g = Graph()
-
             g.parse(xml_file_path, format="xml")
 
             # Search image url
@@ -65,7 +62,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 creator = row.creator if row.creator else ''
                 #print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
 
-            item = {
+            item = {   # dict type
                 "url": url,
                 "og:image": og_image,
                 "creator":  creator,
@@ -73,9 +70,9 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 "description": description
             }
 
-            doc = json.dumps(item)
-            
-            documents = documents + docs
+            doc = json.dumps(item)   # string type
+            document = Document(page_content=doc)   # Document type
+            documents.append(document)
 
     return documents
 
