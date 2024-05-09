@@ -116,16 +116,28 @@ ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
 
 # Streamlit
 
-tab1, tab2 = st.tabs(["Tab 1", "Tab 2"])
+with st.expander("See examples of question you can askSee"):
+    
+    st.markdown("""
+    (Version française disponible plus bas)
 
-with tab1:
-    st.write("This is Tab 1")
-
-with tab2:
-    st.write("This is Tab 2")
-
-with st.expander("See more"):
-    st.write("Detailed information hidden in the expander.")
+    - When did King Leopold I die? Do you have pictures of the funeral?
+    - Can you show me the canvas 'The School Parade'? *Or:*
+    - Can you show me the canvas 'La revue des écoles'? *And then you can ask the question:*
+    - Who painted that canvas? *And then:*
+    - What is the size of the canvas? *And then:*
+    - Who is on the canvas? *And then:*
+    - Can you show me that canvas with a picture from Wikimedia Commons and another picture from BALaT?
+    - When did the fire at Laeken Castle take place? Do you have pictures of that event?
+    - When did King Leopold I get married? *The assistant will show you a picture of the wedding.*
+    - Can you show me pictures of Queen Marie-Henriette? Can you give me the authors of the pictures?
+    - Can you show me a portrait of King Leopol I? It has to be an engraving.
+    - Can you show me pictures of King Leopold II?
+    - Can you show me pictures of King Leopold II during his accession to the throne in 1865?
+    - Do you have artworks created by Aimable Dutrieux? *And then you can ask the question:*
+    - Who was this sculptor?
+    - Can you show me two pictures of the patriotic celebration of Belgium's fiftieth anniversary made by Martin Claverie? Who is in these pictures? What newspaper do they come from?
+    """)
 
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
