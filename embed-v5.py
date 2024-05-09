@@ -45,7 +45,7 @@ pdf_files = os.listdir("./pdf_files/")
 pdf_paths = []
 for pdf_file in pdf_files:
     pdf_path = f"./pdf_files/{pdf_file}"
-    paths.append(pdf_path)
+    pdf_paths.append(pdf_path)
 
 documents = load_files(paths, pdf_paths)
 
