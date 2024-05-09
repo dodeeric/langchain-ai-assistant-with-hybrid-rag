@@ -51,6 +51,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
                 if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
+                    print(f"(1b)>>>sub: {sub}")
                     og_image = sub
 
             print(f"(2)>>> og_image: {og_image}")
