@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # v6: load JSON items only from DB on disk
+# v7: re-adding PDF injection in DB
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
