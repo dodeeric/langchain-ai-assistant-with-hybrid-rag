@@ -67,7 +67,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 description = row.description if row.description else ''
                 date = row.date if row.date else ''
                 creator = row.creator if row.creator else ''
-                #print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
+                print(f"url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
 
             item = {   # dict type
                 "url": url,
