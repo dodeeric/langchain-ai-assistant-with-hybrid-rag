@@ -119,8 +119,9 @@ ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
 with st.expander("Examples of questions you can ask | Exemples de questions que vous pouvez poser"):
     
     st.markdown("""
-    (Version française disponible plus bas)
-
+    
+    ENGLISH:
+    
     - When did King Leopold I die? Do you have pictures of the funeral?
     - Can you show me the canvas 'The School Parade'? *Or:*
     - Can you show me the canvas 'La revue des écoles'? *And then you can ask the question:*
