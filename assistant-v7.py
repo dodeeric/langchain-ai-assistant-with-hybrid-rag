@@ -116,6 +116,14 @@ ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
 
 # Streamlit
 
+tab1, tab2 = st.tabs(["Tab 1", "Tab 2"])
+
+with tab1:
+    st.write("This is Tab 1")
+
+with tab2:
+    st.write("This is Tab 2")
+
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
 
