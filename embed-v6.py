@@ -41,8 +41,11 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
 
     # Valid only for RDF/XML from IRPA BALaT
     if xml_file_paths:
+        j = 1
         for xml_file_path in xml_file_paths:
 
+            print(f"(B)>>> j: {j}")
+            
             print(f"(1)>>> xml_file_path: {xml_file_path}")
             
             g = Graph()
@@ -89,6 +92,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             print(f"(4)>>> doc (json string): {doc}")
             
             document = Document(page_content=doc)   # Document type
+            
             documents.append(document)
 
     return documents
@@ -112,7 +116,9 @@ for pdf_file in pdf_files:
 # RDF/XML files
 xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
 xml_paths = []
+i = 1
 for xml_file in xml_files:
+    print(f"(A)>>> i: {i}")
     #print(f">>> xml_file: {xml_file}")
     xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
     print(f">>> xml_path: {xml_path}")
