@@ -32,16 +32,13 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
 
     if xml_file_paths:
         for xml_file_path in xml_file_paths:
-    
-
+ 
             
             loader = PyPDFLoader(xml_file_path)
             docs = loader.load_and_split() # 1 pdf page per chunk
             
             
             documents = documents + docs
-
-       
 
     return documents
 
