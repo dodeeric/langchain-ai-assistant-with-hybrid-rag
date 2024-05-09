@@ -13,6 +13,10 @@ from langchain_chroma import Chroma
 import json
 from langchain.schema import Document
 from rdflib import Graph
+import warnings
+
+# Suppress all warnings
+warnings.filterwarnings("ignore")
 
 dotenv.load_dotenv()
 
