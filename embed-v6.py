@@ -83,6 +83,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             item = {   # dict type
                 "url": url,
                 "og:image": og_image,
+                "title": title,
                 "creator":  creator,
                 "date": date,
                 "description": description
