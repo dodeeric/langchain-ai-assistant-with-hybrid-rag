@@ -4,7 +4,7 @@
 # v5: re-adding pdf indexation
 # v6: XML (RDF/JSON) indexation
 
-import dotenv, jq, os
+import dotenv, jq, os, json
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
