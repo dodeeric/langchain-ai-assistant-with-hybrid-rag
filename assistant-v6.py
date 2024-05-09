@@ -126,7 +126,7 @@ documents = docs["documents"]
 
 print(">>> instanciate_retrievers_and_chains(...)...")
       
-ai_assistant_chain = instanciate_retrievers_and_chains(document, vector_db)
+ai_assistant_chain = instanciate_retrievers_and_chains(documents, vector_db)
 
 # Streamlit
 
