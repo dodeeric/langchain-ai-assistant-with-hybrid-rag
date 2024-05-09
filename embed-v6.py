@@ -8,6 +8,7 @@ import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
+from rdflib import Graph
 
 dotenv.load_dotenv()
 
@@ -32,11 +33,40 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
 
     if xml_file_paths:
         for xml_file_path in xml_file_paths:
- 
             
-            loader = PyPDFLoader(xml_file_path)
-            docs = loader.load_and_split() # 1 pdf page per chunk
-            
+            #loader = PyPDFLoader(xml_file_path)
+            #docs = loader.load_and_split() # 1 pdf page per chunk
+
+            from rdflib import Graph
+
+            g = Graph()
+
+            g.parse("/content/drive/MyDrive/colab/AP_10093297.xml", format="xml")
+
+            # Search image url
+            for index, (sub, pred, obj) in enumerate(g):
+                if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
+                    og_image = sub
+
+            # Search image page url and image details 
+            query = """
+            SELECT ?s ?title ?creator ?date ?description
+            WHERE {
+              ?s <http://purl.org/dc/elements/1.1/title> ?title.
+              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/date> ?date. }
+              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/description> ?description. }
+              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/creator> ?creator. }
+            }
+            """
+
+            for row in g.query(query):
+                description = row.description if row.description else ''
+                date = row.date if row.date else ''
+                creator = row.creator if row.creator else ''
+                print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
+
+
+               
             
             documents = documents + docs
 
