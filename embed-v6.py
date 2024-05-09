@@ -14,9 +14,13 @@ import json
 from langchain.schema import Document
 from rdflib import Graph
 import warnings
+import logging
 
 # Suppress all warnings
 warnings.filterwarnings("ignore")
+
+# Log errors in a file and do not display them
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 dotenv.load_dotenv()
 
