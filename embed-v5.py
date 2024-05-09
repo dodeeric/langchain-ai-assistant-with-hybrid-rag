@@ -4,7 +4,7 @@
 # v5: re-adding pdf indexation 
 
 import dotenv, jq, os
-from langchain_community.document_loaders import JSONLoader
+from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
