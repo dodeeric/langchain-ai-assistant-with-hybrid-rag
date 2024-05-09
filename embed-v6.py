@@ -8,8 +8,8 @@ import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-from rdflib import Graph
 from langchain.schema import Document
+from rdflib import Graph
 
 dotenv.load_dotenv()
 
