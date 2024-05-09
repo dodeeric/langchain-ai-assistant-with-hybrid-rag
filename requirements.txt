@@ -7,4 +7,5 @@ langchain-chroma
 rank_bm25
 streamlit
 pypdf
+# For RDF/XML
 rdflib
