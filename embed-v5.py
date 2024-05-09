@@ -33,14 +33,21 @@ def load_files(json_file_paths, pdf_file_paths):
 
 # Load and index
 
+# JSON files
 files = os.listdir("./files/")
-
 paths = []
 for file in files:
     path = f"./files/{file}"
     paths.append(path)
 
-documents = load_files(paths, "")
+# PDF files
+pdf_files = os.listdir("./pdf_files/")
+pdf_paths = []
+for pdf_file in pdf_files:
+    pdf_path = f"./pdf_files/{pdf_file}"
+    paths.append(pdf_path)
+
+documents = load_files(paths, pdf_paths)
 
 embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
