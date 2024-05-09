@@ -5,7 +5,7 @@
 # v31/v32: JSON and PDF indexation with function
 # v5: with a limit of messages in the chat history
 # v6: load JSON items only from DB on disk
-# v7: re-adding PDF indexation
+# v7: clickable pre-defined questions
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
