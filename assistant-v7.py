@@ -124,6 +124,9 @@ with tab1:
 with tab2:
     st.write("This is Tab 2")
 
+with st.expander("See more"):
+    st.write("Detailed information hidden in the expander.")
+
 logo = Image.open("./crown.jpg")
 st.image(logo, use_column_width=True)
 
