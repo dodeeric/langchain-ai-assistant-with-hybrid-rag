@@ -42,6 +42,9 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
     # Valid only for RDF/XML from IRPA BALaT
     if xml_file_paths:
         for xml_file_path in xml_file_paths:
+
+            print(f">>> xml_file_path: {xml_file_path}")
+            
             g = Graph()
             g.parse(xml_file_path, format="xml")
 
@@ -67,7 +70,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 description = row.description if row.description else ''
                 date = row.date if row.date else ''
                 creator = row.creator if row.creator else ''
-                print(f"url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
+                print(f">>> url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
 
             item = {   # dict type
                 "url": url,
