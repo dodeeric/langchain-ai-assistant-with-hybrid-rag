@@ -173,8 +173,6 @@ st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 with st.sidebar:
 
     st.markdown("""
-    (Version française disponible plus bas)
-
     ### About this assistant
     
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
@@ -187,8 +185,6 @@ with st.sidebar:
 
     st.markdown("""
     
-    FRANCAIS:
-
     ### Informations concernant cet assistant
     
     Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
