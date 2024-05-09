@@ -3,7 +3,7 @@
 # v6: load JSON items only from DB on disk
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
+# This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #print
 # and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA  #
 # (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -124,7 +124,7 @@ print(">>> instanciate_vector_db()...")
 
 vector_db = instanciate_vector_db()
 
-print(">>> instanciate_retrievers_and_chains(vector_db)..."
+print(">>> instanciate_retrievers_and_chains(vector_db)...")
       
 ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
 
