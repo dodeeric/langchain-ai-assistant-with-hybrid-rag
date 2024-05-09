@@ -31,17 +31,15 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
 
-    if xml_file_paths:
+    if xml_file_paths:   # Valid for IRPA BALaT only
         for xml_file_path in xml_file_paths:
             
             #loader = PyPDFLoader(xml_file_path)
             #docs = loader.load_and_split() # 1 pdf page per chunk
 
-            from rdflib import Graph
-
             g = Graph()
 
-            g.parse("/content/drive/MyDrive/colab/AP_10093297.xml", format="xml")
+            g.parse(xml_file_path, format="xml")
 
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
@@ -60,13 +58,21 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             """
 
             for row in g.query(query):
+                url = row.s
+                title = row.title if row.title else ''
                 description = row.description if row.description else ''
                 date = row.date if row.date else ''
                 creator = row.creator if row.creator else ''
-                print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
+                #print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
 
+            page = {
+                "url": url,
+                "og:image": og_image,
+                "creator":  creator,
+                "date": date,
+                "description": description
+            }
 
-               
             
             documents = documents + docs
 
