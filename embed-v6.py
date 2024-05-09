@@ -65,7 +65,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 creator = row.creator if row.creator else ''
                 #print(f"url: {row.s}, Title: {row.title}, Creator: {creator}, Date: {date}, Description: {description}, og:image: {og_image}")
 
-            page = {
+            item = {
                 "url": url,
                 "og:image": og_image,
                 "creator":  creator,
@@ -73,6 +73,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 "description": description
             }
 
+            doc = json.dumps(item)
             
             documents = documents + docs
 
