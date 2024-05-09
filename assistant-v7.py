@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 
+# v2: with chat history
+# v3: with PDF indexation
+# v31/v32: JSON and PDF indexation with function
+# v5: with a limit of messages in the chat history
 # v6: load JSON items only from DB on disk
-# v7: re-adding PDF injection in DB
+# v7: re-adding PDF indexation
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
