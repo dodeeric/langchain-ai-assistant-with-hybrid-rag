@@ -70,7 +70,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
                 description = row.description if row.description else ''
                 date = row.date if row.date else ''
                 creator = row.creator if row.creator else ''
-                print(f">>> url: {url}, >>> title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
+                print(f">>> url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
 
             item = {   # dict type
                 "url": url,
@@ -81,6 +81,7 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             }
 
             doc = json.dumps(item)   # string type
+            print(f">>> doc (json string): {doc}")
             document = Document(page_content=doc)   # Document type
             documents.append(document)
 
