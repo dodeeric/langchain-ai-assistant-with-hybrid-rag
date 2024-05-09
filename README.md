@@ -63,9 +63,10 @@ $ sqlite3 chroma.sqlite3
 sqlite> .tables                            ===> List of the tables
 sqlite> select * from collections;         ===> Name of the collection (bmae) & size of the vectors (3072)
 sqlite> select count(*) from embeddings;   ===> Number of records in the DB
-sqlite> select id, key, string_value from embedding_metadata LIMIT 10 OFFSET 0; ===> Display JSON items and PDF pages
-sqlite> PRAGMA table_info(embedding_metadata);   ===> Structure of the table   
-sqlite> select * from embedding_metadata where string_value like '%Delper%';    ===> Display matching records
+sqlite> select id, key, string_value from embedding_metadata LIMIT 10 OFFSET 0;       ===> Display JSON items and PDF pages
+sqlite> PRAGMA table_info(embedding_metadata);                                        ===> Structure of the table   
+sqlite> select * from embedding_metadata where string_value like '%Delper%';          ===> Display matching records
+sqlite> select count(*) from embedding_metadata where string_value like '%Delper%';   ===> Display number of matching records
 ```
 
 Launch the AI Assistant:
