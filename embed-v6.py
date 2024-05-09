@@ -14,7 +14,7 @@ dotenv.load_dotenv()
 EMBEDDING_MODEL = "text-embedding-3-large"
 COLLECTION_NAME = "bmae"
 
-def load_files(json_file_paths, pdf_file_paths):
+def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
     # Loads and chunks files into a list of documents
 
     documents = []
@@ -29,6 +29,19 @@ def load_files(json_file_paths, pdf_file_paths):
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
+
+    if xml_file_paths:
+        for xml_file_path in xml_file_paths:
+    
+
+            
+            loader = PyPDFLoader(xml_file_path)
+            docs = loader.load_and_split() # 1 pdf page per chunk
+            
+            
+            documents = documents + docs
+
+       
 
     return documents
 
@@ -48,7 +61,14 @@ for pdf_file in pdf_files:
     pdf_path = f"./pdf_files/{pdf_file}"
     pdf_paths.append(pdf_path)
 
-documents = load_files(paths, pdf_paths)
+# RDF/XML files
+xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
+xml_paths = []
+for xml_file in xml_files:
+    xml_path = f"./root/download.europeana.eu/dataset/XML/{xml_file}"
+    xml_paths.append(xml_path)
+
+documents = load_files(paths, pdf_paths, xml_paths)
 
 embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
