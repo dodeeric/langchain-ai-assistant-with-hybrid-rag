@@ -81,6 +81,8 @@ def load_files_and_embed_xml():
                 type = row.type if row.type else ''
                 medium = row.medium if row.medium else ''
                 description = row.description if row.description else ''
+            if "aggregator" in url:
+                url = url.replace("aggregator", "provider")
             item = {
                 "url": url,
                 "og:image": og_image,
