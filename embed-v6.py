@@ -66,40 +66,44 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             
             # Search image page url and image details 
             query = """
-            SELECT ?s ?title ?creator ?date ?description
+            SELECT ?s ?title ?creator ?date ?format ?type ?medium ?description
             WHERE {
               ?s <http://purl.org/dc/elements/1.1/title> ?title.
               OPTIONAL { ?s <http://purl.org/dc/elements/1.1/date> ?date. }
               OPTIONAL { ?s <http://purl.org/dc/elements/1.1/description> ?description. }
               OPTIONAL { ?s <http://purl.org/dc/elements/1.1/creator> ?creator. }
+              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/format> ?format. }
+              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/type> ?type. }
+              OPTIONAL { ?s <http://purl.org/dc/terms/medium> ?medium. }  
             }
             """
 
             for row in g.query(query):
                 url = row.s
-                title = row.title if row.title else ''
-                description = row.description if row.description else ''
-                date = row.date if row.date else ''
+                title = row.title
                 creator = row.creator if row.creator else ''
-            
-            print(f"(3)>>> url: {url}, title: {title}, creator: {creator}, date: {date}, description: {description}, og:image: {og_image}")
+                date = row.date if row.date else ''
+                format = row.format if row.format else ''
+                type = row.type if row.type else ''
+                medium = row.medium if row.medium else ''
+                description = row.description if row.description else ''
 
-            item = {   # dict type
+            item = {
                 "url": url,
                 "og:image": og_image,
-                "title": title,
+                "titel": title,
                 "creator":  creator,
                 "date": date,
+                "format": format,
+                "type": type,
+                "medium": medium,
                 "description": description
             }
 
-            doc = json.dumps(item)   # string type
-            
+            doc = json.dumps(item)   # JSON string type
             print(f"(4)>>> doc (json string): {doc}")
-            
             document = Document(page_content=doc)   # Document type
-            
-            documents.append(document)
+            documents.append(document)   # list of Document type
 
     return documents
 
@@ -124,11 +128,11 @@ xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
 xml_paths = []
 i = 1
 for xml_file in xml_files:
-    print(f"(A)>>> i: {i}")
+    print(f">>> {i}")
     i = i + 1
     #print(f">>> xml_file: {xml_file}")
     xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
-    print(f">>> xml_path: {xml_path}")
+    #print(f">>> xml_path: {xml_path}")
     if i < 2000:
         xml_paths.append(xml_path)
 
