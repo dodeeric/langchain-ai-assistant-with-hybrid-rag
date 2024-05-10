@@ -64,8 +64,6 @@ def load_files_and_embed_xml():
     COLLECTION_NAME = "bmae"
     BATCH_SIZE = 100
     
-    print("Embed XML/RDF...")
-
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")   # All the XML files
@@ -75,8 +73,11 @@ def load_files_and_embed_xml():
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
         xml_paths.append(xml_path)
 
+    nbr_files = len(xml_paths)
     nbr_batches = int(len(xml_paths) / BATCH_SIZE)   # Ex: batches of 100 files; up to 100 last files could be not processed 
 
+    print(f">>> Embed {nbr_files} RDF/XML files...")
+    
     for j in range(nbr_batches):   # j = batch id: from 0 to nbr_batches-1, i = file id in the batch: 0 to BATCH_SIZE-1
         documents = []
         for i in range(BATCH_SIZE):
@@ -122,7 +123,7 @@ def load_files_and_embed_xml():
             }
             doc = json.dumps(item)   # JSON string type
             document = Document(page_content=doc)   # Document type
-            print(f">>> j: {j}, i: {i}, {document}")
+            print(f">>> Batch: {j}/{nbr_batches}, File: {j+i}/{nbr_files}, {document}")
             documents.append(document)   # list of Document type
         Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
