@@ -80,7 +80,7 @@ def load_files_and_embed_xml():
             print(f">>> XML/RDF file: {j}")
             j = j + 1
             
-            print(f"(1)>>> xml_path: {xml_file_path}")
+            print(f"(1)>>> xml_path: {xml_path}")
             
             g = Graph()
             g.parse(xml_path, format="xml")
