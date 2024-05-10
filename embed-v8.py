@@ -33,6 +33,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     COLLECTION_NAME = "bmae"
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
+    print("Embed JSON...")
     documents = []
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
@@ -40,6 +41,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
         documents = documents + docs
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
+    print("Embed PDF...")
     documents = []
     if pdf_file_paths:   # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
@@ -69,6 +71,7 @@ def load_files_and_embed_xml():
             xml_paths.append(xml_path)
 
     # Valid only for RDF/XML from Europeana for IRPA/BALaT
+    print("Embed XML/RDF...")
     documents = []
     if xml_paths:   # if equals to "", then skip
         j = 1
