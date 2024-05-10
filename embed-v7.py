@@ -96,7 +96,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
             item = {
                 "url": url,
                 "og:image": og_image,
-                "titel": title,
+                "title": title,
                 "creator":  creator,
                 "date": date,
                 "format": format,
