@@ -32,19 +32,23 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-
-    print("Embed JSON...")
+    
+    nbr_files = len(json_file_paths)
+    print(f">>> Embed {nbr_files} JSON files...")
     documents = []
     for json_file_path in json_file_paths:
+        print(f">>> JSON file: {json_file_path}")
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()   # 1 JSON item per chunk
         documents = documents + docs
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    print("Embed PDF...")
+    nbr_files = len(pdf_file_paths)
+    print(f">>> Embed {nbr_files} PDF files...")
     documents = []
     if pdf_file_paths:   # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
+            print(f">>> PDF file: {pdf_file_path}")
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
