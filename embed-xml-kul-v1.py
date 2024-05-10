@@ -57,7 +57,7 @@ def load_files_and_embed_xml():
             g.parse(xml_path, format="xml")
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
-                if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
+                if sub.startswith("https://lib.is/") and ("image/jpeg" in obj):
                     og_image = sub
             # Search image page url and image details 
             query = """
