@@ -52,7 +52,7 @@ def load_files_and_embed_xml():
     for j in range(nbr_batches):   # j = batch id: from 0 to nbr_batches-1, i = file id in the batch: 0 to BATCH_SIZE-1
         documents = []
         for i in range(BATCH_SIZE):
-            xml_path = xml_paths[j+i]
+            xml_path = xml_paths[i+(j*BATCH_SIZE)]
             g = Graph()
             g.parse(xml_path, format="xml")
             # Search image url
@@ -94,7 +94,7 @@ def load_files_and_embed_xml():
             }
             doc = json.dumps(item)   # JSON string type
             document = Document(page_content=doc)   # Document type
-            print(f">>> Batch: {j}/{nbr_batches}, File: {i+(j*BATCH_SIZE)}/{nbr_files}")
+            print(f">>> Batch: {j}/{nbr_batches}, File: {i+(j*BATCH_SIZE)}/{nbr_files} -- {xml_path}")
             documents.append(document)   # list of Document type
         Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
