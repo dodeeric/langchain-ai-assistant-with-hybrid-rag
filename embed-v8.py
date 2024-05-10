@@ -118,6 +118,7 @@ def load_files_and_embed_xml():
             }
             doc = json.dumps(item)   # JSON string type
             document = Document(page_content=doc)   # Document type
+            print(f">>> j: {j}, i: {i}, {document}")
             documents.append(document)   # list of Document type
         Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
