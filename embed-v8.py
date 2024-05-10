@@ -67,7 +67,7 @@ def load_files_and_embed_xml():
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
         xml_paths.append(xml_path)
 
-    nbr_batches = int(len(xml_paths) / 100)   # batches of 1000 files; up to 100 last files could be not processed 
+    nbr_batches = int(len(xml_paths) / 100)   # batches of 100 files; up to 100 last files could be not processed 
 
     for j in int range(nbr_batches)   # j = batch id, i = file id in the batch 
 
