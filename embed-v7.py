@@ -112,7 +112,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
 
     vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    return vector_db
+    return "Done"
 
 # Load and index
 
@@ -141,4 +141,4 @@ for xml_file in xml_files:
     if i < 25:
         xml_paths.append(xml_path)
 
-vectordb = load_files_and_embed(paths, pdf_paths, xml_paths)
+result = load_files_and_embed(paths, pdf_paths, xml_paths)
