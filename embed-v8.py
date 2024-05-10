@@ -62,10 +62,14 @@ def load_files_and_embed_xml():
     # RDF/XML files
     xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")   # All the XML files
     
-    xml_paths = []   # Will hold all the XMF file (absolute path)
+    xml_paths = []   # Will hold all the XML files (absolute path)
     for xml_file in xml_files:
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
         xml_paths.append(xml_path)
+
+    nbr_batches = int(len(xml_paths) / 100)   # batches of 1000 files; up to 100 last files could be not processed 
+
+    for j in int range(nbr_batches)   # j = batch id, i = file id in the batch 
 
     # Valid only for RDF/XML from Europeana for IRPA/BALaT
     print("Embed XML/RDF...")
