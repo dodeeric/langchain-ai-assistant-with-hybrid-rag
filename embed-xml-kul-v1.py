@@ -29,7 +29,7 @@ dotenv.load_dotenv()
 
 def load_files_and_embed_xml():
     # Loads and chunks files into a list of documents then embed
-    # Valid only for RDF/XML from Europeana for IRPA/BALaT
+    # Valid only for RDF/XML from Europeana for KUL
 
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
@@ -37,11 +37,11 @@ def load_files_and_embed_xml():
     
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
-    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML-IRPA/")   # All the XML files
+    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML-KUL/")   # All the XML files
   
     xml_paths = []   # Will hold all the XML files (absolute path)
     for xml_file in xml_files:
-        xml_path = f"/root/download.europeana.eu/dataset/XML-IRPA/{xml_file}"
+        xml_path = f"/root/download.europeana.eu/dataset/XML-KUL/{xml_file}"
         xml_paths.append(xml_path)
 
     nbr_files = len(xml_paths)
