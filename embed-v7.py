@@ -47,7 +47,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
             documents = documents + pages
     vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    # Valid only for RDF/XML from IRPA BALaT
+    # Valid only for RDF/XML from Europeana for IRPA/BALaT
     documents = []
     if xml_file_paths:   # if equals to "", then skip
         j = 1
