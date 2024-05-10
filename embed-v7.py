@@ -28,23 +28,28 @@ dotenv.load_dotenv()
 EMBEDDING_MODEL = "text-embedding-3-large"
 COLLECTION_NAME = "bmae"
 
-def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
-    # Loads and chunks files into a list of documents
+def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
+    # Loads and chunks files into a list of documents then embed
+
+    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     documents = []
-
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()   # 1 JSON item per chunk
         documents = documents + docs
+    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
+    documents = []
     if pdf_file_paths:   # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
+    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     # Valid only for RDF/XML from IRPA BALaT
+    documents = []
     if xml_file_paths:   # if equals to "", then skip
         j = 1
         for xml_file_path in xml_file_paths:
@@ -106,7 +111,9 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
             document = Document(page_content=doc)   # Document type
             documents.append(document)   # list of Document type
 
-    return documents
+    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+
+    return vector_db
 
 # Load and index
 
@@ -137,7 +144,4 @@ for xml_file in xml_files:
     if i < 25:
         xml_paths.append(xml_path)
 
-documents = load_files(paths, pdf_paths, xml_paths)
-
-embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+vectordb = load_files_and_embed(paths, pdf_paths, xml_paths)
