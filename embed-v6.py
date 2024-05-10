@@ -37,14 +37,14 @@ def load_files(json_file_paths, pdf_file_paths, xml_file_paths):
         docs = loader.load()   # 1 JSON item per chunk
         documents = documents + docs
 
-    if pdf_file_paths:
+    if pdf_file_paths:   # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
 
     # Valid only for RDF/XML from IRPA BALaT
-    if xml_file_paths:
+    if xml_file_paths:   # if equals to "", then skip
         j = 1
         for xml_file_path in xml_file_paths:
 
