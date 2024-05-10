@@ -133,7 +133,7 @@ for xml_file in xml_files:
     #print(f">>> xml_file: {xml_file}")
     xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
     #print(f">>> xml_path: {xml_path}")
-    if i < 2000:
+    if i < 25:
         xml_paths.append(xml_path)
 
 documents = load_files(paths, pdf_paths, xml_paths)
