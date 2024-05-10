@@ -50,7 +50,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
             documents = documents + pages
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    return "Done"
+    return "JSON/PDF file done"
 
 def load_files_and_embed_xml():
     # Loads and chunks files into a list of documents then embed
@@ -60,27 +60,18 @@ def load_files_and_embed_xml():
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     # RDF/XML files
-    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
-    xml_paths = []
-    i = 1
+    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")   # All the XML files
+    
+    xml_paths = []   # Will hold all the XMF file (absolute path)
     for xml_file in xml_files:
-        print(f">>> {i}")
-        i = i + 1
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
-        if i < 25:
-            xml_paths.append(xml_path)
+        xml_paths.append(xml_path)
 
     # Valid only for RDF/XML from Europeana for IRPA/BALaT
     print("Embed XML/RDF...")
     documents = []
     if xml_paths:   # if equals to "", then skip
-        j = 1
         for xml_path in xml_paths:
-
-            print(f">>> XML/RDF file: {j}")
-            j = j + 1
-            
-            print(f"(1)>>> xml_path: {xml_path}")
             
             g = Graph()
             g.parse(xml_path, format="xml")
@@ -88,10 +79,7 @@ def load_files_and_embed_xml():
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
                 if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
-                    print(f"(1b)>>>sub: {sub}")
                     og_image = sub
-
-            print(f"(2)>>> og_image: {og_image}")
             
             # Search image page url and image details 
             query = """
@@ -130,13 +118,12 @@ def load_files_and_embed_xml():
             }
 
             doc = json.dumps(item)   # JSON string type
-            print(f"(4)>>> doc (json string): {doc}")
             document = Document(page_content=doc)   # Document type
             documents.append(document)   # list of Document type
 
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    return "Done"
+    return "RDF/XML files done"
 
 # Load and index
 
