@@ -53,7 +53,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
         j = 1
         for xml_file_path in xml_file_paths:
 
-            print(f"(B)>>> j: {j}")
+            print(f">>> XML/RDF file: {j}")
             j = j + 1
             
             print(f"(1)>>> xml_file_path: {xml_file_path}")
