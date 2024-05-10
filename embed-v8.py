@@ -131,7 +131,7 @@ def load_files_and_embed_xml():
             document = Document(page_content=doc)   # Document type
             documents.append(document)   # list of Document type
 
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     return "Done"
 
