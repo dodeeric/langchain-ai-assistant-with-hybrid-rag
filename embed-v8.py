@@ -26,12 +26,6 @@ logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 dotenv.load_dotenv()
 
-
-
-
-
-
-
 def load_files_and_embed(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents then embed
 
@@ -44,7 +38,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()   # 1 JSON item per chunk
         documents = documents + docs
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     documents = []
     if pdf_file_paths:   # if equals to "", then skip
@@ -52,86 +46,9 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
             documents = documents + pages
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
-
-    # Valid only for RDF/XML from Europeana for IRPA/BALaT
-    documents = []
-    if xml_file_paths:   # if equals to "", then skip
-        j = 1
-        for xml_file_path in xml_file_paths:
-
-            print(f">>> XML/RDF file: {j}")
-            j = j + 1
-            
-            print(f"(1)>>> xml_file_path: {xml_file_path}")
-            
-            g = Graph()
-            g.parse(xml_file_path, format="xml")
-
-            # Search image url
-            for index, (sub, pred, obj) in enumerate(g):
-                if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
-                    print(f"(1b)>>>sub: {sub}")
-                    og_image = sub
-
-            print(f"(2)>>> og_image: {og_image}")
-            
-            # Search image page url and image details 
-            query = """
-            SELECT ?s ?title ?creator ?date ?format ?type ?medium ?description
-            WHERE {
-              ?s <http://purl.org/dc/elements/1.1/title> ?title.
-              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/date> ?date. }
-              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/description> ?description. }
-              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/creator> ?creator. }
-              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/format> ?format. }
-              OPTIONAL { ?s <http://purl.org/dc/elements/1.1/type> ?type. }
-              OPTIONAL { ?s <http://purl.org/dc/terms/medium> ?medium. }  
-            }
-            """
-
-            for row in g.query(query):
-                url = row.s
-                title = row.title
-                creator = row.creator if row.creator else ''
-                date = row.date if row.date else ''
-                format = row.format if row.format else ''
-                type = row.type if row.type else ''
-                medium = row.medium if row.medium else ''
-                description = row.description if row.description else ''
-
-            item = {
-                "url": url,
-                "og:image": og_image,
-                "title": title,
-                "creator":  creator,
-                "date": date,
-                "format": format,
-                "type": type,
-                "medium": medium,
-                "description": description
-            }
-
-            doc = json.dumps(item)   # JSON string type
-            print(f"(4)>>> doc (json string): {doc}")
-            document = Document(page_content=doc)   # Document type
-            documents.append(document)   # list of Document type
-
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     return "Done"
-
-
-
-
-
-
-
-
-
-
-
-
 
 def load_files_and_embed_xml():
     # Loads and chunks files into a list of documents then embed
@@ -139,7 +56,6 @@ def load_files_and_embed_xml():
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-
 
     # RDF/XML files
     xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
@@ -151,22 +67,6 @@ def load_files_and_embed_xml():
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
         if i < 25:
             xml_paths.append(xml_path)
-    
-
-    documents = []
-    for json_file_path in json_file_paths:
-        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
-        docs = loader.load()   # 1 JSON item per chunk
-        documents = documents + docs
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
-
-    documents = []
-    if pdf_file_paths:   # if equals to "", then skip
-        for pdf_file_path in pdf_file_paths:
-            loader = PyPDFLoader(pdf_file_path)
-            pages = loader.load_and_split() # 1 pdf page per chunk
-            documents = documents + pages
-    vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     # Valid only for RDF/XML from Europeana for IRPA/BALaT
     documents = []
@@ -234,23 +134,6 @@ def load_files_and_embed_xml():
     vector_db = Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     return "Done"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Load and index
 
@@ -267,8 +150,6 @@ pdf_paths = []
 for pdf_file in pdf_files:
     pdf_path = f"./pdf_files/{pdf_file}"
     pdf_paths.append(pdf_path)
-
-
 
 load_files_and_embed(paths, pdf_paths)
 load_files_and_embed_xml()
