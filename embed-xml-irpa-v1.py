@@ -37,7 +37,7 @@ def load_files_and_embed_xml():
     
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
-    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")   # All the XML files
+    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML-IRPA/")   # All the XML files
   
     xml_paths = []   # Will hold all the XML files (absolute path)
     for xml_file in xml_files:
