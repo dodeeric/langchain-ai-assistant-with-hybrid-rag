@@ -70,17 +70,17 @@ def load_files_and_embed_xml():
 
     # Valid only for RDF/XML from Europeana for IRPA/BALaT
     documents = []
-    if xml_file_paths:   # if equals to "", then skip
+    if xml_paths:   # if equals to "", then skip
         j = 1
-        for xml_file_path in xml_file_paths:
+        for xml_path in xml_paths:
 
             print(f">>> XML/RDF file: {j}")
             j = j + 1
             
-            print(f"(1)>>> xml_file_path: {xml_file_path}")
+            print(f"(1)>>> xml_path: {xml_file_path}")
             
             g = Graph()
-            g.parse(xml_file_path, format="xml")
+            g.parse(xml_path, format="xml")
 
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
