@@ -3,6 +3,7 @@
 # v4: embed all JSON files from a given directory
 # v5: re-adding pdf indexation
 # v6: XML (RDF/JSON) indexation
+# v7: for XML (RDF/JSON) indexation, do it per batches
 
 import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
