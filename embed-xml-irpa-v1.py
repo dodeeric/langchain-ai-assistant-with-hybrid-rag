@@ -41,7 +41,7 @@ def load_files_and_embed_xml():
   
     xml_paths = []   # Will hold all the XML files (absolute path)
     for xml_file in xml_files:
-        xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
+        xml_path = f"/root/download.europeana.eu/dataset/XML-IRPA/{xml_file}"
         xml_paths.append(xml_path)
 
     nbr_files = len(xml_paths)
