@@ -140,6 +140,19 @@ def load_files_and_embed_xml():
     COLLECTION_NAME = "bmae"
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
+
+    # RDF/XML files
+    xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
+    xml_paths = []
+    i = 1
+    for xml_file in xml_files:
+        print(f">>> {i}")
+        i = i + 1
+        xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
+        if i < 25:
+            xml_paths.append(xml_path)
+    
+
     documents = []
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
@@ -255,16 +268,7 @@ for pdf_file in pdf_files:
     pdf_path = f"./pdf_files/{pdf_file}"
     pdf_paths.append(pdf_path)
 
-# RDF/XML files
-xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")
-xml_paths = []
-i = 1
-for xml_file in xml_files:
-    print(f">>> {i}")
-    i = i + 1
-    xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
-    if i < 25:
-        xml_paths.append(xml_path)
+
 
 load_files_and_embed(paths, pdf_paths)
 load_files_and_embed_xml()
