@@ -25,12 +25,11 @@ logging.basicConfig(filename='error.log', level=logging.ERROR)
 
 dotenv.load_dotenv()
 
-EMBEDDING_MODEL = "text-embedding-3-large"
-COLLECTION_NAME = "bmae"
-
 def load_files_and_embed(json_file_paths, pdf_file_paths, xml_file_paths):
     # Loads and chunks files into a list of documents then embed
 
+    EMBEDDING_MODEL = "text-embedding-3-large"
+    COLLECTION_NAME = "bmae"
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     documents = []
