@@ -54,37 +54,35 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
 
 def load_files_and_embed_xml():
     # Loads and chunks files into a list of documents then embed
+    # Valid only for RDF/XML from Europeana for IRPA/BALaT
 
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
+    BATCH_SIZE = 100
+    
+    print("Embed XML/RDF...")
+
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
-    # RDF/XML files
     xml_files = os.listdir("/root/download.europeana.eu/dataset/XML/")   # All the XML files
-    
+  
     xml_paths = []   # Will hold all the XML files (absolute path)
     for xml_file in xml_files:
         xml_path = f"/root/download.europeana.eu/dataset/XML/{xml_file}"
         xml_paths.append(xml_path)
 
-    nbr_batches = int(len(xml_paths) / 100)   # batches of 100 files; up to 100 last files could be not processed 
+    nbr_batches = int(len(xml_paths) / BATCH_SIZE)   # Ex: batches of 100 files; up to 100 last files could be not processed 
 
-    for j in int range(nbr_batches)   # j = batch id, i = file id in the batch (1 to 100)
-
-    # Valid only for RDF/XML from Europeana for IRPA/BALaT
-    print("Embed XML/RDF...")
-    documents = []
-    if xml_paths:   # if equals to "", then skip
-        for xml_path in xml_paths:
-            
+    for j in range(nbr_batches):   # j = batch id: from 0 to nbr_batches-1, i = file id in the batch: 0 to BATCH_SIZE-1
+        documents = []
+        for i in range(BATCH_SIZE):
+            xml_path = xml_paths[j+i]
             g = Graph()
             g.parse(xml_path, format="xml")
-
             # Search image url
             for index, (sub, pred, obj) in enumerate(g):
                 if sub.startswith("http://balat.kikirpa.be/image/thumbnail/") and ("image/jpeg" in obj):
                     og_image = sub
-            
             # Search image page url and image details 
             query = """
             SELECT ?s ?title ?creator ?date ?format ?type ?medium ?description
@@ -98,7 +96,6 @@ def load_files_and_embed_xml():
               OPTIONAL { ?s <http://purl.org/dc/terms/medium> ?medium. }  
             }
             """
-
             for row in g.query(query):
                 url = row.s
                 title = row.title
@@ -108,7 +105,6 @@ def load_files_and_embed_xml():
                 type = row.type if row.type else ''
                 medium = row.medium if row.medium else ''
                 description = row.description if row.description else ''
-
             item = {
                 "url": url,
                 "og:image": og_image,
@@ -120,12 +116,10 @@ def load_files_and_embed_xml():
                 "medium": medium,
                 "description": description
             }
-
             doc = json.dumps(item)   # JSON string type
             document = Document(page_content=doc)   # Document type
             documents.append(document)   # list of Document type
-
-    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+        Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     return "RDF/XML files done"
 
