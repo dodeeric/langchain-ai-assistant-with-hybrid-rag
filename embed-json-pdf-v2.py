@@ -34,6 +34,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
         docs = loader.load()   # 1 JSON item per chunk
         print(f"JSON file: {json_file_path}, Number of JSON items: {len(docs)}")
         documents = documents + docs
+    print(f"Total number of JSON items: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     nbr_files = len(pdf_file_paths)
