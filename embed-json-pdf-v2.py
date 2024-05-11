@@ -42,13 +42,14 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     documents = []
     if pdf_file_paths:   # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
-            print(f">>> PDF file: {pdf_file_path}")
             loader = PyPDFLoader(pdf_file_path)
             pages = loader.load_and_split() # 1 pdf page per chunk
+            print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
             documents = documents + pages
+    print(f"Total number of PDF pages: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    return "JSON/PDF file done"
+    return "JSON/PDF files done"
 
 # Load and index
 
