@@ -15,13 +15,14 @@ from langchain_chroma import Chroma
 
 dotenv.load_dotenv()
 
+JSON_FILES_DIR = "./files/"
+PDF_FILES_DIR = "./pdf_files/"
+
 def load_files_and_embed(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents then embed
 
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
-    JSON_FILES_DIR = "./files/"
-    PDF_FILES_DIR = "./pdf_files/"
     
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     
