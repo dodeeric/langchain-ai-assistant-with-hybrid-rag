@@ -57,7 +57,7 @@ def instanciate_retrievers_and_chains(_vector_db):
 
     llm = ChatOpenAI(model=MODEL, temperature=0)
 
-    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 0})
+    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 1})
 
     keyword_retriever = BM25Retriever.from_texts(documents)
     keyword_retriever.k = 20
