@@ -52,7 +52,6 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
 # Load and index
 
 # JSON files
-print(f">>> JSON_FILES_DIR: {JSON_FILES_DIR}")
 json_files = os.listdir(JSON_FILES_DIR)
 json_paths = []
 for json_file in json_files:
