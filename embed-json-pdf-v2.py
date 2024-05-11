@@ -6,6 +6,7 @@
 # v7: for XML (RDF/JSON) indexation, do it per batches
 # v8: for XML (RDF/JSON) indexation, do it per batches, move XML in another function
 # v1: only JSON/PDF
+# v2: small enhancements
 
 import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
@@ -19,6 +20,9 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
 
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
+    JSON_FILES_DIR = "./files/"
+    PDF_FILES_DIR = "./pdf_files/"
+    
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
     
     nbr_files = len(json_file_paths)
@@ -47,17 +51,17 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
 # Load and index
 
 # JSON files
-files = os.listdir("./files/")
-paths = []
-for file in files:
-    path = f"./files/{file}"
-    paths.append(path)
+json_files = os.listdir(JSON_FILES_DIR)
+json_paths = []
+for json_file in json_files:
+    json_path = f"{JSON_FILES_DIR}{json_file}"
+    json_paths.append(json_path)
 
 # PDF files
-pdf_files = os.listdir("./pdf_files/")
+pdf_files = os.listdir(PDF_FILES_DIR)
 pdf_paths = []
 for pdf_file in pdf_files:
-    pdf_path = f"./pdf_files/{pdf_file}"
+    pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
     pdf_paths.append(pdf_path)
 
-load_files_and_embed(paths, pdf_paths)
+load_files_and_embed(json_paths, pdf_paths)
