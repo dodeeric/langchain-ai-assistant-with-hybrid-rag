@@ -58,7 +58,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     documents = docs["documents"]
 
     #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    llm = Ollama(model=LLAMA_MODEL)
+    llm = Ollama(model=LLAMA_MODEL, temperature=0)
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
