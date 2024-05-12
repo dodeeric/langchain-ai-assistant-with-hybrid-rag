@@ -131,7 +131,7 @@ with st.expander("Examples of questions you can ask | Exemples de questions que 
     - Can you show me this canvas with a photo from Wikimedia Commons and another photo from BALaT?
     - When did the fire at Laeken Castle take place? Do you have images of this event?
     - When did King Leopold I get married? *The assistant will show you an image of the wedding.*
-    - Can you show me a portrait of King Leopol I? It has to be an engraving.
+    - Can you show me a portrait of King Leopold I? It has to be an engraving.
     - Can you show me images of King Leopold II?
     - Can you show me images of King Leopold II during his accession to the throne in 1865?
     - Do you have works created by Aimable Dutrieux? *And then you can ask the question:*
@@ -155,7 +155,7 @@ with st.expander("Examples of questions you can ask | Exemples de questions que 
     - Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
     - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
     - Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
-    - Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
+    - Pouvez-vous me montrer un portrait du roi Léopold Ier ? Il faut que ce soit une gravure.
     - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
     - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
     - Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
