@@ -180,7 +180,7 @@ with st.sidebar:
     ### About this assistant
     
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
-    queries different images databases like BALaT/IRPA (Royal Institute of Artistic Heritage), Belgica/KBR (Royal Library) and Wikimedia Commons.
+    queries different images databases like BALaT/IRPA (Royal Institute of Artistic Heritage), Belgica/KBR (Royal Library), Europeana/KULeuven (Katholieke Universiteit Leuven), and Wikimedia Commons.
 
     The questions can be in any language, but French and Dutch give the best results. If you don't get a correct answer, try rephrasing the question. The \
     assistant takes about 30 seconds to respond. He has a memory of the questions and answers session. The questions you ask may therefore \
@@ -192,7 +192,7 @@ with st.sidebar:
     ### Concernant cet assistant
     
     Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
-    questionne différentes bases de données d'images comme BALaT/IRPA (Institut royal du Patrimoine artistique), Belgica/KBR (Bibliothèque royale) et Wikimedia Commons.
+    questionne différentes bases de données d'images comme BALaT/IRPA (Institut royal du Patrimoine artistique), Belgica/KBR (Bibliothèque royale), Europeana/KULeuven (Katholieke Universiteit Leuven) et Wikimedia Commons.
 
     Les questions peuvent-être posées en diférentes langues, mais le français et le néerlandais donnent les meilleurs résultats. Si vous n'obtenez pas une réponse \
     correcte, essayez de reformuler la question. L'assistant prend environ 30 secondes pour répondre. Il possède une mémoire de la session de questions et réponses. \
