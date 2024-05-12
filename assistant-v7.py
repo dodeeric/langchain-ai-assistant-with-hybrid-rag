@@ -122,22 +122,24 @@ with st.expander("Examples of questions you can ask | Exemples de questions que 
     
     ENGLISH:
     
-    - When did King Leopold I die? Do you have images of the funeral?
-    - Can you show me the canvas 'The School Parade'? *Or:*
-    - Can you show me the canvas 'La revue des écoles'? *And then you can ask the question:*
-    - Who painted that canvas? *And then:*
-    - What is the size of the canvas? *And then:*
-    - Who is on the canvas? *And then:*
-    - Can you show me that canvas with an image from Wikimedia Commons and another image from BALaT?
-    - When did the fire at Laeken Castle take place? Do you have images of that event?
+    - When did King Leopold I die? Do you have any images of the funeral?
+    - Do you have any images of Queen Elizabeth during the First World War?
+    - Can you show me the canvas "The school review"? *And then you can ask the question:*
+    - Who painted this canvas? *And then again:*
+    - What is the size of the canvas? *And then again:*
+    - Who is present on this canvas? *And then again:*
+    - Can you show me this canvas with a photo from Wikimedia Commons and another photo from BALaT?
+    - When did the fire at Laeken Castle take place? Do you have images of this event?
     - When did King Leopold I get married? *The assistant will show you an image of the wedding.*
-    - Can you show me images of Queen Marie-Henriette? Can you give me the authors of the images?
     - Can you show me a portrait of King Leopol I? It has to be an engraving.
     - Can you show me images of King Leopold II?
     - Can you show me images of King Leopold II during his accession to the throne in 1865?
-    - Do you have artworks created by Aimable Dutrieux? *And then you can ask the question:*
+    - Do you have works created by Aimable Dutrieux? *And then you can ask the question:*
     - Who was this sculptor?
-    - Can you show me two images of the patriotic celebration of Belgium's fiftieth anniversary made by Martin Claverie? Who is in these images? From which newspaper do they come from?
+    - Can you show me images of Queen Marie-Henriette? Can you give me the authors of the images?
+    - Can you show me the painting "The patriotic celebration of Belgium's fiftieth anniversary" created by Camille Van Camp?
+    - Who are the people present in this painting?
+    - Can you show me two engravings of the patriotic celebration of the fiftieth anniversary of Belgium created by Martin Claverie? From which newspapers do they come from?
     """)
 
     st.markdown("""
