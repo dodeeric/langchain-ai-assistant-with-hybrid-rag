@@ -175,7 +175,7 @@ st.image(logo, use_column_width=True)
 #st.set_page_config(page_title="BMAE", page_icon="👑")
 #st.title("Belgian Monarchy Artworks Explorer")
 st.markdown("## Belgian Monarchy Artworks Explorer")
-st.caption("💬 A chatbot powered by Llama3, Langchain and Streamlit")
+st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
 with st.sidebar:
 
@@ -204,7 +204,7 @@ with st.sidebar:
 
     st.markdown("""
     _________
-    AI Model: Llama3. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
+    AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
 
 # Initialize chat history (chat_history) for LangChain
