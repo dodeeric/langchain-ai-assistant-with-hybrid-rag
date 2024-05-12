@@ -145,21 +145,23 @@ with st.expander("Examples of questions you can ask | Exemples de questions que 
     FRANCAIS:
 
     - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
-    - Avez-vous des images de la reine Elisabeth pendant la guerre ?
-    - Pouvez-vous me montrer le tableau 'La revue des écoles' ? *Et ensuite vous pouvez poser la question :* 
-    - Qui a peint ce tableau ? *Et encore ensuite :* 
+    - Avez-vous des images de la reine Elisabeth pendant la Premierre Guerre mondiale ?
+    - Pouvez-vous me montrer le tableau "La revue des écoles" ? *Et ensuite vous pouvez poser la question :*
+    - Qui a peint ce tableau ? *Et encore ensuite :*
     - Quelle est la dimension du tableau ? *Et encore ensuite :*
-    - Qui est présent sur le tableau ? *Et encore ensuite :* 
+    - Qui est présent sur le tableau ? *Et encore ensuite :*
     - Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
     - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
     - Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
-    - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
     - Pouvez-vous me montrer un portrait du roi Léopol Ier ? Il faut que ce soit une gravure.
     - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
     - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
     - Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
     - Qui était ce sculteur ?
-    - Pouvez-vous me montrer deux images de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? Qui est présent sur ces images ? De quel journal proviennent-elles ?
+    - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
+    - Pouvez-vous me montrer le tableau "La fête patriotique du cinquantenaire de la Belgique" réalisé par Camille Van Camp ?
+    - Quelles sont les personnes présentes sur ce tableau ?
+    - Pouvez-vous me montrer deux gravures de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? De quel journal proviennent-elles ?
     """)
 
 logo = Image.open("./crown.jpg")
