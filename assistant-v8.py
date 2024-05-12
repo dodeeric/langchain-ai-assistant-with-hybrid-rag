@@ -37,7 +37,7 @@ dotenv.load_dotenv()
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
-OLLAMA_MODEL = "phi3"   # "llama3"
+OLLAMA_MODEL = "mistral"   # "phi3" # "llama3"
 COLLECTION_NAME = "bmae"
 
 @st.cache_resource
