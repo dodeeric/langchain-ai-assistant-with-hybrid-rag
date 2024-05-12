@@ -6,7 +6,7 @@
 # v5: with a limit of messages in the chat history
 # v6: load chunks only from DB on disk
 # v7: diplay question examples in the expander
-# v8: ollama & llama3
+# v8: ollama (llama3, mistral, etc.)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
@@ -37,7 +37,7 @@ dotenv.load_dotenv()
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
-LLAMA_MODEL = "llama3"
+OLLAMA_MODEL = "phi3"   # "llama3"
 COLLECTION_NAME = "bmae"
 
 @st.cache_resource
@@ -58,7 +58,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     documents = docs["documents"]
 
     #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    llm = Ollama(model=LLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
+    llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
