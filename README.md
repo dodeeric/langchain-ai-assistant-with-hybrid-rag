@@ -84,3 +84,19 @@ Available at http://bmae.edocloud.be
 This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
 
 ![bmae](./screenshot.jpg)
+
+---
+
+Running with Ollama / Llama 3 in place of OpenAI GPT4 Turbo:
+
+Install Ollama
+
+$ ollama pull llama3
+$ ollama list
+$ ollama serve
+
+New window:
+
+$ ollama run llama3
+>>> What's the capital of France?
+>>> /bye
