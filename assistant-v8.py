@@ -24,14 +24,14 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-
 from langchain.chains import create_history_aware_retriever # To create the retriever chain (predefined chain)
 from langchain.chains import create_retrieval_chain # To create the main chain (predefined chain)
 from langchain.chains.combine_documents import create_stuff_documents_chain # To create a predefined chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
-
 from langchain.memory import ConversationBufferWindowMemory
+
+from langchain_community.llms import Ollama
 
 dotenv.load_dotenv()
 
