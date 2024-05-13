@@ -67,7 +67,7 @@ def instanciate_retrievers_and_chains(_vector_db):
         llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
     elif model == "Google: gemini-1.5-pro-preview-0409":
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
-    else model == "OpenAI: gpt-4-turbo-2024-04-09":
+    else:
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
