@@ -31,6 +31,7 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import AnthropicLLM
+from langchain_anthropic import ChatAnthropic
 from langchain_community.llms import Ollama
 
 dotenv.load_dotenv()
@@ -59,7 +60,8 @@ def instanciate_retrievers_and_chains(_vector_db):
     documents = docs["documents"]
 
     #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    llm = AnthropicLLM(model=CLAUDE_MODEL, temperature=0, )
+    #llm = AnthropicLLM(model=CLAUDE_MODEL, temperature=0, )
+    llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
     #llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
