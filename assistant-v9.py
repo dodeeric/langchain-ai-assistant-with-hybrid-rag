@@ -211,8 +211,8 @@ st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
 model_list = ['Model 1', 'Model 2', 'Model 3']
-model = st.selectbox('Choose an AI model:', model_list)
-st.write('You selected:', model)
+model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
+st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', model)
 
 with st.sidebar:
 
