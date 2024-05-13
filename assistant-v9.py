@@ -210,7 +210,7 @@ st.image(logo, use_column_width=True)
 st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
-model_list = ['Model 1', 'Model 2', 'Model 3']
+model_list = ['OpenAI: gpt-4-turbo-2024-04-09', 'Google: gemini-1.5-pro-preview-0409', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
 model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
 st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', model)
 
