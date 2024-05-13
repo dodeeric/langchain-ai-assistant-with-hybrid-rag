@@ -3,6 +3,7 @@ jq
 langchain
 langchain-community
 langchain-openai
+langchain-anthropic
 langchain-chroma
 rank_bm25
 streamlit
