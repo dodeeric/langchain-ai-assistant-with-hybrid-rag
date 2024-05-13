@@ -44,7 +44,7 @@ VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"   # "gemini-1.0-pro-002"
 OLLAMA_MODEL = "llama3"   # "mistral" # "phi3"
 COLLECTION_NAME = "bmae"
 
-model = "OpenAI: gpt-4-turbo-2024-04-09"
+#st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
 
 @st.cache_resource
 def instanciate_vector_db():
@@ -220,8 +220,8 @@ st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
 model_list = ['OpenAI: gpt-4-turbo-2024-04-09', 'Google: gemini-1.5-pro-preview-0409', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
-model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
-st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', model)
+st.session_state.model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
+st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', st.session_state.model)
 
 with st.sidebar:
 
