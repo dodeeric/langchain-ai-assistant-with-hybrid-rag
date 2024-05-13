@@ -32,6 +32,7 @@ from langchain.memory import ConversationBufferWindowMemory
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import AnthropicLLM
 from langchain_anthropic import ChatAnthropic
+from langchain_google_vertexai import VertexAI
 from langchain_community.llms import Ollama
 
 dotenv.load_dotenv()
