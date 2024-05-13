@@ -4,6 +4,7 @@ langchain
 langchain-community
 langchain-openai
 langchain-anthropic
+langchain-google-vertexai
 langchain-chroma
 rank_bm25
 streamlit
