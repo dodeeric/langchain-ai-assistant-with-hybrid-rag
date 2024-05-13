@@ -259,6 +259,9 @@ if 'chat_history' not in st.session_state:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+if "model" not in st.session_state:
+    st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
+
 with st.chat_message("assistant"):
     st.write("Hello! Bonjour! Hallo! 👋")
 
