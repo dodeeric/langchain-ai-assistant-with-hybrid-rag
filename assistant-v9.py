@@ -55,7 +55,7 @@ def instanciate_vector_db():
         
     return vector_db
 
-# @st.cache_resource
+@st.cache_resource
 def instanciate_retrievers_and_chains(_vector_db, model):
     # Instantiate retrievers and chains and return the main chain (AI Assistant)
     # Retrieve and generate
@@ -72,6 +72,8 @@ def instanciate_retrievers_and_chains(_vector_db, model):
     else:
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
 
+    st.write(">>> Model: ", model)
+    
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     keyword_retriever = BM25Retriever.from_texts(documents)
