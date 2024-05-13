@@ -154,7 +154,7 @@ def instanciate_retrievers_and_chains(_vector_db, model):
 
 vector_db = instanciate_vector_db()
        
-ai_assistant_chain = instanciate_retrievers_and_chains(vector_db)
+ai_assistant_chain = instanciate_retrievers_and_chains(vector_db, model)
 
 # Streamlit
 
