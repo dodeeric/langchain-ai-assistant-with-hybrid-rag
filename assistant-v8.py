@@ -102,6 +102,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see "og:title").
 
     To display an image, use the following Markdown code: ![Image](<replace with the "og:image" url of the image>)
+    To display a link, use the following Markdow code: [Link](<replace with the "url" of the web page>)
 
     Knowledge Base:
 
