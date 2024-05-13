@@ -20,7 +20,6 @@ from PIL import Image
 from langchain_community.document_loaders import JSONLoader
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
-from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -30,8 +29,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain # To
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferWindowMemory
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import AnthropicLLM
-
 from langchain_community.llms import Ollama
 
 dotenv.load_dotenv()
