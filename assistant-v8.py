@@ -6,7 +6,7 @@
 # v5: with a limit of messages in the chat history
 # v6: load chunks only from DB on disk
 # v7: diplay question examples in the expander
-# v8: ollama (llama3, mistral, etc.)
+# v8: ollama (llama3, mistral, etc.) + anthropic cloude
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
