@@ -30,6 +30,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain # To
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferWindowMemory
+from langchain_anthropic import AnthropicLLM
 
 from langchain_community.llms import Ollama
 
