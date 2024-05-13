@@ -113,6 +113,24 @@ def instanciate_retrievers_and_chains(_vector_db):
     {chat_history}
     """
 
+    qa_system_prompt_OPENAI = """
+    You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
+    You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
+    You have to answer in the same language as the question.
+    At the end of the answer:
+    - At a new line, display an image of the artwork (see the "og:image" field).
+    - At a new line, write "More information: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field). \
+    For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see "og:title").
+
+    Knowledge Base:
+
+    {context}
+
+    Chat History:
+
+    {chat_history}
+    """
+
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", qa_system_prompt),
