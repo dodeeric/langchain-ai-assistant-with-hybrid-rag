@@ -156,8 +156,8 @@ def instanciate_retrievers_and_chains(_vector_db, model):
 
 vector_db = instanciate_vector_db()
 
-st.write(">>> Model (before calling function): ", model)
-ai_assistant_chain = instanciate_retrievers_and_chains(vector_db, model)
+st.write(">>> Model (before calling function): ", st.session_state.model)
+ai_assistant_chain = instanciate_retrievers_and_chains(vector_db, st.session_state.model)
 
 # Streamlit
 
