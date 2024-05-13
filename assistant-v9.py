@@ -72,7 +72,7 @@ def instanciate_retrievers_and_chains(_vector_db, model):
     else:
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
 
-    st.write(">>> Model: ", model)
+    st.write(">>> Model (inside function): ", model)
     
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
@@ -155,7 +155,8 @@ def instanciate_retrievers_and_chains(_vector_db, model):
 # Load, index, retrieve and generate
 
 vector_db = instanciate_vector_db()
-       
+
+st.write(">>> Model (before calling function): ", model)
 ai_assistant_chain = instanciate_retrievers_and_chains(vector_db, model)
 
 # Streamlit
