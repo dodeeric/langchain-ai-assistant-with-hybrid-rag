@@ -44,6 +44,8 @@ VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"   # "gemini-1.0-pro-002"
 OLLAMA_MODEL = "llama3"   # "mistral" # "phi3"
 COLLECTION_NAME = "bmae"
 
+model = "OpenAI: gpt-4-turbo-2024-04-09"
+
 @st.cache_resource
 def instanciate_vector_db():
     # Instantiates Vector DB
