@@ -84,7 +84,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", contextualize_q_system_prompt),
-            ("system", "Chat History: {chat_history}),
+            ("system", "Chat History: {chat_history}"),
             ("human", "Question: {input}"),
         ]
     )
