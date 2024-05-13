@@ -30,7 +30,6 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
-from langchain_anthropic import AnthropicLLM
 from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import VertexAI
 from langchain_community.llms import Ollama
