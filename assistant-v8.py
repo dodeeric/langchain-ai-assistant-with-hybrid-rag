@@ -80,8 +80,16 @@ def instanciate_retrievers_and_chains(_vector_db):
     Do NOT answer the question, just reformulate the question based on the chat history provided and otherwise \
     return the question as is. Do NOT add any comments.
     """
-    
+
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", contextualize_q_system_prompt),
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
+    )
+    
+    contextualize_q_prompt_NEW = ChatPromptTemplate.from_messages(
         [
             ("system", f"Instructions:\n{contextualize_q_system_prompt}"),
             ("system", "Chat History:\n\n{chat_history}"),
@@ -101,9 +109,21 @@ def instanciate_retrievers_and_chains(_vector_db):
     - At a new line, display an image of the artwork (see the "og:image" field).
     - At a new line, write "More information: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field). \
     For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see "og:title").
+
+    Knowledge Base:
+
+    {context}
     """
 
     qa_prompt = ChatPromptTemplate.from_messages(
+        [
+            ("system", qa_system_prompt),
+            MessagesPlaceholder("chat_history"),
+            ("human", "{input}"),
+        ]
+    )
+
+    qa_prompt_NEW = ChatPromptTemplate.from_messages(
         [
             ("system", f"Instructions:\n{qa_system_prompt}"),
             ("system", "Knowlege Base:\n\n{context}"),
