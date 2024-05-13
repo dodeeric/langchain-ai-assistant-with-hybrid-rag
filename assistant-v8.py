@@ -39,7 +39,7 @@ dotenv.load_dotenv()
 EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
 CLAUDE_MODEL = "claude-3-opus-20240229"
-OLLAMA_MODEL = "mistral"   # "phi3" # "llama3"
+OLLAMA_MODEL = "llama3"   # "mistral" # "phi3"
 COLLECTION_NAME = "bmae"
 
 @st.cache_resource
@@ -59,9 +59,9 @@ def instanciate_retrievers_and_chains(_vector_db):
     docs = vector_db.get()
     documents = docs["documents"]
 
-    llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
+    #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
     #llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
-    #llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
+    llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
