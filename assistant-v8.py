@@ -59,9 +59,9 @@ def instanciate_retrievers_and_chains(_vector_db):
     docs = vector_db.get()
     documents = docs["documents"]
 
-    llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
+    #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
     #llm = AnthropicLLM(model=CLAUDE_MODEL, temperature=0, )
-    #llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
+    llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
     #llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
@@ -71,12 +71,12 @@ def instanciate_retrievers_and_chains(_vector_db):
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-    contextualize_q_system_prompt = """
+    contextualize_q_system_prompt_OPENAI = """
     Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
     which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
     """
 
-    contextualize_q_system_prompt_BACKUP_CLAUDE = """
+    contextualize_q_system_prompt = """
     Do NOT answer the question, just reformulate the question based on the chat history provided and otherwise \
     return the question as is. Do NOT add any comments.
     """
