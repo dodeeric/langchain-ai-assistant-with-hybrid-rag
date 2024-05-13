@@ -86,7 +86,7 @@ def instanciate_retrievers_and_chains(_vector_db):
         [
             ("system", contextualize_q_system_prompt),
             MessagesPlaceholder("chat_history"),
-            ("human", "{Question: input}"),
+            ("human", "Question: {input}"),
         ]
     )
 
