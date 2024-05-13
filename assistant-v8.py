@@ -6,7 +6,7 @@
 # v5: with a limit of messages in the chat history
 # v6: load chunks only from DB on disk
 # v7: diplay question examples in the expander
-# v8: ollama (llama3, mistral, etc.) + anthropic cloude
+# v8: ollama (llama3, mistral, etc.) + anthropic claude
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
@@ -59,9 +59,8 @@ def instanciate_retrievers_and_chains(_vector_db):
     docs = vector_db.get()
     documents = docs["documents"]
 
-    #llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    #llm = AnthropicLLM(model=CLAUDE_MODEL, temperature=0, )
-    llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
+    llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
+    #llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
     #llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://localhost:11434")
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
