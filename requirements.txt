@@ -10,3 +10,4 @@ rank_bm25
 streamlit
 pypdf
 rdflib
+google-cloud-aiplatform
