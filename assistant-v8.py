@@ -101,7 +101,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     - At a new line, write "More information: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field). \
     For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see "og:title").
 
-    To display an image, use the following Markdown code: ![Image](<replace with the "og:image" url of the image>). Do not display an image more than once.
+    To display an image, use the following Markdown code: ![Image](<replace with the "og:image" url of the image>). Do not display an image which has been displayed already (see "Chat History").
     To display a link, use the following Markdow code: [Link](<replace with the "url" of the web page>).
 
     Knowledge Base:
