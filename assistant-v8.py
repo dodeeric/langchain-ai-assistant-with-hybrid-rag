@@ -79,12 +79,15 @@ def instanciate_retrievers_and_chains(_vector_db):
     contextualize_q_system_prompt = """
     Do NOT answer the question, just reformulate the question based on the chat history provided and otherwise \
     return the question as is. Do NOT add any comments.
+
+    Chat History:
+
+    {chat_history}
     """
 
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", contextualize_q_system_prompt),
-            MessagesPlaceholder("chat_history"),
             ("human", "Question: {input}"),
         ]
     )
@@ -113,12 +116,15 @@ def instanciate_retrievers_and_chains(_vector_db):
     Knowledge Base:
 
     {context}
+
+    Chat History:
+
+    {chat_history}
     """
 
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", qa_system_prompt),
-            MessagesPlaceholder("chat_history"),
             ("human", "Question: {input}"),
         ]
     )
