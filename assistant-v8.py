@@ -84,7 +84,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", f"Instructions:\n{contextualize_q_system_prompt}"),
-            ("ai", "Chat History:\n\n{chat_history}"),
+            ("system", "Chat History:\n\n{chat_history}"),
             ("human", "Question: {input}"),
         ]
     )
@@ -106,8 +106,8 @@ def instanciate_retrievers_and_chains(_vector_db):
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", f"Instructions:\n{qa_system_prompt}"),
-            ("ai", "Knowlege Base:\n\n{context}"),
-            ("ai", "Chat History:\n\n{chat_history}"),
+            ("system", "Knowlege Base:\n\n{context}"),
+            ("system", "Chat History:\n\n{chat_history}"),
             ("human", "Question: {input}"),
         ]
     )
