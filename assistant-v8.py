@@ -77,7 +77,7 @@ def instanciate_retrievers_and_chains(_vector_db):
     Chat History:
     """
 
-    contextualize_q_system_prompt_BACKUP = """
+    contextualize_q_system_prompt_BACKUP_OPENAI = """
     Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
     which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
     """
@@ -90,14 +90,6 @@ def instanciate_retrievers_and_chains(_vector_db):
         ]
     )
 
-    contextualize_q_prompt_BACKUP = ChatPromptTemplate.from_messages(
-        [
-            ("system", contextualize_q_system_prompt),
-            MessagesPlaceholder("chat_history"),
-            ("human", "{input}"),
-        ]
-    )
-
     history_aware_retriever = create_history_aware_retriever(
         llm, ensemble_retriever, contextualize_q_prompt 
     )
@@ -105,13 +97,11 @@ def instanciate_retrievers_and_chains(_vector_db):
     qa_system_prompt = """
     You are an artwork specialist. You must assist the users in finding, describing, and displaying artworks related to the Belgian monarchy. \
     You first have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer with your own knowledge. \
-    You have to answer in the same language as the question.
+    You have to answer in the same language as the question. The answer has to be in Markdown format.
     At the end of the answer:
     - At a new line, display an image of the artwork (see the "og:image" field).
     - At a new line, write "More information: " (in the language of the question) followed by the link to the web page about the artwork (see the "url" field). \
     For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see "og:title").
-
-    The answer has to be in Markdown format.
 
     Knowledge Base:
 
@@ -122,7 +112,7 @@ def instanciate_retrievers_and_chains(_vector_db):
         [
             ("system", qa_system_prompt),
             MessagesPlaceholder("chat_history"),
-            ("human", "{input}"),
+            ("human", "Question: {input}"),
         ]
     )
 
