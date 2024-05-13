@@ -71,14 +71,9 @@ def instanciate_retrievers_and_chains(_vector_db):
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-    contextualize_q_system_prompt_OPENAI = """
+    contextualize_q_system_prompt = """
     Given a chat history and the latest user question which might reference context in the chat history, formulate a standalone question \
     which can be understood without the chat history. Do NOT answer the question, just reformulate it if needed and otherwise return it as is.
-    """
-
-    contextualize_q_system_prompt = """
-    Do NOT answer the question, just reformulate the question based on the chat history provided and otherwise \
-    return the question as is. Do NOT add any comments.
 
     Chat History:
 
@@ -92,14 +87,6 @@ def instanciate_retrievers_and_chains(_vector_db):
         ]
     )
     
-    contextualize_q_prompt_NEW = ChatPromptTemplate.from_messages(
-        [
-            ("system", f"Instructions:\n{contextualize_q_system_prompt}"),
-            ("system", "Chat History:\n\n{chat_history}"),
-            ("human", "Question: {input}"),
-        ]
-    )
-
     history_aware_retriever = create_history_aware_retriever(
         llm, ensemble_retriever, contextualize_q_prompt 
     )
@@ -125,15 +112,6 @@ def instanciate_retrievers_and_chains(_vector_db):
     qa_prompt = ChatPromptTemplate.from_messages(
         [
             ("system", qa_system_prompt),
-            ("human", "Question: {input}"),
-        ]
-    )
-
-    qa_prompt_NEW = ChatPromptTemplate.from_messages(
-        [
-            ("system", f"Instructions:\n{qa_system_prompt}"),
-            ("system", "Knowlege Base:\n\n{context}"),
-            ("system", "Chat History:\n\n{chat_history}"),
             ("human", "Question: {input}"),
         ]
     )
