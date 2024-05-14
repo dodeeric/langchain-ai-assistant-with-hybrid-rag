@@ -236,7 +236,7 @@ st.image(logo, use_column_width=True)
 st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
-model_list = ['OpenAI (1): gpt-4-turbo-2024-04-09', 'OpenAI (2): gpt-4o-2024-05-13', 'Google: gemini-1.5-pro-preview-0409', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
+model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google: gemini-1.5-pro-preview-0409', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
 st.session_state.model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
 st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', st.session_state.model)
 
