@@ -84,7 +84,7 @@ def instanciate_retrievers_and_chains(_vector_db, model):
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
     elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    elif model == "OpenAI(2): gpt-4o-2024-05-13":
+    elif model == "OpenAI (2): gpt-4o-2024-05-13":
         llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
     else:
         st.markdown("No model...")
