@@ -285,6 +285,7 @@ if question := st.chat_input("Enter your question / Entrez votre question / Voer
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": question})
 
+    # Call the main chain
     output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
     
     st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
