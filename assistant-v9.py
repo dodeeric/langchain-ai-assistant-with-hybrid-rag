@@ -57,7 +57,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if "model" not in st.session_state:
-    st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
+    st.session_state.model = "OpenAI (1): gpt-4-turbo-2024-04-09"
 
 @st.cache_resource
 def instanciate_vector_db():
