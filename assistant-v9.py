@@ -42,7 +42,8 @@ EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
 OPENAI_MODEL2 = "gpt-4o-2024-05-13"
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
-VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
+VERTEXAI_MODEL = "gemini-1.0-pro"
+VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3"   # llama3 = llama3-8b, mistral, phi3
 
 COLLECTION_NAME = "bmae"
@@ -80,8 +81,10 @@ def instanciate_retrievers_and_chains(_vector_db, model):
         llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
     elif model == "Anthropic: claude-3-opus-20240229":
         llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
-    elif model == "Google: gemini-1.5-pro-preview-0409":
+    elif model == "Google (1): gemini-1.5-pro-preview-0409":
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
+    elif model == "Google (2): gemini-1.0-pro":
+        llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
     elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
     elif model == "OpenAI (2): gpt-4o-2024-05-13":
@@ -236,7 +239,7 @@ st.image(logo, use_column_width=True)
 st.markdown("## Belgian Monarchy Artworks Explorer")
 st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
 
-model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google: gemini-1.5-pro-preview-0409', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
+model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
 st.session_state.model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
 st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', st.session_state.model)
 
