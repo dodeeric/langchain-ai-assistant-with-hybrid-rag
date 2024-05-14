@@ -44,7 +44,17 @@ VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"   # "gemini-1.0-pro-002"
 OLLAMA_MODEL = "llama3"   # "mistral" # "phi3"
 COLLECTION_NAME = "bmae"
 
-st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
+# Initialize chat history (chat_history) for LangChain
+if 'chat_history' not in st.session_state:
+    st.session_state.chat_history = []
+    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)   # Max k Q/A in the chat history for Langchain 
+
+# Initialize chat history (messages) for Streamlit
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if "model" not in st.session_state:
+    st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
 
 @st.cache_resource
 def instanciate_vector_db():
@@ -252,18 +262,6 @@ with st.sidebar:
     _________
     AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
-
-# Initialize chat history (chat_history) for LangChain
-if 'chat_history' not in st.session_state:
-    st.session_state.chat_history = []
-    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)   # Max k Q/A in the chat history for Langchain 
-
-# Initialize chat history (messages) for Streamlit
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-if "model" not in st.session_state:
-    st.session_state.model = "OpenAI: gpt-4-turbo-2024-04-09"
 
 with st.chat_message("assistant"):
     st.write("Hello! Bonjour! Hallo! 👋")
