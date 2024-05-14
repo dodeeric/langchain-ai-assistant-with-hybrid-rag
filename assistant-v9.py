@@ -81,9 +81,9 @@ def instanciate_retrievers_and_chains(_vector_db, model):
         llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
     elif model == "Anthropic: claude-3-opus-20240229":
         llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
-    elif model == "Google (1): gemini-1.5-pro-preview-0409":
+    elif model == "Google (1): gemini-1.0-pro":
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
-    elif model == "Google (2): gemini-1.0-pro":
+    elif model == "Google (2): gemini-1.5-pro-preview-0409":
         llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
     elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
