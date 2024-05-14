@@ -42,7 +42,7 @@ EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
 OPENAI_MODEL2 = "gpt-4o-2024-05-13"
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
-VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"   # "gemini-1.0-pro-002"
+VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3"   # llama3 = llama3-8b, mistral, phi3
 COLLECTION_NAME = "bmae"
 
