@@ -44,6 +44,7 @@ OPENAI_MODEL2 = "gpt-4o-2024-05-13"
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3"   # llama3 = llama3-8b, mistral, phi3
+
 COLLECTION_NAME = "bmae"
 
 # Initialize chat history (chat_history) for LangChain
@@ -81,8 +82,12 @@ def instanciate_retrievers_and_chains(_vector_db, model):
         llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
     elif model == "Google: gemini-1.5-pro-preview-0409":
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
-    else:
+    elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
         llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
+    elif model == "OpenAI(2): gpt-4o-2024-05-13":
+        llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
+    else:
+        st.markdown("No model...")
 
     st.write(">>> Model (inside function): ", model)
     
