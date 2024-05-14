@@ -294,7 +294,7 @@ with st.sidebar:
 
     st.markdown("""
 
-    #### Exemples de questions que vous pouvez pose
+    #### Exemples de questions que vous pouvez poser
     
     FRANCAIS:
 
