@@ -267,6 +267,58 @@ with st.sidebar:
     """)
 
     st.markdown("""
+    
+    #### Examples of questions you can ask
+    
+    ENGLISH:
+    
+    - When did King Leopold I die? Do you have any images of the funeral?
+    - Do you have any images of Queen Elizabeth during the First World War?
+    - Can you show me the canvas "The school review"? *And then you can ask the question:*
+    - Who painted this canvas? *And then again:*
+    - What is the size of the canvas? *And then again:*
+    - Who is present on this canvas? *And then again:*
+    - Can you show me this canvas with a photo from Wikimedia Commons and another photo from BALaT?
+    - When did the fire at Laeken Castle take place? Do you have images of this event?
+    - When did King Leopold I get married? *The assistant will show you an image of the wedding.*
+    - Can you show me a portrait of King Leopold I? It has to be an engraving.
+    - Can you show me images of King Leopold II?
+    - Can you show me images of King Leopold II during his accession to the throne in 1865?
+    - Do you have works created by Aimable Dutrieux? *And then you can ask the question:*
+    - Who was this sculptor?
+    - Can you show me images of Queen Marie-Henriette? Can you give me the authors of the images?
+    - Can you show me the painting "The patriotic celebration of Belgium's fiftieth anniversary" created by Camille Van Camp?
+    - Who are the people present in this painting?
+    - Can you show me two engravings of the patriotic celebration of the fiftieth anniversary of Belgium created by Martin Claverie? From which newspapers do they come from?
+    """)
+
+    st.markdown("""
+
+    #### Exemples de questions que vous pouvez pose
+    
+    FRANCAIS:
+
+    - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
+    - Avez-vous des images de la reine Elisabeth pendant la Premierre Guerre mondiale ?
+    - Pouvez-vous me montrer le tableau "La revue des écoles" ? *Et ensuite vous pouvez poser la question :*
+    - Qui a peint ce tableau ? *Et encore ensuite :*
+    - Quelle est la dimension du tableau ? *Et encore ensuite :*
+    - Qui est présent sur le tableau ? *Et encore ensuite :*
+    - Pouvez-vous me montrer ce tableau avec une photo de la Wikimedia Commons et une autre photo de BALaT ?
+    - Quand a eu lieu l'incendie du château de Laeken ? Avez-vous plusieurs images de cet événement ?
+    - Quand s'est marié le roi Léopold Ier ? *L'assistant vous montrera une image du mariage.*
+    - Pouvez-vous me montrer un portrait du roi Léopold Ier ? Il faut que ce soit une gravure.
+    - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
+    - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
+    - Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
+    - Qui était ce sculteur ?
+    - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
+    - Pouvez-vous me montrer le tableau "La fête patriotique du cinquantenaire de la Belgique" réalisé par Camille Van Camp ?
+    - Quelles sont les personnes présentes sur ce tableau ?
+    - Pouvez-vous me montrer deux gravures de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? De quel journal proviennent-elles ?
+    """)
+
+    st.markdown("""
     _________
     Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
