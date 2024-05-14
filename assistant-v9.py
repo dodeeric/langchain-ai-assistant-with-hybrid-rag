@@ -205,9 +205,9 @@ with st.sidebar:
     This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
     queries different images databases like BALaT/IRPA (Royal Institute of Artistic Heritage), Belgica/KBR (Royal Library), Europeana/KULeuven (Katholieke Universiteit Leuven), and Wikimedia Commons.
 
-    The questions can be in any language, but French and Dutch give the best results. If you don't get a correct answer, try rephrasing the question. The \
-    assistant takes about 30 seconds to respond. He has a memory of the questions and answers session. The questions you ask may therefore \
-    refer to previous questions and answers. For example: *Who painted that canvas?*
+    The questions can be in any language, but French and Dutch give the best results. If you don't get a correct answer, try rephrasing the question, or just ask the same question again. The \
+    assistant takes about 30 seconds to respond. He has a memory of the questions and answers session. The questions you ask may therefore refer to previous questions and answers. For \
+    example: *Who painted that canvas?*
     """)
 
     st.markdown("""
@@ -218,7 +218,7 @@ with st.sidebar:
     questionne différentes bases de données d'images comme BALaT/IRPA (Institut royal du Patrimoine artistique), Belgica/KBR (Bibliothèque royale), Europeana/KULeuven (Katholieke Universiteit Leuven) et Wikimedia Commons.
 
     Les questions peuvent-être posées en diférentes langues, mais le français et le néerlandais donnent les meilleurs résultats. Si vous n'obtenez pas une réponse \
-    correcte, essayez de reformuler la question. L'assistant prend environ 30 secondes pour répondre. Il possède une mémoire de la session de questions et réponses. \
+    correcte, essayez de reformuler la question, ou reposer à nouveau la même question. L'assistant prend environ 30 secondes pour répondre. Il possède une mémoire de la session de questions et réponses. \
     Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
     """)
 
