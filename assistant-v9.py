@@ -267,7 +267,7 @@ with st.sidebar:
 
     st.markdown("""
     _________
-    AI Model: OpenAI GPT4 Turbo. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
+    Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
     """)
 
 with st.chat_message("assistant"):
