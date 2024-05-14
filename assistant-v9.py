@@ -218,7 +218,7 @@ with st.sidebar:
     questionne différentes bases de données d'images comme BALaT/IRPA (Institut royal du Patrimoine artistique), Belgica/KBR (Bibliothèque royale), Europeana/KULeuven (Katholieke Universiteit Leuven) et Wikimedia Commons.
 
     Les questions peuvent-être posées en diférentes langues, mais le français et le néerlandais donnent les meilleurs résultats. Si vous n'obtenez pas une réponse \
-    correcte, essayez de reformuler la question, ou reposer à nouveau la même question. L'assistant prend environ 30 secondes pour répondre. Il possède une mémoire de la session de questions et réponses. \
+    correcte, essayez de reformuler la question, ou reposez à nouveau la même question. L'assistant prend environ 30 secondes pour répondre. Il possède une mémoire de la session de questions et réponses. \
     Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
     """)
 
