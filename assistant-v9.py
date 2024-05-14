@@ -39,7 +39,7 @@ dotenv.load_dotenv()
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
-CLAUDE_MODEL = "claude-3-opus-20240229"
+ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"   # "gemini-1.0-pro-002"
 OLLAMA_MODEL = "llama3"   # "mistral" # "phi3"
 COLLECTION_NAME = "bmae"
@@ -76,7 +76,7 @@ def instanciate_retrievers_and_chains(_vector_db, model):
     if model == "MetaAI: llama3-8b":
         llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
     elif model == "Anthropic: claude-3-opus-20240229":
-        llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=CLAUDE_MODEL)
+        llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
     elif model == "Google: gemini-1.5-pro-preview-0409":
         llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
     else:
