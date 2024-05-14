@@ -235,7 +235,7 @@ st.image(logo, use_column_width=True)
 #st.set_page_config(page_title="BMAE", page_icon="👑")
 #st.title("Belgian Monarchy Artworks Explorer")
 st.markdown("## Belgian Monarchy Artworks Explorer")
-st.caption("💬 A chatbot powered by OpenAI, Langchain and Streamlit")
+st.caption("💬 A chatbot powered Langchain and Streamlit")
 
 with st.sidebar:
 
