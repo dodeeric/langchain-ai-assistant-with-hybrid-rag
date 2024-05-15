@@ -11,3 +11,4 @@ streamlit
 pypdf
 rdflib
 google-cloud-aiplatform
+pysqlite3-binary
