@@ -123,6 +123,9 @@ displayed already (see "Chat History").
 JSON "url" field). For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" \
 at the beginning (see the JSON "og:title" field).
 
+- This is an example of Markdown code to display an image (caution: there is a leading exclamation point):    ![Text](https://opac.kbr.be/digitalCollection/images/image.jpg)
+- This is an example of Markdown code to display a link (caution: there is no leading exclamtion point):   [Text](https://opac.kbr.be/digitalCollection/pages/page.html).
+
 Knowledge Base:
 
 {context}
