@@ -25,7 +25,7 @@ import dotenv
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
-from assistant_backend_v1 import instanciate_ai_assistant_chain
+from assistant_module_v1 import instanciate_ai_assistant_chain
 
 dotenv.load_dotenv()
 

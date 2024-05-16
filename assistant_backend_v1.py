@@ -37,7 +37,7 @@ def instanciate_ai_assistant_chain(model):
 
     try:
 
-        if model == "MetaAI: llama3-8b":
+        if model == "MetaAI: llama3-8b":   # Ollama vs. ChatOllama ==> Seems to be the same
             llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
