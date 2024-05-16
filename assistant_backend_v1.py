@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-# v1: module to be imported
+# backend = langchain
+# frontend = streamlit
+# assistant = main()
 
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
@@ -16,14 +18,12 @@ from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
 
 EMBEDDING_MODEL = "text-embedding-3-large"
-
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
 OPENAI_MODEL2 = "gpt-4o-2024-05-13"   # default llm
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3:8b"   # llama3 = llama3-8b, mistral, phi3
-
 COLLECTION_NAME = "bmae"
 
 @st.cache_resource

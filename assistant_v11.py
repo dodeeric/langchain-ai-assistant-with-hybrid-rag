@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+# backend = langchain
+# frontend = streamlit
+# assistant = main()
+
+# start the app: streamlit run assistant.py 
+
+# History:
+# v2: with chat history
+# v3: with PDF indexation
+# v31/v32: JSON and PDF indexation with function
+# v5: with a limit of messages in the chat history
+# v6: load chunks only from DB on disk
+# v7: diplay question examples in the expander
+# v8: ollama (llama3, mistral, etc.) + anthropic claude + google vertexai
+# v9: multiselect box to chose the model
+# v10: import one function --> one module
+# v11: assistant: main() + assistant_frontend (streamlit) + assistant_backend (langchain) --> two modules
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
+# and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA  #
+# (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+from assistant_frontend_v1 import assistant_frontend
+import dotenv
+
+dotenv.load_dotenv()
+
+def main():
+    assistant_frontend()
+
+if __name__ == "__main__":
+    main()
