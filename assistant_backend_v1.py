@@ -13,6 +13,7 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import VertexAI
 from langchain_community.llms import Ollama
+from langchain_core.prompts import ChatPromptTemplate
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 
