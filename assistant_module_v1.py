@@ -14,7 +14,6 @@ from langchain.chains import create_retrieval_chain # To create the main chain (
 from langchain.chains.combine_documents import create_stuff_documents_chain # To create a predefined chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
-#from langchain.memory import ConversationBufferWindowMemory
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import VertexAI
@@ -23,7 +22,7 @@ from langchain_community.llms import Ollama
 EMBEDDING_MODEL = "text-embedding-3-large"
 
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
-OPENAI_MODEL2 = "gpt-4o-2024-05-13"
+OPENAI_MODEL2 = "gpt-4o-2024-05-13"   # default llm
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
@@ -32,20 +31,12 @@ OLLAMA_MODEL = "llama3:8b"   # llama3 = llama3-8b, mistral, phi3
 COLLECTION_NAME = "bmae"
 
 @st.cache_resource
-def instanciate_vector_db():
-    # Instantiates Vector DB with data from disk
-    
-    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
-    vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
-        
-    return vector_db
-
-@st.cache_resource
 def instanciate_ai_assistant_chain(model):
     # Instantiate retrievers and chains and return the main chain (AI Assistant)
     # Retrieve and generate
 
-    vector_db = instanciate_vector_db()
+    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
+    vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
     docs = vector_db.get()
     documents = docs["documents"]
 

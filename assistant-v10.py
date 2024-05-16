@@ -25,7 +25,7 @@ import dotenv, jq, time
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
-from assistant_module_v1 import instanciate_vector_db, instanciate_ai_assistant_chain
+from assistant_module_v1 import instanciate_ai_assistant_chain
 
 dotenv.load_dotenv()
 
@@ -43,15 +43,7 @@ if "model" not in st.session_state:
 
 # Load, index, retrieve and generate
 
-#vector_db = instanciate_vector_db()
-
 ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model)
-
-#with st.expander("Examples of questions you can ask | Exemples de questions que vous pouvez poser"):
-#    
-#    st.markdown("""
-#    xxx
-#    """)
 
 logo = Image.open("./image.jpg")
 st.image(logo, use_column_width=True)
