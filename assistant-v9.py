@@ -15,11 +15,10 @@
 # (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.   #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-# Only to be able to run on Github Codespace #############
+# Only to be able to run on Github Codespace
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-##########################################################
 
 import dotenv, jq, time
 import streamlit as st

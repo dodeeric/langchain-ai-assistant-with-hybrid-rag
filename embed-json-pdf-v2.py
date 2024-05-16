@@ -8,11 +8,10 @@
 # v1: only JSON/PDF
 # v2: small enhancements
 
-# Only to be able to run on Github Codespace ############
+# Only to be able to run on Github Codespace
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-##########################################################
 
 import dotenv, jq, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
