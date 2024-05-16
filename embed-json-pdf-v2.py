@@ -13,7 +13,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import dotenv, jq, os
+import dotenv, os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma

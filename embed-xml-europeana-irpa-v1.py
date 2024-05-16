@@ -7,8 +7,7 @@
 # v8: for XML (RDF/JSON) indexation, do it per batches, move XML in another function
 # v1: only XML for IRPA (via Europeana) (convert RDF/XML into custom JSON: url: page url, og:image: image url, dc:xxx)
 
-import dotenv, jq, os
-from langchain_community.document_loaders import JSONLoader, PyPDFLoader
+import dotenv, os
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
