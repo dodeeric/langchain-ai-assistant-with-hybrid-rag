@@ -40,25 +40,37 @@ def instanciate_ai_assistant_chain(model):
     docs = vector_db.get()
     documents = docs["documents"]
 
-    if model == "MetaAI: llama3-8b":
-        llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
-    elif model == "Anthropic: claude-3-opus-20240229":
-        llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
-    elif model == "Google (1): gemini-1.0-pro-002":
-        llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
-    elif model == "Google (2): gemini-1.5-pro-preview-0409":
-        llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
-    elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
-        llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
-    elif model == "OpenAI (2): gpt-4o-2024-05-13":
+    try:
+
+        if model == "MetaAI: llama3-8b":
+            llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
+        elif model == "Anthropic: claude-3-opus-20240229":
+            llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
+        elif model == "Google (1): gemini-1.0-pro-002":
+            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
+        elif model == "Google (2): gemini-1.5-pro-preview-0409":
+            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
+        elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
+            llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
+        elif model == "OpenAI (2): gpt-4o-2024-05-13":
+            llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
+        else:
+            st.markdown("Error: No model available!")
+            quit()
+
+    except Exception:
+        st.markdown("Error: That model is not available! Default one will be used.")
+        model = "OpenAI (2): gpt-4o-2024-05-13"
         llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
-    else:
-        st.markdown("No model...")
-    
+
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-    keyword_retriever = BM25Retriever.from_texts(documents)
-    keyword_retriever.k = 5
+    try:
+        keyword_retriever = BM25Retriever.from_texts(documents)
+        keyword_retriever.k = 5
+    except Exception:
+        st.markdown("Error: Chroma DB not available!")
+        quit()
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
