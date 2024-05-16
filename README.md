@@ -36,9 +36,10 @@ $ nano .env
 ```
 
 ```
-OPENAI_API_KEY = "sk-xxx"       ==> Go to: https://platform.openai.com/api-keys
-LANGCHAIN_API_KEY = "ls__xxx"   ==> go to: https://smith.langchain.com/
+OPENAI_API_KEY = "sk-proj-xxx"   ==> Go to: https://platform.openai.com/api-keys
+LANGCHAIN_API_KEY = "ls__xxx"    ==> Go to: https://smith.langchain.com
 LANGCHAIN_TRACING_V2 = "true"
+ANTHROPIC_API_KEY = "sk-ant-xxx"
 ```
 
 Install required libraries:
