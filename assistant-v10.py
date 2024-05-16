@@ -8,6 +8,7 @@
 # v7: diplay question examples in the expander
 # v8: ollama (llama3, mistral, etc.) + anthropic claude + google vertexai
 # v9: multiselect box to chose the model
+v10: main() function + import two functions
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art  #
