@@ -127,7 +127,7 @@ with st.sidebar:
     - Pouvez-vous me montrer plusieurs images du roi Léopold II ?
     - Pouvez-vous me montrer des images du roi Léopold II lors de son avènement en 1865 ?
     - Avez-vous des oeuvres réalisées par Aimable Dutrieux ? *Et ensuite vous pouvez poser la question :*
-    - Qui était ce sculteur ?
+    - Qui était ce sculpteur ?
     - Pouvez-vous me montrer des images sur lesquelles ce trouve la reine Marie-Henriette ? Pouvez-vous me donner les auteurs des images ?
     - Pouvez-vous me montrer le tableau "La fête patriotique du cinquantenaire de la Belgique" réalisé par Camille Van Camp ?
     - Quelles sont les personnes présentes sur ce tableau ?
