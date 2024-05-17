@@ -2,9 +2,8 @@
 
 """
 This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art
-and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA
-(Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
-Topology: backend = langchain, frontend = streamlit, assistant = main()
+and the Belgian monarchy. To answer, the assistant queries the graphic databases.
+Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot), assistant = main()
 Start the app: streamlit run assistant.py
 """
 
