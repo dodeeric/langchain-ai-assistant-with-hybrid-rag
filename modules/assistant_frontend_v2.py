@@ -105,7 +105,7 @@ def assistant_frontend():
         FRANCAIS:
 
         - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
-        - Avez-vous des images de la reine Elisabeth pendant la Premierre Guerre mondiale ?
+        - Avez-vous des images de la reine Elisabeth pendant la Première Guerre mondiale ?
         - Pouvez-vous me montrer le tableau "La revue des écoles" ? *Et ensuite vous pouvez poser la question :*
         - Qui a peint ce tableau ? *Et encore ensuite :*
         - Quelle est la dimension du tableau ? *Et encore ensuite :*
