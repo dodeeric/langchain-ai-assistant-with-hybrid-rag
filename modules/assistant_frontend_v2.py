@@ -161,6 +161,8 @@ def assistant_frontend():
         # Method 2
         #for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
             #answer = str(chunk.get("answer"))
+            #st.markdown(answer, unsafe_allow_html=True)
+            #st.write(answer)
             #st.markdown(chunk)
             #output = output + answer
             #with st.chat_message("assistant"):
