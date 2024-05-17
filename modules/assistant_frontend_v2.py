@@ -156,5 +156,5 @@ def assistant_frontend():
         load_memory = st.session_state.chat_history2.load_memory_variables({})
         st.session_state.chat_history = load_memory["history"]
 
-        # Add A to chat history for Streamit (messages)
+        # Add Answer to chat history for Streamlit (messages)
         st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
