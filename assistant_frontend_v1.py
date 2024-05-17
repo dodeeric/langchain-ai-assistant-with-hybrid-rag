@@ -9,13 +9,11 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-#import dotenv
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
 from assistant_backend_v1 import instanciate_ai_assistant_chain
 
-#dotenv.load_dotenv()
 
 def assistant_frontend():
     """
@@ -25,7 +23,7 @@ def assistant_frontend():
     # Initialize chat history (chat_history) for LangChain
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
-        st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)   # Max k Q/A in the chat history for Langchain 
+        st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)   # Max k Q/A in the chat history for Langchain
 
     # Initialize chat history (messages) for Streamlit
     if "messages" not in st.session_state:
@@ -41,8 +39,6 @@ def assistant_frontend():
     logo = Image.open("./images/image.jpg")
     st.image(logo, use_column_width=True)
 
-    #st.set_page_config(page_title="BMAE", page_icon="👑")
-    #st.title("Belgian Monarchy Artworks Explorer")
     st.markdown("## Belgian Monarchy Artworks Explorer")
     st.caption("💬 A chatbot powered by Langchain and Streamlit")
 
@@ -50,11 +46,10 @@ def assistant_frontend():
 
         model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro-002', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
         st.session_state.model = st.selectbox('Choose a model | Choisissez un modèle | Kies een model: ', model_list)
-        #st.write('You selected | Vous avez sélectionné | Jij hebt geselecteerd: ', st.session_state.model)
 
         st.markdown("""
         ### About this assistant
-        
+
         This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant \
         queries different images databases like BALaT/IRPA (Royal Institute of Artistic Heritage), Belgica/KBR (Royal Library), Europeana/KULeuven (Katholieke Universiteit Leuven), and Wikimedia Commons.
 
@@ -64,9 +59,9 @@ def assistant_frontend():
         """)
 
         st.markdown("""
-        
+
         ### Concernant cet assistant
-        
+
         Cet assistant IA (Intelligence Artificielle) vous permet de poser toutes sortes de questions concernant l'art et la monarchie belge. Pour répondre, l'assistant \
         questionne différentes bases de données d'images comme BALaT/IRPA (Institut royal du Patrimoine artistique), Belgica/KBR (Bibliothèque royale), Europeana/KULeuven (Katholieke Universiteit Leuven) et Wikimedia Commons.
 
@@ -76,11 +71,11 @@ def assistant_frontend():
         """)
 
         st.markdown("""
-        
+
         #### Examples of questions you can ask
-        
+
         ENGLISH:
-        
+
         - When did King Leopold I die? Do you have any images of the funeral?
         - Do you have any images of Queen Elizabeth during the First World War?
         - Can you show me the canvas "The school review"? *And then you can ask the question:*
@@ -104,7 +99,7 @@ def assistant_frontend():
         st.markdown("""
 
         #### Exemples de questions que vous pouvez poser
-        
+
         FRANCAIS:
 
         - Quand est mort le roi Léopold Ier ? Avez-vous des images des funérailles ?
@@ -148,12 +143,12 @@ def assistant_frontend():
         st.session_state.messages.append({"role": "user", "content": question})
 
         # Call the main chain
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history}) # output is a dictionary. output["answer"] is the LLM answer in markdown format.
-        
+        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})  # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+
         st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
         load_memory = st.session_state.chat_history2.load_memory_variables({})
         st.session_state.chat_history = load_memory["history"]
-            
+
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
             st.markdown(output["answer"])

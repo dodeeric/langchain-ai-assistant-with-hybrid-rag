@@ -5,7 +5,7 @@ This AI (Artificial Intelligence) assistant allows you to ask all kinds of quest
 and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA
 (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
 Topology: backend = langchain, frontend = streamlit, assistant = main()
-Start the app: streamlit run assistant.py 
+Start the app: streamlit run assistant.py
 """
 
 # History:
@@ -31,7 +31,7 @@ def main():
     This is the main module: it will start the frontend (straemlit web interface) and
     backend (langchain AI assistant).
     """
-   
+
     assistant_frontend()
 
 
