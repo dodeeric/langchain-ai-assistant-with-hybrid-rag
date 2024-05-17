@@ -85,8 +85,9 @@ def scrape_europeana_url(url):
     url2 = url2.replace("/","-")
     # Save the Python list in a JSON file
     # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
-    with open(f"/content/drive/MyDrive/colab/json_files/{url2}-swp.json", "w") as json_file:
+    with open(f"./files/{url2}-swp.json", "w") as json_file:
         json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
     json_file.close()
 
-scrape_commons_category("Category:Portrait paintings of Louise of Orléans")
+#scrape_commons_category("Category_Portrait_paintings_of_Louise_of_Orléans")
+scrape_europeana_url("https://www.europeana.eu/en/item/2024903/photography_ProvidedCHO_KU_Leuven_9983808530101488")
