@@ -65,12 +65,8 @@ def instanciate_ai_assistant_chain(model):
 
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-    try:
-        keyword_retriever = BM25Retriever.from_texts(documents)
-        keyword_retriever.k = 5
-    except Exception:
-        st.markdown("Error: Chroma DB not available!")
-        quit()
+    keyword_retriever = BM25Retriever.from_texts(documents)
+    keyword_retriever.k = 5
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
