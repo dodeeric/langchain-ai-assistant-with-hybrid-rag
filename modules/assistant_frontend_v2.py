@@ -145,12 +145,14 @@ def assistant_frontend():
         # Call the main chain
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})  # output is a dictionary. output["answer"] is the LLM answer in markdown format.
 
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(output["answer"])
+
+        # Add Q/A to chat history (Langchain)
         st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
         load_memory = st.session_state.chat_history2.load_memory_variables({})
         st.session_state.chat_history = load_memory["history"]
 
-        # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-            st.markdown(output["answer"])
-        # Add assistant response to chat history
+        # Add assistant response to chat history for Streamit (messages)
         st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
