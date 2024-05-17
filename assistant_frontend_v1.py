@@ -35,7 +35,7 @@ def assistant_frontend():
 
     ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model)
 
-    logo = Image.open("./image.jpg")
+    logo = Image.open("./images/image.jpg")
     st.image(logo, use_column_width=True)
 
     #st.set_page_config(page_title="BMAE", page_icon="👑")
