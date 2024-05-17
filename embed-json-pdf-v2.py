@@ -23,14 +23,15 @@ dotenv.load_dotenv()
 JSON_FILES_DIR = "./files/"
 PDF_FILES_DIR = "./pdf_files/"
 
+
 def load_files_and_embed(json_file_paths, pdf_file_paths):
     # Loads and chunks files into a list of documents then embed
 
     EMBEDDING_MODEL = "text-embedding-3-large"
     COLLECTION_NAME = "bmae"
-    
+
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
-    
+
     nbr_files = len(json_file_paths)
     print(f">>> Embed {nbr_files} JSON files...")
     documents = []
@@ -45,16 +46,17 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     nbr_files = len(pdf_file_paths)
     print(f">>> Embed {nbr_files} PDF files...")
     documents = []
-    if pdf_file_paths:   # if equals to "", then skip
+    if pdf_file_paths:  # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
             loader = PyPDFLoader(pdf_file_path)
-            pages = loader.load_and_split() # 1 pdf page per chunk
+            pages = loader.load_and_split()  # 1 pdf page per chunk
             print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
             documents = documents + pages
     print(f"Total number of PDF pages: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     return "JSON/PDF files done"
+
 
 # Load and index
 
