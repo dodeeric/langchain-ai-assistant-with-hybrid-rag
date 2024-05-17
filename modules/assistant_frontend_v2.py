@@ -4,6 +4,8 @@
 This function runs the frontend web interface.
 """
 
+# v2: stream the AI answer
+
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
 import sys
@@ -144,6 +146,19 @@ def assistant_frontend():
 
         # Call the main chain
         output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})  # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+
+        # Call the main chain and stream the output
+        #st.write_stream(ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}))
+
+        #answer = ""
+        #output = ""
+        #for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):  # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+            #answer = str(chunk.get("answer")).rstrip()
+        #    answer = str(chunk.get("answer"))
+        #    output = output + answer
+        #    with st.chat_message("assistant"):
+        #        st.write_stream(answer)
+                #st.markdown(type(chunk))
 
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
