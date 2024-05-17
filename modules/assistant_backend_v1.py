@@ -14,8 +14,8 @@ from langchain.chains import create_retrieval_chain  # To create the main chain 
 from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
-from langchain_google_vertexai import VertexAI
-from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatVertexAI
+from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
 EMBEDDING_MODEL = "text-embedding-3-large"
@@ -43,13 +43,13 @@ def instanciate_ai_assistant_chain(model):
     try:
 
         if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
-            llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")  # base_url="http://localhost:11434"
+            llm = ChatOllama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")  # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
         elif model == "Google (1): gemini-1.0-pro-002":
-            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
+            llm = ChatVertexAI(model_name=VERTEXAI_MODEL, temperature=0)
         elif model == "Google (2): gemini-1.5-pro-preview-0409":
-            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
+            llm = ChatVertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
         elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
