@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-# backend = langchain
-# frontend = streamlit
-# assistant = main()
+"""
+This function runs the frontend web interface.
+"""
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -18,6 +18,9 @@ from assistant_backend_v1 import instanciate_ai_assistant_chain
 #dotenv.load_dotenv()
 
 def assistant_frontend():
+    """
+    All related to Streamlit and connection with the Langchain backend.
+    """
 
     # Initialize chat history (chat_history) for LangChain
     if 'chat_history' not in st.session_state:

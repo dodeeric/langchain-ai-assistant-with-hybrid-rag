@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 
-# backend = langchain
-# frontend = streamlit
-# assistant = main()
+"""
+This function runs the backend. It starts the Langchain AI assistant: instanciate
+all the Langchain chains for RAG and LLM.
+"""
 
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from langchain_chroma import Chroma
-from langchain.chains import create_history_aware_retriever # To create the retriever chain (predefined chain)
-from langchain.chains import create_retrieval_chain # To create the main chain (predefined chain)
-from langchain.chains.combine_documents import create_stuff_documents_chain # To create a predefined chain
+from langchain.chains import create_history_aware_retriever  # To create the retriever chain (predefined chain)
+from langchain.chains import create_retrieval_chain  # To create the main chain (predefined chain)
+from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import VertexAI
@@ -19,27 +20,30 @@ from langchain_core.prompts import ChatPromptTemplate
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
-OPENAI_MODEL2 = "gpt-4o-2024-05-13"   # default llm
+OPENAI_MODEL2 = "gpt-4o-2024-05-13"  # default llm
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
-OLLAMA_MODEL = "llama3:8b"   # llama3 = llama3-8b, mistral, phi3
+OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3-8b, mistral, phi3
 COLLECTION_NAME = "bmae"
+
 
 @st.cache_resource
 def instanciate_ai_assistant_chain(model):
-    # Instantiate retrievers and chains and return the main chain (AI Assistant)
-    # Retrieve and generate
+    """
+    Instantiate retrievers and chains and return the main chain (AI Assistant).
+    Steps: Retrieve and generate.
+    """
 
-    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL) # 3072 dimensions vectors used to embed the JSON items and the questions
+    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
     vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
     docs = vector_db.get()
     documents = docs["documents"]
 
     try:
 
-        if model == "MetaAI: llama3-8b":   # Ollama vs. ChatOllama ==> Seems to be the same
-            llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")   # base_url="http://localhost:11434"
+        if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
+            llm = Ollama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")  # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
         elif model == "Google (1): gemini-1.0-pro-002":
@@ -84,9 +88,9 @@ Chat History:
             ("human", "Question: {input}"),
         ]
     )
-    
+
     history_aware_retriever = create_history_aware_retriever(
-        llm, ensemble_retriever, contextualize_q_prompt 
+        llm, ensemble_retriever, contextualize_q_prompt
     )
 
     if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or "OpenAI (2): gpt-4o-2024-05-13":
