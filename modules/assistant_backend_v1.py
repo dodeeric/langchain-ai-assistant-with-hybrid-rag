@@ -74,13 +74,16 @@ def instanciate_ai_assistant_chain(model):
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-    contextualize_q_system_prompt = """Given a chat history and the latest user question which might reference context in \
-the chat history, formulate a standalone question which can be understood without the chat history. Do NOT answer the question, \
-just reformulate it if needed and otherwise return it as is.
+    contextualize_q_system_prompt = """
+    Given a chat history and the latest user question which might reference context in \
+    the chat history, formulate a standalone question which can be understood without the \
+    chat history. Do NOT answer the question, just reformulate it if needed and otherwise \
+    return it as is.
 
-Chat History:
+    Chat History:
 
-{chat_history}"""
+    {chat_history}
+    """
 
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
@@ -94,45 +97,56 @@ Chat History:
     )
 
     if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or "OpenAI (2): gpt-4o-2024-05-13":
-        qa_system_prompt = """You are an artwork specialist. You must assist the users in finding, describing, and \
-displaying artworks related to the Belgian monarchy. You first have to search answers in the "Knowledge Base". If no \
-answers are found in the "Knowledge Base", then answer with your own knowledge. You have to answer in the same language \
-as the question.
-At the end of the answer:
-- If requested, display an image of the artwork (see the JSON "og:image" field). Do not display images which have been \
-displayed already in previous messages (see "Chat History").
-- Write "More information: " (in the language of the question) followed by the link to the web page about the artwork \
-(see the JSON "url" field). For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT \
-the word "File" at the beginning (see the JSON "og:title" field).
+        qa_system_prompt = """
+        You are an artwork specialist. You must assist the users in finding, describing, and \
+        displaying artworks related to the Belgian monarchy. You first have to search answers \
+        in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer \
+        with your own knowledge. You have to answer in the same language as the question.
+        At the end of the answer:
+        - If requested, display an image of the artwork (see the JSON "og:image" field). Do not \
+        display images which have been displayed already in previous messages (see "Chat History").
+        - Write "More information: " in the language of the question, followed by the link to the \
+        web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of \
+        the link has to be the title of the web page WITHOUT the word "File" at the beginning (see \
+        the JSON "og:title" field).
 
-Knowledge Base:
+        Knowledge Base:
 
-{context}
+        {context}
 
-Chat History:
+        Chat History:
 
-{chat_history}"""
+        {chat_history}
+        """
     else:
-        qa_system_prompt = """You are an artwork specialist. You must assist the users in finding, describing, and displaying \
-artworks related to the Belgian monarchy. You first have to search answers in the "Knowledge Base". If no answers are found \
-in the "Knowledge Base", then answer with your own knowledge. You have to answer in the same language as the question.
-At the end of the answer:
-- If requested, display an image of the artwork (see the JSON "og:image" field). Do not display an image which has been \
-displayed already (see "Chat History").
-- Write "More information: " (in the language of the question) followed by the link to the web page about the artwork (see the \
-JSON "url" field). For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" \
-at the beginning (see the JSON "og:title" field).
+        qa_system_prompt = """
+        You are an artwork specialist. You must assist the users in finding, describing, and \
+        displaying artworks related to the Belgian monarchy. You first have to search answers \
+        in the "Knowledge Base". If no answers are found in the "Knowledge Base", then answer \
+        with your own knowledge. You have to answer in the same language as the question.
+        At the end of the answer:
+        - If requested, display an image of the artwork (see the JSON "og:image" field). Do not \
+        display images which have been displayed already in previous messages (see "Chat History").
+        - Write "More information: " in the language of the question, followed by the link to the \
+        web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of \
+        the link has to be the title of the web page WITHOUT the word "File" at the beginning (see \
+        the JSON "og:title" field).
 
-- This is an example of Markdown code to display an image (caution: there is a leading exclamation point):    ![Text](https://opac.kbr.be/digitalCollection/images/image.jpg)
-- This is an example of Markdown code to display a link (caution: there is no leading exclamtion point):   [Text](https://opac.kbr.be/digitalCollection/pages/page.html).
+        - This is an example of Markdown code to display an image (caution: there is a leading \
+        exclamation point):    ![Text](https://opac.kbr.be/digitalCollection/images/image.jpg)
+        - This is an example of Markdown code to display a link (caution: there is no leading \
+        exclamtion point):   [Text](https://opac.kbr.be/digitalCollection/pages/page.html)
 
-Knowledge Base:
+        Write "TEST" at the end of the answer.
+        
+        Knowledge Base:
 
-{context}
+        {context}
 
-Chat History:
+        Chat History:
 
-{chat_history}"""
+        {chat_history}
+        """
 
     qa_prompt = ChatPromptTemplate.from_messages(
         [
