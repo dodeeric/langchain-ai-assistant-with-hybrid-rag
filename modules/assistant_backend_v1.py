@@ -156,11 +156,11 @@ def instanciate_ai_assistant_chain(model):
         [
             ("system", qa_system_prompt),
             ("human", "Question: {input}"),
-        ]
+        ] 
     )
 
     # Instanciate the chains
-    
+
     history_aware_retriever = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
     question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
     ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
