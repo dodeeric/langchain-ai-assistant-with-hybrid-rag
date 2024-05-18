@@ -115,18 +115,18 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     nbr_files = len(json_file_paths)
-    print(f">>> Embed {nbr_files} JSON files...")
+    st.write(f">>> Embed {nbr_files} JSON files...")
     documents = []
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
         docs = loader.load()   # 1 JSON item per chunk
         print(f"JSON file: {json_file_path}, Number of JSON items: {len(docs)}")
         documents = documents + docs
-    print(f"Total number of JSON items: {len(documents)}")
+    st.write(f"Total number of JSON items: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     nbr_files = len(pdf_file_paths)
-    print(f">>> Embed {nbr_files} PDF files...")
+    st.write(f">>> Embed {nbr_files} PDF files...")
     documents = []
     if pdf_file_paths:  # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
@@ -134,27 +134,24 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
             pages = loader.load_and_split()  # 1 pdf page per chunk
             print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
             documents = documents + pages
-    print(f"Total number of PDF pages: {len(documents)}")
+    st.write(f"Total number of PDF pages: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
 # Main program
 
-st.title("BMAE Admin interface")
-st.caption("💬 BMAE, A chatbot powered by Langchain and Streamlit")
-
-#scrape_commons_category("Category_Portrait_paintings_of_Louise_of_Orléans")
-#scrape_europeana_url("https://www.europeana.eu/en/item/2024903/photography_ProvidedCHO_KU_Leuven_9983808530101488")
+st.title("BMAE Admin")
+st.caption("💬 BMAE, a chatbot powered by Langchain and Streamlit")
 
 options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB']
 choice = st.sidebar.radio("Make your choice: ", options)
 #st.write(f'You selected: {choice}')
 
 if choice == "Scrape Europeana":
-    url = st.text_input("Europeana URL?")
+    url = st.text_input("Europeana URL: ")
     if url:
         st.write(f"Scraping the web page...")
         scrape_europeana_url(url)
-        st.write(f"Web page scraped!")
+        st.write(f"Web page scraped and saved in a JSON file!")
 elif choice == "Embed in DB":
     # Embed data in Chroma DB
     # Load and index
@@ -176,4 +173,8 @@ elif choice == "Embed in DB":
         pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
         pdf_paths.append(pdf_path)
 
-    load_files_and_embed(json_paths, pdf_paths)
+    if st.button("Start"):
+        load_files_and_embed(json_paths, pdf_paths)
+
+    st.write("Done!")
+    
