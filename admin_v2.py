@@ -14,7 +14,7 @@ __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
-import requests, json
+import requests, json, shutil
 from bs4 import BeautifulSoup
 from modules.scrape_web_page_v1 import scrape_web_page
 import streamlit as st
@@ -137,6 +137,17 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     st.write(f"Total number of PDF pages: {len(documents)}")
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
+def delete_directory(dir_path):
+    try:
+        shutil.rmtree(dir_path)
+        print(f"Directory '{dir_path}' and all its contents have been deleted successfully")
+    except FileNotFoundError:
+        print(f"Error: Directory '{dir_path}' does not exist")
+    except PermissionError:
+        print(f"Error: Permission denied to delete '{dir_path}'")
+    except Exception as e:
+        print(f"Error: {e}")
+
 # Main program
 
 st.title("BMAE Admin")
@@ -173,8 +184,9 @@ elif choice == "Embed in DB":
         pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
         pdf_paths.append(pdf_path)
 
-    if st.button("Start"):
+    if st.button("Start Embed"):
         load_files_and_embed(json_paths, pdf_paths)
+        st.write("Done!")
 
-    st.write("Done!")
-    
+    if st.button("Delete DB"):
+        delete_directory("./chromadb")
