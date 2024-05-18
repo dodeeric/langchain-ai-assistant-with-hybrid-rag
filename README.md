@@ -101,3 +101,9 @@ New window:
 $ ollama run llama3
 >>> What's the capital of France?
 >>> /bye
+
+---
+
+Admin interface
+
+$ streamlit run admin.py
