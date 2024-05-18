@@ -102,6 +102,8 @@ def instanciate_ai_assistant_chain(model):
     docs = vector_db.get()
     documents = docs["documents"]
 
+    # Instanciate the model
+
     try:
 
         if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
@@ -125,12 +127,16 @@ def instanciate_ai_assistant_chain(model):
         model = "OpenAI (2): gpt-4o-2024-05-13"
         llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
 
+    # Instanciate the retrievers
+
     vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     keyword_retriever = BM25Retriever.from_texts(documents)
     keyword_retriever.k = 5
 
     ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
+
+    # Define the prompts
 
     contextualize_q_system_prompt = CONTEXT_PROMPT
 
@@ -139,10 +145,6 @@ def instanciate_ai_assistant_chain(model):
             ("system", contextualize_q_system_prompt),
             ("human", "Question: {input}"),
         ]
-    )
-
-    history_aware_retriever = create_history_aware_retriever(
-        llm, ensemble_retriever, contextualize_q_prompt
     )
 
     if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or model == "OpenAI (2): gpt-4o-2024-05-13":
@@ -157,6 +159,9 @@ def instanciate_ai_assistant_chain(model):
         ]
     )
 
+    # Instanciate the chains
+    
+    history_aware_retriever = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
     question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
     ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
