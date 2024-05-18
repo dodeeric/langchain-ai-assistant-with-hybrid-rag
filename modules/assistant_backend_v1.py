@@ -145,7 +145,7 @@ def instanciate_ai_assistant_chain(model):
         llm, ensemble_retriever, contextualize_q_prompt
     )
 
-    if model == ("OpenAI (1): gpt-4-turbo-2024-04-09" or "OpenAI (2): gpt-4o-2024-05-13"):
+    if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or model == "OpenAI (2): gpt-4o-2024-05-13":
         qa_system_prompt = PROMPT1
     else:
         qa_system_prompt = PROMPT2
