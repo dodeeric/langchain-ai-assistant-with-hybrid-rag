@@ -9,6 +9,7 @@ Web interface to:
 import requests, json
 from bs4 import BeautifulSoup
 from modules.scrape_web_page_v1 import scrape_web_page
+import streamlit as st
 
 def scrape_commons_category(category):
     """
@@ -89,5 +90,20 @@ def scrape_europeana_url(url):
         json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
     json_file.close()
 
+# Main program
+
+st.title("Admin interface")
+
 #scrape_commons_category("Category_Portrait_paintings_of_Louise_of_Orléans")
 #scrape_europeana_url("https://www.europeana.eu/en/item/2024903/photography_ProvidedCHO_KU_Leuven_9983808530101488")
+
+options = ['Commons', 'Europeana']
+choice = st.sidebar.radio("Scrape page(s) from:", options)
+st.write(f'You selected: {choice}')
+
+if choice == "Europeana":
+    url = st.text_input("Europeana URL?")
+    if url:
+        st.write(f"Scraping the web page...")
+        scrape_europeana_url(url)
+        st.write(f"Web page scraped!")
