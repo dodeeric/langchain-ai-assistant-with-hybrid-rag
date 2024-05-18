@@ -156,7 +156,7 @@ def instanciate_ai_assistant_chain(model):
         [
             ("system", qa_system_prompt),
             ("human", "Question: {input}"),
-        ] 
+        ]
     )
 
     # Instanciate the chains
