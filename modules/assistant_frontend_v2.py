@@ -145,30 +145,12 @@ def assistant_frontend():
         st.session_state.messages.append({"role": "user", "content": question})
 
         # Call the main chain (AI assistant)
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})  # output is a dictionary. output["answer"] is the LLM answer in markdown format.
+        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})
+        #output = st.write_stream(ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}))
 
         # Display assistant response in chat message container
         with st.chat_message("assistant"):
-            st.markdown(output["answer"])
-
-        ##############################
-
-        # Stream the output (NOK)
-
-        # Method 1
-        #st.write_stream(ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}))
-
-        # Method 2
-        #for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
-            #answer = str(chunk.get("answer"))
-            #st.markdown(answer, unsafe_allow_html=True)
-            #st.write(answer)
-            #st.markdown(chunk)
-            #output = output + answer
-            #with st.chat_message("assistant"):
-            #st.write_stream(answer)
-
-        ##############################
+            st.write(output["answer"])
 
         # Add Q/A to chat history for Langchain (chat_history)
         st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
