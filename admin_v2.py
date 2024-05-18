@@ -6,10 +6,24 @@ Web interface to:
 2. embed data
 """
 
+# v1: Scrape Europeana
+# v2: Embed in Chroma DB
+
+# Only to be able to run on Github Codespace
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import requests, json
 from bs4 import BeautifulSoup
 from modules.scrape_web_page_v1 import scrape_web_page
 import streamlit as st
+import dotenv, os
+from langchain_community.document_loaders import JSONLoader, PyPDFLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain_chroma import Chroma
+
+dotenv.load_dotenv()
 
 def scrape_commons_category(category):
     """
@@ -69,11 +83,11 @@ def scrape_europeana_url(url):
     #url = "https://www.europeana.eu/en/item/0940429/_nhtSx4z"
 
     # Step 1: Load the HTML content from a webpage
-    response = requests.get(url)
-    html_content = response.text
+    #response = requests.get(url)
+    #html_content = response.text
 
     # Step 2: Parse the HTML content
-    soup = BeautifulSoup(html_content, 'html.parser')
+    #soup = BeautifulSoup(html_content, 'html.parser')
 
     url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
     item = scrape_web_page(url, "card metadata-box-card mb-3")
@@ -90,6 +104,39 @@ def scrape_europeana_url(url):
         json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
     json_file.close()
 
+def load_files_and_embed(json_file_paths, pdf_file_paths):
+    """
+    Loads and chunks files into a list of documents then embed
+    """
+
+    EMBEDDING_MODEL = "text-embedding-3-large"
+    COLLECTION_NAME = "bmae"
+
+    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+
+    nbr_files = len(json_file_paths)
+    print(f">>> Embed {nbr_files} JSON files...")
+    documents = []
+    for json_file_path in json_file_paths:
+        loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
+        docs = loader.load()   # 1 JSON item per chunk
+        print(f"JSON file: {json_file_path}, Number of JSON items: {len(docs)}")
+        documents = documents + docs
+    print(f"Total number of JSON items: {len(documents)}")
+    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+
+    nbr_files = len(pdf_file_paths)
+    print(f">>> Embed {nbr_files} PDF files...")
+    documents = []
+    if pdf_file_paths:  # if equals to "", then skip
+        for pdf_file_path in pdf_file_paths:
+            loader = PyPDFLoader(pdf_file_path)
+            pages = loader.load_and_split()  # 1 pdf page per chunk
+            print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
+            documents = documents + pages
+    print(f"Total number of PDF pages: {len(documents)}")
+    Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+
 # Main program
 
 st.title("BMAE Admin interface")
@@ -98,13 +145,35 @@ st.caption("💬 BMAE, A chatbot powered by Langchain and Streamlit")
 #scrape_commons_category("Category_Portrait_paintings_of_Louise_of_Orléans")
 #scrape_europeana_url("https://www.europeana.eu/en/item/2024903/photography_ProvidedCHO_KU_Leuven_9983808530101488")
 
-options = ['Commons', 'Europeana']
-choice = st.sidebar.radio("Scrape page(s) from:", options)
-st.write(f'You selected: {choice}')
+options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB']
+choice = st.sidebar.radio("Make your choice: ", options)
+#st.write(f'You selected: {choice}')
 
-if choice == "Europeana":
+if choice == "Scrape Europeana":
     url = st.text_input("Europeana URL?")
     if url:
         st.write(f"Scraping the web page...")
         scrape_europeana_url(url)
         st.write(f"Web page scraped!")
+elif choice == "Embed in DB":
+    # Embed data in Chroma DB
+    # Load and index
+
+    JSON_FILES_DIR = "./files/"
+    PDF_FILES_DIR = "./pdf_files/"
+
+    # JSON files
+    json_files = os.listdir(JSON_FILES_DIR)
+    json_paths = []
+    for json_file in json_files:
+        json_path = f"{JSON_FILES_DIR}{json_file}"
+        json_paths.append(json_path)
+
+    # PDF files
+    pdf_files = os.listdir(PDF_FILES_DIR)
+    pdf_paths = []
+    for pdf_file in pdf_files:
+        pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
+        pdf_paths.append(pdf_path)
+
+    load_files_and_embed(json_paths, pdf_paths)

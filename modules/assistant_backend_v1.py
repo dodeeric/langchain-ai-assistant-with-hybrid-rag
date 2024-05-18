@@ -24,7 +24,7 @@ OPENAI_MODEL2 = "gpt-4o-2024-05-13"  # default llm
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
-OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3-8b, mistral, phi3
+OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3:8b, mistral, phi3
 COLLECTION_NAME = "bmae"
 
 
@@ -43,7 +43,7 @@ def instanciate_ai_assistant_chain(model):
     try:
 
         if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
-            llm = ChatOllama(model=OLLAMA_MODEL, temperature=0, base_url="http://35.209.146.25:80")  # base_url="http://localhost:11434"
+            llm = ChatOllama(model=OLLAMA_MODEL, temperature=0, base_url="http://104.248.246.235:80")  # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
         elif model == "Google (1): gemini-1.0-pro-002":
