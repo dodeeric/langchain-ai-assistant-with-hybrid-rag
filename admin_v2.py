@@ -50,18 +50,17 @@ def scrape_commons_category(category):
     for link in soup.find_all('a'):
         href = link.get('href')
         if href:
-            #print(href)
             if href.startswith("/wiki/File:") and href != href_old: # This test because all links are in double!
                 urls.append(f"https://commons.wikimedia.org{href}")
                 href_old = href
 
     number_of_pages = len(urls)
-    print(f"Number of pages to scrape: {number_of_pages}")
+    st.write(f"Number of pages to scrape: {number_of_pages}")
 
     i = 1
     items = []
     for url in urls:
-        print(f"{i}/{number_of_pages}")
+        st.write(f"Scraping {i}/{number_of_pages}...")
         url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
         item = scrape_web_page(url, "hproduct commons-file-information-table")
         print(item)
