@@ -164,6 +164,13 @@ if choice == "Scrape Europeana":
         st.write(f"Scraping the web page...")
         scrape_europeana_url(url)
         st.write(f"Web page scraped and saved in a JSON file!")
+elif choice == "Scrape Commons":
+    st.write("Give a category name from Wikimedia Commons (ex.: Category_Portrait_paintings_of_Leopold_I_of_Belgium). The pages will be scraped and saved in a JSON file (fields: web page url, metadata including the image url, scraped text).")
+    category = st.text_input("Category: ")
+    if category:
+        st.write(f"Scraping the web pages...")
+        scrape_commons_category(category)
+        st.write(f"Web pages scraped and saved in a JSON file!")
 elif choice == "Embed in DB":
     # Embed data in Chroma DB
     # Load and index
