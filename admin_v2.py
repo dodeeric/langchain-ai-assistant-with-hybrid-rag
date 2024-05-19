@@ -197,3 +197,4 @@ elif choice == "Embed in DB":
 
     if st.button("Delete DB"):
         delete_directory("./chromadb")
+        st.write("Done!")
