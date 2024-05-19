@@ -119,22 +119,25 @@ def instanciate_ai_assistant_chain(model):
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
             llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
         else:
-            st.markdown("Error: No model available!")
+            st.write("Error: The model is not available!")
             quit()
 
     except Exception:
-        st.markdown("Error: That model is not available! Default one will be used.")
-        model = "OpenAI (2): gpt-4o-2024-05-13"
-        llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=0)
+        st.write("Error: The model is not available!")
 
     # Instanciate the retrievers
 
-    vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+    try:
 
-    keyword_retriever = BM25Retriever.from_texts(documents)
-    keyword_retriever.k = 5
+        vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
-    ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
+        keyword_retriever = BM25Retriever.from_texts(documents)
+        keyword_retriever.k = 5
+
+        ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
+
+    except Exception:
+        st.write("Error: Cannot instanciate the retrievers. Is the DB available?")
 
     # Define the prompts
 
@@ -161,8 +164,14 @@ def instanciate_ai_assistant_chain(model):
 
     # Instanciate the chains
 
-    history_aware_retriever = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
-    question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
-    ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+    try:
+
+        history_aware_retriever = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
+        question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
+        ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+
+    except Exception:
+        st.write("Error: Cannot instanciate the chains!")
+        ai_assistant_chain = None
 
     return ai_assistant_chain
