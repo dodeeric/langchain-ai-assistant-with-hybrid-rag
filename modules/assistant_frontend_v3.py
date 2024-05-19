@@ -118,7 +118,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     nbr_files = len(json_file_paths)
-    st.write(f">>> Embed {nbr_files} JSON files...")
+    st.write(f"Embeding {nbr_files} JSON files...")
     documents = []
     for json_file_path in json_file_paths:
         loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
@@ -129,7 +129,7 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     nbr_files = len(pdf_file_paths)
-    st.write(f">>> Embed {nbr_files} PDF files...")
+    st.write(f"Embeding {nbr_files} PDF files...")
     documents = []
     if pdf_file_paths:  # if equals to "", then skip
         for pdf_file_path in pdf_file_paths:
@@ -336,6 +336,11 @@ def assistant_frontend():
                 if st.button("Delete DB"):
                     delete_directory("./chromadb")
                     st.write("Done!")
+
+                if st.button("List Files"):
+                    path = './'
+                    files = os.listdir(path)
+                    st.write(files)
 
     # # # # # # # # # # # #
     # Chat message window #
