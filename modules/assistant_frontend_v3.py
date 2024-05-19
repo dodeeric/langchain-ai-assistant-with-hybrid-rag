@@ -340,7 +340,15 @@ def assistant_frontend():
                 if st.button("List Files"):
                     path = './'
                     files = os.listdir(path)
+                    st.write("Root path:")
                     st.write(files)
+                    path = './chromadb'
+                    files = os.listdir(path)
+                    st.write("DB path:")
+                    st.write(files)
+                    file_path = './chromadb/chroma.sqlite3'
+                    file_size = os.path.getsize(file_path)
+                    st.write(f"DB size: {file_size} bytes")
 
     # # # # # # # # # # # #
     # Chat message window #
