@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Scrape the text and the metadata of a web page
+One function to scrape the text and the metadata of a web page
 """
 
 import requests, bs4
