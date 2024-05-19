@@ -4,7 +4,7 @@
 This function runs the frontend web interface.
 """
 
-# v2: stream output (NOK)
+# v2: stream output
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -144,18 +144,17 @@ def assistant_frontend():
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": question})
 
-        # Call the main chain (AI assistant)
-        output = ai_assistant_chain.invoke({"input": question, "chat_history": st.session_state.chat_history})
-        #output = st.write_stream(ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}))
-
-        # Display assistant response in chat message container
-        with st.chat_message("assistant"):
-            st.write(output["answer"])
+        # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
+        answer_container = st.empty()
+        answer = ""
+        for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
+            answer = answer + str(chunk.get("answer"))
+            answer_container.write(answer)
 
         # Add Q/A to chat history for Langchain (chat_history)
-        st.session_state.chat_history2.save_context({"input": question}, {"output": output["answer"]})
+        st.session_state.chat_history2.save_context({"input": question}, {"output": answer})
         load_memory = st.session_state.chat_history2.load_memory_variables({})
         st.session_state.chat_history = load_memory["history"]
 
         # Add Answer to chat history for Streamlit (messages)
-        st.session_state.messages.append({"role": "assistant", "content": output["answer"]})
+        st.session_state.messages.append({"role": "assistant", "content": answer})
