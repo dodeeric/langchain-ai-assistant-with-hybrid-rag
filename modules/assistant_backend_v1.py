@@ -137,7 +137,7 @@ def instanciate_ai_assistant_chain(model):
         ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
     except Exception:
-        st.write("Error: Cannot instanciate the retrievers. Is the DB available?")
+        st.write("Error: Cannot instanciate the retrievers! Is the DB available?")
 
     # Define the prompts
 
