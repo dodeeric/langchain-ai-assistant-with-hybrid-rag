@@ -158,6 +158,7 @@ choice = st.sidebar.radio("Make your choice: ", options)
 #st.write(f'You selected: {choice}')
 
 if choice == "Scrape Europeana":
+    st.write("Give the web page URL of an item from Europeana (https://www.europeana.eu/en/item/xxx). The page will be scraped and saved in a JSON file (fields: web page url, metadata including the image url, scraped text).")
     url = st.text_input("Europeana URL: ")
     if url:
         st.write(f"Scraping the web page...")
