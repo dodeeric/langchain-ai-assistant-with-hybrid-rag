@@ -148,8 +148,10 @@ def assistant_frontend():
         answer_container = st.empty()
         answer = ""
         for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
-            answer = answer + str(chunk.get("answer"))
-            answer_container.write(answer)
+            answer_chunk = str(chunk.get("answer"))
+            if answer_chunk != "None":  # Because it write NoneNone at the beginning 
+                answer = answer + answer_chunk
+                answer_container.write(answer)
 
         # Add Q/A to chat history for Langchain (chat_history)
         st.session_state.chat_history2.save_context({"input": question}, {"output": answer})
