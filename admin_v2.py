@@ -164,7 +164,7 @@ if choice == "Scrape Europeana":
         scrape_europeana_url(url)
         st.write(f"Web page scraped and saved in a JSON file!")
 elif choice == "Scrape Commons":
-    st.write("Give a category name from Wikimedia Commons (ex.: Category_Portrait_paintings_of_Leopold_I_of_Belgium). The pages will be scraped and saved in a JSON file (fields: web page url, metadata including the image url, scraped text).")
+    st.write("Give a category name from Wikimedia Commons (ex.: Category_Portrait_paintings_of_Leopold_I_of_Belgium). The pages will be scraped and saved in a JSON file (fields: web page urls, metadata including the image urls, scraped texts).")
     category = st.text_input("Category: ")
     if category:
         st.write(f"Scraping the web pages...")
