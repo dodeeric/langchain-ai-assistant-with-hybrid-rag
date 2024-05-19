@@ -7,7 +7,7 @@ Web interface to:
 """
 
 # v1: Scrape Europeana
-# v2: Embed in Chroma DB
+# v2: Embed in Chroma DB + Scrape Commons
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
