@@ -273,6 +273,11 @@ def assistant_frontend():
             - Pouvez-vous me montrer le tableau "La fête patriotique du cinquantenaire de la Belgique" réalisé par Camille Van Camp ?
             - Quelles sont les personnes présentes sur ce tableau ?
             - Pouvez-vous me montrer deux gravures de la fête patriotique du cinquantenaire de la Belgique réalisées par Martin Claverie ? De quel journal proviennent-elles ?
+            - Avez-vous l'acte de décès de la princesse Joséphine ?
+            - Pouvez-vous me montrer le tableau "Napoléon III et les souverains étrangers invités à l'Exposition universelle de 1867" ? *Et ensuite vous pouvez poser la question :*
+            - Avez-vous un détail de ce tableau ?
+            - Pouvez-vous me montrer des portraits réalisés par Franz Xaver Winterhalter ?
+            - Où se trouve le tableau "La fête patriotique du cinquantenaire de la Belgique" peint par Camille Van Camp ?
             """)
 
             st.markdown(f"""
