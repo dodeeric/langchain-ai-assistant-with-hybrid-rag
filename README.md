@@ -42,6 +42,7 @@ OPENAI_API_KEY = "sk-proj-xxx"   ==> Go to: https://platform.openai.com/api-keys
 LANGCHAIN_API_KEY = "ls__xxx"    ==> Go to: https://smith.langchain.com
 LANGCHAIN_TRACING_V2 = "true"    
 ANTHROPIC_API_KEY = "sk-ant-xxx" ==> Go to: https://console.anthropic.com/settings/keys
+GOOGLE_APPLICATION_CREDENTIALS = "./vertexai-sa.json"  ==> Path to the Service Account (with VertexAI role) JSON file 
 ```
 
 Install required libraries:
