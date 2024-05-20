@@ -14,8 +14,8 @@ from langchain.chains import create_retrieval_chain  # To create the main chain 
 from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
-#from langchain_community.chat_models import ChatVertexAI
-from langchain_community.llms import VertexAI
+#from langchain_community.chat_models import ChatVertexAI  # Deprecated since version 0.0.12.
+from langchain_community.llms import VertexAI  # Deprecated since version 0.0.12.
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
