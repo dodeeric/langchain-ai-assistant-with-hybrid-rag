@@ -193,6 +193,15 @@ def assistant_frontend():
 
         page = st.radio("Go to page:", ["About", "Admin"])
 
+        #col1, col2 = st.columns(2)
+        #page = "About"
+        #with col1:
+        #    if st.button("About"):
+        #        page = "About"
+        #with col2:
+        #    if st.button("Admin"):
+        #        page = "Admin"
+    
         # Side bar: first or second page
         if page == "About":
         
