@@ -45,12 +45,12 @@ the question.
 
 At the end of the answer:
 
-- If requested, display an image of the artwork (see the JSON "og:image" field). Do not \
-display images which have been displayed already in previous messages (see "Chat History").
-- Write "More information: " in the language of the question, followed by the link to the \
-web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of \
-the link has to be the title of the web page WITHOUT the word "File" at the beginning (see \
-the JSON "og:title" field).
+- Write two blank lines, then if requested, display an image of the artwork (see the JSON "og:image" \
+field). Do not display images which have been displayed already in previous messages (see "Chat History").
+- Write two blank lines, then write "More information: " in the language of the question, followed by \
+the link to the web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of \
+the link has to be the title of the web page WITHOUT the word "File" at the beginning (see the JSON "og:title" \
+field).
 
 Knowledge Base:
 
