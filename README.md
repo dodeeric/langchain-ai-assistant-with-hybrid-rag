@@ -90,22 +90,16 @@ This AI (Artificial Intelligence) assistant allows you to ask all kinds of quest
 
 ---
 
-Running with Ollama / Llama 3 in place of OpenAI GPT4 Turbo:
+Running with Ollama / Llama 3:
 
-Install Ollama
+Install Ollama, then:
 
 $ ollama pull llama3
 $ ollama list
 $ ollama serve
 
-New window:
+In a new window:
 
 $ ollama run llama3
 >>> What's the capital of France?
 >>> /bye
-
----
-
-Admin interface
-
-$ streamlit run admin.py
