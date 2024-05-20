@@ -6,7 +6,7 @@ This function runs the frontend web interface.
 
 # v2: stream output
 # v3: integrate admin in main web interface
-# v4: move model selection to admin interface
+# v4: move model selection to admin interface + move files dir to json_files
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -33,7 +33,7 @@ def scrape_commons_category(category):
     METHOD 3: For Commons: Scrape the URLs from a Commons Category and save the results in a JSON file
     """
     
-    FILE_PATH = "./files/commons-"
+    FILE_PATH = "./json_files/commons-"
 
     #category = "Category:Prince_Philippe,_Count_of_Flanders_in_photographs"
 
@@ -103,7 +103,7 @@ def scrape_europeana_url(url):
     url2 = url2.replace("/","-")
     # Save the Python list in a JSON file
     # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
-    with open(f"./files/{url2}-swp.json", "w") as json_file:
+    with open(f"./json_files/{url2}-swp.json", "w") as json_file:
         json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
     json_file.close()
 
@@ -312,7 +312,7 @@ def assistant_frontend():
                 # Embed data in Chroma DB
                 # Load and index
 
-                JSON_FILES_DIR = "./files/"
+                JSON_FILES_DIR = "./json_files/"
                 PDF_FILES_DIR = "./pdf_files/"
 
                 # JSON files
