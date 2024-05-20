@@ -6,7 +6,7 @@ This function runs the frontend web interface.
 
 # v2: stream output
 # v3: integrate admin in main web interface
-# v4: move model selection to admin interface + move files dir to json_files
+# v4: move model selection to admin interface + move files dir to json_files + add admin password
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -191,8 +191,9 @@ def assistant_frontend():
 
     with st.sidebar:
 
-        page = st.radio("Go to page:", ["About", "Admin"])
+        #page = st.radio("Go to page:", ["About", "Admin"])
 
+        # Two buttons in place of two radio buttons
         #col1, col2 = st.columns(2)
         #page = "About"
         #with col1:
@@ -201,7 +202,20 @@ def assistant_frontend():
         #with col2:
         #    if st.button("Admin"):
         #        page = "Admin"
-    
+
+        password_ok = "no"
+        password = "XXXX"
+        page = "About"
+        # Ask admin password to access admin menu
+        admin_password = os.getenv("ADMIN_PASSWORD", "YYYY")
+        password = st.text_input("Enter admin password: ", type="password")
+        if password != admin_password:
+            page = "About"
+            password_ok = "no"
+        else:
+            page = "Admin"
+            password_ok = "yes"
+
         # Side bar: first or second page
         if page == "About":
         
@@ -294,13 +308,13 @@ def assistant_frontend():
             Model: {st.session_state.model}. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
             """)
 
-        elif page == "Admin":
+        elif page == "Admin" and password_ok == "yes":
 
             # # # # # # # # # # # # # # # # # # # # #
             # Side bar window: second page (Admin)  #
             # # # # # # # # # # # # # # # # # # # # #
 
-            st.title("Admin")
+            #st.title("Admin")
 
             model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro-002', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
             st.session_state.model = st.selectbox('Choose a model: ', model_list)
