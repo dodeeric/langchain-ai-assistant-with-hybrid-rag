@@ -110,7 +110,7 @@ def instanciate_ai_assistant_chain(model):
         if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
             llm = ChatOllama(model=OLLAMA_MODEL, temperature=0, base_url="http://104.248.246.235:80")  # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
-            llm = ChatAnthropic(temperature=0, max_tokens=4000, model_name=ANTHROPIC_MODEL)
+            llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=0, max_tokens=4000)
         elif model == "Google (1): gemini-1.0-pro-002":
             llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
         elif model == "Google (2): gemini-1.5-pro-preview-0409":
