@@ -19,7 +19,7 @@ Start the app: streamlit run assistant.py
 # v10: import one function --> one module
 # v11: assistant: main() + assistant_frontend (streamlit) + assistant_backend (langchain) --> two modules
 
-from modules.assistant_frontend_v3 import assistant_frontend
+from modules.assistant_frontend_v4 import assistant_frontend
 import dotenv
 
 dotenv.load_dotenv()
