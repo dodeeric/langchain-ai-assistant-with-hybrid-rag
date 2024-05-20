@@ -107,14 +107,14 @@ def instanciate_ai_assistant_chain(model):
 
     try:
 
-        if model == "MetaAI: llama3-8b":  # Ollama vs. ChatOllama ==> Seems to be the same
+        if model == "MetaAI: llama3-8b":
             llm = ChatOllama(model=OLLAMA_MODEL, temperature=0, base_url="http://104.248.246.235:80")  # base_url="http://localhost:11434"
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=0, max_tokens=4000)
         elif model == "Google (1): gemini-1.0-pro-002":
-            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)
+            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=0)  # Answers are often blocked by Safety Settings (they should be lowered)
         elif model == "Google (2): gemini-1.5-pro-preview-0409":
-            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)
+            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=0)  # Answers are often blocked by Safety Settings (they should be lowered)
         elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=0)
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
