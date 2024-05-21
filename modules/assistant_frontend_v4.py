@@ -159,7 +159,7 @@ def assistant_frontend():
     All related to Streamlit and connection with the Langchain backend. Includes also the admin interface.
     """
 
-    st.set_page_config(page_titel="Belgian Monarchy Artworks Explorer", page_icon="👑")
+    st.set_page_config(page_title="Belgian Monarchy Artworks Explorer", page_icon="👑")
     
     # Initialize chat history (chat_history) for LangChain
     if 'chat_history' not in st.session_state:
