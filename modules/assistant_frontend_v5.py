@@ -7,6 +7,7 @@ This function runs the frontend web interface.
 # v2: stream output
 # v3: integrate admin in main web interface
 # v4: move model selection to admin interface + move files dir to json_files + add admin password
+# v5: add a slider for the temperature
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -16,7 +17,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
-from modules.assistant_backend_v1 import instanciate_ai_assistant_chain
+from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 
 import requests, json, shutil
 from bs4 import BeautifulSoup
@@ -173,9 +174,12 @@ def assistant_frontend():
     if "model" not in st.session_state:
         st.session_state.model = "OpenAI (2): gpt-4o-2024-05-13"
 
+    if "temperature" not in st.session_state:
+        st.session_state.temperature = 0.2
+
     # Load, index, retrieve and generate
 
-    ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model)
+    ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model, st.session_state.temperature)
 
     # # # # # # # #
     # Main window #
@@ -305,7 +309,10 @@ def assistant_frontend():
             # # # # # # # # # # # # # # # # # # # # #
 
             model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro-002', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
-            st.session_state.model = st.selectbox('Choose a model: ', model_list)
+            st.session_state.model = st.selectbox('Model: ', model_list)
+
+            st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, 0.2)
+            st.write(f"Temperature: {st.session_state.temperature}")
 
             options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB']
             choice = st.sidebar.radio("Make your choice: ", options)
