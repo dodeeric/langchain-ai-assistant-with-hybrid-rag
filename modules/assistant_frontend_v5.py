@@ -312,7 +312,6 @@ def assistant_frontend():
             st.session_state.model = st.selectbox('Model: ', model_list)
 
             st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, 0.2)
-            st.write(f"Temperature: {st.session_state.temperature}")
 
             options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB']
             choice = st.sidebar.radio("Make your choice: ", options)

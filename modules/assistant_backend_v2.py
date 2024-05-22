@@ -120,7 +120,6 @@ def instanciate_ai_assistant_chain(model, temperature):
         elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
-            st.write("T: ", temperature)
             llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=temperature)
         else:
             st.write("Error: The model is not available!")
