@@ -311,8 +311,9 @@ def assistant_frontend():
             model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro-002', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
             st.session_state.model = st.selectbox('Model: ', model_list)
 
-            st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, 0.2)
-
+            st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)
+            st.write("OpenAI: 0 to 2, Anthropic: -1 to 1")
+            
             options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB']
             choice = st.sidebar.radio("Make your choice: ", options)
 
