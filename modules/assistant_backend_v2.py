@@ -18,7 +18,7 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 #from langchain_community.chat_models import ChatVertexAI  # Deprecated since version 0.0.12.
 #from langchain_community.llms import VertexAI  # Deprecated since version 0.0.12.
-from langchain_google_vertexai import VertexAI, ChatVertexAI
+from langchain_google_vertexai import ChatVertexAI
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -115,9 +115,9 @@ def instanciate_ai_assistant_chain(model, temperature):
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=temperature, max_tokens=4000)
         elif model == "Google (1): gemini-1.0-pro-002":
-            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_tokens=4000)  # Answers are often blocked by Safety Settings (they should be lowered)
+            llm = ChatVertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_output_tokens=4000)
         elif model == "Google (2): gemini-1.5-pro-preview-0409":
-            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=temperature, max_tokens=4000)  # Answers are often blocked by Safety Settings (they should be lowered)
+            llm = ChatVertexAI(model_name=VERTEXAI_MODEL2, temperature=temperature, max_output_tokens=4000)
         elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
