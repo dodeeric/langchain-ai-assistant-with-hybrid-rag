@@ -5,7 +5,7 @@ This function runs the backend. It starts the Langchain AI assistant: instanciat
 all the Langchain chains for RAG and LLM.
 """
 
-# v2: add temperature as a variable
+# v2: add temperature as a variable + catch errors + use langchain-google-vertexai package
 
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
@@ -17,7 +17,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain  # T
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 #from langchain_community.chat_models import ChatVertexAI  # Deprecated since version 0.0.12.
-from langchain_community.llms import VertexAI  # Deprecated since version 0.0.12.
+#from langchain_community.llms import VertexAI  # Deprecated since version 0.0.12.
+from langchain_google_vertexai import VertexAI, ChatVertexAI
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -114,19 +115,20 @@ def instanciate_ai_assistant_chain(model, temperature):
         elif model == "Anthropic: claude-3-opus-20240229":
             llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=temperature, max_tokens=4000)
         elif model == "Google (1): gemini-1.0-pro-002":
-            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=temperature)  # Answers are often blocked by Safety Settings (they should be lowered)
+            llm = VertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_tokens=4000)  # Answers are often blocked by Safety Settings (they should be lowered)
         elif model == "Google (2): gemini-1.5-pro-preview-0409":
-            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=temperature)  # Answers are often blocked by Safety Settings (they should be lowered)
+            llm = VertexAI(model_name=VERTEXAI_MODEL2, temperature=temperature, max_tokens=4000)  # Answers are often blocked by Safety Settings (they should be lowered)
         elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
         elif model == "OpenAI (2): gpt-4o-2024-05-13":
             llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=temperature)
         else:
-            st.write("Error: The model is not available!")
+            st.write("Error: No model available!")
             quit()
 
-    except Exception:
-        st.write("Error: The model is not available!")
+    except Exception as e:
+        st.write("Error: Cannot instanciate any model!")
+        st.write(f"Error: {e}")
 
     # Instanciate the retrievers
 
@@ -139,8 +141,9 @@ def instanciate_ai_assistant_chain(model, temperature):
 
         ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 
-    except Exception:
+    except Exception as e:
         st.write("Error: Cannot instanciate the retrievers! Is the DB available?")
+        st.write(f"Error: {e}")
 
     # Define the prompts
 

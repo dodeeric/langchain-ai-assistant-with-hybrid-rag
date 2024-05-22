@@ -7,7 +7,7 @@ This function runs the frontend web interface.
 # v2: stream output
 # v3: integrate admin in main web interface
 # v4: move model selection to admin interface + move files dir to json_files + add admin password
-# v5: add a slider for the temperature
+# v5: add a slider for the temperature + errors catch
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -392,14 +392,20 @@ def assistant_frontend():
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": question})
 
-        # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
-        answer_container = st.empty()
-        answer = ""
-        for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
-            answer_chunk = str(chunk.get("answer"))
-            if answer_chunk != "None":  # Because it write NoneNone at the beginning 
-                answer = answer + answer_chunk
-                answer_container.write(answer)
+        try:
+
+            # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
+            answer_container = st.empty()
+            answer = ""
+            for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
+                answer_chunk = str(chunk.get("answer"))
+                if answer_chunk != "None":  # Because it write NoneNone at the beginning 
+                    answer = answer + answer_chunk
+                    answer_container.write(answer)
+
+        except Exception as e:
+            st.write("Error: Cannot invoke/stream the main chain!")
+            st.write(f"Error: {e}")
 
         # Add Q/A to chat history for Langchain (chat_history)
         st.session_state.chat_history2.save_context({"input": question}, {"output": answer})
