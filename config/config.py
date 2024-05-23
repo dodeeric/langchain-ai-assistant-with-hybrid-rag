@@ -10,6 +10,7 @@ OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3:8b, mistral, phi3
 COLLECTION_NAME = "bmae"
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
+OLLAMA_URL = "http://104.248.246.235:80"  # "http://localhost:11434"
 
 CONTEXT_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \
