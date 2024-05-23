@@ -86,6 +86,9 @@ LOGO_PATH = "./images/image.jpg"
 ASSISTANT_ICON = "👑"
 ASSISTANT_NAME = "Belgian Monarchy Artworks Explorer"
 
+HELLO_MESSAGE = "Hello! Bonjour! Hallo! 👋"
+USER_PROMPT = "Enter your question / Entrez votre question / Voer uw vraag in"
+
 ABOUT_TEXT = """
 ### About this assistant
 
@@ -95,9 +98,6 @@ queries different images databases like BALaT/IRPA (Royal Institute of Artistic 
 The questions can be in any language, but French and Dutch give the best results. If you don't get a correct answer, try rephrasing the question, or just ask the same question again. The \
 assistant has a memory of the questions and answers session. The questions you ask may therefore refer to previous questions and answers. For \
 example: *Who painted that canvas?*
-"""
-
-ABOUT_TEXT2 = """
 
 ### Concernant cet assistant
 
@@ -107,9 +107,6 @@ questionne différentes bases de données d'images comme BALaT/IRPA (Institut ro
 Les questions peuvent-être posées en différentes langues, mais le français et le néerlandais donnent les meilleurs résultats. Si vous n'obtenez pas une réponse \
 correcte, essayez de reformuler la question, ou reposez à nouveau la même question. L'assistant possède une mémoire de la session de questions et réponses. \
 Les questions que vous posez peuvent donc faire référence aux questions et réponses précédentes. Par exemple : *Qui a peint ce tableau ?*
-"""
-
-ABOUT_TEXT3 = """
 
 #### Examples of questions you can ask
 
@@ -133,9 +130,6 @@ ENGLISH:
 - Can you show me the painting "The patriotic celebration of Belgium's fiftieth anniversary" created by Camille Van Camp?
 - Who are the people present in this painting?
 - Can you show me two engravings of the patriotic celebration of the fiftieth anniversary of Belgium created by Martin Claverie? From which newspapers do they come from?
-"""
-
-ABOUT_TEXT4 = """
 
 #### Exemples de questions que vous pouvez poser
 

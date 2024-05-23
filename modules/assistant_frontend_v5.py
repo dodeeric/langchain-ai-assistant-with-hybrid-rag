@@ -203,15 +203,9 @@ def assistant_frontend():
             # Side bar window: first page (About) #
             # # # # # # # # # # # # # # # # # # # #
 
-            st.markdown(ABOUT_TEXT)
+            st.write(ABOUT_TEXT)
 
-            st.markdown(ABOUT_TEXT2)
-
-            st.markdown(ABOUT_TEXT3)
-
-            st.markdown(ABOUT_TEXT4)
-
-            st.markdown(SIDEBAR_FOOTER)
+            st.write(SIDEBAR_FOOTER)
 
         elif page == "Admin" and password_ok == "yes":
 
@@ -289,7 +283,7 @@ def assistant_frontend():
     # # # # # # # # # # # #
 
     with st.chat_message("assistant"):
-        st.write("Hello! Bonjour! Hallo! 👋")
+        st.write(HELLO_MESSAGE)
 
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
@@ -297,7 +291,7 @@ def assistant_frontend():
             st.markdown(message["content"])
 
     # React to user input
-    if question := st.chat_input("Enter your question / Entrez votre question / Voer uw vraag in"):
+    if question := st.chat_input(USER_PROMPT):
         # Display user message in chat message container
         st.chat_message("user").markdown(question)
         # Add user message to chat history
