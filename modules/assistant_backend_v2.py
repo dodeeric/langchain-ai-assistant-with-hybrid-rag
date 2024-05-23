@@ -61,10 +61,10 @@ def instanciate_ai_assistant_chain(model, temperature):
 
     try:
 
-        vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 5})
+        vector_retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": VECTORDB_MAX_RESULTS})
 
         keyword_retriever = BM25Retriever.from_texts(documents)
-        keyword_retriever.k = 5
+        keyword_retriever.k = BM25_MAX_RESULTS
 
         ensemble_retriever = EnsembleRetriever(retrievers=[keyword_retriever, vector_retriever], weights=[0.5, 0.5])
 

@@ -8,6 +8,8 @@ VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3:8b, mistral, phi3
 COLLECTION_NAME = "bmae"
+VECTORDB_MAX_RESULTS = 5
+BM25_MAX_RESULTS = 5
 
 CONTEXT_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \
