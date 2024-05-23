@@ -1,4 +1,6 @@
-# All the parameters for the backend (langchain)
+# All the parameters
+
+# Backend (Langchain)
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 
@@ -77,3 +79,9 @@ Knowledge Base:
 Chat History:
 
 {chat_history}"""
+
+# Frontend (Streamlit)
+
+LOGO_PATH = "./images/image.jpg"
+ASSISTANT_ICON = "👑"
+ASSISTANT_NAME = "Belgian Monarchy Artworks Explorer"

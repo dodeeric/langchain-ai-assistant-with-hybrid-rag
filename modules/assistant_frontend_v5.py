@@ -7,7 +7,7 @@ This function runs the frontend web interface.
 # v2: stream output
 # v3: integrate admin in main web interface
 # v4: move model selection to admin interface + move files dir to json_files + add admin password
-# v5: add a slider for the temperature + errors catch
+# v5: add a slider for the temperature + errors catch + use config.py
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -19,12 +19,13 @@ from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
 import requests, json, shutil
 from bs4 import BeautifulSoup
-from modules.scrape_web_page_v1 import scrape_web_page
 import streamlit as st
 import os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
+
+from modules.scrape_web_page_v1 import scrape_web_page
 from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 from config.config import *
 
@@ -34,8 +35,6 @@ def scrape_commons_category(category):
     """
     
     FILE_PATH = "./json_files/commons-"
-
-    #category = "Category:Prince_Philippe,_Count_of_Flanders_in_photographs"
 
     items = []
     href_old = ""
@@ -104,9 +103,6 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     Loads and chunks files into a list of documents then embed
     """
 
-    #EMBEDDING_MODEL = "text-embedding-3-large"
-    #COLLECTION_NAME = "bmae"
-
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 
     nbr_files = len(json_file_paths)
@@ -150,7 +146,7 @@ def assistant_frontend():
     All related to Streamlit and connection with the Langchain backend. Includes also the admin interface.
     """
 
-    st.set_page_config(page_title="Belgian Monarchy Artworks Explorer", page_icon="👑")
+    st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
     
     # Initialize chat history (chat_history) for LangChain
     if 'chat_history' not in st.session_state:
@@ -175,10 +171,10 @@ def assistant_frontend():
     # Main window #
     # # # # # # # #
 
-    logo = Image.open("./images/image.jpg")
+    logo = Image.open(LOGO_PATH)
     st.image(logo, use_column_width=True)
 
-    st.markdown("## Belgian Monarchy Artworks Explorer")
+    st.markdown(f"## {ASSISTANT_NAME}")
     st.caption("💬 A chatbot powered by Langchain and Streamlit")
 
     # # # # # # # # # #
