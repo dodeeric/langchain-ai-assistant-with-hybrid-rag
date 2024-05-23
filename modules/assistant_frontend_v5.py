@@ -211,10 +211,7 @@ def assistant_frontend():
 
             st.markdown(ABOUT_TEXT4)
 
-            st.markdown(f"""
-            _________
-            Model: {st.session_state.model}. Vector size: 3072. Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
-            """)
+            st.markdown(SIDEBAR_FOOTER)
 
         elif page == "Admin" and password_ok == "yes":
 

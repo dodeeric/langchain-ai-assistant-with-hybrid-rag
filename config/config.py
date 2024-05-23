@@ -165,3 +165,8 @@ FRANCAIS:
 - Pouvez-vous me montrer des portraits réalisés par Franz Xaver Winterhalter ?
 - Où se trouve le tableau "La fête patriotique du cinquantenaire de la Belgique" peint par Camille Van Camp ?
 """
+
+SIDEBAR_FOOTER = """
+_________
+Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
+"""
