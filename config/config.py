@@ -1,18 +1,22 @@
 # All the parameters
 
 EMBEDDING_MODEL = "text-embedding-3-large"
+
 OPENAI_MODEL = "gpt-4-turbo-2024-04-09"
 OPENAI_MODEL2 = "gpt-4o-2024-05-13"  # default llm
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.0-pro-002"
 VERTEXAI_MODEL2 = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3:8b"  # llama3 = llama3:8b, mistral, phi3
+
 COLLECTION_NAME = "bmae"
+
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
+
 OLLAMA_URL = "http://104.248.246.235:80"  # "http://localhost:11434"
 
-CONTEXT_PROMPT = """Given a chat history and the latest user question which \
+CONTEXTUALIZE_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \
 understood without the chat history. Do NOT answer the question, just reformulate it if needed \
 and otherwise return it as is.
@@ -21,7 +25,7 @@ Chat History:
 
 {chat_history}"""
 
-PROMPT1 = """You are an artwork specialist. You must assist the users in \
+SYSTEM_PROMPT = """You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
 Base", then answer with your own knowledge. You have to answer in the same language as \
@@ -44,7 +48,7 @@ Chat History:
 
 {chat_history}"""
 
-PROMPT2 = """You are an artwork specialist. You must assist the users in \
+SYSTEM_PROMPT2 = """You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
 Base", then answer with your own knowledge. You have to answer in the same language as \

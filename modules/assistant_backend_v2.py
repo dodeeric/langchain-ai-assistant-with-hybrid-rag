@@ -74,7 +74,7 @@ def instanciate_ai_assistant_chain(model, temperature):
 
     # Define the prompts
 
-    contextualize_q_system_prompt = CONTEXT_PROMPT
+    contextualize_q_system_prompt = CONTEXTUALIZE_PROMPT
 
     contextualize_q_prompt = ChatPromptTemplate.from_messages(
         [
@@ -84,9 +84,9 @@ def instanciate_ai_assistant_chain(model, temperature):
     )
 
     if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or model == "OpenAI (2): gpt-4o-2024-05-13":
-        qa_system_prompt = PROMPT1
+        qa_system_prompt = SYSTEM_PROMPT
     else:
-        qa_system_prompt = PROMPT2
+        qa_system_prompt = SYSTEM_PROMPT2
 
     qa_prompt = ChatPromptTemplate.from_messages(
         [
