@@ -19,7 +19,7 @@ from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import ChatVertexAI
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
-from config.config import *
+from config.config_backend import *
 
 @st.cache_resource
 def instanciate_ai_assistant_chain(model, temperature):
