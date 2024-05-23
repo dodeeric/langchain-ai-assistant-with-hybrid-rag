@@ -17,8 +17,6 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
-from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
-
 import requests, json, shutil
 from bs4 import BeautifulSoup
 from modules.scrape_web_page_v1 import scrape_web_page
@@ -27,7 +25,8 @@ import os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-
+from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
+from config.config import *
 
 def scrape_commons_category(category):
     """
@@ -84,15 +83,6 @@ def scrape_europeana_url(url):
     METHOD 4: Scrape one URL (should be Europeana) and save the result in a JSON file
     """
 
-    #url = "https://www.europeana.eu/en/item/0940429/_nhtSx4z"
-
-    # Step 1: Load the HTML content from a webpage
-    #response = requests.get(url)
-    #html_content = response.text
-
-    # Step 2: Parse the HTML content
-    #soup = BeautifulSoup(html_content, 'html.parser')
-
     url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
     item = scrape_web_page(url, "card metadata-box-card mb-3")
     print(item)
@@ -114,8 +104,8 @@ def load_files_and_embed(json_file_paths, pdf_file_paths):
     Loads and chunks files into a list of documents then embed
     """
 
-    EMBEDDING_MODEL = "text-embedding-3-large"
-    COLLECTION_NAME = "bmae"
+    #EMBEDDING_MODEL = "text-embedding-3-large"
+    #COLLECTION_NAME = "bmae"
 
     embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
 

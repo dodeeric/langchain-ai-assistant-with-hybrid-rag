@@ -1,4 +1,4 @@
-# All the parameters
+# All the parameters for the backend (langchain)
 
 EMBEDDING_MODEL = "text-embedding-3-large"
 
