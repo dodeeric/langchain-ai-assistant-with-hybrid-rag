@@ -155,6 +155,11 @@ def assistant_frontend():
                     delete_directory("./chromadb")
                     st.write("Done!")
 
+                if st.button("Clear Streamlit Cache"):
+                    st.cache_data.clear()
+                    st.cache_resource.clear()
+                    st.write("Done!")
+
                 if st.button("Files and DB Info"):
 
                     load_files_and_embed(json_paths, pdf_paths, embed=False)
