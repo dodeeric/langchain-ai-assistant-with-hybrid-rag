@@ -7,8 +7,9 @@ One function to scrape the text and the metadata of a web page
 import requests, bs4
 from bs4 import BeautifulSoup
 from langchain_community.document_loaders import WebBaseLoader
+from typing import Any
 
-def scrape_web_page(url, filter):
+def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
     """
     Name: swp
     Scrape the text and the metadata of a web page
