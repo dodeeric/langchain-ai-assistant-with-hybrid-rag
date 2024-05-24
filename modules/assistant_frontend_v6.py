@@ -17,85 +17,15 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
-import requests, json, shutil
-from bs4 import BeautifulSoup
-import streamlit as st
+import shutil
 import os
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
-from modules.web_scraping_utils_v1 import scrape_web_page
+from modules.web_scraping_utils_v1 import scrape_commons_category, scrape_europeana_url
 from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 from config.config import *
-
-def scrape_commons_category(category):
-    """
-    METHOD 3: For Commons: Scrape the URLs from a Commons Category and save the results in a JSON file
-    """
-    
-    FILE_PATH = "./json_files/commons-"
-
-    items = []
-    href_old = ""
-
-    # Step 1: Load the HTML content from a webpage
-    url = f"https://commons.wikimedia.org/wiki/{category}"
-    response = requests.get(url)
-    html_content = response.text
-
-    # Step 2: Parse the HTML content
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Step 3: Find all URLs in  tags
-    urls = []
-    for link in soup.find_all('a'):
-        href = link.get('href')
-        if href:
-            if href.startswith("/wiki/File:") and href != href_old: # This test because all links are in double!
-                urls.append(f"https://commons.wikimedia.org{href}")
-                href_old = href
-
-    number_of_pages = len(urls)
-    st.write(f"Number of pages to scrape: {number_of_pages}")
-
-    i = 1
-    items = []
-    for url in urls:
-        st.write(f"Scraping {i}/{number_of_pages}...")
-        url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-        item = scrape_web_page(url, "hproduct commons-file-information-table")
-        print(item)
-        items.append(item)
-        #time.sleep(1)
-        i = i + 1
-
-    # Save the Python list in a JSON file
-    # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
-    with open(f"{FILE_PATH}{category}-swp.json", "w") as json_file:
-        json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
-    json_file.close()
-
-
-def scrape_europeana_url(url):
-    """
-    METHOD 4: Scrape one URL (should be Europeana) and save the result in a JSON file
-    """
-
-    url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-    item = scrape_web_page(url, "card metadata-box-card mb-3")
-    print(item)
-    items = []
-    items.append(item)   # Add in a list, even if only one item
-
-    url2 = url.replace("https://","")
-    url2 = url2.replace("http://","")
-    url2 = url2.replace("/","-")
-    # Save the Python list in a JSON file
-    # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
-    with open(f"./json_files/{url2}-swp.json", "w") as json_file:
-        json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
-    json_file.close()
 
 
 def load_files_and_embed(json_file_paths, pdf_file_paths):
