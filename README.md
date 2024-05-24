@@ -31,7 +31,7 @@ $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.g
 $ cd langchain-ai-assistant-with-hybrid-rag
 ```
 
-Add your API keys:
+Add your API keys (only one is mandatory):
 
 ```
 $ nano .env
@@ -42,20 +42,25 @@ OPENAI_API_KEY = "sk-proj-xxx"   ==> Go to: https://platform.openai.com/api-keys
 LANGCHAIN_API_KEY = "ls__xxx"    ==> Go to: https://smith.langchain.com
 LANGCHAIN_TRACING_V2 = "true"    
 ANTHROPIC_API_KEY = "sk-ant-xxx" ==> Go to: https://console.anthropic.com/settings/keys
-GOOGLE_APPLICATION_CREDENTIALS = "./vertexai-sa.json"  ==> Path to the Service Account (with VertexAI role) JSON file 
+GOOGLE_APPLICATION_CREDENTIALS = "./xxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
+ADMIN_PASSWORD = "xxx"
 ```
 
 Install required libraries:
 
 ```
-$ pip install -r requirements.txt
+$ pip install -U -r requirements.txt
 ```
 
-Embedd JSON items and PDF pages:
+Launch the AI Assistant:
 
 ```
-$ python embbed.py
+$ bash app.sh start
 ```
+
+Go to: http://IP:8080
+
+Go to the admin interface, and embed JSON and/or PDF files.
 
 Check the Chroma vector DB: (OPTIONAL)
 
@@ -72,22 +77,6 @@ sqlite> PRAGMA table_info(embedding_metadata);                                  
 sqlite> select * from embedding_metadata where string_value like '%Delper%';          ===> Display matching records
 sqlite> select count(*) from embedding_metadata where string_value like '%Delper%';   ===> Display number of matching records
 ```
-
-Launch the AI Assistant:
-
-```
-$ streamlit run assistant.py &
-```
-
-Go to: http://IP:8501
-
----
-
-Available at https://bmae-ai-assistant.streamlit.app.
-
-This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art and the Belgian monarchy. To answer, the assistant queries the graphic databases BALaT of the IRPA (Royal Institute of Artistic Heritage), Belgica of the KBR (Royal Library) and Wikimedia Commons.
-
-![bmae](./images/screenshot.jpg)
 
 ---
 
