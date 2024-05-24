@@ -19,8 +19,8 @@ def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
     """
     Name: swp
     Scrape the text and the metadata of a web page
-    Input: URL of the page
-    Output: list of dictionaries with: url: url, metadata: metadata, text: text
+    Input: URL of the page, css class to filter
+    Output: dictionary with: url: url, metadata: metadata, text: text
     """
 
     #filter = "two-third last"  # balat / irpa
