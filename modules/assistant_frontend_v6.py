@@ -8,7 +8,7 @@ This function runs the frontend web interface.
 # v3: integrate admin in main web interface
 # v4: move model selection to admin interface + move files dir to json_files + add admin password
 # v5: add a slider for the temperature + errors catch + use config.py
-# v6: move out 2 functions to utils module
+# v6: move out 2 functions to utils module + only 4 LLMs + model menu in config.py
 
 import streamlit as st
 from PIL import Image
@@ -48,7 +48,7 @@ def assistant_frontend():
         st.session_state.messages = []
 
     if "model" not in st.session_state:
-        st.session_state.model = "OpenAI / GPT 4"
+        st.session_state.model = OPENAI_MENU
 
     if "temperature" not in st.session_state:
         st.session_state.temperature = 0.2
@@ -103,7 +103,7 @@ def assistant_frontend():
             # Side bar window: second page (Admin)  #
             # # # # # # # # # # # # # # # # # # # # #
 
-            model_list = ['OpenAI / GPT 4', 'Google / Gemini 1.5', 'Anthropic / Claude 3', 'MetaAI / Llama 3']
+            model_list = [OPENAI_MENU, VERTEXAI_MENU, ANTHROPIC_MENU, OLLAMA_MENU]
             st.session_state.model = st.selectbox('Model: ', model_list)
 
             st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)
