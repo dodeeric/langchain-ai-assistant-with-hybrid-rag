@@ -138,14 +138,16 @@ def assistant_frontend():
                     pdf_paths.append(pdf_path)
 
                 if st.button("Start Embed"):
-                    load_files_and_embed(json_paths, pdf_paths)
+                    load_files_and_embed(json_paths, pdf_paths, embed=True)
                     st.write("Done!")
 
                 if st.button("Delete DB"):
                     delete_directory("./chromadb")
                     st.write("Done!")
 
-                if st.button("List Files"):
+                if st.button("Files and DB Info"):
+
+                    load_files_and_embed(json_paths, pdf_paths, embed=False)
 
                     try:
 
