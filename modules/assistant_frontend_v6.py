@@ -28,7 +28,7 @@ from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 from config.config import *
 
 
-def load_files_and_embed(json_file_paths, pdf_file_paths):
+def load_files_and_embed(json_file_paths: int, pdf_file_paths: int) -> None:
     """
     Loads and chunks files into a list of documents then embed
     """
