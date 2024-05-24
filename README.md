@@ -31,7 +31,7 @@ $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.g
 $ cd langchain-ai-assistant-with-hybrid-rag
 ```
 
-Add your API keys (only one is mandatory):
+Add your API keys (only the OpenAI API key is mandatory):
 
 ```
 $ nano .env
