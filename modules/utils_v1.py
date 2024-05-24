@@ -4,7 +4,7 @@
 Miscealinous functions.
 """
 
-# v1: move 2 functions of from assistant_frontend_v6.py
+# v1: move 2 functions from assistant_frontend_v6.py
 
 import streamlit as st
 import shutil
