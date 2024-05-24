@@ -34,10 +34,16 @@ def instanciate_ai_assistant_chain(model, temperature):
     Steps: Retrieve and generate.
     """
 
-    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
-    vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
-    docs = vector_db.get()
-    documents = docs["documents"]
+    try:
+
+        embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
+        vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+        docs = vector_db.get()
+        documents = docs["documents"]
+
+    except Exception as e:
+        st.write("Error: Cannot instanciate the DB!")
+        st.write(f"Error: {e}")        
 
     # Instanciate the model
 
@@ -109,8 +115,9 @@ def instanciate_ai_assistant_chain(model, temperature):
         question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
         ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
-    except Exception:
+    except Exception as e:
         st.write("Error: Cannot instanciate the chains!")
+        st.write(f"Error: {e}")
         ai_assistant_chain = None
 
     return ai_assistant_chain

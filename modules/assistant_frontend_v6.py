@@ -146,17 +146,24 @@ def assistant_frontend():
                     st.write("Done!")
 
                 if st.button("List Files"):
-                    path = './'
-                    files = os.listdir(path)
-                    st.write("Root path:")
-                    st.write(files)
-                    path = './chromadb'
-                    files = os.listdir(path)
-                    st.write("DB path:")
-                    st.write(files)
-                    file_path = './chromadb/chroma.sqlite3'
-                    file_size = os.path.getsize(file_path)
-                    st.write(f"DB size: {file_size} bytes")
+
+                    try:
+
+                        path = './'
+                        files = os.listdir(path)
+                        st.write("Root path:")
+                        st.write(files)
+                        path = './chromadb'
+                        files = os.listdir(path)
+                        st.write("DB path:")
+                        st.write(files)
+                        file_path = './chromadb/chroma.sqlite3'
+                        file_size = os.path.getsize(file_path)
+                        st.write(f"DB size: {file_size} bytes")
+
+                    except Exception as e:
+                        st.write("Error: Is the DB available?")
+                        st.write(f"Error: {e}")
 
     # # # # # # # # # # # #
     # Chat message window #
