@@ -9,7 +9,7 @@ langchain-chroma
 rank_bm25
 streamlit
 pypdf
-rdflib
-google-cloud-aiplatform
+#rdflib
+#google-cloud-aiplatform
 pysqlite3-binary
 beautifulsoup4 
