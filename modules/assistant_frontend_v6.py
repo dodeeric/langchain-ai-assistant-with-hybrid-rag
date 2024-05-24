@@ -229,4 +229,4 @@ def assistant_frontend():
         st.session_state.messages.append({"role": "assistant", "content": answer})
 
         # Clear the conversation
-        st.button('New chat / Nouvelle conversation ', on_click=reset_conversation)
+        st.button(NEW_CHAT_MESSAGE, on_click=reset_conversation)

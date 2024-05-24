@@ -90,6 +90,7 @@ ASSISTANT_ICON = "👑"
 ASSISTANT_NAME = "Belgian Monarchy Artworks Explorer"
 
 HELLO_MESSAGE = "Hello! Bonjour! Hallo! 👋"
+NEW_CHAT_MESSAGE = "New chat / Nouvelle conversation / Nieuw gesprek"
 USER_PROMPT = "Enter your question / Entrez votre question / Voer uw vraag in"
 
 ABOUT_TEXT = """
