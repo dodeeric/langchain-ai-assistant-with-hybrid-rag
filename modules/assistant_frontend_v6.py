@@ -173,9 +173,9 @@ def assistant_frontend():
                         file_size = os.path.getsize(file_path)
                         file_size = file_size / 1024  # In KB
                         if file_size > 144:
-                            st.write(f"DB size (KB): {file_size} bytes")
+                            st.write(f"DB size: {file_size} KB")
                         else:
-                            st.write(f"DB size (KB): {file_size} bytes. DB is empty!")
+                            st.write(f"DB size: {file_size} KB. DB is empty!")
 
                     except Exception as e:
                         st.write("Error: Is the DB available?")
