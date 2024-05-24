@@ -12,7 +12,6 @@ import streamlit as st
 import requests, json
 from bs4 import BeautifulSoup
 
-from modules.web_scraping_utils_v1 import scrape_web_page
 from config.config import *
 
 
