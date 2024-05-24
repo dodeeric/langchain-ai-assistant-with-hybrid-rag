@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Define the application name
-SERVICE_NAME="assistant_v11"
+SERVICE_NAME="assistant"
 
 # Define the user that should be running the service
 SERVICE_USER="codespace"
 
 # Define the keyword to identify the process
-KEYWORD="assistant_v11"
+KEYWORD="streamlit"
 
 # Define the folder where the application is located
 FOLDER="./"
@@ -15,20 +15,19 @@ FOLDER="./"
 # Function to start the service
 start_service() {
     if [[ `/usr/bin/whoami` == $SERVICE_USER ]]; then
-        pushd .
+        pushd . > /dev/null
         echo "Starting $SERVICE_NAME..."
         cd $FOLDER
         # Command to start the Streamlit application
         streamlit run assistant_v11.py --server.port=8080 &
-        sleep 20
+        sleep 5
         PROC=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
         if [ -n "$PROC" ] && [ "$PROC" != "" ]; then
             echo "OK: system started."
         else
             echo "ERROR: system process not found!"
         fi
-        echo "script execution finished!"
-        popd
+        popd > /dev/null
     else
         echo "User must be $SERVICE_USER !"
     fi
@@ -37,20 +36,20 @@ start_service() {
 # Function to stop the service
 stop_service() {
     if [[ `/usr/bin/whoami` == $SERVICE_USER ]]; then
-        pushd .
-        echo "Stopping $SERVICE_NAME......"
+        pushd . > /dev/null
+        echo "Stopping $SERVICE_NAME..."
         # Get the process ID
         processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
-        echo "Trying to kill process with key $SERVICE_NAME - ignore error messages below."
+        echo "Trying to kill process with key $SERVICE_NAME."
         kill $processPID
-        sleep 10
+        sleep 5
         while [ -n "$processPID" ]; do
-            echo "Waiting process ($processPID) to shutdown...20s"
-            sleep 20
+            echo "Waiting process ($processPID) to shutdown..."
+            sleep 5
             processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
         done
-        echo "Ensured process with key $SERVICE_NAME is no longer running."
-        popd
+        echo "OK: system stopped."
+        popd > /dev/null
     else
         echo "User must be $SERVICE_USER !"
     fi
