@@ -171,7 +171,11 @@ def assistant_frontend():
                         st.write(files)
                         file_path = './chromadb/chroma.sqlite3'
                         file_size = os.path.getsize(file_path)
-                        st.write(f"DB size: {file_size} bytes")
+                        file_size = file_size / 1024  # In KB
+                        if file_size > 144:
+                            st.write(f"DB size (KB): {file_size} bytes")
+                        else:
+                            st.write(f"DB size (KB): {file_size} bytes. DB is empty!")
 
                     except Exception as e:
                         st.write("Error: Is the DB available?")
