@@ -12,9 +12,8 @@ AI assistant coded with the LangChain framework:
 - Logs sent to LangSmith
 - AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude3, Ollama (Llama3, etc.). Vector size: 3072.
 - Streaming of the AI answer
-- Admin interface (Scrape web pages, Embed in Vector DB)
-
-Code to scrap web pages content given a list of URLs and the CSS class to scrap. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field). For Wikimedia Commons, you can crowl and scrape the pages of a category.
+- Admin interface (scrape web pages, upload PDF files, Embed in Vector DB)
+- Scrape web pages content given an URL and the CSS class to scrape. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field). For Wikimedia Commons, you can crowl and scrape the pages of a category.
  
 Frameworks and tools:
 
