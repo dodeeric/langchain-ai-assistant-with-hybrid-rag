@@ -21,6 +21,16 @@ from modules.utils_v1 import load_files_and_embed, delete_directory
 from config.config import *
 
 
+def reset_conversation():
+    """
+    Reset the conversation: clear the chat history and clear the screen.
+    """
+
+    st.session_state.messages = []
+    st.session_state.chat_history = []
+    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
+
+
 def assistant_frontend():
     """
     All related to Streamlit and connection with the Langchain backend. Includes also the admin interface.
@@ -208,3 +218,6 @@ def assistant_frontend():
 
         # Add Answer to chat history for Streamlit (messages)
         st.session_state.messages.append({"role": "assistant", "content": answer})
+
+        # Clear the conversation
+        st.button('New chat / Nouvelle conversation ', on_click=reset_conversation)
