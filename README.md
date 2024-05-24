@@ -38,12 +38,12 @@ $ nano .env
 ```
 
 ```
-OPENAI_API_KEY = "sk-proj-xxx"                 ==> Go to https://platform.openai.com/api-keys
-ANTHROPIC_API_KEY = "sk-ant-xxx"               ==> Go to https://console.anthropic.com/settings/keys
-GOOGLE_APPLICATION_CREDENTIALS = "./xxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
-ADMIN_PASSWORD = "xxx"                         ==> You chose your password
-LANGCHAIN_API_KEY = "ls__xxx"                  ==> Go to https://smith.langchain.com (Langsmith)
-LANGCHAIN_TRACING_V2 = "true"                  ==> set to false if you will not use Langsmith traces
+OPENAI_API_KEY = "sk-proj-xxx"       ==> Go to https://platform.openai.com/api-keys
+ANTHROPIC_API_KEY = "sk-ant-xxx"     ==> Go to https://console.anthropic.com/settings/keys
+LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Langsmith)
+LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
+ADMIN_PASSWORD = "xxx"               ==> You chose your password
+GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
 ```
 
 Install required libraries:
