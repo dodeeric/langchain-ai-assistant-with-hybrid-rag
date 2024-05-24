@@ -25,7 +25,7 @@ from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 
-from modules.scrape_web_page_v2 import scrape_web_page
+from modules.web_scraping_utils_v1 import scrape_web_page
 from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 from config.config import *
 
