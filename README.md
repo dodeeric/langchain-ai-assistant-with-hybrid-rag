@@ -22,7 +22,8 @@ Frameworks and tools:
 - LangSmith: https://smith.langchain.com (logs and debug for LangChain applications)
 - Streamlit: https://streamlit.io (web interface Python framework for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
-- OpenAI: https://platform.openai.com (LLMs)
+- OpenAI (GPT): https://platform.openai.com (LLM)
+- Anthropic (Claude): https://console.anthropic.com/dashboard (LLM)
 
 Installation:
 
@@ -38,12 +39,12 @@ $ nano .env
 ```
 
 ```
-OPENAI_API_KEY = "sk-proj-xxx"   ==> Go to: https://platform.openai.com/api-keys
-LANGCHAIN_API_KEY = "ls__xxx"    ==> Go to: https://smith.langchain.com
-LANGCHAIN_TRACING_V2 = "true"    
-ANTHROPIC_API_KEY = "sk-ant-xxx" ==> Go to: https://console.anthropic.com/settings/keys
+OPENAI_API_KEY = "sk-proj-xxx"                 ==> Go to https://platform.openai.com/api-keys
+ANTHROPIC_API_KEY = "sk-ant-xxx"               ==> Go to https://console.anthropic.com/settings/keys
 GOOGLE_APPLICATION_CREDENTIALS = "./xxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
-ADMIN_PASSWORD = "xxx"
+ADMIN_PASSWORD = "xxx"                         ==> You shose your password
+LANGCHAIN_API_KEY = "ls__xxx"                  ==> Go to https://smith.langchain.com (Langsmith)
+LANGCHAIN_TRACING_V2 = "true"                  ==> set to false if you will not use Langsmith traces
 ```
 
 Install required libraries:
@@ -60,7 +61,7 @@ $ bash app.sh start
 
 Go to: http://IP:8080
 
-Go to the admin interface, and embed JSON and/or PDF files.
+Go to the admin interface (introduce the admin password), and embed JSON and/or PDF files.
 
 Check the Chroma vector DB: (OPTIONAL)
 
@@ -80,16 +81,20 @@ sqlite> select count(*) from embedding_metadata where string_value like '%Delper
 
 ---
 
-Running with Ollama / Llama 3:
+Running Ollama / Llama 3 (or another LLM) locally:
 
 Install Ollama, then:
 
+```
 $ ollama pull llama3
 $ ollama list
 $ ollama serve
+```
 
 In a new window:
 
+```
 $ ollama run llama3
 >>> What's the capital of France?
 >>> /bye
+```
