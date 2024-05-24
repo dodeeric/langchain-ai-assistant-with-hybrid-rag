@@ -48,7 +48,7 @@ def assistant_frontend():
         st.session_state.messages = []
 
     if "model" not in st.session_state:
-        st.session_state.model = "OpenAI (2): gpt-4o-2024-05-13"
+        st.session_state.model = "OpenAI / GPT 4"
 
     if "temperature" not in st.session_state:
         st.session_state.temperature = 0.2
@@ -103,7 +103,7 @@ def assistant_frontend():
             # Side bar window: second page (Admin)  #
             # # # # # # # # # # # # # # # # # # # # #
 
-            model_list = ['OpenAI (2): gpt-4o-2024-05-13', 'OpenAI (1): gpt-4-turbo-2024-04-09', 'Google (2): gemini-1.5-pro-preview-0409', 'Google (1): gemini-1.0-pro-002', 'Anthropic: claude-3-opus-20240229', 'MetaAI: llama3-8b']
+            model_list = ['OpenAI / GPT 4', 'Google / Gemini 1.5', 'Anthropic / Claude 3', 'MetaAI / Llama 3']
             st.session_state.model = st.selectbox('Model: ', model_list)
 
             st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)

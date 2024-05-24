@@ -49,18 +49,14 @@ def instanciate_ai_assistant_chain(model, temperature):
 
     try:
 
-        if model == "MetaAI: llama3-8b":
+        if model == "MetaAI / Llama 3":
             llm = ChatOllama(model=OLLAMA_MODEL, temperature=temperature, base_url=OLLAMA_URL)
-        elif model == "Anthropic: claude-3-opus-20240229":
+        elif model == "Anthropic / Claude 3":
             llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=temperature, max_tokens=4000)
-        elif model == "Google (1): gemini-1.0-pro-002":
+        elif model == "Google / Gemini 1.5":
             llm = ChatVertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_output_tokens=4000)
-        elif model == "Google (2): gemini-1.5-pro-preview-0409":
-            llm = ChatVertexAI(model_name=VERTEXAI_MODEL2, temperature=temperature, max_output_tokens=4000)
-        elif model == "OpenAI (1): gpt-4-turbo-2024-04-09":
+        elif model == "OpenAI / GPT 4":
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
-        elif model == "OpenAI (2): gpt-4o-2024-05-13":
-            llm = ChatOpenAI(model=OPENAI_MODEL2, temperature=temperature)
         else:
             st.write("Error: No model available!")
             quit()
@@ -95,7 +91,7 @@ def instanciate_ai_assistant_chain(model, temperature):
         ]
     )
 
-    if model == "OpenAI (1): gpt-4-turbo-2024-04-09" or model == "OpenAI (2): gpt-4o-2024-05-13":
+    if model == "OpenAI / GPT 4":
         qa_system_prompt = SYSTEM_PROMPT
     else:
         qa_system_prompt = SYSTEM_PROMPT2
