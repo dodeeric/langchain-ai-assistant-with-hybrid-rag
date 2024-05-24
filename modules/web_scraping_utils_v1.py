@@ -19,7 +19,7 @@ def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
     """
     Name: swp
     Scrape the text and the metadata of a web page
-    Input: URL of the page, css class to filter
+    Input: url of the page, css class to filter
     Output: dictionary with: url: url, metadata: metadata, text: text
     """
 
@@ -69,9 +69,9 @@ def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
     return page  # Dictionary
 
 
-def scrape_commons_category(category):
+def scrape_commons_category(category: str) -> None:
     """
-    METHOD 3: For Commons: Scrape the URLs from a Commons Category and save the results in a JSON file
+    For Wikimedia Commons: Scrape the URLs from a Category and save the results in a JSON file
     """
     
     FILE_PATH = "./json_files/commons-"
@@ -117,9 +117,9 @@ def scrape_commons_category(category):
     json_file.close()
 
 
-def scrape_europeana_url(url):
+def scrape_europeana_url(url: str) -> None:
     """
-    METHOD 4: Scrape one URL (should be Europeana) and save the result in a JSON file
+    For Europeana: Scrape one URL and save the result in a JSON file
     """
 
     url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
