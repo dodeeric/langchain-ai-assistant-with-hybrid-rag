@@ -8,11 +8,7 @@ This function runs the frontend web interface.
 # v3: integrate admin in main web interface
 # v4: move model selection to admin interface + move files dir to json_files + add admin password
 # v5: add a slider for the temperature + errors catch + use config.py
-
-# Only to be able to run on Github Codespace
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# v6: move out 2 functions to utils module
 
 import streamlit as st
 from PIL import Image

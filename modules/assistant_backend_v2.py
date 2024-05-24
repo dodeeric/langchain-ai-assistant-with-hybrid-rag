@@ -7,6 +7,11 @@ all the Langchain chains for RAG and LLM.
 
 # v2: add temperature as a variable + catch errors + use langchain-google-vertexai package + parameters in config.py
 
+# Only to be able to run on Github Codespace
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Miscealinous functions.
+Miscellaneous functions.
 """
 
 # v1: move 2 functions from assistant_frontend_v6.py
