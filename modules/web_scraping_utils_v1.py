@@ -109,7 +109,6 @@ def scrape_commons_category(category: str) -> None:
         item = scrape_web_page(url, "hproduct commons-file-information-table")
         print(item)
         items.append(item)
-        #time.sleep(1)
         i = i + 1
 
     # Save the Python list in a JSON file
