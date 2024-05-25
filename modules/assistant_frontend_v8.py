@@ -10,6 +10,7 @@ This function runs the frontend web interface.
 # v5: add a slider for the temperature + errors catch + use config.py
 # v6: move out 2 functions to utils module + only 4 LLMs + model menu in config.py
 # v7: corrected menu switch (about/admin) + display model in use
+# v8: upload a file
 
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
