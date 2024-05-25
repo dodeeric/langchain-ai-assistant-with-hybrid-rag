@@ -87,7 +87,7 @@ def assistant_frontend():
         password = st.text_input("Enter admin password: ", type="password")
         if password != admin_password:
             st.session_state.password_ok = False
-            st.write("Wrong password!")
+            #st.write("Wrong password!")
         else:
             st.session_state.password_ok = True
 
