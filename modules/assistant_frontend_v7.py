@@ -12,7 +12,6 @@ This function runs the frontend web interface.
 # v7: corrected menu switch (about/admin) + display model in use
 
 import streamlit as st
-from PIL import Image
 from langchain.memory import ConversationBufferWindowMemory
 import os
 
@@ -66,8 +65,7 @@ def assistant_frontend():
     # Main window #
     # # # # # # # #
 
-    logo = Image.open(LOGO_PATH)
-    st.image(logo, use_column_width=True)
+    st.image(LOGO_PATH, use_column_width=True)
 
     st.markdown(f"## {ASSISTANT_NAME}")
     st.caption("💬 A chatbot powered by Langchain and Streamlit")
