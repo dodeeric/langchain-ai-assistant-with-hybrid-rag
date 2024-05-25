@@ -113,7 +113,7 @@ def assistant_frontend():
             st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)
             st.write("OpenAI: 0 to 2, Anthropic: -1 to 1")
             
-            options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB', 'Upload File']
+            options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB', 'Upload File', 'XXX']
             choice = st.sidebar.radio("Make your choice: ", options)
 
             if choice == "Scrape Europeana":
