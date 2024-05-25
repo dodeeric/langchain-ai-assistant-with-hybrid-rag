@@ -7,7 +7,7 @@ EMBEDDING_MODEL = "text-embedding-3-large"  # Must be a model from OpenAI
 OPENAI_MODEL = "gpt-4o-2024-05-13"  # Default LLM
 ANTHROPIC_MODEL = "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
-OLLAMA_MODEL = "llama3:8b"  # Can be another model than Llama
+OLLAMA_MODEL = "llama3"  # Can be another model than Llama
 
 OPENAI_MENU = "OpenAI / GPT 4"  # Default LLM
 ANTHROPIC_MENU = "Anthropic / Claude 3"
@@ -19,7 +19,7 @@ COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
 
-OLLAMA_URL = "http://104.248.246.235:80"  # "http://localhost:11434"
+OLLAMA_URL = "http://35.209.146.25"  # "http://localhost:11434"
 
 CONTEXTUALIZE_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \
