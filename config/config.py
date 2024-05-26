@@ -16,7 +16,7 @@ OLLAMA_MENU = "MetaAI / Llama 3"  # Can be another model than Llama
 
 DEFAULT_MODEL = ANTHROPIC_MENU  # One of the model menu choices
 DEFAULT_MENU_CHOICE = 1  # OpenAI: 0, Anthropic: 1, VertexAI: 2, Ollama: 3)
-DEFAULT_TEMPERATURE = 0.5
+DEFAULT_TEMPERATURE = 0.5  # OpenAI: 0-2, Anthropic: 0-1
 
 COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 

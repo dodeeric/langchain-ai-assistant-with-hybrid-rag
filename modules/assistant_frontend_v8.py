@@ -110,8 +110,8 @@ def assistant_frontend():
             model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
             st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
 
-            st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)
-            st.write("OpenAI: 0 to 2, Anthropic: -1 to 1")
+            st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
+            st.caption("OpenAI: 0-2, Anthropic: 0-1")
             
             options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB', 'Upload File']
             choice = st.sidebar.radio("Make your choice: ", options)
