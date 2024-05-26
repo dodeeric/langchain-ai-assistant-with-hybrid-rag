@@ -1,4 +1,5 @@
 .env
+.git
 __pycache__/*
 modules/__pycache__/*
 config/__pycache__/*
