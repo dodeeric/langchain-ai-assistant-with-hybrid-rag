@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Miscellaneous functions.
+Miscellaneous functions, including function to chunk and embed files.
 """
 
 # v1: move 2 functions from assistant_frontend_v6.py
