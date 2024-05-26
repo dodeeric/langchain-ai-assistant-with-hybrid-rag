@@ -113,7 +113,7 @@ def assistant_frontend():
             st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
             st.caption("OpenAI: 0-2, Anthropic: 0-1")
             
-            options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB', 'Upload File']
+            options = ['Scrape Commons', 'Scrape Europeana', 'Embed in DB', 'Upload File', 'Upload PDF File']
             choice = st.sidebar.radio("Make your choice: ", options)
 
             if choice == "Scrape Europeana":
@@ -140,7 +140,18 @@ def assistant_frontend():
                         file.write(bytes_data)
                     st.success(f"File '{file_name}' uploaded and saved successfully!")
                 else:
-                    st.warning("No file uploaded yet.")                    
+                    st.warning("No file uploaded yet.")
+            elif choice == "Upload PDF File":
+                st.caption("Upload a PDF file in the 'pdf_files' directory.")
+                uploaded_file = st.file_uploader("Choose a PDF file:", type=["pdf"])
+                if uploaded_file is not None:
+                    bytes_data = uploaded_file.getvalue()
+                    file_name = uploaded_file.name
+                    with open(f"./pdf_files/{file_name}", "wb") as file:
+                        file.write(bytes_data)
+                    st.success(f"File '{file_name}' uploaded and saved successfully!")
+                else:
+                    st.warning("No file uploaded yet.")  
             elif choice == "Embed in DB":
                 # Embed data in Chroma DB
                 # Load and index
