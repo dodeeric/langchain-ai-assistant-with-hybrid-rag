@@ -30,9 +30,9 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
         for json_file_path in json_file_paths:
             loader = JSONLoader(file_path=json_file_path, jq_schema=".[]", text_content=False)
             docs = loader.load()   # 1 JSON item per chunk
-            print(f"JSON file: {json_file_path}, Number of JSON items: {len(docs)}")
+            print(f"JSON file: {json_file_path}, Number of web pages: {len(docs)}")
             documents = documents + docs
-        st.write(f"Number of JSON items: {len(documents)}")
+        st.write(f"Number of web pages: {len(documents)}")
         if embed:
             Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
@@ -46,7 +46,7 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
                 print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
                 documents2 = documents2 + pages
         st.write(f"Number of PDF pages: {len(documents2)}")
-        st.write(f"Total number of items (JSON items and PDF pages): {len(documents) + len(documents2)}")
+        st.write(f"Number of web and pdf pages: {len(documents) + len(documents2)}")
         if embed:
             Chroma.from_documents(documents2, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 

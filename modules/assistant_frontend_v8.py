@@ -10,7 +10,7 @@ This function runs the frontend web interface.
 # v5: add a slider for the temperature + errors catch + use config.py
 # v6: move out 2 functions to utils module + only 4 LLMs + model menu in config.py
 # v7: corrected menu switch (about/admin) + display model in use
-# v8: upload a file
+# v8: upload a file + upload a pdf file + display total number of pages (web + pdf)
 
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
@@ -156,7 +156,7 @@ def assistant_frontend():
                 # Embed data in Chroma DB
                 # Load and index
 
-                st.caption('Embed in the vector DB all the files in the JSON (web pages) and PDF directories.')
+                st.caption('Embed in the vector DB all the web and pdf pages.')
 
                 JSON_FILES_DIR = "./json_files/"
                 PDF_FILES_DIR = "./pdf_files/"
