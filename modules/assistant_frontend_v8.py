@@ -49,10 +49,10 @@ def assistant_frontend():
         st.session_state.messages = []
 
     if "model" not in st.session_state:
-        st.session_state.model = OPENAI_MENU
+        st.session_state.model = DEFAULT_MODEL
 
     if "temperature" not in st.session_state:
-        st.session_state.temperature = 0.2
+        st.session_state.temperature = DEFAULT_TEMPERATURE
 
     if "password_ok" not in st.session_state:
         st.session_state.password_ok = False
@@ -77,7 +77,7 @@ def assistant_frontend():
 
     with st.sidebar:
 
-        st.write(f"Model: {st.session_state.model}")
+        st.write(f"Model: {st.session_state.model} ({st.session_state.temperature})")
 
         st.session_state.page = st.radio("Go to page:", ["About", "Admin"])
 
