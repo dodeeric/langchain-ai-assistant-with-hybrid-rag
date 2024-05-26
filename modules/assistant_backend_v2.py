@@ -91,7 +91,7 @@ def instanciate_ai_assistant_chain(model, temperature):
         ]
     )
 
-    if model == "OpenAI / GPT 4":
+    if model == OPENAI_MENU:
         qa_system_prompt = SYSTEM_PROMPT
     else:
         qa_system_prompt = SYSTEM_PROMPT2

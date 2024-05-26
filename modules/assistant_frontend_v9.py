@@ -114,7 +114,7 @@ def assistant_frontend():
             st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
             st.caption("OpenAI: 0-2, Anthropic: 0-1")
             
-            options = ['Upload PDF Files', 'Scrape Web Pages', 'Scrape Commons Categories', 'Embed in DB', 'Upload Files']
+            options = ['Upload PDF Files', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Upload Files']
             choice = st.sidebar.radio("Make your choice: ", options)
 
             if choice == "Scrape Web Pages":
@@ -127,7 +127,7 @@ def assistant_frontend():
                     st.write(f"Scraping the web page...")
                     scrape_web_page_url(url, filter)
                     st.write(f"Web page scraped and saved in a JSON file!")
-            elif choice == "Scrape Commons Categories":
+            elif choice == "Scrape Web Pages from Wikimedia Commons":
                 st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file.")
                 category = st.text_input("Category: ")
                 if category:
@@ -156,7 +156,7 @@ def assistant_frontend():
                     st.success(f"File '{file_name}' uploaded and saved successfully!")
                 else:
                     st.warning("No file uploaded yet.")  
-            elif choice == "Embed in DB":
+            elif choice == "Embed Pages in DB":
                 # Embed data in Chroma DB
                 # Load and index
 

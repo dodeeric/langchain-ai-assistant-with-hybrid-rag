@@ -34,6 +34,7 @@ Chat History:
 
 {chat_history}"""
 
+# This system prompt is used with the OpenAI model
 SYSTEM_PROMPT = """You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
@@ -57,6 +58,7 @@ Chat History:
 
 {chat_history}"""
 
+# This system prompt is used with models other than OpenAI
 SYSTEM_PROMPT2 = """You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
