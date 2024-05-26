@@ -187,9 +187,10 @@ def assistant_frontend():
                     delete_directory("./chromadb")
                     st.write("Done!")
 
-                if st.button("Clear Streamlit Cache"):
+                if st.button("Clear Memory and Streamlit Cache"):
                     st.cache_data.clear()
                     st.cache_resource.clear()
+                    reset_conversation()
                     st.write("Done!")
 
                 if st.button("Files and DB Info"):
