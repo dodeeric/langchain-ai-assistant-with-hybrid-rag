@@ -38,16 +38,17 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
 
         nbr_files = len(pdf_file_paths)
         st.write(f"Number of PDF files: {nbr_files}")
-        documents = []
+        documents2 = []
         if pdf_file_paths:  # if equals to "", then skip
             for pdf_file_path in pdf_file_paths:
                 loader = PyPDFLoader(pdf_file_path)
                 pages = loader.load_and_split()  # 1 pdf page per chunk
                 print(f"PDF file: {pdf_file_path}, Number of PDF pages: {len(pages)}")
-                documents = documents + pages
-        st.write(f"Number of PDF pages: {len(documents)}")
+                documents2 = documents2 + pages
+        st.write(f"Number of PDF pages: {len(documents2)}")
+        st.write(f"Total number of items (JSON items and PDF pages): {len(documents) + len(documents2)}")
         if embed:
-            Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+            Chroma.from_documents(documents2, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
     except Exception as e:
         st.write("Error: Is the DB available?")
