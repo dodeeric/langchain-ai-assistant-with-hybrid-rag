@@ -15,7 +15,7 @@ VERTEXAI_MENU = "Google / Gemini 1.5"
 OLLAMA_MENU = "MetaAI / Llama 3"
 
 DEFAULT_MODEL = OPENAI_MENU  # One of the model menu choices
-DEFAULT_TEMPERATURE = 0.2
+DEFAULT_TEMPERATURE = 0.5
 
 COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 
