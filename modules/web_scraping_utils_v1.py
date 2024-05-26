@@ -118,16 +118,16 @@ def scrape_commons_category(category: str) -> None:
     json_file.close()
 
 
-def scrape_europeana_url(url: str) -> None:
+def scrape_web_page_url(url: str, filter: str) -> None:
     """
-    For Europeana: Scrape one URL and save the result in a JSON file
+    Scrape one URL and save the result in a JSON file
     """
 
     url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-    item = scrape_web_page(url, "card metadata-box-card mb-3")
+    item = scrape_web_page(url, filter)
     print(item)
     items = []
-    items.append(item)   # Add in a list, even if only one item
+    items.append(item)   # Add in a list, even if only one item/page
 
     url2 = url.replace("https://","")
     url2 = url2.replace("http://","")
