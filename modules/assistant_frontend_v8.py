@@ -107,8 +107,8 @@ def assistant_frontend():
             # Side bar window: second page (Admin)  #
             # # # # # # # # # # # # # # # # # # # # #
 
-            model_list = [OPENAI_MENU, VERTEXAI_MENU, ANTHROPIC_MENU, OLLAMA_MENU]
-            st.session_state.model = st.selectbox('Model: ', model_list)
+            model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
+            st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
 
             st.session_state.temperature = st.slider("Temperature: ", -1.0, 2.0, 0.2)
             st.write("OpenAI: 0 to 2, Anthropic: -1 to 1")
