@@ -117,20 +117,21 @@ def assistant_frontend():
             choice = st.sidebar.radio("Make your choice: ", options)
 
             if choice == "Scrape Europeana":
-                st.write("Give the web page URL of an item from Europeana. The page will be scraped and saved in a JSON file.")
+                st.caption("Give the web page URL of an item from Europeana. The page will be scraped and saved in a JSON file.")
                 url = st.text_input("URL: ")
                 if url:
                     st.write(f"Scraping the web page...")
                     scrape_europeana_url(url)
                     st.write(f"Web page scraped and saved in a JSON file!")
             elif choice == "Scrape Commons":
-                st.write("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file.")
+                st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file.")
                 category = st.text_input("Category: ")
                 if category:
                     st.write(f"Scraping the web pages...")
                     scrape_commons_category(category)
                     st.write(f"Web pages scraped and saved in a JSON file!")
             elif choice == "Upload File":
+                st.caption("Upload a file in the root directory.")
                 uploaded_file = st.file_uploader("Choose a file:")
                 if uploaded_file is not None:
                     bytes_data = uploaded_file.getvalue()
@@ -143,6 +144,8 @@ def assistant_frontend():
             elif choice == "Embed in DB":
                 # Embed data in Chroma DB
                 # Load and index
+
+                st.caption('Embed in the vector DB all the files in the JSON (web pages) and PDF directories.')
 
                 JSON_FILES_DIR = "./json_files/"
                 PDF_FILES_DIR = "./pdf_files/"
