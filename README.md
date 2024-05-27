@@ -62,6 +62,8 @@ Launch the AI Assistant:
 $ bash app.sh start
 ```
 
+Remark: if you get the "streamlit: command not found" error, then log off, then log in, to have the PATH updated.
+
 Go to: http://IP:8080
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
