@@ -1,25 +1,23 @@
 # LangChain AI Assistant with Hybrid RAG and Memory
 
-This code can be adapted to create your own AI assistant.
+This application can be configured (see config.py) to create your own specialized AI assistant.
 
-AI assistant coded with the LangChain framework:
-
-- Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
-- Chat history (predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
+- AI Python framework: Langchain
+- Web interface Python framework: Streamlit
 - Vector DB: Chroma
-- Web interface: Streamlit
-- Files ingestion into the RAG (vector DB): JSON files (one JSON item per chunk) and PDF files (one PDF page per chunk)
-- Logs sent to LangSmith
-- AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude3, Ollama (Llama3, etc.). Vector size: 3072.
+- Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
+- Chat history (use of predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - Streaming of the AI answer
-- Admin interface (scrape web pages, upload PDF files, Embed in Vector DB)
-- Scrape web pages content given an URL and the CSS class to scrape. Is added in the JSON item: the page url (url field), the page metadata (opengraph from Facebook) (metadata field), the text of the page (text field). For Wikimedia Commons, you can crowl and scrape the pages of a category.
+- Files ingestion into the RAG (vector DB): JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
+- Logs sent to LangSmith
+- AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude 3, Ollama (Llama3, etc.). Vector size: 3072.
+- Admin interface (scrape web pages, upload PDF files, embed in vector DB)
  
 Frameworks and tools:
 
 - LangChain: https://www.langchain.com (Python framework for AI applications)
 - LangSmith: https://smith.langchain.com (logs and debug for LangChain applications)
-- Streamlit: https://streamlit.io (web interface Python framework for data / AI applications)
+- Streamlit: https://streamlit.io (Python framework for web interfaces for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI (GPT): https://platform.openai.com (LLM)
 - Anthropic (Claude): https://console.anthropic.com/dashboard (LLM)
@@ -60,7 +58,7 @@ $ bash app.sh start
 
 Go to: http://IP:8080
 
-Go to the admin interface (introduce the admin password), and embed JSON and/or PDF files.
+Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
 
 Check the Chroma vector DB: (OPTIONAL)
 
