@@ -8,10 +8,10 @@ This application can be configured (see config.py) to create your own specialize
 - Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
 - Chat history (use of predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - Streaming of the AI answer
-- Files ingestion into the RAG (vector DB): JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
 - Logs sent to Langsmith
 - AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude 3, Ollama (Llama 3, etc.). Vector size: 3072.
 - Admin interface (scrape web pages, upload PDF files, embed in vector DB)
+- Files ingestion into the vector DB: JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
  
 Frameworks and tools:
 
