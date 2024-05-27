@@ -21,6 +21,8 @@ Frameworks and tools:
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI (GPT): https://platform.openai.com (LLM)
 - Anthropic (Claude): https://console.anthropic.com/dashboard (LLM)
+- Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
+- Ollama (Llama, etc.): https://ollama.com (LLM)
 
 Installation:
 
