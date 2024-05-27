@@ -16,7 +16,7 @@ This application can be configured (see config.py) to create your own specialize
 Frameworks and tools:
 
 - Langchain: https://www.langchain.com (Python framework for AI applications)
-- Langsmith: https://smith.langchain.com (logs and debug for LangChain applications)
+- Langsmith: https://smith.langchain.com (logs and debug for Langchain applications)
 - Streamlit: https://streamlit.io (Python framework for web interfaces for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
 - OpenAI (GPT): https://platform.openai.com (LLM)
