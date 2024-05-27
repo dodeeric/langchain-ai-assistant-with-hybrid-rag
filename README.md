@@ -26,6 +26,8 @@ Frameworks and tools:
 
 Installation:
 
+Requirements: Python 3.10
+
 ```
 $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.git
 $ cd langchain-ai-assistant-with-hybrid-rag
