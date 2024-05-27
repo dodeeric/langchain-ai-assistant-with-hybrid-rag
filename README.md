@@ -50,6 +50,12 @@ ADMIN_PASSWORD = "xxx"               ==> You chose your password
 GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
 ```
 
+Configure the application:
+
+```
+$ nano config/config.py
+```
+
 Install required libraries:
 
 ```
@@ -67,6 +73,8 @@ Remark: if you get the "streamlit: command not found" error, then log off, then 
 Go to: http://IP:8080 (the IP is displayed on the screen in the "External URL".)
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
+
+Install a reverse proxy (Nginx for example) on the server if you want to listen on port 80 (http) or 443 (https). It has to forward the requests from port 80 to port 8080. 
 
 Check the Chroma vector DB: (OPTIONAL)
 
