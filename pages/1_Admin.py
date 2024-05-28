@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-This function runs the admin web interface.
+This subpage runs the admin web interface.
 """
 
 import streamlit as st
@@ -25,6 +25,8 @@ def reset_conversation():
 
 st.title("Admin")
 
+st.sidebar.write(f"Model: {st.session_state.model} ({st.session_state.temperature})")
+
 # Ask admin password to access admin menu
 admin_password = os.getenv("ADMIN_PASSWORD", "YYYY")
 password = st.sidebar.text_input("Enter admin password: ", type="password")
@@ -38,26 +40,32 @@ if st.session_state.password_ok:
             # # # # # # # # # # # # # # # # # # # # #
             # Side bar window: second page (Admin)  #
             # # # # # # # # # # # # # # # # # # # # #
-
-            model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
-            st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
-
-            st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
-            st.caption("OpenAI: 0-2, Anthropic: 0-1")
-            
-            options = ['Upload PDF Files', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Upload Files']
+           
+            options = ['Upload PDF Files', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload Files']
             choice = st.sidebar.radio("Make your choice: ", options)
 
             if choice == "Scrape Web Pages":
                 st.caption("Give the web page URL and the filter (CSS class). The page will be scraped and saved in a JSON file.")
-                st.caption("filter: two-third last (balat / irpa), media-body (belgica / kbr), hproduct commons-file-information-table \
-                           (commons / wikimedia: summary or description section), card metadata-box-card mb-3 (europeana / kul, irpa, etc.)")
+                st.caption("""
+                           Filter: 
+                           - two-third last (balat / irpa)
+                           - media-body (belgica / kbr)
+                           - hproduct commons-file-information-table (commons / wikimedia: summary or description section)
+                           - card metadata-box-card mb-3 (europeana / kul, irpa, etc.)
+                           """)
                 url = st.text_input("URL: ")
                 filter = st.text_input("Filter: ")
                 if url and filter:
                     st.write(f"Scraping the web page...")
                     scrape_web_page_url(url, filter)
                     st.write(f"Web page scraped and saved in a JSON file!")
+
+            elif choice == "Model and Temperature":
+                model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
+                st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
+                st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
+                st.caption("OpenAI: 0-2, Anthropic: 0-1")
+
             elif choice == "Scrape Web Pages from Wikimedia Commons":
                 st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file.")
                 category = st.text_input("Category: ")
@@ -65,8 +73,9 @@ if st.session_state.password_ok:
                     st.write(f"Scraping the web pages...")
                     scrape_commons_category(category)
                     st.write(f"Web pages scraped and saved in a JSON file!")
+
             elif choice == "Upload Files":
-                st.caption("Upload a file in the root directory.")
+                st.caption("Upload a file in the 'root' directory.")
                 uploaded_file = st.file_uploader("Choose a file:")
                 if uploaded_file is not None:
                     bytes_data = uploaded_file.getvalue()
@@ -76,6 +85,7 @@ if st.session_state.password_ok:
                     st.success(f"File '{file_name}' uploaded and saved successfully!")
                 else:
                     st.warning("No file uploaded yet.")
+
             elif choice == "Upload PDF Files":
                 st.caption("Upload a PDF file in the 'pdf_files' directory.")
                 uploaded_file = st.file_uploader("Choose a PDF file:", type=["pdf"])
@@ -87,6 +97,7 @@ if st.session_state.password_ok:
                     st.success(f"File '{file_name}' uploaded and saved successfully!")
                 else:
                     st.warning("No file uploaded yet.")  
+
             elif choice == "Embed Pages in DB":
                 # Embed data in Chroma DB
                 # Load and index
