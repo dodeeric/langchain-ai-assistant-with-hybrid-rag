@@ -21,7 +21,7 @@ Start the app: streamlit run assistant.py
 
 import dotenv
 
-from modules.assistant_frontend_v9 import assistant_frontend
+from modules.assistant_frontend_v10 import assistant_frontend
 
 
 dotenv.load_dotenv()
