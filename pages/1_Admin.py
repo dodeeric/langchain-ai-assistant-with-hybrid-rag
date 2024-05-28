@@ -12,6 +12,15 @@ from modules.web_scraping_utils_v1 import scrape_commons_category, scrape_web_pa
 from modules.utils_v1 import load_files_and_embed, delete_directory
 from config.config import *
 
+if "model" not in st.session_state:
+    st.session_state.model = DEFAULT_MODEL
+
+if "temperature" not in st.session_state:
+    st.session_state.temperature = DEFAULT_TEMPERATURE
+
+if "password_ok" not in st.session_state:
+    st.session_state.password_ok = False
+
 
 def reset_conversation():
     """
