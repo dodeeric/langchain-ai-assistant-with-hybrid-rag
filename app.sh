@@ -3,9 +3,6 @@
 # Define the application name
 SERVICE_NAME="assistant"
 
-# Define the user that should be running the service
-SERVICE_USER="codespace"
-
 # Define the keyword to identify the process
 KEYWORD="streamlit"
 
@@ -14,7 +11,6 @@ FOLDER="./"
 
 # Function to start the service
 start_service() {
-    if [[ `/usr/bin/whoami` == $SERVICE_USER ]]; then
         pushd . > /dev/null
         echo "Starting $SERVICE_NAME..."
         cd $FOLDER
@@ -28,14 +24,10 @@ start_service() {
             echo "ERROR: system process not found!"
         fi
         popd > /dev/null
-    else
-        echo "User must be $SERVICE_USER !"
-    fi
 }
 
 # Function to stop the service
 stop_service() {
-    if [[ `/usr/bin/whoami` == $SERVICE_USER ]]; then
         pushd . > /dev/null
         echo "Stopping $SERVICE_NAME..."
         # Get the process ID
@@ -50,9 +42,6 @@ stop_service() {
         done
         echo "OK: system stopped."
         popd > /dev/null
-    else
-        echo "User must be $SERVICE_USER !"
-    fi
 }
 
 # Function to restart the service
