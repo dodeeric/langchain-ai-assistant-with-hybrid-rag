@@ -48,6 +48,12 @@ def assistant_frontend():
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
+    if "model" not in st.session_state:
+        st.session_state.model = DEFAULT_MODEL
+
+    if "temperature" not in st.session_state:
+        st.session_state.temperature = DEFAULT_TEMPERATURE
+
     # Load, index, retrieve and generate
 
     ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model, st.session_state.temperature)
