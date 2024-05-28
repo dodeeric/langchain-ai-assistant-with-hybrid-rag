@@ -11,37 +11,37 @@ FOLDER="./"
 
 # Function to start the service
 start_service() {
-        pushd . > /dev/null
-        echo "Starting $SERVICE_NAME..."
-        cd $FOLDER
-        # Command to start the Streamlit application
-        streamlit run assistant_v11.py --server.port=8080 &
-        sleep 5
-        PROC=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
-        if [ -n "$PROC" ] && [ "$PROC" != "" ]; then
-            echo "OK: system started."
-        else
-            echo "ERROR: system process not found!"
-        fi
-        popd > /dev/null
+    pushd . > /dev/null
+    echo "Starting $SERVICE_NAME..."
+    cd $FOLDER
+    # Command to start the Streamlit application
+    streamlit run assistant_v11.py --server.port=8080 &
+    sleep 5
+    PROC=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
+    if [ -n "$PROC" ] && [ "$PROC" != "" ]; then
+        echo "OK: system started."
+    else
+        echo "ERROR: system process not found!"
+    fi
+    popd > /dev/null
 }
 
 # Function to stop the service
 stop_service() {
-        pushd . > /dev/null
-        echo "Stopping $SERVICE_NAME..."
-        # Get the process ID
-        processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
-        echo "Trying to kill process with key $SERVICE_NAME."
-        kill $processPID
+    pushd . > /dev/null
+    echo "Stopping $SERVICE_NAME..."
+    # Get the process ID
+    processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
+    echo "Trying to kill process with key $SERVICE_NAME."
+    kill $processPID
+    sleep 5
+    while [ -n "$processPID" ]; do
+        echo "Waiting process ($processPID) to shutdown..."
         sleep 5
-        while [ -n "$processPID" ]; do
-            echo "Waiting process ($processPID) to shutdown..."
-            sleep 5
-            processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
-        done
-        echo "OK: system stopped."
-        popd > /dev/null
+        processPID=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
+    done
+    echo "OK: system stopped."
+    popd > /dev/null
 }
 
 # Function to restart the service
