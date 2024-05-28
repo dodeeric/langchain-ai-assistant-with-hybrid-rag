@@ -3,7 +3,7 @@
 """
 This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art
 and the Belgian monarchy. To answer, the assistant queries the graphic databases.
-Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot), assistant = main()
+Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot + admin), assistant = main()
 Start the app: streamlit run assistant.py
 """
 
@@ -19,8 +19,10 @@ Start the app: streamlit run assistant.py
 # v10: import one function --> one module
 # v11: assistant: main() + assistant_frontend (streamlit) + assistant_backend (langchain) --> two modules
 
-from modules.assistant_frontend_v9 import assistant_frontend
 import dotenv
+
+from modules.assistant_frontend_v9 import assistant_frontend
+
 
 dotenv.load_dotenv()
 
