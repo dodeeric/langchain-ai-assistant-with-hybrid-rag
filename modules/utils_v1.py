@@ -6,6 +6,11 @@ Miscellaneous functions, including function to chunk and embed files.
 
 # v1: move 2 functions from assistant_frontend_v6.py
 
+# Only to be able to run on Github Codespace
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 import shutil
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
