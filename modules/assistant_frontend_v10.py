@@ -69,7 +69,7 @@ def assistant_frontend():
 
     # # # # # # # # # # # # # #
     # Side bar window (About) #
-    # # # # # # # # # # # # # ""
+    # # # # # # # # # # # # # #
 
     with st.sidebar:
 
