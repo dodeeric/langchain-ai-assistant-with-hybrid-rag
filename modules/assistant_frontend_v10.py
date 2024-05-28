@@ -34,7 +34,7 @@ def reset_conversation():
 
 def assistant_frontend():
     """
-    All related to Streamlit for the main page and connection with the Langchain backend.
+    All related to Streamlit for the main page (about & chat windows) and connection with the Langchain backend.
     """
 
     st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
@@ -47,15 +47,6 @@ def assistant_frontend():
     # Initialize chat history (messages) for Streamlit
     if "messages" not in st.session_state:
         st.session_state.messages = []
-
-    if "model" not in st.session_state:
-        st.session_state.model = DEFAULT_MODEL
-
-    if "temperature" not in st.session_state:
-        st.session_state.temperature = DEFAULT_TEMPERATURE
-
-    if "password_ok" not in st.session_state:
-        st.session_state.password_ok = False
 
     # Load, index, retrieve and generate
 
