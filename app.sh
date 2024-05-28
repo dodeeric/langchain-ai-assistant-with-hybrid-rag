@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the application name
-SERVICE_NAME="assistant"
+SERVICE_NAME="Assistant"
 
 # Define the keyword to identify the process
 KEYWORD="streamlit"
