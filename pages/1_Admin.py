@@ -23,8 +23,6 @@ def reset_conversation():
     st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
 
 
-st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
-
 if "model" not in st.session_state:
     st.session_state.model = DEFAULT_MODEL
 
@@ -34,19 +32,19 @@ if "temperature" not in st.session_state:
 if "password_ok" not in st.session_state:
     st.session_state.password_ok = False
 
-if "password" not in st.session_state:
-    st.session_state.password = "XXXX"
+if "input_password" not in st.session_state:
+    st.session_state.input_password = "XXXX"
+
+st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 st.title("Admin")
-
-#st.sidebar.write(f">>> {st.session_state.password} -- {st.session_state.password_ok}")
 
 st.sidebar.write(f"Model: {st.session_state.model} ({st.session_state.temperature})")
 
 # Ask admin password to access admin menu
 admin_password = os.getenv("ADMIN_PASSWORD", "YYYY")
-st.session_state.password = st.sidebar.text_input("Enter admin password: ", type="password")
-if st.session_state.password != admin_password:
+st.session_state.input_password = st.sidebar.text_input("Enter admin password: ", type="password")
+if st.session_state.input_password != admin_password:
     st.session_state.password_ok = False
 else:
     st.session_state.password_ok = True

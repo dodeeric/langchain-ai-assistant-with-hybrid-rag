@@ -54,6 +54,12 @@ def assistant_frontend():
     if "temperature" not in st.session_state:
         st.session_state.temperature = DEFAULT_TEMPERATURE
 
+    if "password_ok" not in st.session_state:
+        st.session_state.password_ok = False
+
+    if "input_password" not in st.session_state:
+        st.session_state.password = "XXXX"
+
     # Load, index, retrieve and generate
 
     ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model, st.session_state.temperature)
@@ -72,8 +78,6 @@ def assistant_frontend():
     # # # # # # # # # # # # # #
 
     with st.sidebar:
-
-        #st.write(f">>> {st.session_state.password} -- {st.session_state.password_ok}")
 
         st.write(f"Model: {st.session_state.model} ({st.session_state.temperature})")
         st.write(ABOUT_TEXT)
