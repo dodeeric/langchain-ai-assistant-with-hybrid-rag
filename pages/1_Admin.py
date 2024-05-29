@@ -35,7 +35,7 @@ if "password_ok" not in st.session_state:
     st.session_state.password_ok = False
 
 if "input_password" not in st.session_state:
-    st.session_state.input_password = "XXXX"
+    st.session_state.input_password = ""
 
 st.title("Admin")
 
@@ -43,7 +43,8 @@ st.sidebar.write(f"Model: {st.session_state.model} ({st.session_state.temperatur
 
 # Ask admin password to access admin menu
 admin_password = os.getenv("ADMIN_PASSWORD", "YYYY")
-st.session_state.input_password = st.sidebar.text_input("Enter admin password: ", type="password")
+input_password = st.sidebar.text_input("Enter admin password: ", type="password", value=st.session_state.input_password)
+st.session_state.input_password = input_password
 if st.session_state.input_password != admin_password:
     st.session_state.password_ok = False
 else:
