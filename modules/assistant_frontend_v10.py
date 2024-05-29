@@ -58,7 +58,7 @@ def assistant_frontend():
         st.session_state.password_ok = False
 
     if "input_password" not in st.session_state:
-        st.session_state.password = "XXXX"
+        st.session_state.input_password = "XXXX"
 
     # Load, index, retrieve and generate
 

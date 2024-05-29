@@ -23,6 +23,8 @@ def reset_conversation():
     st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
 
 
+st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
+
 if "model" not in st.session_state:
     st.session_state.model = DEFAULT_MODEL
 
@@ -34,8 +36,6 @@ if "password_ok" not in st.session_state:
 
 if "input_password" not in st.session_state:
     st.session_state.input_password = "XXXX"
-
-st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 st.title("Admin")
 
@@ -75,7 +75,7 @@ if st.session_state.password_ok:
             st.write(f"Web page scraped and saved in a JSON file!")
 
     elif choice == "Model and Temperature":
-        st.caption("Change temporarily the model and the temperature.")
+        st.caption("Change the model and the temperature for the present chat session.")
         model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
         st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
         st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
