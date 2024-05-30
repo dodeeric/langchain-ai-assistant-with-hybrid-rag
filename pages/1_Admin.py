@@ -56,7 +56,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload Files']
+    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload Files']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -109,6 +109,18 @@ if st.session_state.password_ok:
             bytes_data = uploaded_file.getvalue()
             file_name = uploaded_file.name
             with open(f"./pdf_files/{file_name}", "wb") as file:
+                file.write(bytes_data)
+            st.success(f"File '{file_name}' uploaded and saved successfully!")
+        else:
+            st.warning("No file uploaded yet.")  
+
+    elif choice == "Upload JSON Files (Web Pages)":
+        st.caption("Upload a JSON file in the 'json_files' directory.")
+        uploaded_file = st.file_uploader("Choose a JSON file:", type=["json"])
+        if uploaded_file is not None:
+            bytes_data = uploaded_file.getvalue()
+            file_name = uploaded_file.name
+            with open(f"./json_files/{file_name}", "wb") as file:
                 file.write(bytes_data)
             st.success(f"File '{file_name}' uploaded and saved successfully!")
         else:
