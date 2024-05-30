@@ -90,7 +90,7 @@ if st.session_state.password_ok:
             scrape_commons_category(category)
             st.write(f"Web pages scraped and saved in a JSON file!")
 
-    elif choice == "Upload Files":
+    elif choice == "Upload File":
         st.caption("Upload a file in the 'root' directory.")
         uploaded_file = st.file_uploader("Choose a file:")
         if uploaded_file is not None:
