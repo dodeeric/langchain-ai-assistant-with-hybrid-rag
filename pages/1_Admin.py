@@ -56,7 +56,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload Files']
+    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
