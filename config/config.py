@@ -35,11 +35,16 @@ Chat History:
 {chat_history}"""
 
 # This system prompt is used with the OpenAI model
-SYSTEM_PROMPT = """You are an artwork specialist. You must assist the users in \
+SYSTEM_PROMPT = """
+Indicate in which language is the question and the answer.
+
+You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
-Base", then answer with your own knowledge. You have to answer in the same language as \
-the question.
+Base", then answer with your own knowledge.
+
+You have to answer in the same language as the question, even if the information from \
+the "Knowledge Base" are in a different language.
 
 At the end of the answer:
 
@@ -56,10 +61,12 @@ Knowledge Base:
 
 Chat History:
 
-{chat_history}"""
+{chat_history}
+"""
 
 # This system prompt is used with models other than OpenAI
-SYSTEM_PROMPT2 = """You are an artwork specialist. You must assist the users in \
+SYSTEM_PROMPT2 = """
+You are an artwork specialist. You must assist the users in \
 finding, describing, and displaying artworks related to the Belgian monarchy. You first \
 have to search answers in the "Knowledge Base". If no answers are found in the "Knowledge \
 Base", then answer with your own knowledge. You have to answer in the same language as \
@@ -87,7 +94,8 @@ Knowledge Base:
 
 Chat History:
 
-{chat_history}"""
+{chat_history}
+"""
 
 # Frontend (Streamlit)
 
