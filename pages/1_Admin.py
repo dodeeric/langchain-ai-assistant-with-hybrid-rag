@@ -115,7 +115,7 @@ if st.session_state.password_ok:
             st.warning("No file uploaded yet.")  
 
     elif choice == "Upload JSON Files (Web Pages)":
-        st.caption("Upload a JSON file in the 'json_files' directory.")
+        st.caption("Upload a JSON file (Web Pages) in the 'json_files' directory.")
         uploaded_file = st.file_uploader("Choose a JSON file:", type=["json"])
         if uploaded_file is not None:
             bytes_data = uploaded_file.getvalue()
