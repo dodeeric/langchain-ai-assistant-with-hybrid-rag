@@ -103,28 +103,30 @@ if st.session_state.password_ok:
             st.warning("No file uploaded yet.")
 
     elif choice == "Upload PDF Files":
-        st.caption("Upload a PDF file in the 'pdf_files' directory.")
-        uploaded_file = st.file_uploader("Choose a PDF file:", type=["pdf"])
-        if uploaded_file is not None:
-            bytes_data = uploaded_file.getvalue()
-            file_name = uploaded_file.name
-            with open(f"./pdf_files/{file_name}", "wb") as file:
-                file.write(bytes_data)
-            st.success(f"File '{file_name}' uploaded and saved successfully!")
-        else:
-            st.warning("No file uploaded yet.")  
+        st.caption("Upload PDF files in the 'pdf_files' directory.")
+        uploaded_files = st.file_uploader("Choose PDF files:", type=["pdf"], accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            if uploaded_file is not None:
+                bytes_data = uploaded_file.getvalue()
+                file_name = uploaded_file.name
+                with open(f"./pdf_files/{file_name}", "wb") as file:
+                    file.write(bytes_data)
+                st.success(f"File '{file_name}' uploaded and saved successfully!")
+            else:
+                st.warning("No file uploaded yet.")  
 
     elif choice == "Upload JSON Files (Web Pages)":
-        st.caption("Upload a JSON file (Web Pages) in the 'json_files' directory.")
-        uploaded_file = st.file_uploader("Choose a JSON file:", type=["json"])
-        if uploaded_file is not None:
-            bytes_data = uploaded_file.getvalue()
-            file_name = uploaded_file.name
-            with open(f"./json_files/{file_name}", "wb") as file:
-                file.write(bytes_data)
-            st.success(f"File '{file_name}' uploaded and saved successfully!")
-        else:
-            st.warning("No file uploaded yet.")  
+        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory.")
+        uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            if uploaded_file is not None:
+                bytes_data = uploaded_file.getvalue()
+                file_name = uploaded_file.name
+                with open(f"./json_files/{file_name}", "wb") as file:
+                    file.write(bytes_data)
+                st.success(f"File '{file_name}' uploaded and saved successfully!")
+            else:
+                st.warning("No file uploaded yet.")  
 
     elif choice == "Embed Pages in DB":
         # Embed data in Chroma DB
