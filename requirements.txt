@@ -6,6 +6,7 @@ langchain-openai
 langchain-anthropic
 langchain-google-vertexai
 langchain-chroma
+chromadb-client
 chromadb
 rank_bm25
 streamlit
