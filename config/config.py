@@ -25,6 +25,10 @@ BM25_MAX_RESULTS = 5
 
 OLLAMA_URL = "http://35.209.146.25"  # "http://localhost:11434"
 
+CHROMA_SERVER = True
+CHROMA_SERVER_HOST = "localhost"
+CHROMA_SERVER_PORT = "8000"
+
 CONTEXTUALIZE_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \
 understood without the chat history. Do NOT answer the question, just reformulate it if needed \
