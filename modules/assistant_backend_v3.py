@@ -6,6 +6,7 @@ all the Langchain chains for RAG and LLM.
 """
 
 # v2: add temperature as a variable + catch errors + use langchain-google-vertexai package + parameters in config.py
+# v3: run chroma as a server
 
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
@@ -15,7 +16,6 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
-from langchain_chroma import Chroma
 from langchain.chains import create_history_aware_retriever  # To create the retriever chain (predefined chain)
 from langchain.chains import create_retrieval_chain  # To create the main chain (predefined chain)
 from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
@@ -24,6 +24,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain_google_vertexai import ChatVertexAI
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_chroma import Chroma
+import chromadb
 
 from config.config import *
 
@@ -37,7 +39,16 @@ def instanciate_ai_assistant_chain(model, temperature):
     try:
 
         embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
-        vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+ 
+        if CHROMA_SERVER:
+
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
+
+        else:
+
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+ 
         docs = vector_db.get()
         documents = docs["documents"]
 
