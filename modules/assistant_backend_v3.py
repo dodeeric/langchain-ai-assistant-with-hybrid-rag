@@ -42,10 +42,14 @@ def instanciate_ai_assistant_chain(model, temperature):
  
         if CHROMA_SERVER:
 
+            st.write("*** chromas as a server")
+
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
 
         else:
+
+            st.write("*** chroma not as a server")
 
             vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
  
