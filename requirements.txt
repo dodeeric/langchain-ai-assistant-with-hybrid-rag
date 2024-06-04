@@ -6,8 +6,8 @@ langchain-openai
 langchain-anthropic
 langchain-google-vertexai
 langchain-chroma
-chromadb-client
 chromadb
+#chromadb-client
 rank_bm25
 streamlit
 pypdf
