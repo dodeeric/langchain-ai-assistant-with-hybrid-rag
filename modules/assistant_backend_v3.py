@@ -36,29 +36,29 @@ def instanciate_ai_assistant_chain(model, temperature):
     Steps: Retrieve and generate.
     """
 
-    #try:
+    try:
 
-    embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
+        embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
 
-    if CHROMA_SERVER:
+        if CHROMA_SERVER:
 
-        st.write("*** chromas as a server")
+            #st.write("*** chromas as a server")
 
-        chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-        vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
 
-    else:
+        else:
 
-        st.write("*** chroma not as a server")
+            #st.write("*** chroma not as a server")
 
-        vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
 
-    docs = vector_db.get()
-    documents = docs["documents"]
+        docs = vector_db.get()
+        documents = docs["documents"]
 
-    #except Exception as e:
-    #    st.write("Error: Cannot instanciate the DB!")
-    #    st.write(f"Error: {e}")        
+    except Exception as e:
+        st.write("Error: Cannot instanciate the DB!")
+        st.write(f"Error: {e}")        
 
     # Instanciate the model
 
