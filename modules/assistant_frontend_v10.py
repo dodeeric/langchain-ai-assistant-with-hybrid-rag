@@ -17,7 +17,7 @@ This function runs the frontend web interface.
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 
-from modules.assistant_backend_v3 import instanciate_ai_assistant_chain
+from modules.assistant_backend_v2 import instanciate_ai_assistant_chain
 from config.config import *
 
 
