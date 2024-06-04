@@ -179,11 +179,6 @@ if st.session_state.password_ok:
                 else:
                     st.write(f"DB size: {file_size} KB. DB is empty!")
 
-                path = './'
-                files = os.listdir(path)
-                st.write("Root path:")
-                st.write(files)
-
                 path = './chromadb'
                 files = os.listdir(path)
                 st.write("DB path:")
@@ -191,4 +186,14 @@ if st.session_state.password_ok:
 
             except Exception as e:
                 st.write("Error: Is the DB available?")
+                st.write(f"Error: {e}")
+
+            try:
+
+                path = './'
+                files = os.listdir(path)
+                st.write("Root path:")
+                st.write(files)
+
+            except Exception as e:
                 st.write(f"Error: {e}")
