@@ -1,7 +1,7 @@
 python-dotenv
 jq
-langchain==0.1.20
-langchain-community==0.0.38
+langchain
+langchain-community
 langchain-openai
 langchain-anthropic
 langchain-google-vertexai
