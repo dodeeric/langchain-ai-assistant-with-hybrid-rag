@@ -110,6 +110,8 @@ sudo systemctl start nginx
 
 Go to: http://172.205.226.216 or http://bmae.edocloud.be
 
+More info: https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
+
 Check the Chroma vector DB: (OPTIONAL)
 
 ```
