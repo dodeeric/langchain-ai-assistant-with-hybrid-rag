@@ -108,6 +108,8 @@ sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enable
 sudo systemctl start nginx
 ```
 
+Go to: http://172.205.226.216 or http://bmae.edocloud.be
+
 Check the Chroma vector DB: (OPTIONAL)
 
 ```
