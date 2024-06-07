@@ -80,8 +80,8 @@ Procedure to install and configure Nginx as reverse proxy:
 
 For example:
 
-Internal/private IP and port: 10.0.0.4:8080
-External/public IP and port: 172.205.226.216:80 (domain name: bmae.edocloud.be)
+* Internal/private IP and port: 10.0.0.4:8080
+* External/public IP and port: 172.205.226.216:80 (domain name: bmae.edocloud.be)
 
 ```
 sudo apt update
