@@ -6,7 +6,7 @@ This application can be configured (see config.py) to create your own specialize
 - Web interface Python framework: Streamlit
 - Vector DB: Chroma
 - Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
-- Chat history (use of predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
+- Chat history with limited size (use of predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
 - Streaming of the AI answer
 - Logs sent to Langsmith
 - AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude 3, Ollama (Llama 3, etc.). Vector size: 3072.
