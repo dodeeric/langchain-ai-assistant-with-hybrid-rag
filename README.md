@@ -26,7 +26,7 @@ Frameworks and tools:
 
 Installation:
 
-Requirements: Python 3.10
+Requirements: Python 3.10+
 
 Procedure to install the application on a Linux server:
 
@@ -74,7 +74,39 @@ Go to: http://IP:8080 (the IP is displayed on the screen in the "External URL".)
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
 
-Install a reverse proxy (Nginx for example) on the server if you want to listen on port 80 (http) or 443 (https). It has to forward the requests from port 80 to port 8080. 
+Install a reverse proxy (Nginx for example) on the server if you want to listen on port 80 (http) or 443 (https). It has to forward the requests from port 80 or 443 to port 8080.
+
+Procedure to install and configure Nginx as reverse proxy:
+
+For example:
+
+Internal/private IP and port: 10.0.0.4:8080
+External/public IP and port: 172.205.226.216:80 (domain name: bmae.edocloud.be)
+
+```
+sudo apt update
+sudo apt install nginx
+
+sudo nano /etc/nginx/sites-available/streamlitnginxconf
+
+server {
+  listen 80;
+  server_name bmae.edocloud.be;
+  location / {
+    proxy_pass http://10.0.0.4:8080;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+}
+
+sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enabled/streamlitnginxconf
+
+sudo systemctl start nginx
+```
 
 Check the Chroma vector DB: (OPTIONAL)
 
