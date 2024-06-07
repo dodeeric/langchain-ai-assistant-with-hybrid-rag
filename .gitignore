@@ -5,3 +5,4 @@ modules/__pycache__/*
 config/__pycache__/*
 chromadb/*
 serviceaccount*.json
+nohup.out

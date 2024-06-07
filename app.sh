@@ -15,7 +15,7 @@ start_service() {
     echo "Starting $SERVICE_NAME..."
     cd $FOLDER
     # Command to start the Streamlit application
-    streamlit run Assistant.py --server.port=8080 &
+    nohup streamlit run Assistant.py --server.port=8080 &
     sleep 5
     PROC=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
     if [ -n "$PROC" ] && [ "$PROC" != "" ]; then
