@@ -103,7 +103,7 @@ server {
 }
 
 $ sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enabled/streamlitnginxconf
-$ sudo systemctl start nginx
+$ sudo systemctl restart nginx
 ```
 
 Go to: http://172.205.226.216 or http://bmae.edocloud.be
