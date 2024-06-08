@@ -110,6 +110,17 @@ Go to: http://172.205.226.216 or http://bmae.edocloud.be
 
 More info: https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
 
+To configure a TLS certificate for https (port 443):
+
+```
+$ sudo snap install --classic certbot
+$ sudo ln -s /snap/bin/certbot /usr/bin/certbot
+$ sudo certbot --nginx -d bmae.edocloud.be -d www.bmae.edocloud.be
+$ sudo certbot renew --dry-run
+```
+
+More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
+
 Check the Chroma vector DB: (OPTIONAL)
 
 ```
