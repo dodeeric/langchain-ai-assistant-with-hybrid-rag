@@ -163,7 +163,7 @@ $ docker pull chromadb/chroma
 $ docker run -p 8081:8081 chromadb/chroma
 ```
 
-b) Python:
+b) Python
 
 ```
 $ chroma run --path /db_path
