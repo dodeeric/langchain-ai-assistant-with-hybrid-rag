@@ -136,6 +136,8 @@ Install Ollama:
 $ curl -fsSL https://ollama.com/install.sh | sh
 ```
 
+The Ollama API is now available at 127.0.0.1:11434.
+
 Run the Llama 3 LLM:
 
 ```
