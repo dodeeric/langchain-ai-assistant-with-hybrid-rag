@@ -23,7 +23,7 @@ COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
 
-OLLAMA_URL = "http://localhost:11434"  # "http://35.209.146.25"
+OLLAMA_URL = "http://35.209.146.25"  # "http://localhost:11434" 
 
 CHROMA_SERVER = False
 CHROMA_SERVER_HOST = "localhost"
