@@ -119,6 +119,8 @@ $ sudo certbot --nginx -d bmae.edocloud.be -d www.bmae.edocloud.be
 $ sudo certbot renew --dry-run
 ```
 
+Go to: https://172.205.226.216 or https://bmae.edocloud.be
+
 More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
 
 Check the Chroma vector DB: (OPTIONAL)
