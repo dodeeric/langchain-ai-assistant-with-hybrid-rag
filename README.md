@@ -84,10 +84,9 @@ For example:
 * External/public IP and port: 172.205.226.216:80 (domain name: bmae.edocloud.be)
 
 ```
-sudo apt update
-sudo apt install nginx
-
-sudo nano /etc/nginx/sites-available/streamlitnginxconf
+$ sudo apt update
+$ sudo apt install nginx
+$ sudo nano /etc/nginx/sites-available/streamlitnginxconf
 
 server {
   listen 80;
@@ -103,9 +102,8 @@ server {
   }
 }
 
-sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enabled/streamlitnginxconf
-
-sudo systemctl start nginx
+$ sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enabled/streamlitnginxconf
+$ sudo systemctl start nginx
 ```
 
 Go to: http://172.205.226.216 or http://bmae.edocloud.be
@@ -132,7 +130,13 @@ sqlite> select count(*) from embedding_metadata where string_value like '%Delper
 
 Running Ollama / Llama 3 (or another LLM) locally:
 
-Install Ollama, then:
+Install Ollama:
+
+```
+$ curl -fsSL https://ollama.com/install.sh | sh
+```
+
+Run the Llama 3 LLM:
 
 ```
 $ ollama pull llama3
@@ -140,7 +144,7 @@ $ ollama list
 $ ollama serve
 ```
 
-In a new window:
+Query the LLM in a new window:
 
 ```
 $ ollama run llama3
