@@ -90,7 +90,7 @@ $ sudo nano /etc/nginx/sites-available/streamlitnginxconf
 
 server {
   listen 80;
-  server_name bmae.edocloud.be;
+  server_name bmae.edocloud.be www.bmae.edocloud.be;
   location / {
     proxy_pass http://10.0.0.4:8080;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
