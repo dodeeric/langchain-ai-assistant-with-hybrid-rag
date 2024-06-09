@@ -126,6 +126,7 @@ More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-
 Check the Chroma vector DB: (OPTIONAL)
 
 ```
+$ sudo apt install sqlite3
 $ cd chromadb
 $ sqlite3 chroma.sqlite3
 ```
