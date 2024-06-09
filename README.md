@@ -96,7 +96,8 @@ For example:
 $ sudo apt update
 $ sudo apt install nginx
 $ sudo nano /etc/nginx/sites-available/streamlitnginxconf
-
+```
+```
 server {
   listen 80;
   server_name bmae.edocloud.be www.bmae.edocloud.be;
@@ -110,7 +111,8 @@ server {
     proxy_set_header Connection "upgrade";
   }
 }
-
+```
+```
 $ sudo ln -s /etc/nginx/sites-available/streamlitnginxconf /etc/nginx/sites-enabled/streamlitnginxconf
 $ sudo systemctl restart nginx
 ```
