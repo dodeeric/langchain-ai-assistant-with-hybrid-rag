@@ -62,6 +62,15 @@ Install required libraries:
 $ pip install -U -r requirements.txt
 ```
 
+Launch the Chroma DB server:
+
+```
+$ chroma run --path ./chromadb
+
+Saving data to: ./chromadb
+Connect to chroma at: http://localhost:8000
+```
+
 Launch the AI Assistant:
 
 ```
@@ -180,24 +189,4 @@ Environment="OLLAMA_HOST=0.0.0.0"
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart ollama
 $ sudo systemctl status ollama
-```
-
----
-
-Run Chroma DB as a server:
-
-a) Docker
-
-```
-$ docker pull chromadb/chroma
-$ docker run -p 8000:8000 chromadb/chroma
-```
-
-b) Python
-
-```
-$ chroma run --path ./chromadb
-
-Saving data to: ./chromadb
-Connect to chroma at: http://localhost:8000
 ```
