@@ -138,6 +138,7 @@ sqlite> select id, key, string_value from embedding_metadata LIMIT 10 OFFSET 0; 
 sqlite> PRAGMA table_info(embedding_metadata);                                        ===> Structure of the table   
 sqlite> select * from embedding_metadata where string_value like '%Delper%';          ===> Display matching records
 sqlite> select count(*) from embedding_metadata where string_value like '%Delper%';   ===> Display number of matching records
+sqlite> .quit
 ```
 
 ---
