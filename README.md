@@ -167,6 +167,19 @@ $ ollama run llama3
 >>> /bye
 ```
 
+To make Ollama listen on all IPs, not only 127.0.0.1:
+
+```
+$ sudo nano /etc/systemd/system/ollama.service
+
+[Services]
+Environment="OLLAMA_HOST=0.0.0.0"
+
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart ollama
+$ sudo systemctl status ollama
+```
+
 ---
 
 Run Chroma DB as a server:
