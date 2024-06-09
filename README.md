@@ -194,5 +194,8 @@ $ docker run -p 8081:8081 chromadb/chroma
 b) Python
 
 ```
-$ chroma run --path /db_path
+$ chroma run --path ./chromadb
+
+Saving data to: ./chromadb
+Connect to chroma at: http://localhost:8000
 ```
