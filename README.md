@@ -19,6 +19,7 @@ Frameworks and tools:
 - Langsmith: https://smith.langchain.com (logs and debug for Langchain applications)
 - Streamlit: https://streamlit.io (Python framework for web interfaces for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
+- Chromadb Admin: https://github.com/flanker/chromadb-admin (Web admin interface for Chroma)
 - OpenAI (GPT): https://platform.openai.com (LLM)
 - Anthropic (Claude): https://console.anthropic.com/dashboard (LLM)
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
@@ -85,7 +86,7 @@ Go first to the admin interface (introduce the admin password), and scrape some 
 
 Install a reverse proxy (Nginx for example) on the server if you want to listen on port 80 (http) or 443 (https). It has to forward the requests from port 80 or 443 to port 8080.
 
-Procedure to install and configure Nginx as reverse proxy:
+Procedure to install and configure Nginx as reverse proxy: (OPTIONAL)
 
 For example:
 
@@ -121,7 +122,7 @@ Go to: http://172.205.226.216 or http://bmae.edocloud.be
 
 More info: https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
 
-To configure a TLS certificate for https (port 443):
+To configure a TLS certificate for https (port 443): (OPTIONAL)
 
 ```
 $ sudo snap install --classic certbot
@@ -152,9 +153,16 @@ sqlite> select count(*) from embedding_metadata where string_value like '%Delper
 sqlite> .quit
 ```
 
----
+Install a web interface for the Chroma vector DB (Chromadb Admin): (OPTIONAL)
 
-Running Ollama / Llama 3 (or another LLM) locally:
+```
+$ git clone https://github.com/flanker/chromadb-admin.git
+$ cd chromadb-admin/
+$ sudo docker build -t chromadb-admin .
+$ sudo docker run -p 3000:3000 chromadb-admin
+```
+
+Running Ollama / Llama 3 (or another LLM) locally: (OPTIONAL)
 
 Install Ollama:
 
