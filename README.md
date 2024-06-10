@@ -159,7 +159,7 @@ sqlite> .quit
 $ git clone https://github.com/flanker/chromadb-admin.git
 $ cd chromadb-admin/
 $ sudo docker build -t chromadb-admin .
-$ sudo docker run -p 3000:3000 chromadb-admin
+$ sudo docker run -p 3000:3000 chromadb-admin &
 ```
 
 ## Running Ollama / Llama 3 (or another LLM) locally (OPTIONAL)
