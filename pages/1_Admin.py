@@ -166,7 +166,7 @@ if st.session_state.password_ok:
             reset_conversation()
             st.write("Done!")
 
-        if st.button("Files and DB Info"):
+        if st.button("Files and DB Info (locally only)"):
 
             load_files_and_embed(json_paths, pdf_paths, embed=False)
 
