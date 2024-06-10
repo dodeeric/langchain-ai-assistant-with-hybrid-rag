@@ -2,6 +2,8 @@
 
 This application can be configured (see config.py) to create your own specialized AI assistant.
 
+## Features
+
 - AI Python framework: Langchain
 - Web interface Python framework: Streamlit
 - Vector DB: Chroma (can run locally or on a remote server)
@@ -13,7 +15,7 @@ This application can be configured (see config.py) to create your own specialize
 - Admin interface (scrape web pages, upload PDF files, embed in vector DB, change model, etc.)
 - Files ingestion into the vector DB: JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
  
-Frameworks and tools:
+## Frameworks and tools
 
 - Langchain: https://www.langchain.com (Python framework for AI applications)
 - Langsmith: https://smith.langchain.com (logs and debug for Langchain applications)
@@ -25,7 +27,7 @@ Frameworks and tools:
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
 - Ollama (Llama, etc.): https://ollama.com (LLM)
 
-Installation:
+## Installation
 
 Requirements: Python 3.10+
 
@@ -84,9 +86,7 @@ Go to: http://IP:8080 (the IP is displayed on the screen in the "External URL".)
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
 
-Install a reverse proxy (Nginx for example) on the server if you want to listen on port 80 (http) or 443 (https). It has to forward the requests from port 80 or 443 to port 8080.
-
-Procedure to install and configure Nginx as reverse proxy: (OPTIONAL)
+## Procedure to install and configure Nginx as reverse proxy (OPTIONAL)
 
 For example:
 
@@ -122,7 +122,7 @@ Go to: http://172.205.226.216 or http://bmae.edocloud.be
 
 More info: https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
 
-To configure a TLS certificate for https (port 443): (OPTIONAL)
+## Configure a TLS certificate for https (port 443) (OPTIONAL)
 
 ```
 $ sudo snap install --classic certbot
@@ -135,7 +135,7 @@ Go to: https://172.205.226.216 or https://bmae.edocloud.be
 
 More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
 
-Check the Chroma vector DB: (OPTIONAL)
+## Check the Chroma vector DB (OPTIONAL)
 
 ```
 $ sudo apt install sqlite3
@@ -153,7 +153,7 @@ sqlite> select count(*) from embedding_metadata where string_value like '%Delper
 sqlite> .quit
 ```
 
-Install a web interface for the Chroma vector DB (Chromadb Admin): (OPTIONAL)
+## Install a web interface for the Chroma vector DB (Chromadb Admin) (OPTIONAL)
 
 ```
 $ git clone https://github.com/flanker/chromadb-admin.git
@@ -162,7 +162,7 @@ $ sudo docker build -t chromadb-admin .
 $ sudo docker run -p 3000:3000 chromadb-admin
 ```
 
-Running Ollama / Llama 3 (or another LLM) locally: (OPTIONAL)
+## Running Ollama / Llama 3 (or another LLM) locally (OPTIONAL)
 
 Install Ollama:
 
