@@ -65,7 +65,7 @@ $ pip install -U -r requirements.txt
 Launch the Chroma DB server:
 
 ```
-$ nohup chroma run --path ./chromadb &
+$ nohup chroma run --host 0.0.0.0 --port 8000 --path ./chromadb &
 
 Saving data to: ./chromadb
 Connect to chroma at: http://localhost:8000
