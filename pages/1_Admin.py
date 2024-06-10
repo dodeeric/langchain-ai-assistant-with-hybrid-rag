@@ -132,7 +132,8 @@ if st.session_state.password_ok:
         # Embed data in Chroma DB
         # Load and index
 
-        st.caption('Embed in the vector DB all the web and pdf pages.')
+        st.caption('Embed all the web and pdf pages in the Chroma vector DB.')
+        st.caption('Caution: Works only if the Chroma vector DB server runs locally / on the same server as the app!')
 
         JSON_FILES_DIR = "./json_files/"
         PDF_FILES_DIR = "./pdf_files/"
@@ -151,11 +152,11 @@ if st.session_state.password_ok:
             pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
             pdf_paths.append(pdf_path)
 
-        if st.button("Start Embed"):
+        if st.button("Start Embed (locally only)"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
             st.write("Done!")
 
-        if st.button("Delete DB"):
+        if st.button("Delete DB (locally only)"):
             delete_directory("./chromadb")
             st.write("Done!")
 
@@ -185,7 +186,7 @@ if st.session_state.password_ok:
                 st.write(files)
 
             except Exception as e:
-                st.write("Error: Is the DB available?")
+                st.write("Error: The Chroma vector DB is not available locally. Is it running on a remote server?")
                 st.write(f"Error: {e}")
 
             try:
