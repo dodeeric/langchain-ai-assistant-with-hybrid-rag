@@ -215,12 +215,9 @@ Demo: https://bmae-ai-assistant.streamlit.app (running the app)
 
 ## Procedure to install the application on Azure Web App service
 
-* Azure Web App service:
-  https://azure.microsoft.com/en-us/products/app-service/web
-* Continuous deployment to Azure Web App service:
-  https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment?tabs=github%2Cgithubactions
-* How to deploy a Streamlit application to Azure Web App service:
-  https://learn.microsoft.com/en-us/answers/questions/1470782/how-to-deploy-a-streamlit-application-on-azure-app
+* [Azure Web App service](https://azure.microsoft.com/en-us/products/app-service/web)
+* Continuous deployment to Azure Web App service: https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment?tabs=github%2Cgithubactions
+* How to deploy a Streamlit application to Azure Web App service: https://learn.microsoft.com/en-us/answers/questions/1470782/how-to-deploy-a-streamlit-application-on-azure-app
 
 You can deploy directly from Github repository to Azure Web App service with Github Actions workflow.
 
