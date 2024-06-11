@@ -199,12 +199,21 @@ $ sudo systemctl restart ollama
 $ sudo systemctl status ollama
 ```
 
+### Demo
+
+Demo: https://bmae.edocloud.be/
+
 ## Procedure to install the application on Streamlit Community cloud
 
 https://streamlit.io/cloud
+
+Demo: https://bmae-ai-assistant.streamlit.app/
 
 ## Procedure to install the application on Azure Web App service
 
 https://azure.microsoft.com/en-us/products/app-service/web
 
 Possibility to deploy directly from Github repository to Azure Web app service with Github Actions workflow.
+
+Demo: https://bmae-ragai.azurewebsites.net/
+
