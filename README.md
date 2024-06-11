@@ -207,7 +207,7 @@ $ sudo systemctl status ollama
 
 ## Procedure to install the application on Streamlit Community cloud
 
-https://streamlit.io/cloud
+* https://streamlit.io/cloud
 
 Possibility to deploy directly from Github repository to Streamlit Community cloud.
 
