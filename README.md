@@ -207,4 +207,4 @@ https://streamlit.io/cloud
 
 https://azure.microsoft.com/en-us/products/app-service/web
 
-Possibility to deploy directly from Github repository to Azure Web app service with Github Action workflow.
+Possibility to deploy directly from Github repository to Azure Web app service with Github Actions workflow.
