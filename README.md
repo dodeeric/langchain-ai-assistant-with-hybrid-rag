@@ -201,13 +201,13 @@ $ sudo systemctl status ollama
 
 ### Demo
 
-Demo: https://bmae.edocloud.be/
+Demo: https://bmae.edocloud.be (running the app and the db on an Azure virtual machine)
 
 ## Procedure to install the application on Streamlit Community cloud
 
 https://streamlit.io/cloud
 
-Demo: https://bmae-ai-assistant.streamlit.app/
+Demo: https://bmae-ai-assistant.streamlit.app (running the app)
 
 ## Procedure to install the application on Azure Web App service
 
@@ -215,5 +215,4 @@ https://azure.microsoft.com/en-us/products/app-service/web
 
 Possibility to deploy directly from Github repository to Azure Web app service with Github Actions workflow.
 
-Demo: https://bmae-ragai.azurewebsites.net/
-
+Demo: https://bmae-ragai.azurewebsites.net (running the app)
