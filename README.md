@@ -2,7 +2,7 @@
 
 This application can be configured (see config.py) to create your own specialized AI assistant.
 
-Demo: https://bmae.edocloud.be (running the app and the db on an Azure virtual machine)
+Demo: https://bmae.edocloud.be (running the app, the db, and a reverse proxy on an Azure virtual machine)
 
 ## Features
 
