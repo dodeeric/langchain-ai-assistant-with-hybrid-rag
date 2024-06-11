@@ -86,7 +86,7 @@ Go to: http://IP:8080 (the IP is displayed on the screen in the "External URL".)
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
 
-#### Procedure to install and configure Nginx as reverse proxy (OPTIONAL)
+#### Install and configure Nginx as reverse proxy (OPTIONAL)
 
 For example:
 
