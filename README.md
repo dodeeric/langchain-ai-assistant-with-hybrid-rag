@@ -207,6 +207,8 @@ Demo: https://bmae.edocloud.be (running the app and the db on an Azure virtual m
 
 https://streamlit.io/cloud
 
+Possibility to deploy directly from Github repository to Streamlit Community cloud.
+
 Demo: https://bmae-ai-assistant.streamlit.app (running the app)
 
 ## Procedure to install the application on Azure Web App service
