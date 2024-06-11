@@ -2,8 +2,6 @@
 
 This application can be configured (see config.py) to create your own specialized AI assistant.
 
-Demo: https://bmae.edocloud.be (running the app, the db, and a reverse proxy on an Azure virtual machine)
-
 ## Features
 
 - AI Python framework: Langchain
@@ -30,6 +28,8 @@ Demo: https://bmae.edocloud.be (running the app, the db, and a reverse proxy on 
 - Ollama (Llama, etc.): https://ollama.com (LLM)
 
 ## Procedure to install the application on a Linux server
+
+Demo: https://bmae.edocloud.be (running the app, the db, and a reverse proxy on an Azure virtual machine)
 
 Requirements: Python 3.10+
 
