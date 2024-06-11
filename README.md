@@ -27,11 +27,9 @@ This application can be configured (see config.py) to create your own specialize
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
 - Ollama (Llama, etc.): https://ollama.com (LLM)
 
-## Installation and configuration
+## Procedure to install the application on a Linux server
 
 Requirements: Python 3.10+
-
-### Procedure to install the application on a Linux server
 
 ```
 $ git clone https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag.git
@@ -86,7 +84,7 @@ Go to: http://IP:8080 (the IP is displayed on the screen in the "External URL".)
 
 Go first to the admin interface (introduce the admin password), and scrape some web pages and/or upload some PDF files, then embed them to the vector DB.
 
-#### Install and configure Nginx as reverse proxy (OPTIONAL)
+### Install and configure Nginx as reverse proxy (OPTIONAL)
 
 For example:
 
@@ -122,7 +120,7 @@ Go to: http://172.205.226.216 or http://bmae.edocloud.be
 
 More info: https://ngbala6.medium.com/deploy-streamlit-app-on-nginx-cfa327106050
 
-#### Configure a TLS certificate for https (port 443) (OPTIONAL)
+### Configure a TLS certificate for https (port 443) (OPTIONAL)
 
 ```
 $ sudo snap install --classic certbot
@@ -135,7 +133,7 @@ Go to: https://172.205.226.216 or https://bmae.edocloud.be
 
 More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
 
-#### Check the Chroma vector DB (OPTIONAL)
+### Check the Chroma vector DB (OPTIONAL)
 
 ```
 $ sudo apt install sqlite3
@@ -153,7 +151,7 @@ sqlite> select count(*) from embedding_metadata where string_value like '%Delper
 sqlite> .quit
 ```
 
-#### Install a web interface for the Chroma vector DB (Chromadb Admin) (OPTIONAL)
+### Install a web interface for the Chroma vector DB (Chromadb Admin) (OPTIONAL)
 
 ```
 $ git clone https://github.com/flanker/chromadb-admin.git
@@ -162,7 +160,7 @@ $ sudo docker build -t chromadb-admin .
 $ sudo docker run -p 3000:3000 chromadb-admin &
 ```
 
-#### Running Ollama / Llama 3 (or another LLM) locally (OPTIONAL)
+### Running Ollama / Llama 3 (or another LLM) locally (OPTIONAL)
 
 Install Ollama:
 
@@ -201,7 +199,12 @@ $ sudo systemctl restart ollama
 $ sudo systemctl status ollama
 ```
 
-### Procedure to install the application on Streamlit Community cloud
+## Procedure to install the application on Streamlit Community cloud
 
+https://streamlit.io/cloud
 
-### Procedure to install the application on Azure Web App service
+## Procedure to install the application on Azure Web App service
+
+https://azure.microsoft.com/en-us/products/app-service/web
+
+Possibility to deploy directly from Github repository to Azure Web app service with Github Action workflow.
