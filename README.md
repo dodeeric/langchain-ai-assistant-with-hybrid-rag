@@ -160,6 +160,10 @@ $ sudo docker build -t chromadb-admin .
 $ sudo docker run -p 3000:3000 chromadb-admin &
 ```
 
+Configure the "Chroma connection string": Ex.: http://myvm2.edocloud.be:8000
+
+Demo: bmae.edocloud.be:3000
+
 ### Running Ollama / Llama 3 (or another LLM) locally (OPTIONAL)
 
 Install Ollama:
