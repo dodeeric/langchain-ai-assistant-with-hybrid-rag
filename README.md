@@ -1,4 +1,4 @@
-# Langchain AI Assistant with Hybrid RAG and Memory
+# Langchain AI Assistant with Hybrid RAG and Memory (ragai)
 
 This application can be configured (see config.py) to create your own specialized AI assistant.
 
