@@ -2,6 +2,8 @@
 
 This application can be configured (see config.py) to create your own specialized AI assistant.
 
+Demo: https://bmae.edocloud.be (running the app and the db on an Azure virtual machine)
+
 ## Features
 
 - AI Python framework: Langchain
@@ -202,10 +204,6 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart ollama
 $ sudo systemctl status ollama
 ```
-
-### Demo
-
-Demo: https://bmae.edocloud.be (running the app and the db on an Azure virtual machine)
 
 ## Procedure to install the application on Streamlit Community cloud
 
