@@ -65,7 +65,7 @@ Install required libraries:
 $ pip install -U -r requirements.txt
 ```
 
-Launch the Chroma DB server:
+Launch the Chroma DB server: (same server as the app or another one)
 
 ```
 $ nohup chroma run --host 0.0.0.0 --port 8000 --path ./chromadb &
@@ -137,6 +137,8 @@ More info: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-
 
 ### Check the Chroma vector DB (OPTIONAL)
 
+From the server on which Chroma is installed:
+
 ```
 $ sudo apt install sqlite3
 $ cd chromadb
@@ -154,6 +156,8 @@ sqlite> .quit
 ```
 
 ### Install a web interface for the Chroma vector DB (Chromadb Admin) (OPTIONAL)
+
+From the server on which Chroma is installed:
 
 ```
 $ git clone https://github.com/flanker/chromadb-admin.git
