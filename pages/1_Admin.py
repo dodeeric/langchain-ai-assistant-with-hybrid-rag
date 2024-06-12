@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """
+Ragai - (c) Eric Dodémont, 2024.
 This subpage runs the admin web interface.
 """
 

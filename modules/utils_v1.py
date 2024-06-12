@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """
+Ragai - (c) Eric Dodémont, 2024.
 Miscellaneous functions, including function to chunk and embed files.
 """
 
