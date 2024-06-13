@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
+# Ragai - (c) Eric Dodémont, 2024.
+
 """
-Ragai - (c) Eric Dodémont, 2024.
 This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art
 and the Belgian monarchy. To answer, the assistant queries the graphic databases.
 Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot + admin), assistant = main()

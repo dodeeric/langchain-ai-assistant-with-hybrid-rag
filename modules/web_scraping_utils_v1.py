@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
+# Ragai - (c) Eric Dodémont, 2024.
+
 """
-Ragai - (c) Eric Dodémont, 2024.
 Functions to scrape the text and the metadata of web pages
 """
 

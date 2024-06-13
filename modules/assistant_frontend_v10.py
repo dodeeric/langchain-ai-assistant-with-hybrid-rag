@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
+# Ragai - (c) Eric Dodémont, 2024.
+
 """
-Ragai - (c) Eric Dodémont, 2024.
 This function runs the frontend web interface.
 """
 

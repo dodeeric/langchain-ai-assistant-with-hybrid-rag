@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Ragai - (c) Eric Dodémont, 2024.
+
 # Define the application name
 SERVICE_NAME="Assistant"
 
