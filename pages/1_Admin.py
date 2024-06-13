@@ -172,6 +172,8 @@ if st.session_state.password_ok:
 
             load_files_and_embed(json_paths, pdf_paths, embed=False)
 
+            st.write(f"Chroma vector DB running on {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}.")
+
             try:
 
                 file_path = './chromadb/chroma.sqlite3'
@@ -188,7 +190,7 @@ if st.session_state.password_ok:
                 st.write(files)
 
             except Exception as e:
-                st.write("Error: The Chroma vector DB is not available locally. Is it running on a remote server?")
+                st.write("The Chroma vector DB is not available locally.")
                 st.write(f"Error: {e}")
 
             try:
