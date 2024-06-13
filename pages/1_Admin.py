@@ -9,6 +9,7 @@ This subpage runs the admin web interface.
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 import os
+import zipfile
 
 from modules.web_scraping_utils_v1 import scrape_commons_category, scrape_web_page_url
 from modules.utils_v1 import load_files_and_embed, delete_directory
@@ -23,6 +24,21 @@ def reset_conversation():
     st.session_state.messages = []
     st.session_state.chat_history = []
     st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
+
+
+def unzip_and_replace(file_path):
+    # Check if the file is a zip file
+    if zipfile.is_zipfile(file_path):
+        # Create a ZipFile object
+        with zipfile.ZipFile(file_path, 'r') as zip_ref:
+            # Extract all the contents of the zip file in the same directory
+            zip_ref.extractall(os.path.dirname(file_path))
+        
+        # Remove the original zip file
+        os.remove(file_path)
+        print(f"The file {file_path} has been unzipped and the original zip file has been removed.")
+    else:
+        print(f"The file {file_path} is not a zip file.")
 
 
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
@@ -58,11 +74,11 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload File']
+    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
-        st.caption("Give the web page URL and the filter (CSS class). The page will be scraped and saved in a JSON file.")
+        st.caption("Give the web page URL and the filter (CSS class). The page will be scraped and saved in a JSON file in the 'json_files' directory.")
         st.caption("""
                     Filter: 
                     - two-third last (balat / irpa)
@@ -85,7 +101,7 @@ if st.session_state.password_ok:
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
     elif choice == "Scrape Web Pages from Wikimedia Commons":
-        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file.")
+        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file in the 'json_files' directory.")
         category = st.text_input("Category: ")
         if category:
             st.write(f"Scraping the web pages...")
@@ -118,7 +134,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")  
 
     elif choice == "Upload JSON Files (Web Pages)":
-        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory.")
+        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
         uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
@@ -127,6 +143,20 @@ if st.session_state.password_ok:
                 with open(f"./json_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
                 st.success(f"File '{file_name}' uploaded and saved successfully!")
+            else:
+                st.warning("No file uploaded yet.")
+
+    elif choice == "Upload JSON Files (Web Pages) in ZIP Format":
+        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
+        uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            if uploaded_file is not None:
+                bytes_data = uploaded_file.getvalue()
+                file_name = uploaded_file.name
+                with open(f"./json_files/{file_name}", "wb") as file:
+                    file.write(bytes_data)
+                unzip_and_replace(f"./json_files/{file_name}")
+                st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
                 st.warning("No file uploaded yet.")  
 
