@@ -195,7 +195,11 @@ if st.session_state.password_ok:
 
         if st.button("Restart DB (locally only)"):
             command = ['bash', './db.sh', 'restart']
-            result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            except Exception as e:
+                st.write("The Chroma vector DB has been restarted.")
+                st.write(f"Error: {e}")
             st.write(result.stdout)
             st.write(result.stderr)
             st.write("Done!")
