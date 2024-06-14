@@ -195,7 +195,7 @@ if st.session_state.password_ok:
 
         if st.button("Restart DB (locally only)"):
             command = ['bash', './db.sh', 'restart']
-            result = subprocess.run(command, capture_output=True, text=True)
+            result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             st.write(result.stdout)
             st.write(result.stderr)
             st.write("Done!")
