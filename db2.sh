@@ -19,7 +19,7 @@ start_service() {
     echo "Starting $SERVICE_NAME..."
     cd $FOLDER
     # Command to start the Streamlit application
-    chroma run --host 0.0.0.0 --port 8000 --path ./chromadb
+    chroma run --host 0.0.0.0 --port 8000 --path ./chromadb &
     sleep 5
     PROC=`ps -ef | grep $SERVICE_NAME | grep $KEYWORD | grep -v grep | awk -F" " '{ print $2 }'`
     if [ -n "$PROC" ] && [ "$PROC" != "" ]; then
