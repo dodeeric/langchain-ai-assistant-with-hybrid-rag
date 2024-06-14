@@ -10,6 +10,7 @@ import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 import os
 import zipfile
+import subprocess
 
 from modules.web_scraping_utils_v1 import scrape_commons_category, scrape_web_page_url
 from modules.utils_v1 import load_files_and_embed, delete_directory
@@ -190,6 +191,15 @@ if st.session_state.password_ok:
 
         if st.button("Delete DB (locally only)"):
             delete_directory("./chromadb")
+            st.write("Done!")
+
+        if st.button("Restart DB (locally only)"):
+            #os.system("bash ./db.sh restart")
+            #os.system("ls -l")
+            command = ['ps', '-ef']
+            result = subprocess.run(command, capture_output=True, text=True)
+            st.write(result.stdout)
+            st.write(result.stderr)
             st.write("Done!")
 
         if st.button("Clear Memory and Streamlit Cache"):
