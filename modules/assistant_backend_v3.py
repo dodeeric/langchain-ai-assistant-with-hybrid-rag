@@ -31,7 +31,7 @@ import chromadb
 
 from config.config import *
 
-#@st.cache_resource
+@st.cache_resource
 def instanciate_ai_assistant_chain(model, temperature):
     """
     Instantiate retrievers and chains and return the main chain (AI Assistant).
