@@ -195,7 +195,7 @@ if st.session_state.password_ok:
 
         if st.button("Restart DB (locally only)"):
             #command = ['bash', './db.sh', 'restart']
-            command = ['chroma', 'run', '--host', '0.0.0.0', '--port', '8000', '--path', './chromadb']
+            command = ['bash', './db2.sh', 'restart']
             result = subprocess.run(command, capture_output=True, text=True)
             st.write(result.stdout)
             st.write(result.stderr)
