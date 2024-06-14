@@ -65,13 +65,10 @@ Install required libraries:
 $ pip install -U -r requirements.txt
 ```
 
-Launch the Chroma DB server: (same server as the app or another one)
+Launch the Chroma DB server: (on the same server as the app or another one)
 
 ```
-$ nohup chroma run --host 0.0.0.0 --port 8000 --path ./chromadb &
-
-Saving data to: ./chromadb
-Connect to chroma at: http://localhost:8000
+$ bash db.sh start
 ```
 
 Launch the AI Assistant:
