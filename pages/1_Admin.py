@@ -202,7 +202,7 @@ if st.session_state.password_ok:
 
             load_files_and_embed(json_paths, pdf_paths, embed=False)
 
-            st.write(f"Chroma vector DB running on {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}.")
+            st.write(f"The Chroma vector DB is located on {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}.")
 
             try:
 
