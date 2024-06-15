@@ -162,6 +162,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == "Clear Memory and Streamlit Cache":
+        st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
         if st.button("Clear Memory and Streamlit Cache"):
             st.cache_data.clear()
             st.cache_resource.clear()
@@ -169,6 +170,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
     elif choice == "Delete all PDF Files":
+        st.caption("Delete all the PDF files in the 'pdf_files' directory.")
         if st.button("Delete all PDF Files (locally only)"):
             command = ['rm', '-Rf', './pdf_files/']
             try:
@@ -187,6 +189,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
     elif choice == "Delete all JSON Files (Web Pages)":
+        st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory.")
         if st.button("Delete all JSON Files (Web Pages) (locally only)"):
             command = ['rm', '-Rf', './json_files/']
             try:
