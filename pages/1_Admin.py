@@ -24,7 +24,7 @@ def reset_conversation():
 
     st.session_state.messages = []
     st.session_state.chat_history = []
-    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
+    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)
 
 
 def unzip_and_replace(file_path):

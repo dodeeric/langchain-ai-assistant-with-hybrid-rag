@@ -31,7 +31,7 @@ def reset_conversation():
 
     st.session_state.messages = []
     st.session_state.chat_history = []
-    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)
+    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)
 
 
 def assistant_frontend():
@@ -44,7 +44,7 @@ def assistant_frontend():
     # Initialize chat history (chat_history) for LangChain
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
-        st.session_state.chat_history2 = ConversationBufferWindowMemory(k=4, return_messages=True)   # Max k Q/A in the chat history for Langchain
+        st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)   # Max k Q/A in the chat history for Langchain
 
     # Initialize chat history (messages) for Streamlit
     if "messages" not in st.session_state:

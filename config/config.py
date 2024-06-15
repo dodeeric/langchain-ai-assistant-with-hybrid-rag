@@ -23,6 +23,8 @@ COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
 
+MAX_MESSAGES_IN_MEMORY = 2
+
 OLLAMA_URL = "http://myvm1.edocloud.be:11434"  # "http://35.209.146.25" / "http://localhost:11434" 
 
 CHROMA_SERVER = True
