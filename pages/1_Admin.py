@@ -75,7 +75,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -166,6 +166,17 @@ if st.session_state.password_ok:
             st.cache_data.clear()
             st.cache_resource.clear()
             reset_conversation()
+            st.write("Done!")
+
+    elif choice == "Delete all PDF Files":
+        if st.button("Delete all PDF Files (locally only)"):
+            command = ['rm', './pdf_files/*']
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            except Exception as e:
+                st.write(f"Error: {e}")
+            st.write(result.stdout)
+            st.write(result.stderr)
             st.write("Done!")
     
     elif choice == "Embed Pages in DB":
