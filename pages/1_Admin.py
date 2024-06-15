@@ -170,7 +170,14 @@ if st.session_state.password_ok:
 
     elif choice == "Delete all PDF Files":
         if st.button("Delete all PDF Files (locally only)"):
-            command = ['rm', './pdf_files/*']
+            command = ['rm', '-Rf', './pdf_files/']
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            except Exception as e:
+                st.write(f"Error: {e}")
+            st.write(result.stdout)
+            st.write(result.stderr)
+            command = ['mkdir', './pdf_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
