@@ -185,7 +185,25 @@ if st.session_state.password_ok:
             st.write(result.stdout)
             st.write(result.stderr)
             st.write("Done!")
-    
+
+    elif choice == "Delete all JSON Files (Web Pages)":
+        if st.button("Delete all JSON Files (Web Pages) (locally only)"):
+            command = ['rm', '-Rf', './json_files/']
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            except Exception as e:
+                st.write(f"Error: {e}")
+            st.write(result.stdout)
+            st.write(result.stderr)
+            command = ['mkdir', './json_files/']
+            try:
+                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+            except Exception as e:
+                st.write(f"Error: {e}")
+            st.write(result.stdout)
+            st.write(result.stderr)
+            st.write("Done!")
+
     elif choice == "Embed Pages in DB":
         # Embed data in Chroma DB
         # Load and index
