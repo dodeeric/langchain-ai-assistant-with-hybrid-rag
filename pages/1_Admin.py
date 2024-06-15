@@ -75,7 +75,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Upload File']
+    options = ['Upload PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -159,8 +159,15 @@ if st.session_state.password_ok:
                 unzip_and_replace(f"./json_files/{file_name}")
                 st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
-                st.warning("No file uploaded yet.")  
+                st.warning("No file uploaded yet.")
 
+    elif choice == "Clear Memory and Streamlit Cache":
+        if st.button("Clear Memory and Streamlit Cache"):
+            st.cache_data.clear()
+            st.cache_resource.clear()
+            reset_conversation()
+            st.write("Done!")
+    
     elif choice == "Embed Pages in DB":
         # Embed data in Chroma DB
         # Load and index
@@ -199,12 +206,6 @@ if st.session_state.password_ok:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
                 st.write("The Chroma vector DB has been restarted.")
-
-        if st.button("Clear Memory and Streamlit Cache"):
-            st.cache_data.clear()
-            st.cache_resource.clear()
-            reset_conversation()
-            st.write("Done!")
 
         if st.button("Files and DB Info (locally only)"):
 
