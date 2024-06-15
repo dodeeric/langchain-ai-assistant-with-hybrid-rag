@@ -135,7 +135,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")  
 
     elif choice == "Upload JSON Files (Web Pages)":
-        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
+        st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
         uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
@@ -148,7 +148,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == "Upload JSON Files (Web Pages) in ZIP Format":
-        st.caption("Upload JSON files (Web Pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
+        st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
         uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
