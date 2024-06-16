@@ -46,7 +46,10 @@ def clear_memory_and_cache():
     st.cache_data.clear()
     st.cache_resource.clear()
     reset_conversation()
-    st.write("Done!")
+
+
+def delete_db():
+    delete_directory("./chromadb")
 
 
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
@@ -172,6 +175,7 @@ if st.session_state.password_ok:
         st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
         if st.button("Clear Memory and Streamlit Cache"):
             clear_memory_and_cache()
+            st.write("Done!")
 
     elif choice == "Delete all PDF Files":
         st.caption("Delete all the PDF files in the 'pdf_files' directory.")
@@ -240,7 +244,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
         if st.button("Delete DB (locally only)"):
-            delete_directory("./chromadb")
+            delete_db()
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
