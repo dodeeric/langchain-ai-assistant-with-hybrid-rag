@@ -250,6 +250,7 @@ if st.session_state.password_ok:
 
         if st.button("Start Embed (locally only)"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
+            clear_memory_and_cache()
             st.write("Done!")
 
         if st.button("Delete DB (locally only)"):
