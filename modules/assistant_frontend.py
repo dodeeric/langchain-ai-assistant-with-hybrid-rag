@@ -6,16 +6,6 @@
 This function runs the frontend web interface.
 """
 
-# v2: stream output
-# v3: integrate admin in main web interface
-# v4: move model selection to admin interface + move files dir to json_files + add admin password
-# v5: add a slider for the temperature + errors catch + use config.py
-# v6: move out 2 functions to utils module + only 4 LLMs + model menu in config.py
-# v7: corrected menu switch (about/admin) + display model in use
-# v8: upload a file + upload a pdf file + display total number of pages (web + pdf)
-# v9: scape web pages (not only commons categories or europeana)
-# v10: move admin interface from sidebar to subpage
-
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 

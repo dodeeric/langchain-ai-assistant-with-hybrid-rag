@@ -9,18 +9,6 @@ Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot + admin
 Start the app: streamlit run assistant.py
 """
 
-# History:
-# v2: with chat history
-# v3: with PDF indexation
-# v31/v32: JSON and PDF indexation with function
-# v5: with a limit of messages in the chat history
-# v6: load chunks only from DB on disk
-# v7: diplay question examples in the expander
-# v8: ollama (llama3, mistral, etc.) + anthropic claude + google vertexai
-# v9: multiselect box to chose the model
-# v10: import one function --> one module
-# v11: assistant: main() + assistant_frontend (streamlit) + assistant_backend (langchain) --> two modules
-
 import dotenv
 
 from modules.assistant_frontend import assistant_frontend

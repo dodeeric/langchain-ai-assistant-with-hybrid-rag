@@ -6,8 +6,6 @@
 Functions to scrape the text and the metadata of web pages
 """
 
-# v1: added 2 functions to this module (new name): scrape_commons_category & scrape_europeana_url
-
 import requests, bs4
 from bs4 import BeautifulSoup
 from langchain_community.document_loaders import WebBaseLoader

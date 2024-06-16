@@ -6,8 +6,6 @@
 Miscellaneous functions, including function to chunk and embed files.
 """
 
-# v1: move 2 functions from assistant_frontend_v6.py
-
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
 import sys

@@ -7,9 +7,6 @@ This function runs the backend. It starts the Langchain AI assistant: instanciat
 all the Langchain chains for RAG and LLM.
 """
 
-# v2: add temperature as a variable + catch errors + use langchain-google-vertexai package + parameters in config.py
-# v3: run chroma as a server
-
 # Only to be able to run on Github Codespace
 __import__('pysqlite3')
 import sys
