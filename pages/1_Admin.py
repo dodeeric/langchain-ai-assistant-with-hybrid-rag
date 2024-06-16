@@ -42,6 +42,13 @@ def unzip_and_replace(file_path):
         print(f"The file {file_path} is not a zip file.")
 
 
+def clear_memory_and_cache():
+    st.cache_data.clear()
+    st.cache_resource.clear()
+    reset_conversation()
+    st.write("Done!")
+
+
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 if "model" not in st.session_state:
@@ -164,10 +171,7 @@ if st.session_state.password_ok:
     elif choice == "Clear Memory and Streamlit Cache":
         st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
         if st.button("Clear Memory and Streamlit Cache"):
-            st.cache_data.clear()
-            st.cache_resource.clear()
-            reset_conversation()
-            st.write("Done!")
+            clear_memory_and_cache()
 
     elif choice == "Delete all PDF Files":
         st.caption("Delete all the PDF files in the 'pdf_files' directory.")
