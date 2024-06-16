@@ -13,7 +13,7 @@ import zipfile
 import subprocess
 
 from modules.web_scraping_utils_v1 import scrape_commons_category, scrape_web_page_url
-from modules.utils_v1 import load_files_and_embed, delete_directory
+from modules.utils import load_files_and_embed, delete_directory
 from config.config import *
 
 
