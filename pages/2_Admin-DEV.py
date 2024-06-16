@@ -62,14 +62,13 @@ def restart_db():
         st.write("")
 
 
-# Function to zip files from the server. file_paths is a list of files.
+# Function to zip files. file_paths is a list of files.
 def zip_files(file_paths):
     # Create an in-memory bytes buffer
     buffer = io.BytesIO()
     # Create a zip file in the buffer
     with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file_path in file_paths:
-            # Write each file to the zip file
             with open(file_path, 'rb') as f:
                 zipf.writestr(os.path.basename(file_path), f.read())
     # Seek to the beginning of the buffer
@@ -198,6 +197,23 @@ if st.session_state.password_ok:
                 st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
                 st.warning("No file uploaded yet.")
+
+
+    elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
+        JSON_FILES_DIR = "./json_files/"
+        json_files = os.listdir(JSON_FILES_DIR)
+        json_paths = []
+        for json_file in json_files:
+            json_path = f"{JSON_FILES_DIR}{json_file}"
+            json_paths.append(json_path)
+        zipped_file = zip_files(json_paths)
+        st.download_button(
+            label="Download all JSON Files (Web Pages) in ZIP Format",
+            data=zipped_file,
+            file_name="ai-assistant-all-json-files.zip",
+            mime="application/zip"
+        )
+
 
     elif choice == "Clear Memory and Streamlit Cache":
         st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
