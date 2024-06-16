@@ -52,6 +52,14 @@ def delete_db():
     delete_directory("./chromadb")
 
 
+def restart_db():
+    command = ['bash', './db.sh', 'restart']
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+    except Exception as e:
+        st.write("")
+
+
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 if "model" not in st.session_state:
@@ -248,11 +256,8 @@ if st.session_state.password_ok:
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
-            command = ['bash', './db.sh', 'restart']
-            try:
-                result = subprocess.run(command, capture_output=True, text=True, timeout=30)
-            except Exception as e:
-                st.write("Done!")
+            restart_db()
+            st.write("Done!")
 
         if st.button("Files and DB Info (locally only)"):
 
