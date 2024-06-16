@@ -14,6 +14,7 @@ This application can be configured (see config.py) to create your own specialize
 - AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude 3, Ollama (Llama 3, etc.). Vector size: 3072.
 - Admin interface (scrape web pages, upload PDF files, embed in vector DB, change model, etc.)
 - Files ingestion into the vector DB: JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
+- Fully customisable with parameters in the config.py configuration file.
  
 ## Frameworks and tools
 
