@@ -11,6 +11,7 @@ from langchain.memory import ConversationBufferWindowMemory
 import os
 import zipfile
 import subprocess
+import io
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
 from modules.utils import load_files_and_embed, delete_directory
@@ -56,9 +57,23 @@ def restart_db():
     command = ['bash', './db.sh', 'restart']
     st.write("Wait 20 seconds...")
     try:
-        result = subprocess.run(command, capture_output=True, text=True, timeout=20)
-    except Exception as e:
+        subprocess.run(command, capture_output=True, text=True, timeout=20)
+    except Exception:
         st.write("")
+
+
+# Function to zip files. file_paths is a list of files.
+def zip_files(file_paths):
+    # Create an in-memory bytes buffer
+    buffer = io.BytesIO()
+    # Create a zip file in the buffer
+    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for file_path in file_paths:
+            with open(file_path, 'rb') as f:
+                zipf.writestr(os.path.basename(file_path), f.read())
+    # Seek to the beginning of the buffer
+    buffer.seek(0)
+    return buffer
 
 
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
@@ -94,7 +109,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -124,7 +139,7 @@ if st.session_state.password_ok:
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
     elif choice == "Scrape Web Pages from Wikimedia Commons":
-        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in a JSON file in the 'json_files' directory.")
+        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory.")
         category = st.text_input("Category: ")
         if category:
             st.write(f"Scraping the web pages...")
@@ -182,6 +197,23 @@ if st.session_state.password_ok:
                 st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
                 st.warning("No file uploaded yet.")
+
+
+    elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
+        JSON_FILES_DIR = "./json_files/"
+        json_files = os.listdir(JSON_FILES_DIR)
+        json_paths = []
+        for json_file in json_files:
+            json_path = f"{JSON_FILES_DIR}{json_file}"
+            json_paths.append(json_path)
+        zipped_file = zip_files(json_paths)
+        st.download_button(
+            label="Download all JSON Files (Web Pages) in ZIP Format",
+            data=zipped_file,
+            file_name="ai-assistant-all-json-files.zip",
+            mime="application/zip"
+        )
+
 
     elif choice == "Clear Memory and Streamlit Cache":
         st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
