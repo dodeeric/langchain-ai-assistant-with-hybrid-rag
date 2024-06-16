@@ -54,8 +54,9 @@ def delete_db():
 
 def restart_db():
     command = ['bash', './db.sh', 'restart']
+    st.write("Wait 20 seconds...")
     try:
-        result = subprocess.run(command, capture_output=True, text=True, timeout=30)
+        result = subprocess.run(command, capture_output=True, text=True, timeout=20)
     except Exception as e:
         st.write("")
 
@@ -253,6 +254,8 @@ if st.session_state.password_ok:
 
         if st.button("Delete DB (locally only)"):
             delete_db()
+            restart_db()
+            clear_memory_and_cache()
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
