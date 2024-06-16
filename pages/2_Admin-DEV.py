@@ -11,6 +11,7 @@ from langchain.memory import ConversationBufferWindowMemory
 import os
 import zipfile
 import subprocess
+import io
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
 from modules.utils import load_files_and_embed, delete_directory
@@ -56,9 +57,24 @@ def restart_db():
     command = ['bash', './db.sh', 'restart']
     st.write("Wait 20 seconds...")
     try:
-        result = subprocess.run(command, capture_output=True, text=True, timeout=20)
-    except Exception as e:
+        subprocess.run(command, capture_output=True, text=True, timeout=20)
+    except Exception:
         st.write("")
+
+
+# Function to zip files from the server. file_paths is a list of files.
+def zip_files(file_paths):
+    # Create an in-memory bytes buffer
+    buffer = io.BytesIO()
+    # Create a zip file in the buffer
+    with zipfile.ZipFile(buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for file_path in file_paths:
+            # Write each file to the zip file
+            with open(file_path, 'rb') as f:
+                zipf.writestr(os.path.basename(file_path), f.read())
+    # Seek to the beginning of the buffer
+    buffer.seek(0)
+    return buffer
 
 
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
