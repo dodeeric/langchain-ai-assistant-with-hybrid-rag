@@ -98,7 +98,7 @@ if st.session_state.password_ok:
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
-        st.caption("Give the web page URL and the filter (CSS class). The page will be scraped and saved in a JSON file in the 'json_files' directory.")
+        st.caption("Give the web page URLs and the filter (CSS class). The pages will be scraped and saved in JSON files in the 'json_files' directory.")
         st.caption("""
                     Filter: 
                     - two-third last (balat / irpa)
@@ -106,12 +106,15 @@ if st.session_state.password_ok:
                     - hproduct commons-file-information-table (commons / wikimedia: summary or description section)
                     - card metadata-box-card mb-3 (europeana / kul, irpa, etc.)
                     """)
-        url = st.text_input("URL: ")
         filter = st.text_input("Filter: ")
-        if url and filter:
-            st.write(f"Scraping the web page...")
-            scrape_web_page_url(url, filter)
-            st.write(f"Web page scraped and saved in a JSON file!")
+        urls_box = st.text_area("URLs (one per line)", height=200)
+        if st.button("Start"):
+            if urls_box:
+                urls = urls_box.splitlines()  # List of URLs
+            for url in urls:
+                if url and filter:
+                    scrape_web_page_url(url, filter)
+                    st.write(f"{url} web page scraped and saved in a JSON file!")
 
     elif choice == "Model and Temperature":
         st.caption("Change the model and the temperature for the present chat session.")
