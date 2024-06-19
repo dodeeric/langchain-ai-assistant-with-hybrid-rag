@@ -174,7 +174,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == 'List all Web Pages URLs':
-        st.caption("List all the JSON files with their Web pages URLs.")
+        st.caption("List all the JSON files with their Web page URLs.")
         if st.button("Start"):
             json_files = glob.glob('json_files/*.json')
             for file in json_files:
