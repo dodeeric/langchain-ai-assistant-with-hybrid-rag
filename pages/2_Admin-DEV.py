@@ -12,6 +12,8 @@ import os
 import zipfile
 import subprocess
 import io
+import json
+import glob
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
 from modules.utils import load_files_and_embed, delete_directory
@@ -109,7 +111,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -169,8 +171,18 @@ if st.session_state.password_ok:
                     file.write(bytes_data)
                 st.success(f"File '{file_name}' uploaded and saved successfully!")
             else:
-                st.warning("No file uploaded yet.")  
+                st.warning("No file uploaded yet.")
 
+    elif choice == 'List all Web Pages URLs':
+        st.caption("List all the JSON files with their Web pages URLs.")
+        if st.button("Start"):
+            json_files = glob.glob('json_files/*.json')
+            for file in json_files:
+                st.write(f"File: {file}")
+                with open(file, 'r') as f:
+                    data = json.load(f)
+                    for item in data:
+                        st.write(f"URL: {item['url']}")
     elif choice == "Upload JSON Files (Web Pages)":
         st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
         uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
