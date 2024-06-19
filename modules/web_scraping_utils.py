@@ -132,6 +132,11 @@ def scrape_web_page_url(url: str, filter: str) -> None:
     url2 = url.replace("https://","")
     url2 = url2.replace("http://","")
     url2 = url2.replace("/","-")
+    url2 = url2.replace(" ","-")
+    url2 = url2.replace("?","-")
+    url2 = url2.replace(":","-")
+    url2 = url2.replace(".","-")
+
     # Save the Python list in a JSON file
     # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
     with open(f"./json_files/{url2}-swp.json", "w") as json_file:
