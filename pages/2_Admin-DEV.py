@@ -169,7 +169,7 @@ if st.session_state.password_ok:
                 file_name = uploaded_file.name
                 with open(f"./pdf_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
-                st.success(f"********* File '{file_name}' uploaded and saved successfully!")
+                st.success(f"File '{file_name}' uploaded and saved successfully!")
             else:
                 st.warning("No file uploaded yet.")
 
@@ -178,7 +178,7 @@ if st.session_state.password_ok:
         if st.button("Start"):
             json_files = glob.glob('json_files/*.json')
             for file in json_files:
-                st.write(f"File: {file}")
+                st.write(f"********* File: {file}")
                 with open(file, 'r') as f:
                     data = json.load(f)
                     for item in data:
