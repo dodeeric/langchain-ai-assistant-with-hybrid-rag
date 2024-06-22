@@ -9,10 +9,10 @@ ANTHROPIC_MODEL = "claude-3-5-sonnet-20240620"  # "claude-3-opus-20240229"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3"  # Can be another model than Llama
 
-OPENAI_MENU = "OpenAI / GPT 4"
-ANTHROPIC_MENU = "Anthropic / Claude 3"
-VERTEXAI_MENU = "Google / Gemini 1.5"
-OLLAMA_MENU = "MetaAI / Llama 3"
+OPENAI_MENU = "OpenAI / GPT"
+ANTHROPIC_MENU = "Anthropic / Claude"
+VERTEXAI_MENU = "Google / Gemini"
+OLLAMA_MENU = "MetaAI / Llama"
 
 DEFAULT_MODEL = OPENAI_MENU  # One of the model menu choices
 DEFAULT_MENU_CHOICE = 0  # OpenAI: 0, Anthropic: 1, VertexAI: 2, Ollama: 3)
