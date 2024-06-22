@@ -121,9 +121,9 @@ def instanciate_ai_assistant_chain(model, temperature):
 
     try:
 
-        history_aware_retriever = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
+        history_aware_retriever_chain = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
         question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
-        ai_assistant_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+        ai_assistant_chain = create_retrieval_chain(history_aware_retriever_chain, question_answer_chain)
 
     except Exception as e:
         st.write("Error: Cannot instanciate the chains!")
