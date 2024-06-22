@@ -63,13 +63,13 @@ def instanciate_ai_assistant_chain(model, temperature):
 
     try:
 
-        if model == "MetaAI / Llama 3":
+        if model == OLLAMA_MENU:
             llm = ChatOllama(model=OLLAMA_MODEL, temperature=temperature, base_url=OLLAMA_URL)
-        elif model == "Anthropic / Claude 3":
+        elif model == ANTHROPIC_MENU:
             llm = ChatAnthropic(model_name=ANTHROPIC_MODEL, temperature=temperature, max_tokens=4000)
-        elif model == "Google / Gemini 1.5":
+        elif model == VERTEXAI_MENU:
             llm = ChatVertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_output_tokens=4000)
-        elif model == "OpenAI / GPT 4":
+        elif model == OPENAI_MENU:
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
         else:
             st.write("Error: No model available!")
