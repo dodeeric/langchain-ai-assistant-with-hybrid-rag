@@ -186,5 +186,5 @@ FRANCAIS:
 
 SIDEBAR_FOOTER = """
 _________
-Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.*
+Hybrid RAG with memory powered by Langchain. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.* Github: https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag (Ragai)
 """
