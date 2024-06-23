@@ -227,10 +227,100 @@ Procedure:
 
 A) Create the App service plan and the App service (Web App)
 
-Via the Azure Web interface (Console), create:
+With the Azure Web interface (Console), or with a Bicep or JSON ARM template, or with a Terraform configuration, or with the Azure CLI or Azure Powershell CLI, create:
 
 * An App service plan
 * A Web App with: Continuous deployment = Disabled
+
+Example of Bicep ARM template and Azure DevOps pipeline:
+
+File: web-app.bicep
+
+```
+module appServicePlan 'br/public:avm/res/web/serverfarm:0.2.0' = {
+  name: 'appServicePlanDeployment'
+  params: {
+    name: 'ragai-appserviceplan'
+    skuCapacity: 1
+    skuName: 'B1'   // Standard S is deprecated
+    kind: 'Linux'
+    reserved: true   // Mandatory if Linux
+  }
+}
+
+module webApp 'br/public:avm/res/web/site:0.3.8'  = {
+  name: 'webAppDeployment'
+  params: {
+    kind: 'app,linux'
+    name: 'ragai-webapp'
+    serverFarmResourceId: appServicePlan.outputs.resourceId
+    location: 'westeurope'
+    siteConfig: {
+      appSettings: [
+        {
+          name: 'WEBSITES_ENABLE_APP_SERVICE_STORAGE'
+          value: 'false'
+        }
+      ]
+      linuxFxVersion: 'PYTHON|3.10'
+    }
+  }
+}
+```
+
+File: azure-pipeline.yml
+
+```
+name: $(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Rev:r)
+
+variables:
+  - group: environment-variables
+
+parameters:
+  - name: location
+    displayName: The location of the resource group
+    type: string
+    default: 'westeurope'
+  - name: resourcegroup
+    displayName: The name of the resource group (rg)
+    type: string
+    default: 'ragai-rg'
+
+trigger: none
+    
+stages:
+  - stage: Stage_1
+    displayName: 'Stage 1: Deploy resource group'
+    jobs:
+    - job: Job_1
+      displayName: 'Deploy Job 1'
+      steps:
+        - task: AzureCLI@2
+          displayName: 'Deploy Step 1'
+          inputs:
+            azureSubscription: $(subscription)
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: |
+              echo "Creating resource group..."
+              az group create --name ${{parameters.resourcegroup}} --location ${{parameters.location}}
+              
+  - stage: Stage_2
+    displayName: 'Stage 2: Deploy web app'
+    jobs:
+    - job: Job_1
+      displayName: 'Deploy Job 1'
+      steps:
+        - task: AzureCLI@2
+          displayName: 'Deploy Step 1'
+          inputs:
+            azureSubscription: $(subscription)
+            scriptType: bash
+            scriptLocation: inlineScript
+            inlineScript: |
+              echo "Deploy web app..."
+              az deployment group create --resource-group ${{parameters.resourcegroup}} --template-file './azure-web-app/web-app.bicep'
+```           
 
 B) Configure the deployment source
 
