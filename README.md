@@ -223,4 +223,53 @@ Demo: https://bmae-ai-assistant.streamlit.app (running the app)
 
 You can deploy directly from Github repository to Azure Web App service with Github Actions workflow.
 
-Demo: https://bmae-ragai.azurewebsites.net (running the app)
+Procedure:
+
+A) Create the App service plan and the App service (Web App)
+
+Via the Azure Web interface (Console), create:
+
+* An App service plan
+* A Web App with: Continuous deployment = Disabled
+
+B) Configure the deployment source
+
+* In the Azure portal, go to the management page for your Web App.
+* In the left pane, select "Deployment Center". Then select "Settings".
+* In the "Source" box, select "GitHub".
+* If you're deploying from GitHub for the first time, select "Authorize" and follow the authorization prompts.
+* After you authorize your Azure account with GitHub, select the "Organization", "Repository", and "Branch" you want.
+* Under "Authentication type", select "Basic authentication". Then click on the red message (SCM Basic Auth. is not allowed), and set: SCM Basic Auth. Publishing = On, and click on "Save", and "Continue". Then back to the previous page.
+* Select "Save". New commits in the selected repository and branch now deploy continuously into your Web App. You can track the commits and deployments on the "Logs" tab.
+* Wait for the deployment to finish (15 minutes or so). The Actions workflow YAML file is added in your repo in: .github/workflow/xxxx.yml. Go to Github > Actions, and click on the workflow run to see the Build and Deploy.
+
+C) Configure the "Startup Command"
+
+* Go to "Web App" > "Configuration".
+* In "Startup Command", add: 
+
+```
+python -m streamlit run Assistant.py --server.port 8000 --server.address 0.0.0.0
+```
+
+And click on "Save", then "Continue".
+
+* Go to the URL of the Web App, you should see the application running, but with errors. If needed, restart the Web App (it takes some time for the app to become up and running).
+
+D) Add the "Environment variables"
+
+* Go to "Web App" > "Environment variables".
+* Introduce one by one ("Add", then "Apply", "Confirm"):
+
+```
+OPENAI_API_KEY = "sk-proj-xxx"       ==> Go to https://platform.openai.com/api-keys
+ANTHROPIC_API_KEY = "sk-ant-xxx"     ==> Go to https://console.anthropic.com/settings/keys
+LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Langsmith)
+LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
+ADMIN_PASSWORD = "xxx"               ==> You chose your password
+GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
+```
+
+3. Restart the Web App (it takes some time for the app to become up and running). To see Application logs, go to: Web App > Availability and Performance > Application Logs > Platform logs.
+
+Demo: https://bmae-ragai-webapp.azurewebsites.net (running the app only, not the db)
