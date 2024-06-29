@@ -4,14 +4,12 @@ langchain
 langchain-community
 langchain-openai
 langchain-anthropic
+langchain-google-genai
 langchain-google-vertexai
 langchain-chroma
 chromadb
-#chromadb-client
 rank_bm25
 streamlit
 pypdf
-#rdflib
-#google-cloud-aiplatform
 pysqlite3-binary
 beautifulsoup4 

@@ -20,6 +20,7 @@ from langchain.chains import create_retrieval_chain  # To create the main chain 
 from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_google_vertexai import ChatVertexAI
 from langchain_community.chat_models import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
@@ -71,6 +72,8 @@ def instanciate_ai_assistant_chain(model, temperature):
             llm = ChatVertexAI(model_name=VERTEXAI_MODEL, temperature=temperature, max_output_tokens=4000)
         elif model == OPENAI_MENU:
             llm = ChatOpenAI(model=OPENAI_MODEL, temperature=temperature)
+        elif model == GOOGLE_MENU:
+            llm = ChatGoogleGenerativeAI(model=GOOGLE_MODEL, temperature=temperature)
         else:
             st.write("Error: No model available!")
             quit()
