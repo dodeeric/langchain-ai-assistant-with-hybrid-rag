@@ -6,16 +6,18 @@ EMBEDDING_MODEL = "text-embedding-3-large"  # Must be a model from OpenAI
 
 OPENAI_MODEL = "gpt-4o-2024-05-13"
 ANTHROPIC_MODEL = "claude-3-5-sonnet-20240620"  # "claude-3-opus-20240229"
+GOOGLE_MODEL = "gemini-1.5-pro-preview-0409"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
-OLLAMA_MODEL = "llama3"  # Can be another model than Llama
+OLLAMA_MODEL = "llama3"
 
 OPENAI_MENU = "OpenAI / GPT"
 ANTHROPIC_MENU = "Anthropic / Claude"
-VERTEXAI_MENU = "Google / Gemini"
-OLLAMA_MENU = "MetaAI / Llama"
+GOOGLE_MENU = "Google / Gemini"
+VERTEXAI_MENU = "Google (VertexAI) / Gemini"
+OLLAMA_MENU = "MetaAI (Ollama) / Llama"
 
 DEFAULT_MODEL = OPENAI_MENU  # One of the model menu choices
-DEFAULT_MENU_CHOICE = 0  # OpenAI: 0, Anthropic: 1, VertexAI: 2, Ollama: 3)
+DEFAULT_MENU_CHOICE = 0  # OpenAI: 0, Anthropic: 1, etc.)
 DEFAULT_TEMPERATURE = 0.2  # OpenAI: 0-2, Anthropic: 0-1
 
 COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
