@@ -135,7 +135,7 @@ if st.session_state.password_ok:
 
     elif choice == "Model and Temperature":
         st.caption("Change the model and the temperature for the present chat session.")
-        model_list = [OPENAI_MENU, ANTHROPIC_MENU, VERTEXAI_MENU, OLLAMA_MENU]
+        model_list = [OPENAI_MENU, ANTHROPIC_MENU, GOOGLE_MENU, VERTEXAI_MENU, OLLAMA_MENU]
         st.session_state.model = st.selectbox('Model: ', model_list, DEFAULT_MENU_CHOICE)
         st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
