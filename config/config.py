@@ -6,7 +6,7 @@ EMBEDDING_MODEL = "text-embedding-3-large"  # Must be a model from OpenAI
 
 OPENAI_MODEL = "gpt-4o-2024-05-13"
 ANTHROPIC_MODEL = "claude-3-5-sonnet-20240620"  # "claude-3-opus-20240229"
-GOOGLE_MODEL = "gemini-1.5-pro-preview-0409"
+GOOGLE_MODEL = "gemini-1.5-pro"
 VERTEXAI_MODEL = "gemini-1.5-pro-preview-0409"
 OLLAMA_MODEL = "llama3"
 
