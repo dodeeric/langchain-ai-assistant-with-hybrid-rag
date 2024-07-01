@@ -25,11 +25,6 @@ def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
     Output: dictionary with: url: url, metadata: metadata, text: text
     """
 
-    #filter = "two-third last"  # balat / irpa
-    #filter = "media-body"  # belgica / kbr
-    #filter = "hproduct commons-file-information-table"  # commons / wikimedia: summary or description section
-    #filter = "card metadata-box-card mb-3"  # europeana / kul, irpa, etc.
-
     # Get the page content
     loader = WebBaseLoader(
         web_paths=(url,),
@@ -108,7 +103,7 @@ def scrape_commons_category(category: str) -> None:
     for url in urls:
         st.write(f"Scraping {i}/{number_of_pages}...")
         url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-        item = scrape_web_page(url, "hproduct commons-file-information-table")
+        item = scrape_web_page(url, "mw-content-ltr mw-parser-output")  # Old: "hproduct commons-file-information-table"
         print(item)
         items.append(item)
         i = i + 1

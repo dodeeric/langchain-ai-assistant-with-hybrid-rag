@@ -120,7 +120,7 @@ if st.session_state.password_ok:
                     Filter: 
                     - two-third last (balat / irpa)
                     - media-body (belgica / kbr)
-                    - hproduct commons-file-information-table (commons / wikimedia: summary or description section)
+                    - mw-content-ltr mw-parser-output (commons / wikimedia: summary or description section)
                     - card metadata-box-card mb-3 (europeana / kul, irpa, etc.)
                     """)
         filter = st.text_input("Filter: ")
