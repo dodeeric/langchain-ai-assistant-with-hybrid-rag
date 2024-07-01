@@ -8,3 +8,4 @@ chromadb/*
 serviceaccount*.json
 nohup.out
 chroma.log
+files/*
