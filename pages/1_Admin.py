@@ -183,6 +183,7 @@ if st.session_state.password_ok:
                     data = json.load(f)
                     for item in data:
                         st.write(f"URL: {item['url']}")
+
     elif choice == "Upload JSON Files (Web Pages)":
         st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
         uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
@@ -210,7 +211,6 @@ if st.session_state.password_ok:
             else:
                 st.warning("No file uploaded yet.")
 
-
     elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
         JSON_FILES_DIR = "./json_files/"
         json_files = os.listdir(JSON_FILES_DIR)
@@ -225,7 +225,6 @@ if st.session_state.password_ok:
             file_name="ai-assistant-all-json-files.zip",
             mime="application/zip"
         )
-
 
     elif choice == "Clear Memory and Streamlit Cache":
         st.caption("Clear the Langchain and Streamlit memory buffer and the Streamlit cache.")
