@@ -7,3 +7,4 @@ config/__pycache__/*
 chromadb/*
 serviceaccount*.json
 nohup.out
+chroma.log
