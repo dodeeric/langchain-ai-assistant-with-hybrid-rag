@@ -16,7 +16,6 @@ import shutil
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-#import chromadb
 
 from config.config import *
 
@@ -57,8 +56,6 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
         st.write(f"Number of web and pdf pages: {len(documents) + len(documents2)}")
         if embed:
             Chroma.from_documents(documents2, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
-            #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            #Chroma(documents2, embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
 
     except Exception as e:
         st.write("Error: The Chroma vector DB is not available locally. Is it running on a remote server?")

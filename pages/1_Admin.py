@@ -254,14 +254,14 @@ if st.session_state.password_ok:
     elif choice == "Delete all JSON Files (Web Pages)":
         st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory.")
         if st.button("Delete all JSON Files (Web Pages) (locally only)"):
-            command = ['rm', '-Rf', './json_files/']
+            command = ['rm', '-Rf', './files/json_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
                 st.write(f"Error: {e}")
             st.write(result.stdout)
             st.write(result.stderr)
-            command = ['mkdir', './json_files/']
+            command = ['mkdir', '-p', './files/json_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
@@ -277,8 +277,8 @@ if st.session_state.password_ok:
         st.caption('Embed all the web and pdf pages in the Chroma vector DB.')
         st.caption('Caution: Works only with files and DB running locally (server on which the app is running).')
 
-        JSON_FILES_DIR = "./json_files/"
-        PDF_FILES_DIR = "./pdf_files/"
+        JSON_FILES_DIR = "./files/json_files/"
+        PDF_FILES_DIR = "./files/pdf_files/"
 
         # JSON files
         json_files = os.listdir(JSON_FILES_DIR)
