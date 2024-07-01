@@ -320,7 +320,7 @@ if st.session_state.password_ok:
                 file_path = './chromadb/chroma.sqlite3'
                 file_size = os.path.getsize(file_path)
                 file_size = file_size / 1024  # In KB
-                if file_size > 144:
+                if file_size > 160:
                     st.write(f"DB size: {file_size} KB")
                 else:
                     st.write(f"DB size: {file_size} KB. DB is empty!")
