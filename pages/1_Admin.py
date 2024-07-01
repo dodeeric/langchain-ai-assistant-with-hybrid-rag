@@ -149,12 +149,12 @@ if st.session_state.password_ok:
             st.write(f"Web pages scraped and saved in a JSON file!")
 
     elif choice == "Upload File":
-        st.caption("Upload a file in the 'root' directory.")
+        st.caption("Upload a file in the 'files' directory.")
         uploaded_file = st.file_uploader("Choose a file:")
         if uploaded_file is not None:
             bytes_data = uploaded_file.getvalue()
             file_name = uploaded_file.name
-            with open(file_name, "wb") as file:
+            with open(f"files/{file_name}", "wb") as file:
                 file.write(bytes_data)
             st.success(f"File '{file_name}' uploaded and saved successfully!")
         else:
