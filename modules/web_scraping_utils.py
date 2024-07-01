@@ -137,6 +137,6 @@ def scrape_web_page_url(url: str, filter: str) -> None:
 
     # Save the Python list in a JSON file
     # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
-    with open(f"./json_files/{url2}-swp.json", "w") as json_file:
+    with open(f"./files/json_files/{url2}-swp.json", "w") as json_file:
         json.dump(items, json_file) # That step replaces the accentuated characters (ex: é) by its utf8 codes (ex: \u00e9)
     json_file.close()
