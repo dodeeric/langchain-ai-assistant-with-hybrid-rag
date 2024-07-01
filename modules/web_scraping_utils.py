@@ -71,7 +71,7 @@ def scrape_commons_category(category: str) -> None:
     For Wikimedia Commons: Scrape the URLs from a Category and save the results in a JSON file
     """
     
-    FILE_PATH = "./json_files/commons-category-"
+    FILE_PATH = "./files/json_files/commons-category-"
 
     category = category.replace(" ","_")
 
