@@ -167,7 +167,7 @@ if st.session_state.password_ok:
             if uploaded_file is not None:
                 bytes_data = uploaded_file.getvalue()
                 file_name = uploaded_file.name
-                with open(f"./pdf_files/{file_name}", "wb") as file:
+                with open(f"./files/pdf_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
                 st.success(f"File '{file_name}' uploaded and saved successfully!")
             else:
@@ -176,7 +176,7 @@ if st.session_state.password_ok:
     elif choice == 'List all Web Pages URLs':
         st.caption("List all the JSON files with their Web page URLs.")
         if st.button("Start"):
-            json_files = glob.glob('json_files/*.json')
+            json_files = glob.glob('files/json_files/*.json')
             for file in json_files:
                 st.write(f"********* File: {file}")
                 with open(file, 'r') as f:
@@ -191,7 +191,7 @@ if st.session_state.password_ok:
             if uploaded_file is not None:
                 bytes_data = uploaded_file.getvalue()
                 file_name = uploaded_file.name
-                with open(f"./json_files/{file_name}", "wb") as file:
+                with open(f"./files/json_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
                 st.success(f"File '{file_name}' uploaded and saved successfully!")
             else:
@@ -204,15 +204,15 @@ if st.session_state.password_ok:
             if uploaded_file is not None:
                 bytes_data = uploaded_file.getvalue()
                 file_name = uploaded_file.name
-                with open(f"./json_files/{file_name}", "wb") as file:
+                with open(f"./files/json_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
-                unzip_and_replace(f"./json_files/{file_name}")
+                unzip_and_replace(f"./files/json_files/{file_name}")
                 st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
                 st.warning("No file uploaded yet.")
 
     elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
-        JSON_FILES_DIR = "./json_files/"
+        JSON_FILES_DIR = "./files/json_files/"
         json_files = os.listdir(JSON_FILES_DIR)
         json_paths = []
         for json_file in json_files:
@@ -235,14 +235,14 @@ if st.session_state.password_ok:
     elif choice == "Delete all PDF Files":
         st.caption("Delete all the PDF files in the 'pdf_files' directory.")
         if st.button("Delete all PDF Files (locally only)"):
-            command = ['rm', '-Rf', './pdf_files/']
+            command = ['rm', '-Rf', './files/pdf_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
                 st.write(f"Error: {e}")
             st.write(result.stdout)
             st.write(result.stderr)
-            command = ['mkdir', './pdf_files/']
+            command = ['mkdir', '-p', './files/pdf_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
             except Exception as e:
