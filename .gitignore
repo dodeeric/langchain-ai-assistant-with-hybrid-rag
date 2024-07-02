@@ -4,8 +4,8 @@
 __pycache__/*
 modules/__pycache__/*
 config/__pycache__/*
-chromadb/*
-files/*
+#chromadb/*
+#files/*
 nohup.out
 chroma.log
 blobfuse.yaml
