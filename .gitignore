@@ -6,7 +6,7 @@ modules/__pycache__/*
 config/__pycache__/*
 chromadb/*
 files/*
-serviceaccount*.json
 nohup.out
 chroma.log
 blobfuse.yaml
+blobfusetmp/*
