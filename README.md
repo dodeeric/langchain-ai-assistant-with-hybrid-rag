@@ -365,7 +365,9 @@ GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Ser
 
 Demo: https://bmae-ragai-webapp.azurewebsites.net (running the app only, not the db)
 
-## Install blobfuse2 to mount an Azure Blob container of the local filesystem 'files' directory
+## Install blobfuse2 (OPTIONAL)
+
+Procedure to mount an Azure Blob container of the local filesystem 'files' directory
 
 Example for Linux Ubuntu 22.04.4 LTS (Jammy)
 
