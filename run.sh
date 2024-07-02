@@ -2,6 +2,6 @@
 
 # Ragai - (c) Eric Dodémont, 2024.
 
-# Script which can be used as startup command if the app is deployed to Azure Web App service
+# Script which can be used to start the db server, the app, and the chroma db admin web interface.
 
-python -m streamlit run Assistant.py --server.port 8000 --server.address 0.0.0.0
+bash db.sh start && bash app.sh start && sudo docker run -p 3000:3000 chromadb-admin &
