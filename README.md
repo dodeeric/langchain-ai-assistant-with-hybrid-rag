@@ -364,3 +364,90 @@ GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Ser
 3. Restart the Web App (it takes some time for the app to become up and running). To see Application logs, go to: Web App > Availability and Performance > Application Logs > Platform logs.
 
 Demo: https://bmae-ragai-webapp.azurewebsites.net (running the app only, not the db)
+
+## Install blobfuse2 to mount an Azure Blob container of the local filesystem 'files' directory
+
+Example for Linux Ubuntu 22.04.4 LTS (Jammy)
+
+### Install blobfuse2
+
+```
+sudo wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install libfuse3-dev fuse3 blobfuse2
+```
+
+### Configure blobfuse2
+
+```
+mkdir blobfusetmp
+mkdir files
+```
+```
+nano blobfuse.yaml
+```
+``` 
+logging:
+  type: syslog
+  level: log_debug
+
+components:
+  - libfuse
+  - file_cache
+  - attr_cache
+  - azstorage
+
+libfuse:
+  attribute-expiration-sec: 120
+  entry-expiration-sec: 120
+  negative-entry-expiration-sec: 240
+
+file_cache:
+  path: blobfusetmp
+  timeout-sec: 120
+  max-size-mb: 4096
+
+attr_cache:
+  timeout-sec: 7200
+
+azstorage:
+  type: block
+  account-name: bmaeragaisa
+  account-key: xxx
+  endpoint: https://bmaeragaisa.blob.core.windows.net
+  mode: key
+  container: bmae-ragai-blobcontainer
+```
+```
+chmod 600 blobfuse.cfg
+```
+
+### Mount the blob container on the local FS
+
+```
+blobfuse2 mount ./files --config-file=./blobfuse.yaml
+```
+or
+```
+bash fuse<sh
+```
+
+### Logs
+
+Logs are available in two files: /var/log/blobfuse*.log
+
+### Checks
+
+```
+df -a
+blobfuse2 mount list
+```
+
+### Web sites
+
+How to mount an Azure Blob Storage container on Linux with BlobFuse2
+https://learn.microsoft.com/en-us/azure/storage/blobs/blobfuse2-how-to-deploy?tabs=Ubuntu
+
+Blobfuse2 Installation
+https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Installation
