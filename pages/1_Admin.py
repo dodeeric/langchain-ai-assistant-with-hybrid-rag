@@ -275,7 +275,6 @@ if st.session_state.password_ok:
         # Load and index
 
         st.caption('Embed all the web and pdf pages in the Chroma vector DB.')
-        st.caption('Caution: Works only with files and DB running locally (server on which the app is running).')
 
         JSON_FILES_DIR = "./files/json_files/"
         PDF_FILES_DIR = "./files/pdf_files/"
