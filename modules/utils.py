@@ -39,7 +39,7 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
             documents = documents + docs
         st.write(f"Number of web pages: {len(documents)}")
         if embed:
-            Chroma.from_documents(documents, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+            Chroma.from_documents(documents, embedding_model, collection_name=CHROMA_COLLECTION_NAME, persist_directory="./chromadb")
             #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             #Chroma(documents, embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
 
@@ -55,7 +55,7 @@ def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool)
         st.write(f"Number of PDF pages: {len(documents2)}")
         st.write(f"Number of web and pdf pages: {len(documents) + len(documents2)}")
         if embed:
-            Chroma.from_documents(documents2, embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+            Chroma.from_documents(documents2, embedding_model, collection_name=CHROMA_COLLECTION_NAME, persist_directory="./chromadb")
 
     except Exception as e:
         st.write("Error: The Chroma vector DB is not available locally. Is it running on a remote server?")

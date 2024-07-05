@@ -30,7 +30,7 @@ OLLAMA_URL = "http://myvm1.edocloud.be:11434"  # "http://35.209.146.25" / "http:
 CHROMA_SERVER = True
 CHROMA_SERVER_HOST = "myvm2.edocloud.be"
 CHROMA_SERVER_PORT = "8000"
-COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
+CHROMA_COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
 
 CONTEXTUALIZE_PROMPT = """Given a chat history and the latest user question which \
 might reference context in the chat history, formulate a standalone question which can be \

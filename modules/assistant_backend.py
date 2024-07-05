@@ -45,13 +45,13 @@ def instanciate_ai_assistant_chain(model, temperature):
             # Run the Chroma server (the app and the db can run on different servers)
 
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
 
         else:
 
             # Save the DB on the local filesystem (the app has to run on the same server)
 
-            vector_db = Chroma(embedding_function=embedding_model, collection_name=COLLECTION_NAME, persist_directory="./chromadb")
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, persist_directory="./chromadb")
 
         docs = vector_db.get()
         documents = docs["documents"]
