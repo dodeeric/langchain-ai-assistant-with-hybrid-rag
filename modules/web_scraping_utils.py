@@ -73,6 +73,11 @@ def scrape_commons_category(category: str) -> None:
     
     FILE_PATH = "./files/json_files/commons-category-"
 
+    FILTER1 = "fileinfotpl-type-information vevent mw-content-ltr"  # Summary: Information template
+    FILTER2 = "fileinfotpl-type-artwork vevent mw-content-ltr"      # Summary: Artwork template
+    #FILTER = "mw-content-ltr mw-parser-output"  # Old (Summary + Licensing)
+    #FILTER = "hproduct commons-file-information-table"
+
     category = category.replace(" ","_")
 
     items = []
@@ -103,7 +108,7 @@ def scrape_commons_category(category: str) -> None:
     for url in urls:
         st.write(f"Scraping {i}/{number_of_pages}...")
         url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-        item = scrape_web_page(url, "mw-content-ltr mw-parser-output") # Old: "hproduct commons-file-information-table"
+        item = scrape_web_page(url, (FILTER1, FILTER2))
         print(item)
         items.append(item)
         i = i + 1
