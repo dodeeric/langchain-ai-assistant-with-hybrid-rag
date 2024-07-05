@@ -73,8 +73,8 @@ def scrape_commons_category(category: str) -> None:
     
     FILE_PATH = "./files/json_files/commons-category-"
 
-    FILTER1 = "fileinfotpl-type-information vevent mw-content-ltr"  # Summary: Information template
-    FILTER2 = "fileinfotpl-type-artwork vevent mw-content-ltr"      # Summary: Artwork template
+    FILTER1 = "fileinfotpl-type-information vevent mw-content-ltr"  # Summary: Information template (table class)
+    FILTER2 = "fileinfotpl-type-artwork vevent mw-content-ltr"      # Summary: Artwork template (table class)
     #FILTER = "mw-content-ltr mw-parser-output"  # Old (Summary + Licensing)
     #FILTER = "hproduct commons-file-information-table"
 
