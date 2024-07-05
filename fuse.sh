@@ -37,4 +37,5 @@
 #   mode: key
 #   container: bmae-ragai-blobcontainer
 
+rm -Rf ./blobfusetmp
 blobfuse2 mount ./files --config-file=./blobfuse.yaml
