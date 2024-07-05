@@ -139,13 +139,25 @@ if st.session_state.password_ok:
         st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
+#    elif choice == "Scrape Web Pages from Wikimedia Commons":
+#        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory.")
+#        category = st.text_input("Category: ")
+#        if category:
+#            st.write(f"Scraping the web pages...")
+#            scrape_commons_category(category)
+#            st.write(f"Web pages scraped and saved in a JSON file!")
+
     elif choice == "Scrape Web Pages from Wikimedia Commons":
-        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory.")
-        category = st.text_input("Category: ")
-        if category:
-            st.write(f"Scraping the web pages...")
-            scrape_commons_category(category)
-            st.write(f"Web pages scraped and saved in a JSON file!")
+        st.caption("Give category names from Wikimedia Commons. The pages will be scraped and saved in JSON files (one file per category) in the 'json_files' directory.")
+        categories_box = st.text_area("Categories (one per line)", height=200)
+        if st.button("Start"):
+            if categories_box:
+                categories = categories_box.splitlines()  # List of categories
+            for category in categories:
+                if category:
+                    st.write(f"Scraping the web pages... (Category: {category}")
+                    scrape_commons_category(category)
+                    st.write(f"Web pages scraped and saved in a JSON file!")
 
     elif choice == "Upload File":
         st.caption("Upload a file in the 'files' directory.")
