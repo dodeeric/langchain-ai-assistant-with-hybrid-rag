@@ -155,7 +155,7 @@ if st.session_state.password_ok:
                 categories = categories_box.splitlines()  # List of categories
             for category in categories:
                 if category:
-                    st.write(f"Scraping the web pages... (Category: {category}")
+                    st.write(f"Scraping the web pages... (Category: {category})")
                     scrape_commons_category(category)
                     st.write(f"Web pages scraped and saved in a JSON file!")
 
