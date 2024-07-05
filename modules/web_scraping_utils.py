@@ -30,8 +30,7 @@ def scrape_web_page(url: str, filter: str) -> dict[str, Any]:
         web_paths=(url,),
         bs_kwargs=dict(
             parse_only=bs4.SoupStrainer(
-                #class_=(filter)
-                string=filter
+                class_=(filter)
             )
         ),
     )
@@ -104,7 +103,7 @@ def scrape_commons_category(category: str) -> None:
     for url in urls:
         st.write(f"Scraping {i}/{number_of_pages}...")
         url = url.replace("\ufeff", "")  # Remove BOM (Byte order mark at the start of a text stream)
-        item = scrape_web_page(url, "fileinfotpl-type-information vevent mw-content-ltr")  # "mw-content-ltr mw-parser-output" # Old: "hproduct commons-file-information-table"
+        item = scrape_web_page(url, "mw-content-ltr mw-parser-output") # Old: "hproduct commons-file-information-table"
         print(item)
         items.append(item)
         i = i + 1
