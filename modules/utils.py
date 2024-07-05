@@ -20,7 +20,7 @@ from langchain_chroma import Chroma
 from config.config import *
 
 
-def load_files_and_embed(json_file_paths: int, pdf_file_paths: int, embed: bool) -> None:
+def load_files_and_embed(json_file_paths: list, pdf_file_paths: list, embed: bool) -> None:
     """
     Loads and chunks files into a list of documents then embed
     """
