@@ -214,10 +214,6 @@ if st.session_state.password_ok:
             else:
                 st.warning("No file uploaded yet.")
 
-
-
-
-
     elif choice == "Backup: Upload JSON Files (Web Pages) in ZIP Format":
         st.caption("Upload JSON files (Web pages) in the 'backup_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will NOT be unziped.")
         uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
@@ -232,11 +228,8 @@ if st.session_state.password_ok:
             else:
                 st.warning("No file uploaded yet.")
 
-
-
-
-
-    elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
+    elif choice == "Backup: Download all JSON Files (Web Pages) in ZIP Format":
+        st.caption("Download all JSON files (Web pages) in ZIP format. One or many JSON items (Web pages) per JSON file. The ZIP files will NOT be unziped.")
         JSON_FILES_DIR = "./files/json_files/"
         json_files = os.listdir(JSON_FILES_DIR)
         json_paths = []
