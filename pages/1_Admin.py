@@ -111,7 +111,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Upload JSON Files (Web Pages) in ZIP Format', 'Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -139,14 +139,6 @@ if st.session_state.password_ok:
         st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
-#    elif choice == "Scrape Web Pages from Wikimedia Commons":
-#        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory (knowledge base).")
-#        category = st.text_input("Category: ")
-#        if category:
-#            st.write(f"Scraping the web pages...")
-#            scrape_commons_category(category)
-#            st.write(f"Web pages scraped and saved in a JSON file!")
-
     elif choice == "Scrape Web Pages from Wikimedia Commons":
         st.caption("Give category names from Wikimedia Commons. The pages will be scraped and saved in JSON files (one file per category) in the 'json_files' directory (knowledge base).")
         categories_box = st.text_area("Categories (one per line)", height=200)
@@ -159,7 +151,7 @@ if st.session_state.password_ok:
                     scrape_commons_category(category)
                     st.write(f"Web pages scraped and saved in a JSON file!")
 
-    elif choice == "Upload File":
+    elif choice == "Upload File (not in the knowledge base)":
         st.caption("Upload a file in the 'files' directory.")
         uploaded_file = st.file_uploader("Choose a file:")
         if uploaded_file is not None:
@@ -221,6 +213,28 @@ if st.session_state.password_ok:
                 st.success(f"File '{file_name}' uploaded and unziped successfully!")
             else:
                 st.warning("No file uploaded yet.")
+
+
+
+
+
+    elif choice == "Backup: Upload JSON Files (Web Pages) in ZIP Format":
+        st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
+        uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
+        for uploaded_file in uploaded_files:
+            if uploaded_file is not None:
+                bytes_data = uploaded_file.getvalue()
+                file_name = uploaded_file.name
+                with open(f"./files/json_files/{file_name}", "wb") as file:
+                    file.write(bytes_data)
+                unzip_and_replace(f"./files/json_files/{file_name}")
+                st.success(f"File '{file_name}' uploaded and unziped successfully!")
+            else:
+                st.warning("No file uploaded yet.")
+
+
+
+
 
     elif choice == "Download all JSON Files (Web Pages) in ZIP Format":
         JSON_FILES_DIR = "./files/json_files/"
