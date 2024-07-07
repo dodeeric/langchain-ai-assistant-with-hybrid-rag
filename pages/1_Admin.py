@@ -140,7 +140,7 @@ if st.session_state.password_ok:
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
 #    elif choice == "Scrape Web Pages from Wikimedia Commons":
-#        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory.")
+#        st.caption("Give a category name from Wikimedia Commons. The pages will be scraped and saved in one JSON file in the 'json_files' directory (knowledge base).")
 #        category = st.text_input("Category: ")
 #        if category:
 #            st.write(f"Scraping the web pages...")
@@ -148,7 +148,7 @@ if st.session_state.password_ok:
 #            st.write(f"Web pages scraped and saved in a JSON file!")
 
     elif choice == "Scrape Web Pages from Wikimedia Commons":
-        st.caption("Give category names from Wikimedia Commons. The pages will be scraped and saved in JSON files (one file per category) in the 'json_files' directory.")
+        st.caption("Give category names from Wikimedia Commons. The pages will be scraped and saved in JSON files (one file per category) in the 'json_files' directory (knowledge base).")
         categories_box = st.text_area("Categories (one per line)", height=200)
         if st.button("Start"):
             if categories_box:
@@ -172,7 +172,7 @@ if st.session_state.password_ok:
             st.warning("No file uploaded yet.")
 
     elif choice == "Upload PDF Files":
-        st.caption("Upload PDF files in the 'pdf_files' directory.")
+        st.caption("Upload PDF files in the 'pdf_files' directory (knowledge base).")
         uploaded_files = st.file_uploader("Choose PDF files:", type=["pdf"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
@@ -185,7 +185,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == 'List all Web Pages URLs':
-        st.caption("List all the JSON files with their Web page URLs.")
+        st.caption("List all the JSON files with their Web page URLs (knowledge base).")
         if st.button("Start"):
             json_files = glob.glob('files/json_files/*.json')
             for file in json_files:
@@ -196,7 +196,7 @@ if st.session_state.password_ok:
                         st.write(f"URL: {item['url']}")
 
     elif choice == "Upload JSON Files (Web Pages)":
-        st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file.")
+        st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file.")
         uploaded_files = st.file_uploader("Choose JSON files:", type=["json"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
@@ -209,7 +209,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == "Upload JSON Files (Web Pages) in ZIP Format":
-        st.caption("Upload JSON files (Web pages) in the 'json_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
+        st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
         uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
@@ -244,7 +244,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
     elif choice == "Delete all PDF Files":
-        st.caption("Delete all the PDF files in the 'pdf_files' directory.")
+        st.caption("Delete all the PDF files in the 'pdf_files' directory (knowledge base).")
         if st.button("Delete all PDF Files (locally only)"):
             command = ['rm', '-Rf', './files/pdf_files/']
             try:
@@ -263,7 +263,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
     elif choice == "Delete all JSON Files (Web Pages)":
-        st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory.")
+        st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory (knowledge base).")
         if st.button("Delete all JSON Files (Web Pages) (locally only)"):
             command = ['rm', '-Rf', './files/json_files/']
             try:
@@ -285,7 +285,7 @@ if st.session_state.password_ok:
         # Embed data in Chroma DB
         # Load and index
 
-        st.caption('Embed all the web and pdf pages in the Chroma vector DB.')
+        st.caption('Embed all the web and pdf pages (knowledge base) in the Chroma vector DB (knowledge base).')
 
         JSON_FILES_DIR = "./files/json_files/"
         PDF_FILES_DIR = "./files/pdf_files/"
