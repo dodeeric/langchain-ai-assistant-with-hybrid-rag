@@ -219,16 +219,16 @@ if st.session_state.password_ok:
 
 
     elif choice == "Backup: Upload JSON Files (Web Pages) in ZIP Format":
-        st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
+        st.caption("Upload JSON files (Web pages) in the 'backup_files' directory. One or many JSON items (Web pages) per JSON file. The ZIP files will NOT be unziped.")
         uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             if uploaded_file is not None:
                 bytes_data = uploaded_file.getvalue()
                 file_name = uploaded_file.name
-                with open(f"./files/json_files/{file_name}", "wb") as file:
+                with open(f"./files/backup_files/{file_name}", "wb") as file:
                     file.write(bytes_data)
-                unzip_and_replace(f"./files/json_files/{file_name}")
-                st.success(f"File '{file_name}' uploaded and unziped successfully!")
+                #unzip_and_replace(f"./files/json_files/{file_name}")
+                st.success(f"File '{file_name}' uploaded successfully!")
             else:
                 st.warning("No file uploaded yet.")
 
