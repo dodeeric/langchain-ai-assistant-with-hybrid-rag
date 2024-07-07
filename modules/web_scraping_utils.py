@@ -113,6 +113,13 @@ def scrape_commons_category(category: str) -> None:
         items.append(item)
         i = i + 1
 
+    category = category.replace("/","-")
+    category = category.replace(" ","-")
+    category = category.replace("?","-")
+    category = category.replace(":","-")
+    category = category.replace(".","-")
+    category = category.replace("=","-")
+
     # Save the Python list in a JSON file
     # json.dump is designed to take the Python objects, not the already-JSONified string. Read docs.python.org/3/library/json.html.
     with open(f"{FILE_PATH}{category}-swp.json", "w") as json_file:
