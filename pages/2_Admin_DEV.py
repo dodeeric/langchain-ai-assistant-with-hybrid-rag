@@ -54,8 +54,8 @@ def clear_memory_and_cache():
     reset_conversation()
 
 
-def delete_db():
-    delete_directory("./chromadb")
+#def delete_db():
+#    delete_directory("./chromadb")
 
 
 def restart_db():
