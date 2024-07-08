@@ -347,7 +347,7 @@ if st.session_state.password_ok:
             #restart_db()
             #clear_memory_and_cache()
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            chroma_client.delete_collection("bmae")
+            chroma_client.delete_collection(CHROMA_COLLECTION_NAME)
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
