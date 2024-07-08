@@ -345,7 +345,7 @@ if st.session_state.password_ok:
             st.write("Done!")
 
         if st.button("Delete DB"):
-            embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
+            #embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
             vector_db.reset_collection()
@@ -355,36 +355,19 @@ if st.session_state.password_ok:
             restart_db()
             st.write("Done!")
 
-        if st.button("Files and DB Info (locally only)"):
-
+        if st.button("Files and DB Info"):
             load_files_and_embed(json_paths, pdf_paths, embed=False)
-
-            st.write(f"The Chroma vector DB is located on {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}.")
-
-            try:
-
-                file_path = './chromadb/chroma.sqlite3'
-                file_size = os.path.getsize(file_path)
-                file_size = file_size / 1024  # In KB
-                if file_size > 160:
-                    st.write(f"DB size: {file_size} KB")
-                else:
-                    st.write(f"DB size: {file_size} KB. DB is empty!")
-
-                path = './chromadb'
-                files = os.listdir(path)
-                st.write("DB path:")
-                st.write(files)
-
-            except Exception as e:
-                st.write("The Chroma vector DB is not available locally.")
-                st.write(f"Error: {e}")
+            st.write(f"Location of the Chroma vector DB: {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}")
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            nbr_embeddings = len(vector_db.get()['documents'])
+            st.write(f"Number of embeddings in the Chroma vector DB: {nbr_embeddings}")
 
             try:
 
                 path = './'
                 files = os.listdir(path)
-                st.write("Root path:")
+                st.write("Root path (local filesystem):")
                 st.write(files)
 
             except Exception as e:
