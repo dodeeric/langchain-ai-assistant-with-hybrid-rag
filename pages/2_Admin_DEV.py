@@ -341,19 +341,14 @@ if st.session_state.password_ok:
 
         if st.button("Start Embed"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
-            clear_memory_and_cache()
+            #clear_memory_and_cache()
             st.write("Done!")
 
         if st.button("Delete DB"):
             embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
-            docs = vector_db.get()
-            #documents = docs["documents"]
-            ids_to_delete = []
-            for doc in docs:
-                ids_to_delete.append(doc.id)
-            docs.delete(ids=ids_to_delete)
+            vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            vector_db.reset_collection()
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
