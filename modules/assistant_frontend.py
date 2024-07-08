@@ -9,7 +9,7 @@ This function runs the frontend web interface.
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 
-from modules.assistant_backend import instanciate_ai_assistant_chain
+from modules.assistant_backend_DEV import instanciate_ai_assistant_chain
 from config.config import *
 
 

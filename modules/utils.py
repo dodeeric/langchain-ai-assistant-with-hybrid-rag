@@ -16,6 +16,7 @@ import shutil
 from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
+import chromadb
 
 from config.config import *
 
@@ -39,9 +40,11 @@ def load_files_and_embed(json_file_paths: list, pdf_file_paths: list, embed: boo
             documents = documents + docs
         st.write(f"Number of web pages: {len(documents)}")
         if embed:
-            Chroma.from_documents(documents, embedding_model, collection_name=CHROMA_COLLECTION_NAME, persist_directory="./chromadb")
-            #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            #Chroma(documents, embedding_function=embedding_model, collection_name=COLLECTION_NAME, client=chroma_client)
+            st.write('Create DB client...')
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            st.write('Write web pages in DB...')
+            Chroma.from_documents(documents, embedding=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            st.write('Write in DB: done')
 
         nbr_files = len(pdf_file_paths)
         st.write(f"Number of PDF files: {nbr_files}")
@@ -55,7 +58,9 @@ def load_files_and_embed(json_file_paths: list, pdf_file_paths: list, embed: boo
         st.write(f"Number of PDF pages: {len(documents2)}")
         st.write(f"Number of web and pdf pages: {len(documents) + len(documents2)}")
         if embed:
-            Chroma.from_documents(documents2, embedding_model, collection_name=CHROMA_COLLECTION_NAME, persist_directory="./chromadb")
+            st.write('Write pdf pages in DB...')
+            Chroma.from_documents(documents2, embedding=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            st.write('Write in DB: done')
 
     except Exception as e:
         st.write("Error: The Chroma vector DB is not available locally. Is it running on a remote server?")

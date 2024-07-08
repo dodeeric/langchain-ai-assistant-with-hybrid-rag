@@ -16,9 +16,11 @@ import json
 import glob
 import requests
 from bs4 import BeautifulSoup
+import chromadb
+from langchain_chroma import Chroma
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
-from modules.utils import load_files_and_embed, delete_directory
+from modules.utils_DEV import load_files_and_embed
 from config.config import *
 
 
@@ -51,10 +53,6 @@ def clear_memory_and_cache():
     st.cache_data.clear()
     st.cache_resource.clear()
     reset_conversation()
-
-
-def delete_db():
-    delete_directory("./chromadb")
 
 
 def restart_db():
@@ -277,7 +275,7 @@ if st.session_state.password_ok:
 
     elif choice == "Delete all PDF Files":
         st.caption("Delete all the PDF files in the 'pdf_files' directory (knowledge base).")
-        if st.button("Delete all PDF Files (locally only)"):
+        if st.button("Delete all PDF Files"):
             command = ['rm', '-Rf', './files/pdf_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
@@ -296,7 +294,7 @@ if st.session_state.password_ok:
 
     elif choice == "Delete all JSON Files (Web Pages)":
         st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory (knowledge base).")
-        if st.button("Delete all JSON Files (Web Pages) (locally only)"):
+        if st.button("Delete all JSON Files (Web Pages)"):
             command = ['rm', '-Rf', './files/json_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
@@ -336,14 +334,15 @@ if st.session_state.password_ok:
             pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
             pdf_paths.append(pdf_path)
 
-        if st.button("Start Embed (locally only)"):
+        if st.button("Start Embed"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
             clear_memory_and_cache()
             st.write("Done!")
 
-        if st.button("Delete DB (locally only)"):
-            delete_db()
-            restart_db()
+        if st.button("Delete DB"):
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            vector_db.reset_collection()
             clear_memory_and_cache()
             st.write("Done!")
 
@@ -351,36 +350,19 @@ if st.session_state.password_ok:
             restart_db()
             st.write("Done!")
 
-        if st.button("Files and DB Info (locally only)"):
-
+        if st.button("Files and DB Info"):
             load_files_and_embed(json_paths, pdf_paths, embed=False)
-
-            st.write(f"The Chroma vector DB is located on {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}.")
-
-            try:
-
-                file_path = './chromadb/chroma.sqlite3'
-                file_size = os.path.getsize(file_path)
-                file_size = file_size / 1024  # In KB
-                if file_size > 160:
-                    st.write(f"DB size: {file_size} KB")
-                else:
-                    st.write(f"DB size: {file_size} KB. DB is empty!")
-
-                path = './chromadb'
-                files = os.listdir(path)
-                st.write("DB path:")
-                st.write(files)
-
-            except Exception as e:
-                st.write("The Chroma vector DB is not available locally.")
-                st.write(f"Error: {e}")
+            st.write(f"Location of the Chroma vector DB: {CHROMA_SERVER_HOST}:{CHROMA_SERVER_PORT}")
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            nbr_embeddings = len(vector_db.get()['documents'])
+            st.write(f"Number of embeddings in the Chroma vector DB: {nbr_embeddings}")
 
             try:
 
                 path = './'
                 files = os.listdir(path)
-                st.write("Root path:")
+                st.write("Root path (local filesystem):")
                 st.write(files)
 
             except Exception as e:
