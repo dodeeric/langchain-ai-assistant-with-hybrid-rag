@@ -80,8 +80,6 @@ def zip_files(file_paths):
     return buffer
 
 
-
-
 def get_subcategories(category, depth=1, max_depth=9):
     if depth > max_depth:
         return []
@@ -100,10 +98,6 @@ def get_subcategories(category, depth=1, max_depth=9):
                 categories.extend(get_subcategories(subcat, depth + 1, max_depth))
 
     return categories
-
-
-
-
 
 
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
