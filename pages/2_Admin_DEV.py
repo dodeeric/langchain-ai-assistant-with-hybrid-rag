@@ -278,7 +278,7 @@ if st.session_state.password_ok:
 
     elif choice == "Delete all PDF Files":
         st.caption("Delete all the PDF files in the 'pdf_files' directory (knowledge base).")
-        if st.button("Delete all PDF Files (locally only)"):
+        if st.button("Delete all PDF Files"):
             command = ['rm', '-Rf', './files/pdf_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
@@ -297,7 +297,7 @@ if st.session_state.password_ok:
 
     elif choice == "Delete all JSON Files (Web Pages)":
         st.caption("Delete all the JSON files (Web pages) in the 'json_files' directory (knowledge base).")
-        if st.button("Delete all JSON Files (Web Pages) (locally only)"):
+        if st.button("Delete all JSON Files (Web Pages)"):
             command = ['rm', '-Rf', './files/json_files/']
             try:
                 result = subprocess.run(command, capture_output=True, text=True, timeout=30)
