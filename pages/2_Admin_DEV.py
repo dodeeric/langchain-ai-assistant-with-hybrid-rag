@@ -337,7 +337,7 @@ if st.session_state.password_ok:
             pdf_path = f"{PDF_FILES_DIR}{pdf_file}"
             pdf_paths.append(pdf_path)
 
-        if st.button("Start Embed (locally only)"):
+        if st.button("Start Embed"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
             clear_memory_and_cache()
             st.write("Done!")
