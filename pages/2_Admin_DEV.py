@@ -336,13 +336,14 @@ if st.session_state.password_ok:
 
         if st.button("Start Embed"):
             load_files_and_embed(json_paths, pdf_paths, embed=True)
-            #clear_memory_and_cache()
+            clear_memory_and_cache()
             st.write("Done!")
 
         if st.button("Delete DB"):
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
             vector_db.reset_collection()
+            clear_memory_and_cache()
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
