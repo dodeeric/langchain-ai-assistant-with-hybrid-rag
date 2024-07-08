@@ -20,7 +20,7 @@ import chromadb
 from langchain_chroma import Chroma
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
-from modules.utils_DEV import load_files_and_embed
+from modules.utils import load_files_and_embed
 from config.config import *
 
 
