@@ -348,10 +348,12 @@ if st.session_state.password_ok:
             embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
+            docs = vector_db.get()
+            #documents = docs["documents"]
             ids_to_delete = []
-            for doc in vector_db:
+            for doc in docs:
                 ids_to_delete.append(doc.id)
-            vector_db.delete(ids=ids_to_delete)
+            docs.delete(ids=ids_to_delete)
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
