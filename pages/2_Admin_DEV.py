@@ -17,6 +17,8 @@ import glob
 import requests
 from bs4 import BeautifulSoup
 import chromadb
+from langchain_openai import OpenAIEmbeddings
+from langchain_chroma import Chroma
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
 from modules.utils_DEV import load_files_and_embed, delete_directory
@@ -343,15 +345,13 @@ if st.session_state.password_ok:
             st.write("Done!")
 
         if st.button("Delete DB"):
-            #delete_db()
-            #restart_db()
-            #clear_memory_and_cache()
+            embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            #chroma_client.delete_collection(CHROMA_COLLECTION_NAME)
+            vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
             ids_to_delete = []
-            for doc in chroma_client:
+            for doc in vector_db:
                 ids_to_delete.append(doc.id)
-            chroma_client.delete(ids=ids_to_delete)
+            vector_db.delete(ids=ids_to_delete)
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
