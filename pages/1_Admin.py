@@ -14,6 +14,8 @@ import subprocess
 import io
 import json
 import glob
+import requests
+from bs4 import BeautifulSoup
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
 from modules.utils import load_files_and_embed, delete_directory
@@ -78,6 +80,26 @@ def zip_files(file_paths):
     return buffer
 
 
+def get_subcategories(category, depth=1, max_depth=9):
+    if depth > max_depth:
+        return []
+
+    url = f"https://commons.wikimedia.org/wiki/Category:{category}"
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    categories = [category]
+    subcat_div = soup.find('div', {'id': 'mw-subcategories'})
+    if subcat_div:
+        links = subcat_div.find_all('a')
+        for link in links:
+            if 'Category:' in link.get('title', ''):
+                subcat = link.get('title').replace('Category:', '')
+                categories.extend(get_subcategories(subcat, depth + 1, max_depth))
+
+    return categories
+
+
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 if "model" not in st.session_state:
@@ -139,17 +161,24 @@ if st.session_state.password_ok:
         st.session_state.temperature = st.slider("Temperature: ", 0.0, 2.0, DEFAULT_TEMPERATURE)
         st.caption("OpenAI: 0-2, Anthropic: 0-1")
 
+
+
     elif choice == "Scrape Web Pages from Wikimedia Commons":
-        st.caption("Give category names from Wikimedia Commons. The pages will be scraped and saved in JSON files (one file per category) in the 'json_files' directory (knowledge base).")
+        st.caption("Give categories from Wikimedia Commons. The pages in the categories and subcategories will be scraped and saved in JSON files (one file per category or subcategory) in the 'json_files' directory (knowledge base).")
         categories_box = st.text_area("Categories (one per line)", height=200)
         if st.button("Start"):
             if categories_box:
                 categories = categories_box.splitlines()  # List of categories
             for category in categories:
                 if category:
-                    st.write(f"Scraping the web pages... (Category: {category})")
-                    scrape_commons_category(category)
-                    st.write(f"Web pages scraped and saved in a JSON file!")
+                    st.write('Getting the list of subcategories...')
+                    subcategories = get_subcategories(category)
+                    for subcategory in subcategories:
+                        st.write(f"Scraping the web pages... (Category: {subcategory})")
+                        scrape_commons_category(subcategory)
+                        st.write(f"Web pages scraped and saved in a JSON file!")
+
+
 
     elif choice == "Upload File (not in the knowledge base)":
         st.caption("Upload a file in the 'files' directory.")
