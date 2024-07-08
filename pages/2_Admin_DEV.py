@@ -347,7 +347,11 @@ if st.session_state.password_ok:
             #restart_db()
             #clear_memory_and_cache()
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
-            chroma_client.delete_collection(CHROMA_COLLECTION_NAME)
+            #chroma_client.delete_collection(CHROMA_COLLECTION_NAME)
+            ids_to_delete = []
+            for doc in chroma_client:
+                ids_to_delete.append(doc.id)
+            chroma_client.delete(ids=ids_to_delete)
             st.write("Done!")
 
         if st.button("Restart DB (locally only)"):
