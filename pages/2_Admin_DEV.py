@@ -19,7 +19,7 @@ from bs4 import BeautifulSoup
 import chromadb
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
-from modules.utils import load_files_and_embed, delete_directory
+from modules.utils_DEV import load_files_and_embed, delete_directory
 from config.config import *
 
 
