@@ -223,7 +223,7 @@ if st.session_state.password_ok:
             else:
                 st.warning("No file uploaded yet.")
 
-    elif choice == "Upload JSON Files (Web Pages) in ZIP Format":
+    elif choice == "Restore: Upload JSON Files (Web Pages) in ZIP Format":
         st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file. The ZIP files will be unziped.")
         uploaded_files = st.file_uploader("Choose ZIP files:", type=["zip"], accept_multiple_files=True)
         for uploaded_file in uploaded_files:
