@@ -252,7 +252,7 @@ if st.session_state.password_ok:
                 st.warning("No file uploaded yet.")
 
     elif choice == "Backup: Download all JSON Files (Web Pages) in ZIP Format":
-        st.caption("Download all JSON files (Web pages) in ZIP format. One or many JSON items (Web pages) per JSON file. The ZIP file will NOT be unziped.")
+        st.caption("Download all JSON files (Web pages) in ZIP format. One or many JSON items (Web pages) per JSON file.")
         JSON_FILES_DIR = "./files/json_files/"
         json_files = os.listdir(JSON_FILES_DIR)
         json_paths = []
