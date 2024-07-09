@@ -468,12 +468,12 @@ Blobfuse2 Installation: https://github.com/Azure/azure-storage-fuse/wiki/Blobfus
 
 config.py:
 
-Local: server = False
-Server: server = True
+- Local: server = False
+- Server: server = True
 
 ### Files (JSON and PDF)
 
 Directory: files
 
-Local: nothing to configure
-Server: mount Azure Blob container on the local FS via Blobfuse2 (blobfuse.sh)
+- Local: nothing to configure
+- Server: mount Azure Blob container on the local FS via Blobfuse2 (blobfuse.sh)
