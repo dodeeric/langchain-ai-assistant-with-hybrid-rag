@@ -425,7 +425,17 @@ azstorage:
 chmod 600 blobfuse.cfg
 ```
 
+The parameters you have to adapt are:
+
+- The cache directory: path: blobfusetmp
+- The Azure storage account name: account-name: bmaeragaisa
+- The Azure storage account access key: account-key: xxx
+- The Azure storage account URL: https://bmaeragaisa.blob.core.windows.net
+- The Azure blob container name: bmae-ragai-blobcontainer
+
 ### Mount the blob container on the local FS
+
+To mount the blob container on the 'files' directory:
 
 ```
 blobfuse2 mount ./files --config-file=./blobfuse.yaml
