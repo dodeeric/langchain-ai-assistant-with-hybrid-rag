@@ -367,7 +367,7 @@ Demo: https://bmae-ragai-webapp.azurewebsites.net (running the app only, not the
 
 ## Install blobfuse2 (OPTIONAL)
 
-Procedure to mount an Azure Blob container of the local filesystem 'files' directory
+Procedure to mount an Azure Blob container on the local filesystem 'files' directory
 
 Example for Linux Ubuntu 22.04.4 LTS (Jammy)
 
