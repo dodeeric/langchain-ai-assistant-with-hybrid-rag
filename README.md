@@ -458,11 +458,9 @@ blobfuse2 mount list
 
 ### Web sites
 
-How to mount an Azure Blob Storage container on Linux with BlobFuse2
-https://learn.microsoft.com/en-us/azure/storage/blobs/blobfuse2-how-to-deploy?tabs=Ubuntu
+How to mount an Azure Blob Storage container on Linux with BlobFuse2: https://learn.microsoft.com/en-us/azure/storage/blobs/blobfuse2-how-to-deploy?tabs=Ubuntu
 
-Blobfuse2 Installation
-https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Installation
+Blobfuse2 Installation: https://github.com/Azure/azure-storage-fuse/wiki/Blobfuse2-Installation
 
 ## Local (filesystem) or remote (server)
 
