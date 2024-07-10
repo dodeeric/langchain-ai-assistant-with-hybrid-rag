@@ -98,6 +98,19 @@ def get_subcategories(category, depth=1, max_depth=9):
     return categories
 
 
+def get_links(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    links = soup.find_all('a')
+    notfiltered_links = [link.get('href') for link in links if link.get('href')]
+    filtered_links = [link for link in notfiltered_links if "en/item" in link]
+    full_links = []
+    for link in filtered_links:
+        full_link = "https://www.europeana.eu" + link
+        full_links.append(full_link)
+    return full_links
+
+
 st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
 
 if "model" not in st.session_state:
@@ -131,7 +144,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Restore: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File (not in the knowledge base)']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Restore: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'List all URLs from an Europeana search page', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File (not in the knowledge base)']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -209,6 +222,18 @@ if st.session_state.password_ok:
                     data = json.load(f)
                     for item in data:
                         st.write(f"URL: {item['url']}")
+
+    elif choice == 'List all URLs from an Europeana search page':
+        st.caption("Bla bla bla.")
+        urls_box = st.text_area("URLs of Europeana search pages (one per line)", height=200)
+        if st.button("Start"):
+            if urls_box:
+                urls = urls_box.splitlines()  # List of urls
+            for url in urls:
+                if url:
+                    links = get_links(url)
+                    for link in links:
+                        st.write(link)
 
     elif choice == "Upload JSON Files (Web Pages)":
         st.caption("Upload JSON files (Web pages) in the 'json_files' directory (knowledge base). One or many JSON items (Web pages) per JSON file.")
