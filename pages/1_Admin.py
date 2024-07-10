@@ -153,7 +153,7 @@ if st.session_state.password_ok:
                     Filter: 
                     - two-third last (balat / irpa)
                     - media-body (belgica / kbr)
-                    - card metadata-box-card mb-3 (europeana / kul, irpa, etc.)
+                    - row mb-3 justify-content-center (europeana / kul, irpa, etc.)
                     """)
         filter = st.text_input("Filter: ")
         urls_box = st.text_area("URLs (one per line)", height=200)
