@@ -25,6 +25,7 @@ This application can be configured (see config.py) to create your own specialize
 - Chromadb Admin: https://github.com/flanker/chromadb-admin (Web admin interface for Chroma)
 - OpenAI (GPT): https://platform.openai.com (LLM)
 - Anthropic (Claude): https://console.anthropic.com/dashboard (LLM)
+- Google (Gemini): https://aistudio.google.com/app (LLM)
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
 - Ollama (Llama, etc.): https://ollama.com (LLM)
 
