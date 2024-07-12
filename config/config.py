@@ -37,6 +37,8 @@ might reference context in the chat history, formulate a standalone question whi
 understood without the chat history. Do NOT answer the question, just reformulate it if needed \
 and otherwise return it as is.
 
+Can you also translate the question in French, Dutch, and English.
+
 Chat History:
 
 {chat_history}"""
