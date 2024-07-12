@@ -144,7 +144,7 @@ if st.session_state.password_ok:
     # Side bar window: second page (Admin)  #
     # # # # # # # # # # # # # # # # # # # # #
     
-    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Restore: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'List all URLs from an Europeana search page', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File (not in the knowledge base)']
+    options = ['Upload PDF Files', 'Delete all PDF Files', 'Upload JSON Files (Web Pages)', 'Restore: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Upload JSON Files (Web Pages) in ZIP Format', 'Backup: Download all JSON Files (Web Pages) in ZIP Format', 'Delete all JSON Files (Web Pages)', 'List all Web Pages URLs', 'List all URLs from Europeana search pages', 'Scrape Web Pages', 'Scrape Web Pages from Wikimedia Commons', 'Embed Pages in DB', 'Model and Temperature', 'Clear Memory and Streamlit Cache', 'Upload File (not in the knowledge base)']
     choice = st.sidebar.radio("Make your choice: ", options)
 
     if choice == "Scrape Web Pages":
@@ -223,8 +223,8 @@ if st.session_state.password_ok:
                     for item in data:
                         st.write(f"URL: {item['url']}")
 
-    elif choice == 'List all URLs from an Europeana search page':
-        st.caption("Bla bla bla.")
+    elif choice == 'List all URLs from Europeana search pages':
+        st.caption("List all URLs (Web pages) from Europeana search pages.")
         urls_box = st.text_area("URLs of Europeana search pages (one per line)", height=200)
         if st.button("Start"):
             if urls_box:
