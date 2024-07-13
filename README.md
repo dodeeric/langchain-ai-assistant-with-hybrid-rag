@@ -15,7 +15,7 @@ This application can be configured (see config.py) to create your own specialize
 - Admin interface: scrape web pages, upload PDF files, embed in vector DB, change model, etc.
 - Files ingestion into the vector DB: JSON files (one JSON item / web page per chunk) and PDF files (one PDF page per chunk)
 - Fully customisable with parameters in the config.py configuration file.
-- multilanguage RAG (knowlege base with data in different languages).
+- Multilanguage RAG (knowlege base with data in different languages).
  
 ## Frameworks and tools
 
@@ -29,6 +29,7 @@ This application can be configured (see config.py) to create your own specialize
 - Google (Gemini): https://aistudio.google.com/app (LLM)
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
 - Ollama (Llama, etc.): https://ollama.com (LLM)
+- BeautifulSoup: https://www.crummy.com/software/BeautifulSoup (Web scraping)
 
 ## Procedure to install the application on a Linux server
 
