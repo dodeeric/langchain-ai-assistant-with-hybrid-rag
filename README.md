@@ -365,7 +365,7 @@ ADMIN_PASSWORD = "xxx"               ==> You chose your password
 GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
 ```
 
-3. Restart the Web App (it takes some time for the app to become up and running). To see Application logs, go to: Web App > Availability and Performance > Application Logs > Platform logs.
+3. Restart the Web App (it takes some time for the app to become up and running). To see Application logs, go to: Web App > Diagnose and solve problems > Availability and Performance > Application Logs > Platform logs.
 
 Demo: https://bmae-ragai-webapp.azurewebsites.net (running the app only, not the db)
 
