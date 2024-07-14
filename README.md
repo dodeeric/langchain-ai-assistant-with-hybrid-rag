@@ -56,6 +56,8 @@ LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Lang
 LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
 ADMIN_PASSWORD = "xxx"               ==> You chose your password
 GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
+#CHROMA_SERVER_AUTHN_CREDENTIALS="xxx"
+#CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
 ```
 
 Configure the application:
@@ -353,17 +355,7 @@ And click on "Save", then "Continue".
 D) Add the "Environment variables"
 
 * Go to "Web App" > "Environment variables".
-* Introduce one by one ("Add", then "Apply", "Confirm"):
-
-```
-OPENAI_API_KEY = "sk-proj-xxx"       ==> Go to https://platform.openai.com/api-keys
-ANTHROPIC_API_KEY = "sk-ant-xxx"     ==> Go to https://console.anthropic.com/settings/keys
-GOOGLE_API_KEY = "xxx"               ==> Go to https://aistudio.google.com/app/apikey
-LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Langsmith)
-LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
-ADMIN_PASSWORD = "xxx"               ==> You chose your password
-GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
-```
+* Introduce one by one ("Add", then "Apply", "Confirm") the environment variables (see above).
 
 3. Restart the Web App (it takes some time for the app to become up and running). To see Application logs, go to: Web App > Diagnose and solve problems > Availability and Performance > Application Logs > Platform logs.
 
