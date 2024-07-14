@@ -56,8 +56,8 @@ LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Lang
 LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
 ADMIN_PASSWORD = "xxx"               ==> You chose your password
 GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
-#CHROMA_SERVER_AUTHN_CREDENTIALS="xxx"
-#CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+CHROMA_SERVER_AUTHN_CREDENTIALS="xxx"   ==> You chose the password for the Chroma DB authentication
+CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
 ```
 
 Configure the application:
