@@ -17,6 +17,7 @@ import glob
 import requests
 from bs4 import BeautifulSoup
 import chromadb
+from chromadb.config import Settings
 from langchain_chroma import Chroma
 
 from modules.web_scraping_utils import scrape_commons_category, scrape_web_page_url
@@ -365,7 +366,9 @@ if st.session_state.password_ok:
             st.write("Done!")
 
         if st.button("Delete DB"):
-            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            chroma_server_password = os.getenv("CHROMA_SERVER_AUTHN_CREDENTIALS", "YYYY")
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT, settings=Settings(chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider", chroma_client_auth_credentials=chroma_server_password))
+            #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
             vector_db.reset_collection()
             clear_memory_and_cache()
