@@ -17,6 +17,8 @@ from langchain_community.document_loaders import JSONLoader, PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 import chromadb
+from chromadb.config import Settings
+import os
 
 from config.config import *
 
@@ -41,7 +43,9 @@ def load_files_and_embed(json_file_paths: list, pdf_file_paths: list, embed: boo
         st.write(f"Number of web pages: {len(documents)}")
         if embed:
             st.write('Create DB client...')
-            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
+            chroma_server_password = os.getenv("CHROMA_SERVER_AUTHN_CREDENTIALS", "YYYY")
+            chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT, settings=Settings(chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider", chroma_client_auth_credentials=chroma_server_password))
             st.write('Write web pages in DB...')
             Chroma.from_documents(documents, embedding=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
             st.write('Write in DB: done')
