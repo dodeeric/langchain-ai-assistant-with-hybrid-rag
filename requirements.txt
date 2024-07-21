@@ -12,4 +12,5 @@ rank_bm25
 streamlit
 pypdf
 pysqlite3-binary
-beautifulsoup4 
+beautifulsoup4
+langgraph
