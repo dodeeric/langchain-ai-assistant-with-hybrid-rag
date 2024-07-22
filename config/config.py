@@ -61,14 +61,6 @@ field). Do not display images which have been displayed already in previous mess
 the link to the web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of \
 the link has to be the title of the web page WITHOUT the word "File" at the beginning (see the JSON "og:title" \
 field).
-
-Knowledge Base:
-
-{context}
-
-Chat History:
-
-{chat_history}
 """
 
 # This system prompt is used with models other than OpenAI

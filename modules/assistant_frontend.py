@@ -8,8 +8,9 @@ This function runs the frontend web interface.
 
 import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
+from langchain_core.messages.human import HumanMessage
 
-from modules.assistant_backend import instanciate_ai_assistant_chain
+from modules.assistant_backend import instanciate_ai_assistant_agent
 from config.config import *
 
 
@@ -54,7 +55,7 @@ def assistant_frontend():
 
     # Load, index, retrieve and generate
 
-    ai_assistant_chain = instanciate_ai_assistant_chain(st.session_state.model, st.session_state.temperature)
+    ai_assistant_agent = instanciate_ai_assistant_agent(st.session_state.model, st.session_state.temperature)
 
     # # # # # # # #
     # Main window #
@@ -99,7 +100,8 @@ def assistant_frontend():
             # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
             answer_container = st.empty()
             answer = ""
-            for chunk in ai_assistant_chain.stream({"input": question, "chat_history": st.session_state.chat_history}):
+            config = {"configurable": {"thread_id": "abc2"}}
+            for chunk in ai_assistant_agent.stream({"messages": [HumanMessage(content=question)]}, config=config, stream_mode="updates"):
                 answer_chunk = str(chunk.get("answer"))
                 if answer_chunk != "None":  # Because it write NoneNone at the beginning 
                     answer = answer + answer_chunk

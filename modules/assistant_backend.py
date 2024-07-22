@@ -37,7 +37,7 @@ from config.config import *
 
 
 @st.cache_resource
-def instanciate_ai_assistant_chain(model, temperature):
+def instanciate_ai_assistant_agent(model, temperature):
     """
     Instantiate retrievers and chains and return the main chain (AI Assistant).
     Steps: Retrieve and generate.
