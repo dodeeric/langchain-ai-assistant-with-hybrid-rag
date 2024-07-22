@@ -110,7 +110,7 @@ Chat History:
 
 LOGO_PATH = "./images/image.jpg"
 ASSISTANT_ICON = "👑"
-ASSISTANT_NAME = "Belgian Monarchy Artworks Explorer"
+ASSISTANT_NAME = "DEV / Belgian Monarchy Artworks Explorer"
 
 HELLO_MESSAGE = "Hello! Bonjour! Hallo! 👋"
 NEW_CHAT_MESSAGE = "New chat / Nouvelle conversation / Nieuw gesprek"
