@@ -100,7 +100,7 @@ def assistant_frontend():
             # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
             answer_container = st.empty()
             answer = ""
-            config = {"configurable": {"thread_id": "abc2"}}
+            config = {"configurable": {"thread_id": "abc4"}}
             for chunk in ai_assistant_agent.stream({"messages": [HumanMessage(content=question)]}, config=config, stream_mode="updates"):
                 answer_chunk = str(chunk.get("answer"))
                 if answer_chunk != "None":  # Because it write NoneNone at the beginning 
