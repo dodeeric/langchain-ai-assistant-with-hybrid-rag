@@ -125,38 +125,17 @@ def instanciate_ai_assistant_chain(model, temperature):
         ]
     )
 
-    # Instanciate the chains or the agent
+    # Instanciate the chains
 
     try:
-
-        # Chains
 
         history_aware_retriever_chain = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
         question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
         ai_assistant_chain = create_retrieval_chain(history_aware_retriever_chain, question_answer_chain)
 
-        # Agent
-
-        #from langchain.tools.retriever import create_retriever_tool
-        #from langgraph.prebuilt import create_react_agent
-        #from langgraph.checkpoint.sqlite import SqliteSaver
-
-        #tool = create_retriever_tool(
-        #    ensemble_retriever,
-        #    "belgian_monarchy_art_explorer_retriever",
-        #    "Search the Knowlege Base for artworks related to the Belgian monarchy.",
-        #)
-        #tools = [tool]
-
-        #memory = SqliteSaver.from_conn_string(":memory:")
-
-        #ai_assistant_agent = create_react_agent(llm, tools, checkpointer=memory)
-
     except Exception as e:
-        st.write("Error: Cannot instanciate the chains/agent!")
+        st.write("Error: Cannot instanciate the chains!")
         st.write(f"Error: {e}")
         ai_assistant_chain = None
-        #ai_assistant_agent = None
 
     return ai_assistant_chain
-    #return ai_assistant_agent

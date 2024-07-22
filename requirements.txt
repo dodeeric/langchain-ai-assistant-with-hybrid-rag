@@ -13,4 +13,3 @@ streamlit
 pypdf
 pysqlite3-binary
 beautifulsoup4
-langgraph
