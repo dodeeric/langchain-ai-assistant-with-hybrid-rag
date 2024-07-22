@@ -150,7 +150,7 @@ def instanciate_ai_assistant_chain(model, temperature):
 
         memory = SqliteSaver.from_conn_string(":memory:")
 
-        ai_assistant_agent = create_react_agent(llm, tools, checkpointer=memory)
+        ai_assistant_agent = create_react_agent(llm, tools, checkpointer=memory, state_modifier=qa_system_prompt)
 
     except Exception as e:
         st.write("Error: Cannot instanciate the chains/agent!")
