@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 
-# Ragai - (c) Eric Dodémont, 2024.
+# RagAiAgent - (c) Eric Dodémont, 2024.
 
 """
-This function runs the backend. It starts the Langchain AI assistant: instanciate
-all the Langchain chains for RAG and LLM.
+This function runs the backend. It instanciates the tools and the agent.
 """
 
 # Only to be able to run on Github Codespace
@@ -15,9 +14,6 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
-from langchain.chains import create_history_aware_retriever  # To create the retriever chain (predefined chain)
-from langchain.chains import create_retrieval_chain  # To create the main chain (predefined chain)
-from langchain.chains.combine_documents import create_stuff_documents_chain  # To create a predefined chain
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -40,13 +36,13 @@ from config.config import *
 @st.cache_resource
 def instanciate_ai_assistant_graph_agent(model, temperature):
     """
-    Instantiate retrievers and chains and return the main chain (AI Assistant).
+    Instantiate tools (retrievers, web search) and graph agent.
     Steps: Retrieve and generate.
     """
 
     try:
 
-        embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the JSON items and the questions
+        embedding_model = OpenAIEmbeddings(model=EMBEDDING_MODEL)  # 3072 dimensions vectors used to embed the PDF and Web pages and the questions
 
         if CHROMA_SERVER:
 
@@ -54,7 +50,6 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
 
             chroma_server_password = os.getenv("CHROMA_SERVER_AUTHN_CREDENTIALS", "YYYY")
             chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT, settings=Settings(chroma_client_auth_provider="chromadb.auth.token_authn.TokenAuthClientProvider", chroma_client_auth_credentials=chroma_server_password))
-            #chroma_client = chromadb.HttpClient(host=CHROMA_SERVER_HOST, port=CHROMA_SERVER_PORT)
             vector_db = Chroma(embedding_function=embedding_model, collection_name=CHROMA_COLLECTION_NAME, client=chroma_client)
 
         else:
@@ -92,7 +87,7 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
         st.write("Error: Cannot instanciate any model!")
         st.write(f"Error: {e}")
 
-    # Instanciate the retrievers
+    # Instanciate the retrievers (RAG)
 
     try:
 
@@ -107,40 +102,9 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
         st.write("Error: Cannot instanciate the retrievers! Is the DB available?")
         st.write(f"Error: {e}")
 
-    # Define the prompts
-
-    contextualize_q_system_prompt = CONTEXTUALIZE_PROMPT
-
-    contextualize_q_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", contextualize_q_system_prompt),
-            ("human", "Question: {input}"),
-        ]
-    )
-
-    if model == OPENAI_MENU:
-        qa_system_prompt = SYSTEM_PROMPT
-    else:
-        qa_system_prompt = SYSTEM_PROMPT2
-
-    qa_prompt = ChatPromptTemplate.from_messages(
-        [
-            ("system", qa_system_prompt),
-            ("human", "Question: {input}"),
-        ]
-    )
-
-    # Instanciate the chains or the agent
+    # Instanciate the tools and the agent
 
     try:
-
-        # Chains
-
-        #history_aware_retriever_chain = create_history_aware_retriever(llm, ensemble_retriever, contextualize_q_prompt)
-        #question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
-        #ai_assistant_chain = create_retrieval_chain(history_aware_retriever_chain, question_answer_chain)
-
-        # Agent
 
         search = TavilySearchResults(max_results=2)
 
@@ -157,10 +121,8 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
         ai_assistant_graph_agent = create_react_agent(model=llm, tools=tools, checkpointer=memory, messages_modifier=SYSTEM_PROMPT)
 
     except Exception as e:
-        st.write("Error: Cannot instanciate the chains/agent!")
+        st.write("Error: Cannot instanciate the agent!")
         st.write(f"Error: {e}")
-        #ai_assistant_chain = None
         ai_assistant_graph_agent = None
 
-    #return ai_assistant_chain
     return ai_assistant_graph_agent
