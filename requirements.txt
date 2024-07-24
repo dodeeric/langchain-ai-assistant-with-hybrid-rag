@@ -14,3 +14,4 @@ pypdf
 pysqlite3-binary
 beautifulsoup4
 langgraph==0.1.8
+tavily-python

@@ -100,7 +100,7 @@ def assistant_frontend():
             # Call the agent
             answer_container = st.empty()
             answer = ""
-            config = {"configurable": {"thread_id": "aaa1"}}
+            config = {"configurable": {"thread_id": "aaa2"}}
             response = ai_assistant_graph_agent.invoke({"messages": [HumanMessage(content=question)]}, config=config)
             answer = response["messages"][-1].content
             answer_container.write(answer)

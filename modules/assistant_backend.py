@@ -30,6 +30,7 @@ from chromadb.config import Settings
 import os
 
 from langchain.tools.retriever import create_retriever_tool
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.sqlite import SqliteSaver
 
@@ -141,16 +142,19 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
 
         # Agent
 
-        tool = create_retriever_tool(
+        search = TavilySearchResults(max_results=2)
+
+        rag = create_retriever_tool(
             ensemble_retriever,
             "belgian_monarchy_art_explorer_retriever",
             "Search the Knowlege Base for artworks related to the Belgian monarchy.",
         )
-        tools = [tool]
+
+        tools = [search, rag]
 
         memory = SqliteSaver.from_conn_string(":memory:")
 
-        ai_assistant_graph_agent = create_react_agent(model=llm, tools=tools, checkpointer=memory, state_modifier=SYSTEM_PROMPT)
+        ai_assistant_graph_agent = create_react_agent(model=llm, tools=tools, checkpointer=memory, messages_modifier=SYSTEM_PROMPT)
 
     except Exception as e:
         st.write("Error: Cannot instanciate the chains/agent!")
