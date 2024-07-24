@@ -13,4 +13,4 @@ streamlit
 pypdf
 pysqlite3-binary
 beautifulsoup4
-langgraph
+langgraph==0.1.8
