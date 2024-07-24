@@ -37,7 +37,7 @@ from config.config import *
 
 
 @st.cache_resource
-def instanciate_ai_assistant_agent(model, temperature):
+def instanciate_ai_assistant_graph_agent(model, temperature):
     """
     Instantiate retrievers and chains and return the main chain (AI Assistant).
     Steps: Retrieve and generate.
@@ -150,13 +150,13 @@ def instanciate_ai_assistant_agent(model, temperature):
 
         memory = SqliteSaver.from_conn_string(":memory:")
 
-        ai_assistant_agent = create_react_agent(llm, tools, checkpointer=memory, state_modifier=qa_system_prompt)
+        ai_assistant_graph_agent = create_react_agent(model=llm, tools=tools, checkpointer=memory, state_modifier=SYSTEM_PROMPT)
 
     except Exception as e:
         st.write("Error: Cannot instanciate the chains/agent!")
         st.write(f"Error: {e}")
         #ai_assistant_chain = None
-        ai_assistant_agent = None
+        ai_assistant_graph_agent = None
 
     #return ai_assistant_chain
-    return ai_assistant_agent
+    return ai_assistant_graph_agent

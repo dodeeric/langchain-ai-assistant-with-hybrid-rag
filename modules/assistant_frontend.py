@@ -10,7 +10,7 @@ import streamlit as st
 from langchain.memory import ConversationBufferWindowMemory
 from langchain_core.messages.human import HumanMessage
 
-from modules.assistant_backend import instanciate_ai_assistant_agent
+from modules.assistant_backend import instanciate_ai_assistant_graph_agent
 from config.config import *
 
 
@@ -55,7 +55,7 @@ def assistant_frontend():
 
     # Load, index, retrieve and generate
 
-    ai_assistant_agent = instanciate_ai_assistant_agent(st.session_state.model, st.session_state.temperature)
+    ai_assistant_graph_agent = instanciate_ai_assistant_graph_agent(st.session_state.model, st.session_state.temperature)
 
     # # # # # # # #
     # Main window #
@@ -97,15 +97,19 @@ def assistant_frontend():
 
         try:
 
-            # Call the main chain (AI assistant). invoke is replaced by stream to stream the answer.
+            # Call the agent
             answer_container = st.empty()
             answer = ""
-            config = {"configurable": {"thread_id": "abc4"}}
-            for chunk in ai_assistant_agent.stream({"messages": [HumanMessage(content=question)]}, config=config, stream_mode="updates"):
-                answer_chunk = str(chunk.get("answer"))
-                if answer_chunk != "None":  # Because it write NoneNone at the beginning 
-                    answer = answer + answer_chunk
-                    answer_container.write(answer)
+            config = {"configurable": {"thread_id": "aaa1"}}
+            response = ai_assistant_graph_agent.invoke({"messages": [HumanMessage(content=question)]}, config=config)
+            answer = response["messages"][-1].content
+            answer_container.write(answer)
+
+            #for chunk in ai_assistant_agent.stream({"messages": [HumanMessage(content=question)]}, config=config, stream_mode="updates"):
+            #    answer_chunk = str(chunk.get("answer"))
+            #    if answer_chunk != "None":  # Because it write NoneNone at the beginning 
+            #        answer = answer + answer_chunk
+            #        answer_container.write(answer)
 
         except Exception as e:
             st.write("Error: Cannot invoke/stream the main chain!")
