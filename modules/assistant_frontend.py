@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Ragai - (c) Eric Dodémont, 2024.
+# RagAiAgent - (c) Eric Dodémont, 2024.
 
 """
 This function runs the frontend web interface.
@@ -33,13 +33,13 @@ def assistant_frontend():
     st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
     
     # Initialize chat history (chat_history) for LangChain
-    if 'chat_history' not in st.session_state:
-        st.session_state.chat_history = []
-        st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)   # Max k Q/A in the chat history for Langchain
+    #if 'chat_history' not in st.session_state:
+    #    st.session_state.chat_history = []
+    #    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)   # Max k Q/A in the chat history for Langchain
 
     # Initialize chat history (messages) for Streamlit
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+    #if "messages" not in st.session_state:
+    #    st.session_state.messages = []
 
     if "model" not in st.session_state:
         st.session_state.model = DEFAULT_MODEL
