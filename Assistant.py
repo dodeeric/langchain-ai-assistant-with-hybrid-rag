@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-# Ragai - (c) Eric Dodémont, 2024.
+# RagAiAgent - (c) Eric Dodémont, 2024.
 
 """
 This AI (Artificial Intelligence) assistant allows you to ask all kinds of questions regarding art
-and the Belgian monarchy. To answer, the assistant queries the graphic databases.
-Topology: backend = langchain (RAG + LLM), frontend = streamlit (chatbot + admin), assistant = main()
+and the Belgian monarchy. To answer, the assistant queries graphic databases.
+Topology: backend = langchain/langgraph (RAG search + Web search + LLM), frontend = streamlit (chatbot + admin), assistant = main()
 Start the app: streamlit run assistant.py
 """
 
@@ -20,7 +20,7 @@ dotenv.load_dotenv()
 def main():
     """
     This is the main module: it will start the frontend (straemlit web interface) and
-    backend (langchain AI assistant).
+    backend (langchain/langgraph AI assistant).
     """
 
     assistant_frontend()
