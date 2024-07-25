@@ -7,7 +7,6 @@ This function runs the frontend web interface.
 """
 
 import streamlit as st
-#from langchain.memory import ConversationBufferWindowMemory
 from langchain_core.messages.human import HumanMessage
 import uuid
 
@@ -27,17 +26,12 @@ def reset_conversation():
 
 def assistant_frontend():
     """
-    All related to Streamlit for the main page (about & chat windows) and connection with the Langchain backend.
+    Everything related to Streamlit for the main page (about & chat windows) and connection with the Langchain backend.
     """
 
     st.set_page_config(page_title=ASSISTANT_NAME, page_icon=ASSISTANT_ICON)
     
-    # Initialize chat history (chat_history) for LangChain
-    #if 'chat_history' not in st.session_state:
-    #    st.session_state.chat_history = []
-    #    st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)   # Max k Q/A in the chat history for Langchain
-
-    # Initialize chat history (messages) for Streamlit
+    # Initialize chat history (messages) for Streamlit and Langgraph (thread_id)
     if "messages" not in st.session_state:
         st.session_state.messages = []
         st.session_state.config = {"configurable": {"thread_id": uuid.uuid4()}}
@@ -100,7 +94,6 @@ def assistant_frontend():
 
             # Call the agent
             answer_container = st.empty()
-            answer = ""
             response = ai_assistant_graph_agent.invoke({"messages": [HumanMessage(content=question)]}, config=st.session_state.config)
             answer = response["messages"][-1].content
             answer_container.write(answer)
@@ -108,11 +101,6 @@ def assistant_frontend():
         except Exception as e:
             st.write("Error: Cannot invoke/stream the agent!")
             st.write(f"Error: {e}")
-
-        # Add Q/A to chat history for Langchain (chat_history)
-        #st.session_state.chat_history2.save_context({"input": question}, {"output": answer})
-        #load_memory = st.session_state.chat_history2.load_memory_variables({})
-        #st.session_state.chat_history = load_memory["history"]
 
         # Add Answer to chat history for Streamlit (messages)
         st.session_state.messages.append({"role": "assistant", "content": answer})
