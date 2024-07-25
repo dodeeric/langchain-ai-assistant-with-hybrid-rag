@@ -19,12 +19,10 @@ from langchain_anthropic import ChatAnthropic
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_google_vertexai import ChatVertexAI
 from langchain_community.chat_models import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_chroma import Chroma
 import chromadb
 from chromadb.config import Settings
 import os
-
 from langchain.tools.retriever import create_retriever_tool
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.prebuilt import create_react_agent
@@ -111,7 +109,7 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
         rag = create_retriever_tool(
             ensemble_retriever,
             "belgian_monarchy_art_explorer_retriever",
-            "Search the Knowlege Base for artworks related to the Belgian monarchy.",
+            "Search the Knowlege Base for artworks related to the Belgian monarchy."
         )
 
         tools = [search, rag]
