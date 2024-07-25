@@ -9,6 +9,7 @@ This function runs the frontend web interface.
 import streamlit as st
 #from langchain.memory import ConversationBufferWindowMemory
 from langchain_core.messages.human import HumanMessage
+import uuid
 
 from modules.assistant_backend import instanciate_ai_assistant_graph_agent
 from config.config import *
@@ -21,8 +22,7 @@ def reset_conversation():
     """
 
     st.session_state.messages = []
-    #st.session_state.chat_history = []
-    #st.session_state.chat_history2 = ConversationBufferWindowMemory(k=MAX_MESSAGES_IN_MEMORY, return_messages=True)
+    st.session_state.config = {"configurable": {"thread_id": uuid.uuid4()}}
 
 
 def assistant_frontend():
@@ -40,6 +40,7 @@ def assistant_frontend():
     # Initialize chat history (messages) for Streamlit
     if "messages" not in st.session_state:
         st.session_state.messages = []
+        st.session_state.config = {"configurable": {"thread_id": uuid.uuid4()}}
 
     if "model" not in st.session_state:
         st.session_state.model = DEFAULT_MODEL
@@ -100,8 +101,7 @@ def assistant_frontend():
             # Call the agent
             answer_container = st.empty()
             answer = ""
-            config = {"configurable": {"thread_id": "id0001"}}
-            response = ai_assistant_graph_agent.invoke({"messages": [HumanMessage(content=question)]}, config=config)
+            response = ai_assistant_graph_agent.invoke({"messages": [HumanMessage(content=question)]}, config=st.session_state.config)
             answer = response["messages"][-1].content
             answer_container.write(answer)
 
