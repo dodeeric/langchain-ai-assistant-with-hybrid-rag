@@ -172,8 +172,8 @@ $ sudo docker build -t chromadb-admin .
 $ sudo docker run -p 3000:3000 chromadb-admin &
 ```
 
-Configure the "Chroma connection string": Ex.: http://myvm2.edocloud.be:8000
-Set "Authentication Type" to "Token", and introduce the Chroma token/password as configured in the environment variable.
+- Configure the "Chroma connection string": Ex.: http://myvm2.edocloud.be:8000
+- Set "Authentication Type" to "Token", and introduce the Chroma token/password as configured in the environment variable.
 
 Demo: http://bmae.edocloud.be:3000
 
