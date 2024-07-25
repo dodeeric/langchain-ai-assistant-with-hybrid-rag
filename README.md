@@ -1,15 +1,15 @@
-# Langchain AI Assistant with Hybrid RAG and Memory (ragai)
+# RagAiAgent: Langchain/Langraph AI Agent with Hybrid RAG
 
-This application can be configured (see config.py) to create your own specialized AI assistant.
+This application can be configured (see config.py) to create your own specialized AI agent.
 
 ## Features
 
-- AI Python framework: Langchain
+- AI Python framework: Langchain and Langgraph
 - Web interface Python framework: Streamlit
 - Vector DB: Chroma (can run locally or on a remote server)
-- Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
-- Chat history with limited size (use of predefined chains: history_aware_retriever, stuff_documents_chain, retrieval_chain)
-- Streaming of the AI answer
+- Tool n° 1: Hybrid RAG: bm25 keyword search and vector db semantic search (BM25Retriever + vector_db.as_retriever = EnsembleRetriever). Hybrid RAG improves greatly the efficiency of the RAG search.
+- Tool n° 2: Web search
+- Chat history
 - Logs sent to Langsmith
 - AI Models: OpenAI GPT 4o, Google Gemini 1.5, Anthropic Claude 3.5, Ollama (Llama 3, etc.). Vector size: 3072.
 - Admin interface: scrape web pages, upload PDF files, embed in vector DB, change model, etc.
@@ -19,7 +19,7 @@ This application can be configured (see config.py) to create your own specialize
  
 ## Frameworks and tools
 
-- Langchain: https://www.langchain.com (Python framework for AI applications)
+- Langchain & Langraph: https://www.langchain.com (Python framework for AI applications)
 - Langsmith: https://smith.langchain.com (logs and debug for Langchain applications)
 - Streamlit: https://streamlit.io (Python framework for web interfaces for data / AI applications)
 - Chroma: https://www.trychroma.com (Vector DB)
@@ -30,6 +30,7 @@ This application can be configured (see config.py) to create your own specialize
 - Google VertexAI (Gemini): https://cloud.google.com/vertex-ai (LLM)
 - Ollama (Llama, etc.): https://ollama.com (LLM)
 - BeautifulSoup: https://www.crummy.com/software/BeautifulSoup (Web scraping)
+- Tavily: https://tavily.com (Web search for LLM)
 
 ## Procedure to install the application on a Linux server
 
@@ -56,8 +57,9 @@ LANGCHAIN_API_KEY = "ls__xxx"        ==> Go to https://smith.langchain.com (Lang
 LANGCHAIN_TRACING_V2 = "true"        ==> Set to false if you will not use Langsmith traces
 ADMIN_PASSWORD = "xxx"               ==> You chose your password
 GOOGLE_APPLICATION_CREDENTIALS = "./serviceaccountxxx.json"  ==> Path to the Service Account (with VertexAI role) JSON file
-CHROMA_SERVER_AUTHN_CREDENTIALS="xxx"   ==> You chose the password for the Chroma DB authentication
+CHROMA_SERVER_AUTHN_CREDENTIALS ="xxx"   ==> You chose the password for the Chroma DB authentication
 CHROMA_SERVER_AUTHN_PROVIDER="chromadb.auth.token_authn.TokenAuthenticationServerProvider"
+TAVILY_API_KEY = "tvly-xxx"          ==> Go to https://app.tavily.com/home
 ```
 
 Configure the application:
