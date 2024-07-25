@@ -104,7 +104,7 @@ def instanciate_ai_assistant_graph_agent(model, temperature):
 
     try:
 
-        search = TavilySearchResults(max_results=2, include_answer=True, include_raw_content=True, include_images=True)
+        search = TavilySearchResults(max_results=3, include_answer=True, include_raw_content=True, include_images=True)
 
         rag = create_retriever_tool(
             ensemble_retriever,
