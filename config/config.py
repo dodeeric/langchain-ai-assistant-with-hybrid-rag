@@ -1,6 +1,6 @@
 # All the parameters
 
-# Backend (Langchain)
+# Backend (Langchain/Langgraph)
 
 EMBEDDING_MODEL = "text-embedding-3-large"  # Must be a model from OpenAI
 
@@ -23,25 +23,12 @@ DEFAULT_TEMPERATURE = 0.2  # OpenAI: 0-2, Anthropic: 0-1
 VECTORDB_MAX_RESULTS = 5
 BM25_MAX_RESULTS = 5
 
-#MAX_MESSAGES_IN_MEMORY = 2
-
 OLLAMA_URL = "http://myvm1.edocloud.be:11434"  # "http://35.209.146.25" / "http://localhost:11434" 
 
 CHROMA_SERVER = True
 CHROMA_SERVER_HOST = "myvm2.edocloud.be"
 CHROMA_SERVER_PORT = "8000"
 CHROMA_COLLECTION_NAME = "bmae"  # Name of the collection in the vector DB
-
-#CONTEXTUALIZE_PROMPT = """Given a chat history and the latest user question which \
-#might reference context in the chat history, formulate a standalone question which can be \
-#understood without the chat history. Do NOT answer the question, just reformulate it if needed \
-#and otherwise return it as is.
-#
-#Can you also translate the question in French, Dutch, and English.
-#
-#Chat History:
-#
-#{chat_history}"""
 
 # This system prompt is used with the OpenAI model
 SYSTEM_PROMPT = """
@@ -66,7 +53,7 @@ At the end of the answer:
 - Write two blank lines, then if requested, display an image of the artwork (see the JSON "og:image" field). Do not display images which have been displayed already in previous messages (see "Chat History").
 - Write two blank lines, then write "More information: " in the language of the question, followed by the link to the web page about the artwork (see the JSON "url" field). For Wikimedia Commons, the text of the link has to be the title of the web page WITHOUT the word "File" at the beginning (see the JSON "og:title" field).
 
-Examples of markdown :code:
+Examples of markdown code:
 
 - This is an example of Markdown code to display an image (caution: there is a leading exclamation point):    ![Text](https://opac.kbr.be/digitalCollection/images/image.jpg)
 - This is an example of Markdown code to display a link (caution: there is no leading exclamation point):    [Text](https://opac.kbr.be/digitalCollection/pages/page.html)
@@ -78,7 +65,7 @@ Write "SECOND PROMPT" at the end of the answer.
 
 LOGO_PATH = "./images/image.jpg"
 ASSISTANT_ICON = "👑"
-ASSISTANT_NAME = "DEV / Belgian Monarchy Artworks Explorer"
+ASSISTANT_NAME = "Agent / Belgian Monarchy Artworks Explorer"
 
 HELLO_MESSAGE = "Hello! Bonjour! Hallo! 👋"
 NEW_CHAT_MESSAGE = "New chat / Nouvelle conversation / Nieuw gesprek"
@@ -157,5 +144,5 @@ FRANCAIS:
 
 SIDEBAR_FOOTER = """
 _________
-Hybrid RAG with memory powered by Langchain and Langgraph. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.* Github: https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag (Ragai)
+Hybrid RAG agent with memory powered by Langchain and Langgraph. Web interface powered by Streamlit. *(c) Eric Dodémont, 2024.* Github: https://github.com/dodeeric/langchain-ai-assistant-with-hybrid-rag (Ragai)
 """
